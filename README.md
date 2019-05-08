@@ -12,7 +12,8 @@ at jsonlint we should check only new generated json files.
 and we need to clean up a lot of things here are not necessary. let's discuss it as well
 
 
-
+a lot of things wouldn't work right now.
+we also need to clean up a package.json
 
 
 

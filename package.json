@@ -1,6 +1,6 @@
 {
-  "name": "@groceristar/sd-wrapper",
-  "version": "3.0.3",
+  "name": "@groceristar/static-data-generator",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "bundle": "rollup -c",
@@ -12,8 +12,6 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage",
-    "files": "node --experimental-modules dist/index.cjs",
-    "jsonlint": "node jsonlint.config.js",
     "generateFile": "node ./generator/generateFile.js",
     "generateFiles": "node ./generator/generateFiles.js",
     "generateArray": "node ./generator/generateArray.js",
@@ -25,7 +23,7 @@
   "main": "dist/index.cjs",
   "module": "dist/index.es.js",
   "browser": "dist/index.iife.js",
-  "repository": "https://github.com/GroceriStar/sd",
+  "repository": "https://github.com/GroceriStar/food-static-files-generator",
   "author": "Arthur Tkachenko",
   "private": false,
   "release": {
@@ -69,7 +67,6 @@
     "uuid": "^3.3.2"
   },
   "files": [
-    "dist",
-    "src/data"
+    "dist"
   ]
 }

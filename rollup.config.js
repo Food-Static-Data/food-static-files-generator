@@ -60,7 +60,7 @@ export default {
       exclude: [
         'node_modules/**',
         // '/src/data/__tests__',
-        '/src/settings.json'
+        'src/settings.json'
         // '/src/data/json-tests'
       ]
       // exclude: 'node_modules/**'
@@ -71,7 +71,7 @@ export default {
     // Allow Rollup to import data from JSON file
     // json()
     json({
-      include: 'src/data/**',
+      include: 'src/**',
 
       // for tree-shaking, properties will be declared as
       // variables, using either `var` or `const`

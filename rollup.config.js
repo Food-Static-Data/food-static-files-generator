@@ -59,7 +59,8 @@ export default {
       // include: ['src/**/*'],
       exclude: [
         'node_modules/**',
-        '/src/data/__tests__'
+        // '/src/data/__tests__',
+        '/src/settings.json'
         // '/src/data/json-tests'
       ]
       // exclude: 'node_modules/**'

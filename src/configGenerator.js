@@ -1,23 +1,25 @@
 const {
   usersGrocery,
-  favorites,
-  getMenuGenerator,
-  items,
+  // favorites,
+  // getMenuGenerator,
+  // items,
   getMeasurementSystem,
   getMeasurementUnits
-} = require("./generateArray")
+} = require('./generateArray')
 
+// @TODO we has commented methods here before.
+// not sure why we also completely delete them
 const config = [
   {
-    name: "measurementSystem",
+    name: 'measurementSystem',
     data: getMeasurementSystem()
   },
   {
-    name: "measurementUnits",
+    name: 'measurementUnits',
     data: getMeasurementUnits()
   },
   {
-    name: "usersGrocery",
+    name: 'usersGrocery',
     data: usersGrocery()
   }
 ]

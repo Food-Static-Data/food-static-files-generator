@@ -66,7 +66,11 @@ function fixPath(path) {
  * @param {string} file
  * */
 function readData(path, file) {
+    console.log(path + file);
+    
     let data = fs.readFileSync(path + file)
+    console.log(data);
+    
     let fileData = JSON.parse(data)
     return fileData
 }
@@ -202,5 +206,6 @@ module.exports = {
     test,
     splitObject,
     combineObject,
-    makeReadable
+    makeReadable,
+    readData
 }

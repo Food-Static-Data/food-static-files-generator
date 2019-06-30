@@ -1,6 +1,6 @@
 const _ = require('lodash')
 // const utils = require('@utils')
-const utils = require('../src/utils')
+const utils = require('./utils')
 
 // const {
 //   users,
@@ -9,13 +9,18 @@ const utils = require('../src/utils')
 //   measurementSystem,
 //   measurementUnits
 // } = require('@files')
+const { pathToSrc }  = require('./settings.json')
+console.log("path to src");
+
+console.log(pathToSrc);
+
 const {
   users,
   grocery,
   ingredients,
   measurementSystem,
   measurementUnits
-} = require('../src/files')
+} = require(pathToSrc + '/files')
 
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
 const getMenuGenerator = (numberOfWeeks) => {

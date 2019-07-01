@@ -1,3 +1,9 @@
+[![Build Status](https://travis-ci.org/GroceriStar/food-static-files-generator.svg?branch=master)](https://travis-ci.org/GroceriStar/food-static-files-generator)
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/01c06647a2b62bec8b91/maintainability)](https://codeclimate.com/github/GroceriStar/food-static-files-generator/maintainability)
+
+[![Test Coverage](https://api.codeclimate.com/v1/badges/01c06647a2b62bec8b91/test_coverage)](https://codeclimate.com/github/GroceriStar/food-static-files-generator/test_coverage)
+
 All content from sd-wrapper
 We need to update readme here!
 
@@ -37,7 +43,7 @@ Table of Contents
 
 #### Synopsis
   This is a module for using generator functions as a seperate module to generate static food data files
-  The functions granted by this module are as follows: 
+  The functions granted by this module are as follows:
 
 ### Generator commands
 - `npm run generateFiles` or `yarn generateFiles`: generate all recipes in folder `dist`

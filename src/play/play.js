@@ -17,6 +17,8 @@
 //   console.log(value)
 // })
 const  { setupGenerator } = require('../index')
+// const  { setupGenerator } = require('../../dist/index.cjs')
+
 const path = require('path')
 const path1 = path.join(__dirname, '../../../sd/src')
 

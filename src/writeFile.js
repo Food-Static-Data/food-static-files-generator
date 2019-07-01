@@ -1,10 +1,10 @@
 // const filePath = require('../files')
-const fs = require('fs')
-const PATH = require('path')
-const srcUtils = require('./../src/utils')
-    //const { promisify } = require('util') // ?? it's utils of not *** Answer : NO. It's using for writing data in json
-    // const { promisify } = require('util')
-    // const _ = require('lodash')
+const fs = require('fs');
+const PATH = require('path');
+const srcUtils = require('./../src/utils');
+// const { promisify } = require('util') // ?? it's utils of not *** Answer : NO. It's using for writing data in json
+// const { promisify } = require('util')
+// const _ = require('lodash')
 
 /**
  * for makeReadable()
@@ -13,13 +13,13 @@ const srcUtils = require('./../src/utils')
 
 
 function makeReadable(data) {
-    var dataStr = JSON.stringify(data)
-    dataStr = dataStr.replace(/{"/g, '{ "')
-    dataStr = dataStr.replace(/{"/g, '{ " ')
-    dataStr = dataStr.replace(/},{/g, ' },\n{')
-    dataStr = dataStr.replace(/":/g, '": ')
-    dataStr = dataStr.replace(/,"/g, ',\n "')
-    return dataStr
+  let dataStr = JSON.stringify(data);
+  dataStr = dataStr.replace(/{"/g, '{ "');
+  dataStr = dataStr.replace(/{"/g, '{ " ');
+  dataStr = dataStr.replace(/},{/g, ' },\n{');
+  dataStr = dataStr.replace(/":/g, '": ');
+  dataStr = dataStr.replace(/,"/g, ',\n "');
+  return dataStr;
 }
 /**
  * Write in file
@@ -27,30 +27,26 @@ function makeReadable(data) {
  * @param {Object} data
  */
 function writeFile(path, data) {
-    var dataStr = makeReadable(data)
-        //dataStr = '[' + dataStr + ']'
-        //console.log(dataStr)
-        return new Promise((resolve,reject)=>{
-            fs.writeFile(path, dataStr, function(err) {
-                if (err) reject(err)
-                
-                else resolve(path)
-                
-                 
-            })
+  const dataStr = makeReadable(data);
+  // dataStr = '[' + dataStr + ']'
+  // console.log(dataStr)
+  return new Promise((resolve, reject) => {
+    fs.writeFile(path, dataStr, (err) => {
+      if (err) reject(err);
 
-        })
-   
+      else resolve(path);
+    });
+  });
 }
 
 function test() {
-    // console.log(filePath["groceryFilePath"]);
-    // console.log(JSON.parse("src/data/Grocery/grocery.json"));
-    // console.log(grocery);
-    // writeFiles()
-    // console.log(typeof require(filePath.groceryFilePath));
+  // console.log(filePath["groceryFilePath"]);
+  // console.log(JSON.parse("src/data/Grocery/grocery.json"));
+  // console.log(grocery);
+  // writeFiles()
+  // console.log(typeof require(filePath.groceryFilePath));
 
-    console.log('ok')
+  console.log('ok');
 }
 
 // execute function
@@ -61,9 +57,9 @@ function test() {
  * @param {String} path
  */
 function fixPath(path) {
-    path = PATH.resolve(__dirname, path) // absolute path
-    if (path[-1] !== '/') { path = path + '/' } // path correction
-    return path
+  path = PATH.resolve(__dirname, path); // absolute path
+  if (path[-1] !== '/') { path += '/'; } // path correction
+  return path;
 }
 
 /**
@@ -72,13 +68,13 @@ function fixPath(path) {
  * @param {string} file
  * */
 function readData(path, file) {
-    console.log(path + file);
-    
-    let data = fs.readFileSync(path + file)
-    console.log(data);
-    
-    let fileData = JSON.parse(data)
-    return fileData
+  console.log(path + file);
+
+  const data = fs.readFileSync(path + file);
+  console.log(data);
+
+  const fileData = JSON.parse(data);
+  return fileData;
 }
 
 /**
@@ -88,12 +84,12 @@ function readData(path, file) {
  * @param {var} flag
  * */
 function saveFile(folderNamePath, file, fileData, flag) {
-    var fileDataLength = fileData.length
-    for (var i = 0; i < fileDataLength; i++) {
-        var fileName = getFileName(file, fileData[i], flag, i)
-        var elementPath = folderNamePath + '/' + fileName
-        writeFile(elementPath, fileData[i])
-    }
+  const fileDataLength = fileData.length;
+  for (let i = 0; i < fileDataLength; i++) {
+    const fileName = getFileName(file, fileData[i], flag, i);
+    const elementPath = `${folderNamePath}/${fileName}`;
+    writeFile(elementPath, fileData[i]);
+  }
 }
 
 /**
@@ -101,12 +97,12 @@ function saveFile(folderNamePath, file, fileData, flag) {
  * @param {String} file
  */
 function makeFolder(path, file) {
-    var folderName = file.slice(0, -5) + '_elements'
-    var folderNamePath = path + folderName
-    if (isDirectory(folderNamePath)) {
-        fs.mkdirSync(folderNamePath)
-    }
-    return folderNamePath
+  const folderName = `${file.slice(0, -5)}_elements`;
+  const folderNamePath = path + folderName;
+  if (isDirectory(folderNamePath)) {
+    fs.mkdirSync(folderNamePath);
+  }
+  return folderNamePath;
 }
 /**
  * For splitObject
@@ -117,25 +113,23 @@ function makeFolder(path, file) {
  * @param {var} keys
  */
 function splitObject(path, file, flag = 1, callback, keys = []) { // split large files into single elements
-    /*
+  /*
         flag=1 ==> name according to index
         flag=0 ==> name according to "name" attribute
       */
-    if (file.slice(-5) !== '.json') {
-        console.log("Require .json file.")
-        return
-    }
-    path = fixPath(path)
-    let fileData = readData(path, file) // Reading data...
-    var folderNamePath = makeFolder(path, file) // new folder to save splitted files
-    saveFile(folderNamePath, file, fileData, flag) // saving files
-    if (callback instanceof Function) {
-        setTimeout(function() {
-            callback(folderNamePath, keys)
-        }, 1000)
-    }
-
-
+  if (file.slice(-5) !== '.json') {
+    console.log('Require .json file.');
+    return;
+  }
+  path = fixPath(path);
+  const fileData = readData(path, file); // Reading data...
+  const folderNamePath = makeFolder(path, file); // new folder to save splitted files
+  saveFile(folderNamePath, file, fileData, flag); // saving files
+  if (callback instanceof Function) {
+    setTimeout(() => {
+      callback(folderNamePath, keys);
+    }, 1000);
+  }
 }
 // execute function
 // splitObject()
@@ -145,9 +139,9 @@ function splitObject(path, file, flag = 1, callback, keys = []) { // split large
  * @param {string} fileName
  */
 function fixFileName(fileName) {
-    fileName = fileName.replace(/ /g, '_') // Replace space with underscore
-    fileName = fileName.toLowerCase() // Maintain Uniformity
-    return fileName
+  fileName = fileName.replace(/ /g, '_'); // Replace space with underscore
+  fileName = fileName.toLowerCase(); // Maintain Uniformity
+  return fileName;
 }
 
 /**
@@ -155,10 +149,10 @@ function fixFileName(fileName) {
  * @param {string} folderNamePath
  *  */
 function isDirectory(folderNamePath) {
-    if (fs.existsSync(folderNamePath)) {
-        return false
-    }
-    return true
+  if (fs.existsSync(folderNamePath)) {
+    return false;
+  }
+  return true;
 }
 
 /**
@@ -169,11 +163,11 @@ function isDirectory(folderNamePath) {
  * @param {var} index
  */
 function getFileName(file, fileData, flag, index) {
-    var fileName
-    if (flag === 1) fileName = index + '-' + file // for example: 23-someJsonFile.json
-    else fileName = fileData.name + '.json' // for example: someValueOfName.json
-    fileName = fixFileName(fileName)
-    return fileName
+  let fileName;
+  if (flag === 1) fileName = `${index}-${file}`; // for example: 23-someJsonFile.json
+  else fileName = `${fileData.name}.json`; // for example: someValueOfName.json
+  fileName = fixFileName(fileName);
+  return fileName;
 }
 
 /**
@@ -182,11 +176,11 @@ function getFileName(file, fileData, flag, index) {
  * @param {var} keys List of keys that are to be removed
  */
 function combineObject(path, keys) {
-    path = fixPath(path)
-    var content = srcUtils.readAllFiles(path) //read all json files
-    content = updateContent(content, keys) //modifying structure
-    var fileNamePath = path + PATH.basename(path) + "_combined.json" // for example: elements_combined,json
-    writeFile(fileNamePath, content) //saving
+  path = fixPath(path);
+  let content = srcUtils.readAllFiles(path); // read all json files
+  content = updateContent(content, keys); // modifying structure
+  const fileNamePath = `${path + PATH.basename(path)}_combined.json`; // for example: elements_combined,json
+  writeFile(fileNamePath, content); // saving
 }
 
 /**
@@ -195,23 +189,23 @@ function combineObject(path, keys) {
  * @param {var} keys
  */
 function updateContent(content, keys) {
-    var len = content.length
-    for (var itr = 0; itr < len; itr++) {
-        var elementLen = content[itr].length
-        for (var i = 0; i < elementLen; i++) {
-            for (var j = 0; j < keys.length; j++) {
-                //console.log(content[itr][i][keys[j]]);
-                delete content[itr][i][keys[j]]
-            }
-        }
+  const len = content.length;
+  for (let itr = 0; itr < len; itr++) {
+    const elementLen = content[itr].length;
+    for (let i = 0; i < elementLen; i++) {
+      for (let j = 0; j < keys.length; j++) {
+        // console.log(content[itr][i][keys[j]]);
+        delete content[itr][i][keys[j]];
+      }
     }
-    return content
+  }
+  return content;
 }
 module.exports = {
-    writeFile,
-    test,
-    splitObject,
-    combineObject,
-    makeReadable,
-    readData
-}
+  writeFile,
+  test,
+  splitObject,
+  combineObject,
+  makeReadable,
+  readData,
+};

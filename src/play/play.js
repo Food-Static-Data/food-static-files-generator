@@ -16,19 +16,18 @@
 // _.forEach(arr, function (value) {
 //   console.log(value)
 // })
-const  { setupGenerator } = require('../index')
-const path = require('path')
-const path1 = path.join(__dirname, '../../../sd/src')
+const path = require('path');
+const { setupGenerator } = require('../index');
+
+const path1 = path.join(__dirname, '../../../sd/src');
 
 
-
-console.log(path1 );
-setupGenerator(path1)
+console.log(path1);
+setupGenerator(path1);
 
 // describe('testing if generateFiles() working', () => {
 //     test('Test', () => {
-        
-        
-        
+
+
 //     })
 // })

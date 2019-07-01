@@ -1,5 +1,5 @@
-const path = require('path')
-const { parseDirectoryFiles } = require('../../../csvParser')
+const path = require('path');
+const { parseDirectoryFiles } = require('../../../csvParser');
 
 const headers = [
   'NDB_Number',
@@ -9,11 +9,11 @@ const headers = [
   'manufacturer',
   'date_modified',
   'date_available',
-  'ingredients_english'
-]
+  'ingredients_english',
+];
 
-const directory = '../../../../src/data/Product'
+const directory = '../../../../src/data/Product';
 // //joining path of directory
-const directoryPath = path.join(__dirname, directory)
+const directoryPath = path.join(__dirname, directory);
 
-parseDirectoryFiles(directoryPath, headers)
+parseDirectoryFiles(directoryPath, headers);

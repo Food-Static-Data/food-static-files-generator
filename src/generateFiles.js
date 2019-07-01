@@ -1,5 +1,5 @@
-const fs = require('fs')
-var { writeFile, readData } = require('./writeFile')
+const fs = require('fs');
+const { writeFile, readData } = require('./writeFile');
 // var {
 //   usersGrocery,
 //   favorites,
@@ -10,30 +10,26 @@ var { writeFile, readData } = require('./writeFile')
 // } = require('./generateArray')
 
 
-
-const { config } = require('./configGenerator')
+const { config } = require('./configGenerator');
 
 // @TODO I don't like that we have all of these path manipulations inside of this method
 // folderData = './src/data/'
-function generateFiles (pathToSrc) {
-  
-    config.map(settings => {
-      var fileName = settings['name']
-      var folder = fileName.charAt(0).toUpperCase() + fileName.slice(1)
-      //   var path = './output/' + fileName + '.json';
-      var folderPath = pathToSrc +'/data/' + folder
-  
-      if (!fs.existsSync(folderPath)) { // @TODO use isDirectory?
-        fs.mkdirSync(folderPath)
-      }
-      var path = folderPath + '/' + fileName + '.json'
-      var data = settings['data']
-      // console.log(data);
-  
-      writeFile(path, data)
-    })
-  
-  
+function generateFiles(pathToSrc) {
+  config.map((settings) => {
+    const fileName = settings.name;
+    const folder = fileName.charAt(0).toUpperCase() + fileName.slice(1);
+    //   var path = './output/' + fileName + '.json';
+    const folderPath = `${pathToSrc}/data/${folder}`;
+
+    if (!fs.existsSync(folderPath)) { // @TODO use isDirectory?
+      fs.mkdirSync(folderPath);
+    }
+    const path = `${folderPath}/${fileName}.json`;
+    const { data } = settings;
+    // console.log(data);
+
+    writeFile(path, data);
+  });
 }
 
 // @TODO i don't think that later we should call this method inside of this file
@@ -41,5 +37,5 @@ function generateFiles (pathToSrc) {
 // generateFiles()
 
 module.exports = {
-  generateFiles
-}
+  generateFiles,
+};

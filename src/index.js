@@ -1,7 +1,7 @@
 
-const { setupGenerator } = require('./startGenerate')
+const { setupGenerator } = require('./startGenerate');
 
 module.exports = {
-    
-    setupGenerator
-}
+
+  setupGenerator,
+};

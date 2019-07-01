@@ -14,15 +14,13 @@
 //     expect(existsSync(file)).toBe(true)
 //   })
 // })
-const  { setupGenerator } = require('./index')
+const { setupGenerator } = require('./index');
 // const path = require('path')
 // const path1 = path.join(__dirname, '../../sd/src')
 
 // console.log(path1 );
 describe('testing if setupGenerator() working', () => {
-    test('Test', () => {
-        
-        setupGenerator()
-        
-    })
-})
+  test('Test', () => {
+    setupGenerator();
+  });
+});

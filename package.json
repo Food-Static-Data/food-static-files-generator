@@ -1,6 +1,6 @@
 {
   "name": "@groceristar/static-data-generator",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "scripts": {
     "bundle": "rollup -c",
@@ -55,6 +55,7 @@
     "dayjs": "^1.8.13",
     "lodash": "^4.17.11",
     "path": "^0.12.7",
+    "randombytes": "^2.1.0",
     "uuid": "^3.3.2"
   },
   "files": [

@@ -3,6 +3,7 @@ import resolve from 'rollup-plugin-node-resolve'
 import json from 'rollup-plugin-json'
 import copy from 'rollup-plugin-copy-assets'
 import builtins from 'rollup-plugin-node-builtins'
+import replace from 'rollup-plugin-replace';
 import babel from 'rollup-plugin-babel'
 import pkg from './package.json'
 
@@ -38,18 +39,27 @@ export default {
   globals,
 
   plugins: [
+    replace({
+      include: ['node_modules/uuid/**'],
+      delimiters: ['', ''],
+      values: {
+        'crypto.randomBytes': 'require(\'randombytes\')'
+      }
+    }),
     // Allows node_modules resolution
-    resolve({ extensions }),
+    resolve({ extensions,
+      browser: true,  // fixes ERROR!!! randomBytes(16)
+     }),
 
     // Allow bundling cjs modules. Rollup doesn't understand cjs
     commonjs({
-      namedExports: {
-      //   // left-hand side can be an absolute path, a path
-      //   // relative to the current directory, or the name
-      //   // of a module in node_modules
-      //   'node_modules/my-lib/index.js': [ 'named' ]
-        '~/Allergy/allergies.json': [ 'allergies' ]
-      },
+      // namedExports: {
+      // //   // left-hand side can be an absolute path, a path
+      // //   // relative to the current directory, or the name
+      // //   // of a module in node_modules
+      // //   'node_modules/my-lib/index.js': [ 'named' ]
+      //   '~/Allergy/allergies.json': [ 'allergies' ]
+      // },
       ignore : ["conditional-runtime-dependency"]
     }),
 
@@ -90,7 +100,8 @@ export default {
     //   ],
     // }),
 
-    builtins()
+    builtins(),
+    
 
   ],
 

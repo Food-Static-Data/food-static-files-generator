@@ -18,8 +18,8 @@
 // })
 
 // -------------------------------------------------------
-// const  { generateFiles } = require('../index')
-const  { generateFiles } = require('../../dist/index.cjs')
+const  { generateFiles } = require('../index')
+// const  { generateFiles } = require('../../dist/index.cjs')
 
 const path = require('path')
 const path1 = path.join(__dirname, '../../../sd/src')

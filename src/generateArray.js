@@ -9,18 +9,17 @@ const utils = require('./utils')
 //   measurementSystem,
 //   measurementUnits
 // } = require('@files')
-const { pathToSrc }  = require('./settings.json')
-console.log("path to src");
+// const { pathToSrc }  = require('./settings.json')
+// console.log("path to src");
 
-console.log(pathToSrc);
+// console.log(pathToSrc);
 
-const {
-  users,
-  grocery,
-  ingredients,
-  measurementSystem,
-  measurementUnits
-} = require(pathToSrc + '/files')
+//@TODO maybe in future it can be improved
+var files;
+
+function setupPath(pathToSrc){
+ files = require(pathToSrc + '/files')
+}
 
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
 const getMenuGenerator = (numberOfWeeks) => {
@@ -52,9 +51,9 @@ function generateArrWithId (data, id) {
 
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
 function favorites () {
-  var groceryId = generateArrWithId(grocery, 'grocery_id')
-  var usersId = generateArrWithId(users, 'user_id')
-  var ingredientsId = generateArrWithId(ingredients, 'ingredient_id')
+  var groceryId = generateArrWithId(files.grocery, 'grocery_id')
+  var usersId = generateArrWithId(files.users, 'user_id')
+  var ingredientsId = generateArrWithId(files.ingredients, 'ingredient_id')
 
   var result = []
 
@@ -73,8 +72,8 @@ function favorites () {
 
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
 function usersGrocery () {
-  var groceryId = generateArrWithId(grocery, 'grocery_id')
-  var usersId = generateArrWithId(users, 'user_id')
+  var groceryId = generateArrWithId(files.grocery, 'grocery_id')
+  var usersId = generateArrWithId(files.users, 'user_id')
   // return object for three users
   var result = []
 
@@ -90,7 +89,7 @@ function usersGrocery () {
 
 // @TODO rename this method
 function items () {
-  var ingredientsId = generateArrWithId(ingredients, 'ingredient_id')
+  var ingredientsId = generateArrWithId(files.ingredients, 'ingredient_id')
   var items = [1, 2, 3]
   var result = []
 
@@ -110,7 +109,7 @@ function items () {
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
 function getMeasurementSystem () {
   var result = []
-  var measurementSystemId = generateArrWithId(measurementSystem, 'id')
+  var measurementSystemId = generateArrWithId(files.measurementSystem, 'id')
 
   _.map(measurementSystemId, system => {
     result.push({
@@ -125,8 +124,8 @@ function getMeasurementSystem () {
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
 function getMeasurementUnits () {
   var result = []
-  var measurementUnitsId = generateArrWithId(measurementUnits, 'id')
-  measurementUnitsId = generateArrWithId(measurementUnitsId, 'system_id')
+  var measurementUnitsId = generateArrWithId(files.measurementUnits, 'id')
+  measurementUnitsId = generateArrWithId(files.measurementUnitsId, 'system_id')
 
   _.map(measurementUnitsId, unit => {
     result.push({
@@ -150,5 +149,6 @@ module.exports = {
   getMenuGenerator,
   items,
   getMeasurementSystem,
-  getMeasurementUnits
+  getMeasurementUnits,
+  setupPath
 }

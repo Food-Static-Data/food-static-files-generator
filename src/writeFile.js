@@ -30,11 +30,17 @@ function writeFile(path, data) {
     var dataStr = makeReadable(data)
         //dataStr = '[' + dataStr + ']'
         //console.log(dataStr)
-    fs.writeFile(path, dataStr, function(err) {
-        if (err)
-            return console.log(err)
-        console.info(path + ' file generated successfully!')
-    })
+        return new Promise((resolve,reject)=>{
+            fs.writeFile(path, dataStr, function(err) {
+                if (err) reject(err)
+                
+                else resolve(path)
+                
+                 
+            })
+
+        })
+   
 }
 
 function test() {

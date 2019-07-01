@@ -3,7 +3,7 @@ var { writeFile, readData } = require('./writeFile')
 
 
 function setupGenerator(pathToSrc){
-    writeFile('./src/settings.json', { pathToSrc: pathToSrc })
+     writeFile('./src/settings.json', { pathToSrc: pathToSrc })
 
     setTimeout(() => {
     const { generateFiles } = require('./generateFiles')

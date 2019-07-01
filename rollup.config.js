@@ -5,7 +5,7 @@ import copy from 'rollup-plugin-copy-assets'
 import builtins from 'rollup-plugin-node-builtins'
 import babel from 'rollup-plugin-babel'
 import pkg from './package.json'
-
+import  eslint  from "rollup-plugin-eslint"
 // import cleanup from 'rollup-plugin-cleanup';
 // https://github.com/mjeanroy/rollup-plugin-prettier
 // https://gitlab.com/IvanSanchez/rollup-plugin-file-as-blob
@@ -41,6 +41,14 @@ export default {
     // Allows node_modules resolution
     resolve({ extensions }),
 
+    //Allows verification of entry point and all imported files with ESLint.
+    eslint({
+      /* your options */
+      fix:true,
+      throwOnWarning:true,
+      throwOnError:true
+
+    }),
     // Allow bundling cjs modules. Rollup doesn't understand cjs
     commonjs({
       namedExports: {
@@ -90,7 +98,6 @@ export default {
     // }),
 
     builtins()
-
   ],
 
   output: [{

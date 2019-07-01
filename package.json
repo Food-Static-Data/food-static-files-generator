@@ -12,8 +12,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage",
-    "lint": "eslint src",
-    "code-fix": "eslint src --fix",
+    "lint": "eslint --fix",
+    "code-fix": "eslint --fix",
     "format": "prettier",
     "play": "node ./src/play/play.js"
   },
@@ -60,6 +60,7 @@
     "eslint-plugin-jest": "^22.7.1",
     "lodash": "^4.17.11",
     "path": "^0.12.7",
+    "rollup-plugin-eslint": "^7.0.0",
     "uuid": "^3.3.2"
   },
   "files": [

@@ -49,7 +49,8 @@ export default {
       //   // of a module in node_modules
       //   'node_modules/my-lib/index.js': [ 'named' ]
         '~/Allergy/allergies.json': [ 'allergies' ]
-      }
+      },
+      ignore : ["conditional-runtime-dependency"]
     }),
 
     // Compile TypeScript/JavaScript files

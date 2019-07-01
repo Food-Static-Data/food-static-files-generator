@@ -31,12 +31,15 @@ const splitJsonIntoFiles = (fileName) => {
 }
 
 const csvToJson = (directory, file, headers) => {
+  
+  // @TODO can this be a separated method?
   const fileName = file.split('.')[0]
 
   const folder = directory.split('/')
 
   folderName = folder[folder.length - 1]
-
+  // <--
+  
   let results = []
 
   // @TODO it's a very long path. we can use our aliases

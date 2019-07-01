@@ -1,7 +1,6 @@
 
-const { setupGenerator } = require('./startGenerate')
+const { generateFiles } = require('./generateFiles')
 
 module.exports = {
-    
-    setupGenerator
+    generateFiles
 }

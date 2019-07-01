@@ -11,12 +11,14 @@ var { writeFile, readData } = require('./writeFile')
 
 
 
-const { config } = require('./configGenerator')
+const { config, setupPath } = require('./configGenerator')
 
 // @TODO I don't like that we have all of these path manipulations inside of this method
 // folderData = './src/data/'
 function generateFiles (pathToSrc) {
-  
+    // console.log(config[0]["data"]())
+    setupPath(pathToSrc)
+    
     config.map(settings => {
       var fileName = settings['name']
       var folder = fileName.charAt(0).toUpperCase() + fileName.slice(1)
@@ -27,7 +29,7 @@ function generateFiles (pathToSrc) {
         fs.mkdirSync(folderPath)
       }
       var path = folderPath + '/' + fileName + '.json'
-      var data = settings['data']
+      var data = settings['data']()
       // console.log(data);
   
       writeFile(path, data)

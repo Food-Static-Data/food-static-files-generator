@@ -206,11 +206,6 @@ function updateContent(content, keys) {
         }
     }
 
-    // content.forEach((obj) => {
-    //   obj.forEach((key) => {
-    //
-    //   })
-    // })
     return content
 }
 

@@ -10,8 +10,6 @@ const srcUtils = require('./../src/utils')
  * for makeReadable()
  * @param {Object} data a json object
  * */
-
-
 function makeReadable(data) {
     var dataStr = JSON.stringify(data)
     dataStr = dataStr.replace(/{"/g, '{ "')
@@ -21,6 +19,7 @@ function makeReadable(data) {
     dataStr = dataStr.replace(/,"/g, ',\n "')
     return dataStr
 }
+
 /**
  * Write in file
  * @param {String} path
@@ -206,6 +205,12 @@ function updateContent(content, keys) {
             }
         }
     }
+
+    // content.forEach((obj) => {
+    //   obj.forEach((key) => {
+    //
+    //   })
+    // })
     return content
 }
 

@@ -1,6 +1,7 @@
 const _ = require('lodash')
 // const utils = require('@utils')
 const utils = require('./utils')
+const PATH = require('path')
 
 // const {
 //   users,
@@ -123,11 +124,14 @@ function getMeasurementSystem () {
 
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
 function getMeasurementUnits () {
-  var result = []
-  var measurementUnitsId = generateArrWithId(files.measurementUnits, 'id')
-  measurementUnitsId = generateArrWithId(files.measurementUnitsId, 'system_id')
+  const dirMeasurementUnits = PATH.parse(files.measurementUnits).dir
+  let measurementUnitsList = utils.readAllFiles(dirMeasurementUnits)[1]
+  let result = []
 
-  _.map(measurementUnitsId, unit => {
+  measurementUnitsList = generateArrWithId(measurementUnitsList, 'id')
+  measurementUnitsList = generateArrWithId(measurementUnitsList, 'system_id')
+
+  _.map(measurementUnitsList, unit => {
     result.push({
       'id': unit.id,
       'system_id': unit.system_id,
@@ -140,6 +144,7 @@ function getMeasurementUnits () {
       'error': 'null'
     })
   })
+
   return result
 }
 

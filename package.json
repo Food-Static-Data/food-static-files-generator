@@ -1,6 +1,6 @@
 {
   "name": "@groceristar/static-data-generator",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "MIT",
   "scripts": {
     "bundle": "rollup -c",
@@ -18,7 +18,6 @@
     "play": "node ./src/play/play.js",
     "buildBabel": "babel src -d dist",
     "debug:generator": "rollup -c && node ./debug/runGenerator.js"
-
   },
   "description": "module to use static JSON files with groceristar projects",
   "main": "dist/index.cjs",

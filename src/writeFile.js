@@ -69,10 +69,10 @@ function fixPath(path) {
  * */
 function readData(path, file) {
     console.log(path + file);
-    
+
     let data = fs.readFileSync(path + file)
     console.log(data);
-    
+
     let fileData = JSON.parse(data)
     return fileData
 }
@@ -107,33 +107,38 @@ function makeFolder(path, file) {
 
 /**
  * For splitObject
- * @param {String} path
- * @param {String} file
+ *
+ * @describe split large files into single elements
+ *
+ * @param {String} fullPath
  * @param {var} flag
- * @param {var} callback
  * @param {var} keys
+ * @param {var} callback
  */
-function splitObject(path, file, flag = 1, callback, keys = []) { // split large files into single elements
-    /*
-        flag=1 ==> name according to index
-        flag=0 ==> name according to "name" attribute
-      */
-    if (file.slice(-5) !== '.json') {
-        console.log("Require .json file.")
-        return
-    }
+ function splitObject(fullPath, flag = 1,  keys = [], callback) {
+     /*
+       flag=1 ==> name according to index
+       flag=0 ==> name according to "name" attribute
+     */
+     const file = PATH.basename(fullPath)
+     let path = PATH.parse(fullPath).dir
+
+     if (PATH.extname(file) !== '.json') {
+         console.log("Require .json file.")
+         return
+     }
+
     path = fixPath(path)
     let fileData = readData(path, file) // Reading data...
     var folderNamePath = makeFolder(path, file) // new folder to save splitted files
     saveFile(folderNamePath, file, fileData, flag) // saving files
+
     if (callback instanceof Function) {
         setTimeout(function() {
             callback(folderNamePath, keys)
         }, 1000)
     }
-
-
-}
+ }
 // execute function
 // splitObject()
 
@@ -194,7 +199,9 @@ function combineObject(path, keys) {
  * @param {var} keys
  */
 function updateContent(content, keys) {
+
     var len = content.length // @TODO I don't like this short variable name
+    
     for (var itr = 0; itr < len; itr++) { // @TODO I don't like this short variable name
         var elementLen = content[itr].length
         for (var i = 0; i < elementLen; i++) {
@@ -204,6 +211,7 @@ function updateContent(content, keys) {
             }
         }
     }
+
     return content
 }
 

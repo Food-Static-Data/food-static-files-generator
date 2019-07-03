@@ -18,24 +18,23 @@ const { config, setupPath } = require('./configGenerator')
 function generateFiles (pathToSrc) {
     // console.log(config[0]["data"]())
     setupPath(pathToSrc)
-    
+
     config.map(settings => {
       var fileName = settings['name']
       var folder = fileName.charAt(0).toUpperCase() + fileName.slice(1)
       //   var path = './output/' + fileName + '.json';
       var folderPath = pathToSrc +'/data/' + folder
-  
+
       if (!fs.existsSync(folderPath)) { // @TODO use isDirectory?
         fs.mkdirSync(folderPath)
       }
       var path = folderPath + '/' + fileName + '.json'
       var data = settings['data']()
-      // console.log(data);
-  
+
       writeFile(path, data)
     })
-  
-  
+
+
 }
 
 // @TODO i don't think that later we should call this method inside of this file

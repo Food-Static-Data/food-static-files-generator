@@ -16,7 +16,9 @@
     "code-fix": "standard --fix",
     "format": "prettier",
     "play": "node ./src/play/play.js",
-    "buildBabel": "babel src -d dist"
+    "buildBabel": "babel src -d dist",
+    "debug:generator": "rollup -c && node ./debug/runGenerator.js"
+
   },
   "description": "module to use static JSON files with groceristar projects",
   "main": "dist/index.cjs",

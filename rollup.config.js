@@ -1,7 +1,7 @@
 import commonjs from 'rollup-plugin-commonjs'
 import resolve from 'rollup-plugin-node-resolve'
-import json from 'rollup-plugin-json'
-import copy from 'rollup-plugin-copy-assets'
+// import json from 'rollup-plugin-json'
+// import copy from 'rollup-plugin-copy-assets'
 import builtins from 'rollup-plugin-node-builtins'
 import replace from 'rollup-plugin-replace';
 import babel from 'rollup-plugin-babel'
@@ -81,17 +81,17 @@ export default {
 
     // Allow Rollup to import data from JSON file
     // json()
-    json({
-      include: 'src/**',
+    // json({
+    //   include: 'src/**',
 
-      // for tree-shaking, properties will be declared as
-      // variables, using either `var` or `const`
-      preferConst: true,
+    //   // for tree-shaking, properties will be declared as
+    //   // variables, using either `var` or `const`
+    //   preferConst: true,
 
-      // generate a named export for every property of the JSON object
-      namedExports: true // Default: true
+    //   // generate a named export for every property of the JSON object
+    //   namedExports: true // Default: true
 
-    }),
+    // }),
 
     // juck fix in order to move json files to npm
     // copy({

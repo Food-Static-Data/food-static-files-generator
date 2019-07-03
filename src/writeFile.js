@@ -12,7 +12,7 @@ const srcUtils = require('./../src/utils')
  * */
 function makeReadable(data) {
     var dataStr = JSON.stringify(data)
-    
+
     // @TODO create an array with this rules and run them inside of the loop?
     dataStr = dataStr.replace(/{"/g, '{ "')
     dataStr = dataStr.replace(/{"/g, '{ " ')
@@ -200,17 +200,14 @@ function combineObject(path, keys) {
  */
 function updateContent(content, keys) {
 
-    var len = content.length // @TODO I don't like this short variable name
-    
-    for (var itr = 0; itr < len; itr++) { // @TODO I don't like this short variable name
-        var elementLen = content[itr].length
-        for (var i = 0; i < elementLen; i++) {
-            for (var j = 0; j < keys.length; j++) {
-                //console.log(content[itr][i][keys[j]]);
-                delete content[itr][i][keys[j]]
-            }
-        }
-    }
+    // The reason of accessing the first element in content is because it's a 2D array
+    // in src/utils.js readAllFiles has to change where parsed JSON should be
+    // returned not pushed to another array
+    content[0].forEach((obj) => {
+      keys.forEach((key) => {
+        delete obj[key]
+      })
+    })
 
     return content
 }

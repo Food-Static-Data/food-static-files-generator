@@ -12,6 +12,8 @@ const srcUtils = require('./../src/utils')
  * */
 function makeReadable(data) {
     var dataStr = JSON.stringify(data)
+    
+    // @TODO create an array with this rules and run them inside of the loop?
     dataStr = dataStr.replace(/{"/g, '{ "')
     dataStr = dataStr.replace(/{"/g, '{ " ')
     dataStr = dataStr.replace(/},{/g, ' },\n{')
@@ -36,6 +38,7 @@ function writeFile(path, data) {
     })
 }
 
+// @TODO maybe we can remove it and use play.js as a place for testing our methods?
 function test() {
     // console.log(filePath["groceryFilePath"]);
     // console.log(JSON.parse("src/data/Grocery/grocery.json"));
@@ -101,6 +104,7 @@ function makeFolder(path, file) {
     }
     return folderNamePath
 }
+
 /**
  * For splitObject
  *
@@ -148,6 +152,7 @@ function fixFileName(fileName) {
     return fileName
 }
 
+//@TODO move to utils?
 /**
  * isDirectory()
  * @param {string} folderNamePath
@@ -183,10 +188,11 @@ function combineObject(path, keys) {
     path = fixPath(path)
     var content = srcUtils.readAllFiles(path) //read all json files
     content = updateContent(content, keys) //modifying structure
-    var fileNamePath = path + PATH.basename(path) + "_combined.json" // for example: elements_combined,json
+    var fileNamePath = path + PATH.basename(path) + "_combined.json" // for example: elements_combined.json
     writeFile(fileNamePath, content) //saving
 }
 
+// @TODO this looks pretty bad. I even don't know and don't want to know how it works. and it definately can be easily broken
 /**
  * For updateContent()
  * @param {var} content
@@ -194,9 +200,9 @@ function combineObject(path, keys) {
  */
 function updateContent(content, keys) {
 
-    const len = content.length
-
-    for (var itr = 0; itr < len; itr++) {
+    var len = content.length // @TODO I don't like this short variable name
+    
+    for (var itr = 0; itr < len; itr++) { // @TODO I don't like this short variable name
         var elementLen = content[itr].length
         for (var i = 0; i < elementLen; i++) {
             for (var j = 0; j < keys.length; j++) {

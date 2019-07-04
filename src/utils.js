@@ -5,11 +5,11 @@
 // __generateId
 // getFileKey - i don't like the name
 
-import pathExists from 'path-exists'
-import uuidv1 from 'uuid/v1'
-import dayjs from 'dayjs'
-import fs from 'fs'
-import PATH from 'path'
+const pathExists = require('path-exists')
+const uuidv1 = require('uuid/v1')
+const dayjs = require('dayjs')
+const fs = require('fs')
+const PATH = require('path')
 
 async function checkFilePath (path) {
   if (await pathExists(path)) {

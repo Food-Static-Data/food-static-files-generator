@@ -134,7 +134,7 @@ const jsonSchemaTest = (file, example, schema) => {
 }
 // checkFilePath('./generator/utils1.js') using method checkFilePath
 
-export default {
+module.exports =  {
   checkFilePath,
   __generateId,
   __generateDate,

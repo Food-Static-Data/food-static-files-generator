@@ -200,15 +200,13 @@ function combineObject(path, keys) {
  */
 function updateContent(content, keys) {
 
-    // The reason of accessing the first element in content is because it's a 2D array
-    // in src/utils.js readAllFiles has to change where parsed JSON should be
-    // returned not pushed to another array
-    content[0].forEach((obj) => {
-      keys.forEach((key) => {
-        delete obj[key]
+    content.forEach((contentElem) => {
+      contentElem.forEach((obj) => {
+        keys.forEach((key) => {
+          delete obj[key]
+        })
       })
     })
-
     return content
 }
 

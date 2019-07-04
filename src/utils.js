@@ -5,11 +5,11 @@
 // __generateId
 // getFileKey - i don't like the name
 
-const pathExists = require('path-exists')
-const uuidv1 = require('uuid/v1')
-const dayjs = require('dayjs')
-const fs = require('fs')
-const PATH = require('path')
+import pathExists from 'path-exists'
+import uuidv1 from 'uuid/v1'
+import dayjs from 'dayjs'
+import fs from 'fs'
+import PATH from 'path'
 
 async function checkFilePath (path) {
   if (await pathExists(path)) {
@@ -134,12 +134,12 @@ const jsonSchemaTest = (file, example, schema) => {
 }
 // checkFilePath('./generator/utils1.js') using method checkFilePath
 
-module.exports = {
+export default {
   checkFilePath,
   __generateId,
-    __generateDate,
-    jsonFileNotEmptyTest,
-    jsonSchemaTest,
-    getFileInfo,
-    readAllFiles
+  __generateDate,
+  jsonFileNotEmptyTest,
+  jsonSchemaTest,
+  getFileInfo,
+  readAllFiles
 }

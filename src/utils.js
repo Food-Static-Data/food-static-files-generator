@@ -134,12 +134,12 @@ const jsonSchemaTest = (file, example, schema) => {
 }
 // checkFilePath('./generator/utils1.js') using method checkFilePath
 
-module.exports = {
+module.exports =  {
   checkFilePath,
   __generateId,
-    __generateDate,
-    jsonFileNotEmptyTest,
-    jsonSchemaTest,
-    getFileInfo,
-    readAllFiles
+  __generateDate,
+  jsonFileNotEmptyTest,
+  jsonSchemaTest,
+  getFileInfo,
+  readAllFiles
 }

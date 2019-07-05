@@ -94,7 +94,7 @@ function saveFile(folderNamePath, file, fileData, flag) {
 function makeFolder(path, file) {
     var folderName = file.slice(0, -5) + '_elements'
     var folderNamePath = path + folderName
-    if (isDirectory(folderNamePath)) {
+    if (srcUtils.isDirectory(folderNamePath)) {
         fs.mkdirSync(folderNamePath)
     }
     return folderNamePath
@@ -145,18 +145,6 @@ function fixFileName(fileName) {
     fileName = fileName.replace(/ /g, '_') // Replace space with underscore
     fileName = fileName.toLowerCase() // Maintain Uniformity
     return fileName
-}
-
-//@TODO move to utils?
-/**
- * isDirectory()
- * @param {string} folderNamePath
- *  */
-function isDirectory(folderNamePath) {
-    if (fs.existsSync(folderNamePath)) {
-        return false
-    }
-    return true
 }
 
 /**

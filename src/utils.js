@@ -19,9 +19,18 @@ async function checkFilePath (path) {
   }
 }
 
-
 /* global describe, it, expect */
 
+/**
+ * isDirectory()
+ * @param {string} folderNamePath
+ *  */
+function isDirectory(folderNamePath) {
+    if (fs.existsSync(folderNamePath)) {
+        return false
+    }
+    return true
+}
 
 /**
  * For readAllFiles()
@@ -141,5 +150,6 @@ module.exports =  {
   jsonFileNotEmptyTest,
   jsonSchemaTest,
   getFileInfo,
-  readAllFiles
+  readAllFiles,
+  isDirectory
 }

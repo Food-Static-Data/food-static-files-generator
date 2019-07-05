@@ -175,7 +175,6 @@ function combineObject(path, keys) {
     writeFile(fileNamePath, content) //saving
 }
 
-// @TODO this looks pretty bad. I even don't know and don't want to know how it works. and it definately can be easily broken
 /**
  * For updateContent()
  * @param {var} content

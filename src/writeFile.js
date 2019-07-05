@@ -13,12 +13,18 @@ const srcUtils = require('./../src/utils')
 function makeReadable(data) {
     var dataStr = JSON.stringify(data)
 
-    // @TODO create an array with this rules and run them inside of the loop?
-    dataStr = dataStr.replace(/{"/g, '{ "')
-    dataStr = dataStr.replace(/{"/g, '{ " ')
-    dataStr = dataStr.replace(/},{/g, ' },\n{')
-    dataStr = dataStr.replace(/":/g, '": ')
-    dataStr = dataStr.replace(/,"/g, ',\n "')
+    const replaceList = [
+      [/{"/g, '{ "'],
+      [/{"/g, '{ " '],
+      [/},{/g, ' },\n{'],
+      [/":/g, '": '],
+      [/,"/g, ',\n "']
+    ]
+
+    replaceList.forEach((replacer) => {
+      dataStr = dataStr.replace(replacer[0], replacer[1])
+    })
+
     return dataStr
 }
 
@@ -36,17 +42,6 @@ function writeFile(path, data) {
             return console.log(err)
         console.info(path + ' file generated successfully!')
     })
-}
-
-// @TODO maybe we can remove it and use play.js as a place for testing our methods?
-function test() {
-    // console.log(filePath["groceryFilePath"]);
-    // console.log(JSON.parse("src/data/Grocery/grocery.json"));
-    // console.log(grocery);
-    // writeFiles()
-    // console.log(typeof require(filePath.groceryFilePath));
-
-    console.log('ok')
 }
 
 // execute function
@@ -99,7 +94,7 @@ function saveFile(folderNamePath, file, fileData, flag) {
 function makeFolder(path, file) {
     var folderName = file.slice(0, -5) + '_elements'
     var folderNamePath = path + folderName
-    if (isDirectory(folderNamePath)) {
+    if (srcUtils.isDirectory(folderNamePath)) {
         fs.mkdirSync(folderNamePath)
     }
     return folderNamePath
@@ -152,18 +147,6 @@ function fixFileName(fileName) {
     return fileName
 }
 
-//@TODO move to utils?
-/**
- * isDirectory()
- * @param {string} folderNamePath
- *  */
-function isDirectory(folderNamePath) {
-    if (fs.existsSync(folderNamePath)) {
-        return false
-    }
-    return true
-}
-
 /**
  * getFileName()
  * @param {string} file
@@ -192,7 +175,6 @@ function combineObject(path, keys) {
     writeFile(fileNamePath, content) //saving
 }
 
-// @TODO this looks pretty bad. I even don't know and don't want to know how it works. and it definately can be easily broken
 /**
  * For updateContent()
  * @param {var} content

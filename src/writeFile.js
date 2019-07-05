@@ -24,7 +24,7 @@ function makeReadable(data) {
     replaceList.forEach((replacer) => {
       dataStr = dataStr.replace(replacer[0], replacer[1])
     })
-    
+
     return dataStr
 }
 
@@ -42,17 +42,6 @@ function writeFile(path, data) {
             return console.log(err)
         console.info(path + ' file generated successfully!')
     })
-}
-
-// @TODO maybe we can remove it and use play.js as a place for testing our methods?
-function test() {
-    // console.log(filePath["groceryFilePath"]);
-    // console.log(JSON.parse("src/data/Grocery/grocery.json"));
-    // console.log(grocery);
-    // writeFiles()
-    // console.log(typeof require(filePath.groceryFilePath));
-
-    console.log('ok')
 }
 
 // execute function

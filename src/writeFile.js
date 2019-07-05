@@ -13,12 +13,18 @@ const srcUtils = require('./../src/utils')
 function makeReadable(data) {
     var dataStr = JSON.stringify(data)
 
-    // @TODO create an array with this rules and run them inside of the loop?
-    dataStr = dataStr.replace(/{"/g, '{ "')
-    dataStr = dataStr.replace(/{"/g, '{ " ')
-    dataStr = dataStr.replace(/},{/g, ' },\n{')
-    dataStr = dataStr.replace(/":/g, '": ')
-    dataStr = dataStr.replace(/,"/g, ',\n "')
+    const replaceList = [
+      [/{"/g, '{ "'],
+      [/{"/g, '{ " '],
+      [/},{/g, ' },\n{'],
+      [/":/g, '": '],
+      [/,"/g, ',\n "']
+    ]
+
+    replaceList.forEach((replacer) => {
+      dataStr = dataStr.replace(replacer[0], replacer[1])
+    })
+    
     return dataStr
 }
 

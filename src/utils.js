@@ -127,6 +127,22 @@ const __generateDate = () => {
   return dayjs().toDate()
 }
 
+// @TODO
+// 1. this function looks like a duplicate with getFileKey
+// 2. it's pretty useful for other cases, so i think we should move it into utils and reuse
+function generateArrWithId (data, id) {
+  var result = []
+  _.map(data, element => {
+    result.push({
+      ...element,
+      [id]: utils.__generateId() // @TODO change import so we can use __generateId() only
+    })
+  })
+
+  return result
+}
+
+
 // @TODO WTF tests are doing there? bad bad bad coder did it!
 // test expecting json file not to be empty
 const jsonFileNotEmptyTest = (file) => {
@@ -150,11 +166,13 @@ module.exports =  {
   checkFilePath,
   __generateId,
   __generateDate,
-
+  generateArrWithId,
+  
   jsonFileNotEmptyTest,
   jsonSchemaTest,
-  
+
   getFileInfo,
   readAllFiles,
-  isDirectory
+  isDirectory,
+  fixPath
 }

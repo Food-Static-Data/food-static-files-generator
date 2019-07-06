@@ -2,10 +2,11 @@
 const fs = require('fs')
 const PATH = require('path')
 const srcUtils = require('./../src/utils')
-    //const { promisify } = require('util') // ?? it's utils of not *** Answer : NO. It's using for writing data in json
-    // const { promisify } = require('util')
-    // const _ = require('lodash')
 
+//const { promisify } = require('util')
+// const _ = require('lodash')
+
+// @TODO i don't like this function name
 /**
  * for makeReadable()
  * @param {Object} data a json object
@@ -47,22 +48,7 @@ function writeFile(path, data) {
     })
 }
 
-// execute function
-// writeFiles()
 
-/**
- * For fixPath()
- * @param {String} path
- */
-function fixPath(path) {
-  // absolute path
-  path = PATH.resolve(__dirname, path)
-  // path correction
-  if (path[-1] !== '/') {
-    path = path + '/'
-  }
-  return path
-}
 
 /**
  * readData()

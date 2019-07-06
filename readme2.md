@@ -1,7 +1,7 @@
 #### Notes
 
-Next repo for this code will be stored here: https://github.com/GroceriStar/food-static-files-generator
-Readme part: https://github.com/GroceriStar/sd#generator-commands
+- Next repo for this code will be stored here: https://github.com/GroceriStar/food-static-files-generator
+- Readme part: https://github.com/GroceriStar/sd#generator-commands
 
 Should have
 - ES6 style code
@@ -14,8 +14,8 @@ Should have
 - it should have a separated package.json, with only necessary modules that we have at generator
 
 #### Tasks
-https://github.com/GroceriStar/sd/issues/158
-https://github.com/GroceriStar/sd/issues/332
+- https://github.com/GroceriStar/sd/issues/158
+- https://github.com/GroceriStar/sd/issues/332
 
 #### Features
 
@@ -93,11 +93,11 @@ Before starting generating files make this steps:
 
 This object should has two property:
 1. `name` - filename of json.
-2. `data` - array or object that you will want to write into json. Also this data should be json formatted. To make it more simple all functions that using configGenerator.js located in generateArray.js. 
+2. `data` - array or object that you will want to write into json. Also this data should be json formatted. To make it more simple all functions that using configGenerator.js located in generateArray.js.
 
 You can add multiple objects!
-Note 
-By default generating files happens in `/src/data`. 
+Note
+By default generating files happens in `/src/data`.
 
 2. Run npm command that will start generating files
 
@@ -113,7 +113,7 @@ Upper was simple instructions how works generation. To know how it works deeper 
 When you will run command `npm run generateFiles` it will call function generateFiles() in generateFiles.js.
 generateFiles() gets data from config and after some manipulation with path, calls `writeFile(path, data)` that in writeFile.js.
 
-Note 
+Note
 Also this method create folder if it doesn't exist.
 
 Generator using this file:

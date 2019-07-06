@@ -194,7 +194,6 @@ function updateContent(content, keys) {
 
 module.exports = {
     writeFile,
-    test,
     splitObject,
     combineObject,
     makeReadable,

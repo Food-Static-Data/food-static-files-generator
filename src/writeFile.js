@@ -14,11 +14,11 @@ function makeReadable(data) {
     var dataStr = JSON.stringify(data)
 
     const replaceList = [
-      [/{"/g, '{ "'],
-      [/{"/g, '{ " '],
-      [/},{/g, ' },\n{'],
-      [/":/g, '": '],
-      [/,"/g, ',\n "']
+      [ '/{"/g',  '{ "' ],
+      [ '/{"/g',  '{ " ' ],
+      [ '/},{/g', ' },\n{' ],
+      [ '/":/g',  '": ' ],
+      [ '/,"/g', ',\n "' ]
     ]
 
     replaceList.forEach((replacer) => {
@@ -37,9 +37,12 @@ function writeFile(path, data) {
     var dataStr = makeReadable(data)
         //dataStr = '[' + dataStr + ']'
         //console.log(dataStr)
+
     fs.writeFile(path, dataStr, function(err) {
-        if (err)
-            return console.log(err)
+        if (err) {
+          return console.log(err)
+        }
+
         console.info(path + ' file generated successfully!')
     })
 }
@@ -52,9 +55,13 @@ function writeFile(path, data) {
  * @param {String} path
  */
 function fixPath(path) {
-    path = PATH.resolve(__dirname, path) // absolute path
-    if (path[-1] !== '/') { path = path + '/' } // path correction
-    return path
+  // absolute path
+  path = PATH.resolve(__dirname, path)
+  // path correction
+  if (path[-1] !== '/') {
+    path = path + '/'
+  }
+  return path
 }
 
 /**
@@ -62,6 +69,7 @@ function fixPath(path) {
  * @param {string} path
  * @param {string} file
  * */
+ // @TODO if inside at this function we use path+file, maybe it's better to pass one variable?
 function readData(path, file) {
     console.log(path + file);
 
@@ -94,6 +102,7 @@ function saveFile(folderNamePath, file, fileData, flag) {
 function makeFolder(path, file) {
     var folderName = file.slice(0, -5) + '_elements'
     var folderNamePath = path + folderName
+    // @TODO if we update our import - we'll be able to use just isDirectory()
     if (srcUtils.isDirectory(folderNamePath)) {
         fs.mkdirSync(folderNamePath)
     }
@@ -124,14 +133,19 @@ function makeFolder(path, file) {
      }
 
     path = fixPath(path)
-    let fileData = readData(path, file) // Reading data...
-    var folderNamePath = makeFolder(path, file) // new folder to save splitted files
-    saveFile(folderNamePath, file, fileData, flag) // saving files
+
+    // @TODO can we fix path outside of this function, so then we can path one variable here...
+    // Reading data...
+    let fileData = readData(path, file)
+     // new folder to save splitted files
+    var folderNamePath = makeFolder(path, file)
+    // saving files
+    saveFile(folderNamePath, file, fileData, flag)
 
     if (callback instanceof Function) {
-        setTimeout(function() {
-            callback(folderNamePath, keys)
-        }, 1000)
+      setTimeout(function() {
+          callback(folderNamePath, keys)
+      }, 1000)
     }
  }
 // execute function
@@ -142,9 +156,9 @@ function makeFolder(path, file) {
  * @param {string} fileName
  */
 function fixFileName(fileName) {
-    fileName = fileName.replace(/ /g, '_') // Replace space with underscore
-    fileName = fileName.toLowerCase() // Maintain Uniformity
-    return fileName
+  fileName = fileName.replace(/ /g, '_') // Replace space with underscore
+  fileName = fileName.toLowerCase() // Maintain Uniformity
+  return fileName
 }
 
 /**
@@ -156,8 +170,14 @@ function fixFileName(fileName) {
  */
 function getFileName(file, fileData, flag, index) {
     var fileName
-    if (flag === 1) fileName = index + '-' + file // for example: 23-someJsonFile.json
-    else fileName = fileData.name + '.json' // for example: someValueOfName.json
+    if (flag === 1){
+      // for example: 23-someJsonFile.json
+      fileName = index + '-' + file
+    } else {
+      // for example: someValueOfName.json
+      fileName = fileData.name + '.json'
+    }
+
     fileName = fixFileName(fileName)
     return fileName
 }
@@ -168,11 +188,18 @@ function getFileName(file, fileData, flag, index) {
  * @param {var} keys List of keys that are to be removed
  */
 function combineObject(path, keys) {
-    path = fixPath(path)
-    var content = srcUtils.readAllFiles(path) //read all json files
-    content = updateContent(content, keys) //modifying structure
-    var fileNamePath = path + PATH.basename(path) + "_combined.json" // for example: elements_combined.json
-    writeFile(fileNamePath, content) //saving
+  let suffix = "_combined.json";
+  path = fixPath(path)
+
+  //read all json files
+  // @TODO if we change our import we can call readAllFiles()
+  var content = srcUtils.readAllFiles(path)
+  //modifying structure
+  content = updateContent(content, keys)
+  // for example: elements_combined.json
+  var fileNamePath = path + PATH.basename(path) + suffix
+  //saving
+  writeFile(fileNamePath, content)
 }
 
 /**
@@ -182,21 +209,21 @@ function combineObject(path, keys) {
  */
 function updateContent(content, keys) {
 
-    content.forEach((contentElem) => {
-      contentElem.forEach((obj) => {
-        keys.forEach((key) => {
-          delete obj[key]
-        })
+  content.forEach((contentElem) => {
+    contentElem.forEach((obj) => {
+      keys.forEach((key) => {
+        delete obj[key]
       })
     })
-    return content
+  })
+  return content
 }
 
 module.exports = {
-    writeFile,
-    test,
-    splitObject,
-    combineObject,
-    makeReadable,
-    readData
+  writeFile,
+  test,
+  splitObject,
+  combineObject,
+  makeReadable,
+  readData
 }

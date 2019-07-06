@@ -14,6 +14,41 @@ So before starting to code something new here - we need to have a long conversat
 
 
 
+## Quick Start
+Several quick start options are available:
+* Clone the repo: `git clone https://github.com/GroceriStar/sd.git`
+* Install with npm: `npm install @groceristar/sd-wrapper`
+* Install with yarn: `yarn add @groceristar/sd-wrapper`
+
+---
+
+
+## How to split json into single elements
+To split json file you will require `sd/generator/writeFile.js` . Call the function **splitObject()** with parameters `path`(as string),`filename`(as string) and a `flag`(0 or 1).
+`Flag=0` means splitted elements are to be name after the `name` attribute and if `flag=1` then elements will be give named by a number with removed whitespaces and in lowercase to maintain uniformity.
+The splitted elements will be stored at the given `path`/`filename_elements`.
+
+**splitObject('path_of_directory','fileName',0)** - split files by their name attribute.
+
+**splitObject('path_of_directory','fileName',1)** - split files by indexing them from 0.
+
+Checkout the folder `fileName_elements` in the `path_of_directory` to see files or you can use function `getFileInfo()`.
+
+To  call the function `getFileInfo(path,flag,fileName)` you will require `sd/src/utils.js`. It can be invoked with 3 parameteres and 2 of them are optional depending on task. First parameter is `path` and it is required for functionality. The second and third parameters are `flag` and `fileName`.
+
+If `flag=1` it will return the content of all files present in the path else if `fileName` is given then it will return the content of the specified file.
+
+If there is only one parameter that is `path` or with `flag=0` it will return list of all files present in the directory.
+
+You can combine objects by calling function **combineObjects()** from writeFile.js. It takes 2 parameters `path` and list of `keys_to_be_removed`.
+
+**combineObject(path, keys_to_be_removed)** - This will read all files in the given path and remove the keys given the list of keys_to_be_removed and saves it into a new file in the given `path` as name `<dirName>_combined.json`.
+
+Example:- combineObject('/abc/pqr/', ['id', 'img'])
+
+If you want to modify the json structure of splitted files and combine them again to a single file then you can call splitObject with a call back function.
+
+---
 
 at jsonlint we should check only new generated json files.
 and we need to clean up a lot of things here are not necessary. let's discuss it as well

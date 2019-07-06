@@ -8,6 +8,10 @@ const {
   setupPath
 } = require('./generateArray')
 
+const {
+  getMeasurementSystem,
+  getMeasurementUnits,
+} = require('./measurements')
 
 // @TODO we has commented methods here before.
 // not sure why we also completely delete them
@@ -26,7 +30,7 @@ const config = [
   }
 ]
 
-module.exports = { 
+module.exports = {
   config,
   setupPath
 }

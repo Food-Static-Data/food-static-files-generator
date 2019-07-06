@@ -26,10 +26,10 @@ async function checkFilePath (path) {
  * @param {string} folderNamePath
  *  */
 function isDirectory(folderNamePath) {
-    if (fs.existsSync(folderNamePath)) {
-        return false
-    }
-    return true
+  if (fs.existsSync(folderNamePath)) {
+      return false
+  }
+  return true
 }
 
 /**
@@ -43,11 +43,11 @@ function readAllFiles(path) {
     files.forEach(file => {
         let fileStat = fs.statSync(path + file).isDirectory()
         if (file.slice(-5) === '.json') {
-            if (!fileStat) {
-                var data = fs.readFileSync(path + file)
-                data = JSON.parse(data)
-                content.push(data)
-            }
+          if (!fileStat) {
+            var data = fs.readFileSync(path + file)
+            data = JSON.parse(data)
+            content.push(data)
+          }
         }
     })
     return content
@@ -59,14 +59,14 @@ function readAllFiles(path) {
  * @param {String} fileName
  */
 function getListContent(path, fileName = 'undefined') {
-    if (fileName === 'undefined') {
-        // read all files
-        return readAllFiles(path)
-    }
-    // read specified file
-    let data = fs.readFileSync(path + fileName)
-    data = JSON.parse(data)
-    return data
+  if (fileName === 'undefined') {
+    // read all files
+    return readAllFiles(path)
+  }
+  // read specified file
+  let data = fs.readFileSync(path + fileName)
+  data = JSON.parse(data)
+  return data
 }
 
 /**
@@ -74,25 +74,28 @@ function getListContent(path, fileName = 'undefined') {
  * @param {String} path
  */
 function fixPath(path) {
-    path = PATH.resolve(__dirname, path)
-    if (path.charAt(path.length - 1) !== '/') path = path + '/'
-    return path
+  path = PATH.resolve(__dirname, path)
+  if (path.charAt(path.length - 1) !== '/'){
+    path = path + '/'
+  }
+  return path
 }
 
 /**
  * For getList()
  * @param {String} path
  */
+ // @TODO get list of what? maybe we can name it better? as not a developer of this code - it looks confusing for me
 function getList(path) {
-    var list = []
-    var files = fs.readdirSync(path)
-    files.forEach(file => {
-        let fileStat = fs.statSync(path + file).isDirectory()
-        if (!fileStat) {
-            list.push(file)
-        }
-    })
-    return list
+  var list = []
+  var files = fs.readdirSync(path)
+  files.forEach(file => {
+    let fileStat = fs.statSync(path + file).isDirectory()
+    if (!fileStat) {
+        list.push(file)
+    }
+  })
+  return list
 }
 
 /**
@@ -117,29 +120,45 @@ function getFileInfo(path, flag = 0, fileName = 'undefined') {
 }
 
 const __generateId = () => {
-    return uuidv1()
+  return uuidv1()
 }
 
 const __generateDate = () => {
-    return dayjs().toDate()
+  return dayjs().toDate()
 }
+
+// @TODO
+// 1. this function looks like a duplicate with getFileKey
+// 2. it's pretty useful for other cases, so i think we should move it into utils and reuse
+function generateArrWithId (data, id) {
+  var result = []
+  _.map(data, element => {
+    result.push({
+      ...element,
+      [id]: utils.__generateId() // @TODO change import so we can use __generateId() only
+    })
+  })
+
+  return result
+}
+
 
 // @TODO WTF tests are doing there? bad bad bad coder did it!
 // test expecting json file not to be empty
 const jsonFileNotEmptyTest = (file) => {
-    describe(`tests for ${file}`, () => {
-        it(`${file} data files returns array`, () => {
-            expect(file).not.toBe('')
-        })
-    })
+  describe(`tests for ${file}`, () => {
+      it(`${file} data files returns array`, () => {
+          expect(file).not.toBe('')
+      })
+  })
 }
 
 const jsonSchemaTest = (file, example, schema) => {
-    describe(`test ${file} json schema`, () => {
-        it(`validates ${file} json-schema`, () => {
-            expect(example).toMatchSchema(schema)
-        })
-    })
+  describe(`test ${file} json schema`, () => {
+      it(`validates ${file} json-schema`, () => {
+          expect(example).toMatchSchema(schema)
+      })
+  })
 }
 // checkFilePath('./generator/utils1.js') using method checkFilePath
 
@@ -147,9 +166,13 @@ module.exports =  {
   checkFilePath,
   __generateId,
   __generateDate,
+  generateArrWithId,
+  
   jsonFileNotEmptyTest,
   jsonSchemaTest,
+
   getFileInfo,
   readAllFiles,
-  isDirectory
+  isDirectory,
+  fixPath
 }

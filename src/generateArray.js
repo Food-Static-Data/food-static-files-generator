@@ -26,9 +26,9 @@ function setupPath(pathToSrc){
 const getMenuGenerator = (numberOfWeeks) => {
   let
     result = _.times(numberOfWeeks, (index) => ({
-      id: utils.__generateId(),
+      id: utils.__generateId(),  // @TODO change import so we can use __generateId() only
       title: `Weekly menu ${index}`,
-      date: utils.__generateDate(),
+      date: utils.__generateDate(),  // @TODO change import so we can use __generateId() only
       description: `description for Weekly menu ${index}`,
       notes: `This is a chef notes for wm ${index}`
     }))
@@ -43,7 +43,7 @@ function generateArrWithId (data, id) {
   _.map(data, element => {
     result.push({
       ...element,
-      [id]: utils.__generateId()
+      [id]: utils.__generateId() // @TODO change import so we can use __generateId() only
     })
   })
 
@@ -90,7 +90,10 @@ function usersGrocery () {
 
 // @TODO rename this method
 function items () {
-  var ingredientsId = generateArrWithId(files.ingredients, 'ingredient_id')
+  var ingredientsId = generateArrWithId(
+    files.ingredients,
+    'ingredient_id'
+  )
   var items = [1, 2, 3]
   var result = []
 
@@ -110,7 +113,10 @@ function items () {
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
 function getMeasurementSystem () {
   var result = []
-  var measurementSystemId = generateArrWithId(files.measurementSystem, 'id')
+  var measurementSystemId = generateArrWithId(
+    files.measurementSystem,
+    'id'
+  )
 
   _.map(measurementSystemId, system => {
     result.push({
@@ -128,8 +134,14 @@ function getMeasurementUnits () {
   let measurementUnitsList = utils.readAllFiles(dirMeasurementUnits)[1]
   let result = []
 
-  measurementUnitsList = generateArrWithId(measurementUnitsList, 'id')
-  measurementUnitsList = generateArrWithId(measurementUnitsList, 'system_id')
+  measurementUnitsList = generateArrWithId(
+    measurementUnitsList,
+    'id'
+  )
+  measurementUnitsList = generateArrWithId(
+    measurementUnitsList,
+    'system_id'
+)
 
   _.map(measurementUnitsList, unit => {
     result.push({

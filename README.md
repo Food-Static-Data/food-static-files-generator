@@ -17,8 +17,8 @@ So before starting to code something new here - we need to have a long conversat
 ## Quick Start
 Several quick start options are available:
 * Clone the repo: `git clone https://github.com/GroceriStar/sd.git`
-* Install with npm: `npm install @groceristar/sd-wrapper`
-* Install with yarn: `yarn add @groceristar/sd-wrapper`
+* Install with npm: `npm install @groceristar/static-data-generator`
+* Install with yarn: `yarn add @groceristar/static-data-generator`
 
 ---
 
@@ -28,9 +28,11 @@ To split json file you will require `sd/generator/writeFile.js` . Call the funct
 `Flag=0` means splitted elements are to be name after the `name` attribute and if `flag=1` then elements will be give named by a number with removed whitespaces and in lowercase to maintain uniformity.
 The splitted elements will be stored at the given `path`/`filename_elements`.
 
-**splitObject('path_of_directory','fileName',0)** - split files by their name attribute.
 
-**splitObject('path_of_directory','fileName',1)** - split files by indexing them from 0.
+#### splitObject
+`splitObject('path_of_directory','fileName',0)` - split files by their name attribute.
+
+`splitObject('path_of_directory','fileName',1)` - split files by indexing them from 0.
 
 Checkout the folder `fileName_elements` in the `path_of_directory` to see files or you can use function `getFileInfo()`.
 
@@ -42,6 +44,7 @@ If there is only one parameter that is `path` or with `flag=0` it will return li
 
 You can combine objects by calling function **combineObjects()** from writeFile.js. It takes 2 parameters `path` and list of `keys_to_be_removed`.
 
+####  combineObject
 **combineObject(path, keys_to_be_removed)** - This will read all files in the given path and remove the keys given the list of keys_to_be_removed and saves it into a new file in the given `path` as name `<dirName>_combined.json`.
 
 Example:- combineObject('/abc/pqr/', ['id', 'img'])

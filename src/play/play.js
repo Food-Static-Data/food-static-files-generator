@@ -22,8 +22,6 @@ const  { generateFiles } = require('../index')
 // const  { generateFiles } = require('../../dist/index.cjs')
 
 const path = require('path')
-const path1 = path.join(__dirname, '../../../sd/src')
-
 const path1 = path.join(__dirname, '../../../sd/src');
 
 
@@ -55,11 +53,11 @@ generateFiles(path1)
 //      users:"ok",
 //      drone:"I am Ok"
 //  }
- 
+
 //  Object.keys(files).forEach(function (key) {
 //      console.log("Objects");
 //     console.log(key);
-    
+
 //     console.log(files[key]);
 
 //   })
@@ -68,4 +66,3 @@ generateFiles(path1)
 // setupPath()
 // console.log(users);
 // console.log(files);
-

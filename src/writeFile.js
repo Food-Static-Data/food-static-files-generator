@@ -1,6 +1,10 @@
 // const filePath = require('../files')
+
+// @TODO instead of importing whole object here - which will increase a size of a bundle, deconstruct it and import only methods that we're using here
 import * as fs from 'fs'
+// @TODO instead of importing whole object here - which will increase a size of a bundle, deconstruct it and import only methods that we're using here
 import * as PATH from 'path'
+// @TODO instead of importing whole object here - which will increase a size of a bundle, deconstruct it and import only methods that we're using here
 import * as srcUtils from './../src/utils'
 
 //const { promisify } = require('util')

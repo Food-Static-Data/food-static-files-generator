@@ -86,7 +86,8 @@ const saveFile = (folderNamePath, file, fileData, flag) => {
  * @param {String} file
  */
 const makeFolder = (path, file) => {
-  var folderName = file.slice(0, -5) + '_elements'
+  const suffix = '_elements'  
+  var folderName = file.slice(0, -5) + suffix
   var folderNamePath = path + folderName
   // @TODO if we update our import - we'll be able to use just isDirectory()
   if (srcUtils.isDirectory(folderNamePath)) {

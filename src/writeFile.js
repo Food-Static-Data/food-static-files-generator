@@ -1,6 +1,6 @@
 // const filePath = require('../files')
 
-import { writeFile as fsWriteFile, readFileSync, mkdirSync } from 'fs'
+import { writeFile, readFileSync, mkdirSync } from 'fs'
 // @TODO instead of importing whole object here - which will increase a size of a bundle, deconstruct it and import only methods that we're using here
 // import * as PATH from 'path'
 import { isDirectory } from './../src/utils'
@@ -36,12 +36,12 @@ const makeReadable = (data) => {
  * @param {String} path
  * @param {Object} data
  */
-const writeFile = (path, data) => {
+const write = (path, data) => {
     var dataStr = makeReadable(data)
         //dataStr = '[' + dataStr + ']'
         //console.log(dataStr)
 
-    fsWriteFile(path, dataStr, function(err) {
+      writeFile(path, dataStr, function(err) {
         if (err) {
           return console.log(err)
         }
@@ -79,7 +79,7 @@ const saveFile = (folderNamePath, file, fileData, flag) => {
     for (var i = 0; i < fileDataLength; i++) {
       var fileName = getFileName(file, fileData[i], flag, i)
       var elementPath = folderNamePath + '/' + fileName
-      writeFile(elementPath, fileData[i])
+      write(elementPath, fileData[i])
     }
 }
 
@@ -92,7 +92,7 @@ const makeFolder = (path, file) => {
   var folderName = file.slice(0, -5) + suffix
   var folderNamePath = path + folderName
   // @TODO if we update our import - we'll be able to use just isDirectory()
-  if (srcUtils.isDirectory(folderNamePath)) {
+  if (isDirectory(folderNamePath)) {
       mkdirSync(folderNamePath)
   }
   return folderNamePath
@@ -150,7 +150,7 @@ const updateContent = (content, keys) => {
 }
 
 export default {
-  writeFile,
+  write,
   // test,
   // splitObject,
   // combineObject,

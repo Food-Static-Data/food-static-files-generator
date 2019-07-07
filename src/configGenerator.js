@@ -7,11 +7,6 @@ const {
   getMeasurementUnits,
 } = require('./generateArray');
 
-const {
-  getMeasurementSystem,
-  getMeasurementUnits,
-} = require('./measurements')
-
 // @TODO we has commented methods here before.
 // not sure why we also completely delete them
 const config = [

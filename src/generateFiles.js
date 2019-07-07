@@ -16,7 +16,6 @@ const { setupPath } = require('./generateArray');
 // folderData = './src/data/'
 function generateFiles(pathToSrc) {
   let path;
-  let data;
   setupPath(pathToSrc);
 
   config.map((settings) => {

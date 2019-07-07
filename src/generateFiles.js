@@ -1,5 +1,5 @@
-const fs = require('fs')
-var { writeFile, readData } = require('./writeFile')
+const fs = require('fs');
+const { writeFile, readData } = require('./writeFile');
 // var {
 //   usersGrocery,
 //   favorites,
@@ -43,5 +43,5 @@ function generateFiles (pathToSrc) {
 }
 
 module.exports = {
-  generateFiles
-}
+  generateFiles,
+};

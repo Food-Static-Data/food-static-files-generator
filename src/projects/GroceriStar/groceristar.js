@@ -1,118 +1,116 @@
-const _ = require('lodash')
-const { __generateId } = require('../../../src/utils')
+const _ = require('lodash');
+const { __generateId } = require('../../../src/utils');
 
 // const { __generateId } = require('@utils')
 // const { departments, ingredients, grocery } = require('@files')
-const { departments, ingredients, grocery } = require('../../../src/files')
+const { departments, ingredients, grocery } = require('../../../src/files');
 /**
  * @returns {array} of keys for departments and ingredients
  */
 
 const getKeyArrayDepAndIng = () => {
-  let keys = []
+  const keys = [];
 
-  let departments = getAllDepartmentsWithId()
-  let ingredients = getAllIngredientsWithId()
+  const departments = getAllDepartmentsWithId();
+  const ingredients = getAllIngredientsWithId();
 
   _.forEach(departments, (department) => {
     _.forEach(ingredients, (ingredient) => {
       if (_.includes(ingredient, department.name)) {
         keys.push({
-          [department.key]: ingredient.key
-        })
+          [department.key]: ingredient.key,
+        });
       }
-    })
-  })
+    });
+  });
 
-  return keys
-}
+  return keys;
+};
 
 // get ultimate grocery list for each grocery store
 const ultimateGroceryList = () => {
-  const ultimategroceries = []
-  const groceries = getAllGroceryWithId()
+  const ultimategroceries = [];
+  const groceries = getAllGroceryWithId();
 
-  _.map(groceries, grocery => {
-    const ultimategrocery = {}
+  _.map(groceries, (grocery) => {
+    const ultimategrocery = {};
 
-    ultimategrocery.name = grocery.name
-    ultimategrocery.groceryId = grocery.key
-    ultimategroceries.messages = {}
-    ultimategrocery.departments = getGroceryDepartmentsWithIngredients(grocery.departments, grocery.key)
-    ultimategrocery.ultimate = { name: grocery.name, id: grocery.key }
+    ultimategrocery.name = grocery.name;
+    ultimategrocery.groceryId = grocery.key;
+    ultimategroceries.messages = {};
+    ultimategrocery.departments = getGroceryDepartmentsWithIngredients(grocery.departments, grocery.key);
+    ultimategrocery.ultimate = { name: grocery.name, id: grocery.key };
 
-    ultimategroceries.push(ultimategrocery)
-  })
+    ultimategroceries.push(ultimategrocery);
+  });
 
-  return ultimategroceries
-}
+  return ultimategroceries;
+};
 
 // get all departments with their ingredients in a grocery
 const getGroceryDepartmentsWithIngredients = (grocerydepartments, key) => {
-  const results = []
-  let departments = getAllDepartmentsWithId()
-  _.map(grocerydepartments, grocerydepartment => {
+  const results = [];
+  const departments = getAllDepartmentsWithId();
+  _.map(grocerydepartments, (grocerydepartment) => {
     // search for a particular grocery department in the department json to get the department object
-    const department = _.filter(departments, department => {
-      return department.name === grocerydepartment
-    })
+    const department = _.filter(departments, department => department.name === grocerydepartment);
 
     if (department) {
-      const departmentIngredients = { id: department.key, name: department.name, type: department.type }
+      const departmentIngredients = { id: department.key, name: department.name, type: department.type };
 
-      departmentIngredients.ingredients = getDepartmentIngredients(grocerydepartment, key) // add all the ingredients in this department to the obj
-      results.push(departmentIngredients)
+      departmentIngredients.ingredients = getDepartmentIngredients(grocerydepartment, key); // add all the ingredients in this department to the obj
+      results.push(departmentIngredients);
     }
-  })
+  });
 
-  return results
-}
+  return results;
+};
 
 // get all ingredients in a department
 const getDepartmentIngredients = (department, key) => {
-  const results = []
-  let ingredients = getAllIngredientsWithId()
-  _.map(ingredients, ingredient => {
+  const results = [];
+  const ingredients = getAllIngredientsWithId();
+  _.map(ingredients, (ingredient) => {
     if (_.includes(ingredient, department)) {
       const ingredientItem = [
         ingredient.key,
         ingredient.name,
-        `/del/ing/${ingredient.key}/${key}`
-      ]
-      results.push(ingredientItem)
+        `/del/ing/${ingredient.key}/${key}`,
+      ];
+      results.push(ingredientItem);
     }
-  })
+  });
 
-  return results
-}
+  return results;
+};
 
 // get grocery with key
 const getAllGroceryWithId = () => {
-  let result = getResult(grocery)
+  const result = getResult(grocery);
 
-  return result
-}
+  return result;
+};
 
 const getAllDepartmentsWithId = () => {
-  let result = getResult(departments)
+  const result = getResult(departments);
 
-  return result
-}
+  return result;
+};
 //
 const getAllIngredientsWithId = () => {
-  let result = getResult(ingredients)
+  const result = getResult(ingredients);
 
-  return result
-}
+  return result;
+};
 
-const getResult = (property) => _.map(property, (p) => ({
+const getResult = property => _.map(property, p => ({
   key: __generateId(),
-  ...p
-}))
+  ...p,
+}));
 
 module.exports = {
   getKeyArrayDepAndIng,
   ultimateGroceryList,
   getDepartmentIngredients,
-  getGroceryDepartmentsWithIngredients
-}
+  getGroceryDepartmentsWithIngredients,
+};

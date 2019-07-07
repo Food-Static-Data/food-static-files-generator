@@ -1,6 +1,6 @@
-const _ = require('lodash')
+const _ = require('lodash');
 // const { __generateId, __generateDate } = require('../../../src/utils.js')
-const { __generateId, __generateDate } = require('@utils.js')
+const { __generateId, __generateDate } = require('@utils.js');
 
 const {
   favorites,
@@ -9,8 +9,8 @@ const {
   items,
   users,
   ingredients,
-  grocery
-} = require('../../../src/files.js')
+  grocery,
+} = require('../../../src/files.js');
 //
 // const {
 //   favorites,
@@ -24,37 +24,27 @@ const {
 
 // @TODO as we may need to be able to call this function from the
 // outside of this project - we should move this method outside
-const getFileKey = (file) => {
-  return _.map(file, (item, index) => {
-    return {
-      key: __generateId(),
-      ...item
-    }
-  })
-}
+const getFileKey = file => _.map(file, (item, index) => ({
+  key: __generateId(),
+  ...item,
+}));
 
-const getFavoritesKey = () => {
-  return getFileKey(favorites)
-}
+const getFavoritesKey = () => getFileKey(favorites);
 
 const getDepartmentsKey = function () {
-  let results = departments
+  const results = departments;
   return results.map((item, index) => ({
     departmentId: __generateId(),
     name: item.name,
     desc: 'description for department1', // @TODO this was a blank field, but it cannot look like this all the time
     created_at: __generateDate(),
-    updated_at: __generateDate()
-  }))
-}
+    updated_at: __generateDate(),
+  }));
+};
 
-const getUserGroceryKey = () => {
-  return getFileKey(userGrocery)
-}
+const getUserGroceryKey = () => getFileKey(userGrocery);
 
-const getItemsKey = () => {
-  return getFileKey(items)
-}
+const getItemsKey = () => getFileKey(items);
 
 const getUsersKey = function () {
   // let results = users
@@ -63,15 +53,15 @@ const getUsersKey = function () {
     userId: __generateId(),
     favs: false,
     ingredientId: 1,
-    groceryId: 1
-  }))
-}
+    groceryId: 1,
+  }));
+};
 
 const getIngredientsKey = function (limit = false) {
-  let results = ingredients
+  let results = ingredients;
 
   if (limit) {
-    results = _.slice(results, 100)
+    results = _.slice(results, 100);
   }
 
   return results.map((item, index) => ({
@@ -83,9 +73,9 @@ const getIngredientsKey = function (limit = false) {
     created_at: __generateDate(),
     updated_at: __generateDate(),
     id: 1, // @TODO this method should be extended, in order to get connection with ingredients and departments
-    department_id: 1
-  }))
-}
+    department_id: 1,
+  }));
+};
 
 const getGroceryKey = function () {
   // let results = grocery
@@ -99,9 +89,9 @@ const getGroceryKey = function () {
     created_at: __generateDate(),
     updated_at: __generateDate(),
     id: 1,
-    favs: false
-  }))
-}
+    favs: false,
+  }));
+};
 
 module.exports = {
   getFavoritesKey,
@@ -110,5 +100,5 @@ module.exports = {
   getItemsKey,
   getUsersKey,
   getIngredientsKey,
-  getGroceryKey
-}
+  getGroceryKey,
+};

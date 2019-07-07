@@ -24,6 +24,7 @@ const  { generateFiles } = require('../index')
 const path = require('path')
 const path1 = path.join(__dirname, '../../../sd/src')
 
+const path1 = path.join(__dirname, '../../../sd/src');
 
 
 console.log(path1);
@@ -32,9 +33,8 @@ generateFiles(path1)
 // ---------------------------------------------------------
 // describe('testing if generateFiles() working', () => {
 //     test('Test', () => {
-        
-        
-        
+
+
 //     })
 // })
 

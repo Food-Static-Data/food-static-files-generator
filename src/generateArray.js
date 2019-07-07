@@ -1,7 +1,6 @@
-const _ = require('lodash')
+const _ = require('lodash');
 // const utils = require('@utils')
-const utils = require('./utils')
-const PATH = require('path')
+const utils = require('./utils');
 
 const generateArrWithId = utils.generateArrWithId
 // const {
@@ -31,10 +30,10 @@ const getMenuGenerator = (numberOfWeeks) => {
       title: `Weekly menu ${index}`,
       date: utils.__generateDate(),  // @TODO change import so we can use __generateId() only
       description: `description for Weekly menu ${index}`,
-      notes: `This is a chef notes for wm ${index}`
-    }))
-  return result
-}
+      notes: `This is a chef notes for wm ${index}`,
+    }));
+  return result;
+};
 
 
 
@@ -47,58 +46,55 @@ function favorites () {
    'ingredient_id'
    )
 
-  var result = []
+  const result = [];
 
   _.map(usersId, (user, index) => {
     result.push({
-      'ingredient_id': ingredientsId[index++]['ingredient_id'],
-      'user_id': user['user_id'],
-      'favs': 'desc for department' + index,
+      ingredient_id: ingredientsId[index++].ingredient_id,
+      user_id: user.user_id,
+      favs: `desc for department${index}`,
       // one grocery id for all users
-      'grocery_id': groceryId[index++]['grocery_id']
-    })
-  })
+      grocery_id: groceryId[index++].grocery_id,
+    });
+  });
 
-  return result
+  return result;
 }
 
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
-function usersGrocery () {
-  var groceryId = generateArrWithId(files.grocery, 'grocery_id')
-  var usersId = generateArrWithId(files.users, 'user_id')
+function usersGrocery() {
+  const groceryId = generateArrWithId(grocery, 'grocery_id');
+  const usersId = generateArrWithId(users, 'user_id');
   // return object for three users
-  var result = []
+  const result = [];
 
   _.map(usersId, (user, index) => {
     result.push({
-      'user_id': user['user_id'],
+      user_id: user.user_id,
       // one grocery id for all users
-      'grocery_id': groceryId[index++]['grocery_id']
-    })
-  })
-  return result
+      grocery_id: groceryId[index++].grocery_id,
+    });
+  });
+  return result;
 }
 
 // @TODO rename this method
-function items () {
-  var ingredientsId = generateArrWithId(
-    files.ingredients,
-    'ingredient_id'
-  )
-  var items = [1, 2, 3]
-  var result = []
+function items() {
+  const ingredientsId = generateArrWithId(ingredients, 'ingredient_id');
+  const items = [1, 2, 3];
+  const result = [];
 
   _.map(items, (item, index) => {
     result.push({
-      'item_id': item,
-      'name': ingredientsId[index++]['name'],
-      'description': 'something about the item',
-      'quantity': 50,
-      'purchase': false
-    })
-  })
+      item_id: item,
+      name: ingredientsId[index++].name,
+      description: 'something about the item',
+      quantity: 50,
+      purchase: false,
+    });
+  });
 
-  return result
+  return result;
 }
 
 

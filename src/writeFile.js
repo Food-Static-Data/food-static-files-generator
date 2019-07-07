@@ -1,7 +1,7 @@
 // const filePath = require('../files')
-const fs = require('fs')
-const PATH = require('path')
-const srcUtils = require('./../src/utils')
+import * as fs from 'fs'
+import * as PATH from 'path'
+import * as srcUtils from './../src/utils'
 
 //const { promisify } = require('util')
 // const _ = require('lodash')
@@ -11,7 +11,7 @@ const srcUtils = require('./../src/utils')
  * for makeReadable()
  * @param {Object} data a json object
  * */
-function makeReadable(data) {
+const makeReadable = (data) => {
     var dataStr = JSON.stringify(data)
 
     const replaceList = [
@@ -34,7 +34,7 @@ function makeReadable(data) {
  * @param {String} path
  * @param {Object} data
  */
-function writeFile(path, data) {
+const writeFile = (path, data) => {
     var dataStr = makeReadable(data)
         //dataStr = '[' + dataStr + ']'
         //console.log(dataStr)
@@ -56,7 +56,7 @@ function writeFile(path, data) {
  * @param {string} file
  * */
  // @TODO if inside at this function we use path+file, maybe it's better to pass one variable?
-function readData(path, file) {
+const readData = (path, file) => {
   console.log(path + file);
 
   const data = fs.readFileSync(path + file);
@@ -72,7 +72,7 @@ function readData(path, file) {
  * @param {Object} fileData
  * @param {var} flag
  * */
-function saveFile(folderNamePath, file, fileData, flag) {
+const saveFile = (folderNamePath, file, fileData, flag) => {
     var fileDataLength = fileData.length
     for (var i = 0; i < fileDataLength; i++) {
       var fileName = getFileName(file, fileData[i], flag, i)
@@ -85,7 +85,7 @@ function saveFile(folderNamePath, file, fileData, flag) {
  * @param {String} path
  * @param {String} file
  */
-function makeFolder(path, file) {
+const makeFolder = (path, file) => {
   var folderName = file.slice(0, -5) + '_elements'
   var folderNamePath = path + folderName
   // @TODO if we update our import - we'll be able to use just isDirectory()
@@ -101,7 +101,7 @@ function makeFolder(path, file) {
  * fixFileName()
  * @param {string} fileName
  */
-function fixFileName(fileName) {
+const fixFileName = (fileName) => {
   fileName = fileName.replace(/ /g, '_') // Replace space with underscore
   fileName = fileName.toLowerCase() // Maintain Uniformity
   return fileName
@@ -114,7 +114,7 @@ function fixFileName(fileName) {
  * @param {var} flag
  * @param {var} index
  */
-function getFileName(file, fileData, flag, index) {
+const getFileName = (file, fileData, flag, index) => {
     var fileName
     if (flag === 1){
       // for example: 23-someJsonFile.json
@@ -134,7 +134,7 @@ function getFileName(file, fileData, flag, index) {
  * @param {var} content
  * @param {var} keys
  */
-function updateContent(content, keys) {
+const updateContent = (content, keys) => {
 
   content.forEach((contentElem) => {
     contentElem.forEach((obj) => {
@@ -146,7 +146,7 @@ function updateContent(content, keys) {
   return content
 }
 
-module.exports = {
+export default {
   writeFile,
   test,
   splitObject,

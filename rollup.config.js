@@ -43,13 +43,14 @@ export default {
     }),
 
     //Allows verification of entry point and all imported files with ESLint.
-    eslint({
-      /* your options */
-      fix:true,
-      throwOnWarning:true,
-      throwOnError:true
+    // @TODO fix
+    // eslint({
+    //   /* your options */
+    //   fix:true,
+    //   throwOnWarning:true,
+    //   throwOnError:true
 
-    }),
+    // }),
     // Allow bundling cjs modules. Rollup doesn't understand cjs
     commonjs({
       ignore: ["conditional-runtime-dependency"]

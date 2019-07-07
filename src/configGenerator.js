@@ -5,8 +5,7 @@ const {
   // items,
   getMeasurementSystem,
   getMeasurementUnits,
-  setupPath
-} = require('./generateArray')
+} = require('./generateArray');
 
 const {
   getMeasurementSystem,
@@ -18,19 +17,16 @@ const {
 const config = [
   {
     name: 'measurementSystem',
-    data: getMeasurementSystem
+    data: getMeasurementSystem(),
   },
   {
     name: 'measurementUnits',
-    data: getMeasurementUnits
+    data: getMeasurementUnits(),
   },
   {
     name: 'usersGrocery',
-    data: usersGrocery
-  }
-]
+    data: usersGrocery(),
+  },
+];
 
-module.exports = {
-  config,
-  setupPath
-}
+module.exports = { config };

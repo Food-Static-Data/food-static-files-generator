@@ -59,11 +59,11 @@ function writeFile(path, data) {
 function readData(path, file) {
   console.log(path + file);
 
-  let data = fs.readFileSync(path + file)
+  const data = fs.readFileSync(path + file);
   console.log(data);
 
-  let fileData = JSON.parse(data)
-  return fileData
+  const fileData = JSON.parse(data);
+  return fileData;
 }
 
 /**

@@ -1,11 +1,9 @@
 // const filePath = require('../files')
 
+import { writeFile as fsWriteFile, readFileSync, mkdirSync } from 'fs'
 // @TODO instead of importing whole object here - which will increase a size of a bundle, deconstruct it and import only methods that we're using here
-import * as fs from 'fs'
-// @TODO instead of importing whole object here - which will increase a size of a bundle, deconstruct it and import only methods that we're using here
-import * as PATH from 'path'
-// @TODO instead of importing whole object here - which will increase a size of a bundle, deconstruct it and import only methods that we're using here
-import * as srcUtils from './../src/utils'
+// import * as PATH from 'path'
+import { isDirectory } from './../src/utils'
 
 //const { promisify } = require('util')
 // const _ = require('lodash')
@@ -43,7 +41,7 @@ const writeFile = (path, data) => {
         //dataStr = '[' + dataStr + ']'
         //console.log(dataStr)
 
-    fs.writeFile(path, dataStr, function(err) {
+    fsWriteFile(path, dataStr, function(err) {
         if (err) {
           return console.log(err)
         }
@@ -63,7 +61,7 @@ const writeFile = (path, data) => {
 const readData = (path, file) => {
   console.log(path + file);
 
-  const data = fs.readFileSync(path + file);
+  const data = readFileSync(path + file);
   console.log(data);
 
   const fileData = JSON.parse(data);
@@ -95,7 +93,7 @@ const makeFolder = (path, file) => {
   var folderNamePath = path + folderName
   // @TODO if we update our import - we'll be able to use just isDirectory()
   if (srcUtils.isDirectory(folderNamePath)) {
-      fs.mkdirSync(folderNamePath)
+      mkdirSync(folderNamePath)
   }
   return folderNamePath
 }
@@ -153,9 +151,9 @@ const updateContent = (content, keys) => {
 
 export default {
   writeFile,
-  test,
-  splitObject,
-  combineObject,
+  // test,
+  // splitObject,
+  // combineObject,
   makeReadable,
   readData
 }

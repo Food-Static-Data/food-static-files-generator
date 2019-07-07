@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { writeFile, readData } = require('./writeFile');
+const { writeFile } = require('./writeFile');
 // var {
 //   usersGrocery,
 //   favorites,
@@ -20,7 +20,7 @@ function generateFiles(pathToSrc) {
   setupPath(pathToSrc);
 
   config.map((settings) => {
-    const fileName = settings.name;
+    const { fileName, data } = settings;
     const uppercaseFileName = fileName.charAt(0).toUpperCase();
 
     const folder = uppercaseFileName.concat(fileName.slice(1));
@@ -32,7 +32,6 @@ function generateFiles(pathToSrc) {
     }
 
     path = `${folderPath}/${fileName}.json`;
-    data = settings.data;
 
     writeFile(path, data);
   });

@@ -14,7 +14,7 @@
 - [ ] plugin should generate files outside
 - [ ] ESLint warnings
 - [ ] Complete ES6 migration and test how it works
-
+- [ ] remove __ from 2 of our methods... it's a rudiment as well
 
 
 we need to create a plan, about what and how this new version of generator will work and where we'll save files, etc....

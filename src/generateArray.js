@@ -1,8 +1,12 @@
 import { map, times } from 'lodash'
 // const utils = require('@utils')
-import { __generateId, __generateDate, generateArrWithId } from './utils';
+import {
+  __generateId,
+  __generateDate,
+  generateArrWithId 
+} from './utils';
 
-const generateArrWithId = generateArrWithId;
+// const generateArrWithId = generateArrWithId;
 // const {
 //   users,
 //   grocery,

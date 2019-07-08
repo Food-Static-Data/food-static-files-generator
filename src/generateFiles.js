@@ -1,5 +1,5 @@
-const fs = require('fs');
-const { write, readData } = require('./writeFile');
+import mkdirSync from 'fs';
+import { write, readData } from './writeFile';
 // var {
 //   usersGrocery,
 //   favorites,
@@ -8,13 +8,13 @@ const { write, readData } = require('./writeFile');
 //   getMeasurementSystem,
 //   getMeasurementUnits
 // } = require('./generateArray')
-const { isDirectory } = require('./utils');
-const { config } = require('./configGenerator');
-const { setupPath } = require('./generateArray');
+import isDirectory from './utils';
+import config from './configGenerator';
+import setupPath from './generateArray';
 
 // @TODO I don't like that we have all of these path manipulations inside of this method
 // folderData = './src/data/'
-function generateFiles(pathToSrc) {
+const generateFiles = pathToSrc => {
   let path;
   setupPath(pathToSrc);
 
@@ -27,15 +27,15 @@ function generateFiles(pathToSrc) {
     const folderPath = `${pathToSrc}/data/${folder}`;
 
     if (isDirectory(folderPath)) {
-      fs.mkdirSync(folderPath);
+      mkdirSync(folderPath);
     }
 
     path = `${folderPath}/${fileName}.json`;
 
     write(path, data())
   });
-}
+};
 
-module.exports = {
+export default {
   generateFiles,
 };

@@ -1,11 +1,11 @@
-const {
+import {
   usersGrocery,
   // favorites,
   // getMenuGenerator,
   // items,
   getMeasurementSystem,
-  getMeasurementUnits,
-} = require('./generateArray');
+  getMeasurementUnits
+} from './generateArray';
 
 // @TODO we has commented methods here before.
 // not sure why we also completely delete them
@@ -24,4 +24,4 @@ const config = [
   },
 ];
 
-module.exports = { config };
+export default { config };

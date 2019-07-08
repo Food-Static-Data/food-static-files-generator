@@ -1,8 +1,8 @@
-const _ = require('lodash');
+import { map, times } from 'lodash'
 // const utils = require('@utils')
-const utils = require('./utils');
+import { __generateId, __generateDate, generateArrWithId } from './utils';
 
-const generateArrWithId = utils.generateArrWithId
+const generateArrWithId = generateArrWithId;
 // const {
 //   users,
 //   grocery,
@@ -18,17 +18,17 @@ const generateArrWithId = utils.generateArrWithId
 //@TODO maybe in future it can be improved
 var files;
 
-function setupPath( pathToSrc ){
- files = require(pathToSrc + '/files')
-}
+const setupPath = pathToSrc => {
+ files = require(pathToSrc + '/files');
+};
 
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
 const getMenuGenerator = (numberOfWeeks) => {
   let
-    result = _.times(numberOfWeeks, (index) => ({
-      id: utils.__generateId(),  // @TODO change import so we can use __generateId() only
+    result = times(numberOfWeeks, (index) => ({
+      id: __generateId(),  // @TODO change import so we can use __generateId() only
       title: `Weekly menu ${index}`,
-      date: utils.__generateDate(),  // @TODO change import so we can use __generateId() only
+      date: __generateDate(),  // @TODO change import so we can use __generateId() only
       description: `description for Weekly menu ${index}`,
       notes: `This is a chef notes for wm ${index}`,
     }));
@@ -38,17 +38,17 @@ const getMenuGenerator = (numberOfWeeks) => {
 
 
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
-function favorites () {
-  var groceryId = generateArrWithId(files.grocery, 'grocery_id')
-  var usersId = generateArrWithId(files.users, 'user_id')
+const favorites = () => {
+  var groceryId = generateArrWithId(files.grocery, 'grocery_id');
+  var usersId = generateArrWithId(files.users, 'user_id');
   var ingredientsId = generateArrWithId(
     files.ingredients,
    'ingredient_id'
-   )
+   );
 
   const result = [];
 
-  _.map(usersId, (user, index) => {
+  map(usersId, (user, index) => {
     result.push({
       ingredient_id: ingredientsId[index++].ingredient_id,
       user_id: user.user_id,
@@ -59,16 +59,16 @@ function favorites () {
   });
 
   return result;
-}
+};
 
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
-function usersGrocery() {
+const usersGrocery = () => {
   const groceryId = generateArrWithId(grocery, 'grocery_id');
   const usersId = generateArrWithId(users, 'user_id');
   // return object for three users
   const result = [];
 
-  _.map(usersId, (user, index) => {
+  map(usersId, (user, index) => {
     result.push({
       user_id: user.user_id,
       // one grocery id for all users
@@ -79,12 +79,12 @@ function usersGrocery() {
 }
 
 // @TODO rename this method
-function items() {
+const items = () => {
   const ingredientsId = generateArrWithId(ingredients, 'ingredient_id');
   const items = [1, 2, 3];
   const result = [];
 
-  _.map(items, (item, index) => {
+  map(items, (item, index) => {
     result.push({
       item_id: item,
       name: ingredientsId[index++].name,
@@ -95,12 +95,9 @@ function items() {
   });
 
   return result;
-}
+};
 
-
-
-
-module.exports = {
+export default {
   usersGrocery,
   favorites,
   getMenuGenerator,

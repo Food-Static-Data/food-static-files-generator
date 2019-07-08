@@ -11,13 +11,13 @@ import dayjs from 'dayjs';
 import fs from 'fs';
 import PATH from 'path';
 
-async function checkFilePath(path) {
+const checkFilePath = async (path) => {
   if (await pathExists(path)) {
     console.log(`Filepath ${path} exist`);
   } else {
     console.log(`Filepath ${path} doesn\`t exist`);
   }
-}
+};
 
 /* global describe, it, expect */
 
@@ -25,18 +25,18 @@ async function checkFilePath(path) {
  * isDirectory()
  * @param {string} folderNamePath
  *  */
-function isDirectory(folderNamePath) {
+const isDirectory = folderNamePath => {
   if (fs.existsSync(folderNamePath)) {
-      return false
+      return false;
   }
-  return true
+  return true;
 }
 
 /**
  * For readAllFiles()
  * @param {String} path
  */
-function readAllFiles(path) {
+const readAllFiles = path => {
   const content = [];
   path = fixPath(path);
   const files = fs.readdirSync(path);
@@ -58,7 +58,7 @@ function readAllFiles(path) {
  * @param {String} path
  * @param {String} fileName
  */
-function getListContent(path, fileName = 'undefined') {
+const getListContent = (path, fileName = 'undefined') => {
   if (fileName === 'undefined') {
     // read all files
     return readAllFiles(path);
@@ -67,24 +67,24 @@ function getListContent(path, fileName = 'undefined') {
   let data = fs.readFileSync(path + fileName);
   data = JSON.parse(data);
   return data;
-}
+};
 
 /**
  * fixPath()
  * @param {String} path
  */
-function fixPath(path) {
+const fixPath = path => {
   path = PATH.resolve(__dirname, path);
   if (path.charAt(path.length - 1) !== '/') path += '/';
   return path;
-}
+};
 
 /**
  * For getList()
  * @param {String} path
  */
  // @TODO get list of what? maybe we can name it better? as not a developer of this code - it looks confusing for me
-function getList(path) {
+const getList = path => {
   const list = [];
   const files = fs.readdirSync(path);
   files.forEach((file) => {
@@ -102,7 +102,7 @@ function getList(path) {
  * @param {var} flag
  * @param {String} fileName
  */
-function getFileInfo(path, flag = 0, fileName = 'undefined') {
+const getFileInfo = (path, flag = 0, fileName = 'undefined') => {
   /*
       flag = 1 --> means return content
       if file name is given then content of that file else return content of all files.
@@ -128,7 +128,7 @@ const __generateDate = () => {
 // @TODO
 // 1. this function looks like a duplicate with getFileKey
 // 2. it's pretty useful for other cases, so i think we should move it into utils and reuse
-function generateArrWithId (data, id) {
+const generateArrWithId = (data, id) => {
   var result = []
   _.map(data, element => {
     result.push({
@@ -138,7 +138,7 @@ function generateArrWithId (data, id) {
   })
 
   return result
-}
+};
 
 
 // @TODO WTF tests are doing there? bad bad bad coder did it!

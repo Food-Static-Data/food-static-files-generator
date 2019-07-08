@@ -53,6 +53,13 @@ export default {
     // }),
     // Allow bundling cjs modules. Rollup doesn't understand cjs
     commonjs({
+      include: [
+      'node_modules/path-exists/**',
+      'node_modules/uuid/**',
+      'node_modules/dayjs/**',
+     ],
+    exclude: 'node_modules/lodash/**', 
+      // include: 'node_modules/**',
       ignore: ["conditional-runtime-dependency"]
     }),
 

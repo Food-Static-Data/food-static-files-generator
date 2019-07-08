@@ -1,6 +1,6 @@
 import write from './writeFile';
 
-import getMenuGenerator from './generateArray'
+import getMenuGenerator from './generateArray';
 
 // right now it's used only for getMenuGenerator i think it wrong.
 // and we need to regenerate all files from scratch each time. especially if we re creating a new files or make cnahnges at
@@ -18,5 +18,5 @@ const generateFile = () => {
 };
 
 export default {
-  generateFile
-}
+  generateFile,
+};

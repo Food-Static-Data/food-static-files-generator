@@ -19,5 +19,5 @@ const jsonSchemaTest = (file, example, schema) => {
 
 export default {
   jsonFileNotEmptyTest,
-  jsonSchemaTest
-}
+  jsonSchemaTest,
+};

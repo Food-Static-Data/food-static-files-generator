@@ -3,7 +3,7 @@ import uuidv1 from 'uuid/v1';
 import dayjs from 'dayjs';
 import fs from 'fs';
 
-//@TODO I dont like that we name this object as constant. it confusing.
+// @TODO I dont like that we name this object as constant. it confusing.
 // nobody is doing it
 import PATH from 'path';
 
@@ -21,18 +21,18 @@ const checkFilePath = async (path) => {
  * isDirectory()
  * @param {string} folderNamePath
  *  */
-const isDirectory = folderNamePath => {
+const isDirectory = (folderNamePath) => {
   if (fs.existsSync(folderNamePath)) {
-      return false;
+    return false;
   }
   return true;
-}
+};
 
 /**
  * For readAllFiles()
  * @param {String} path
  */
-const readAllFiles = path => {
+const readAllFiles = (path) => {
   const content = [];
   path = fixPath(path);
   const files = fs.readdirSync(path);
@@ -47,7 +47,7 @@ const readAllFiles = path => {
     }
   });
   return content;
-}
+};
 
 /**
  * For getListContent()
@@ -69,7 +69,7 @@ const getListContent = (path, fileName = 'undefined') => {
  * fixPath()
  * @param {String} path
  */
-const fixPath = path => {
+const fixPath = (path) => {
   path = PATH.resolve(__dirname, path);
   if (path.charAt(path.length - 1) !== '/') path += '/';
   return path;
@@ -79,8 +79,8 @@ const fixPath = path => {
  * For getList()
  * @param {String} path
  */
- // @TODO get list of what? maybe we can name it better? as not a developer of this code - it looks confusing for me
-const getList = path => {
+// @TODO get list of what? maybe we can name it better? as not a developer of this code - it looks confusing for me
+const getList = (path) => {
   const list = [];
   const files = fs.readdirSync(path);
   files.forEach((file) => {
@@ -90,7 +90,7 @@ const getList = path => {
     }
   });
   return list;
-}
+};
 
 /**
  * For getFileInfo()
@@ -111,27 +111,23 @@ const getFileInfo = (path, flag = 0, fileName = 'undefined') => {
   }
   // return list of files
   return getList(path);
-}
+};
 
-const __generateId = () => {
-  return uuidv1()
-}
+const __generateId = () => uuidv1();
 
-const __generateDate = () => {
-  return dayjs().toDate()
-}
+const __generateDate = () => dayjs().toDate();
 
 // @TODO
 // 1. this function looks like a duplicate with getFileKey
 // 2. it's pretty useful for other cases, so i think we should move it into utils and reuse
 const generateArrWithId = (data, id) => {
-  var result = []
-  _.map(data, element => {
+  const result = [];
+  _.map(data, (element) => {
     result.push({
       ...element,
-      [id]: utils.__generateId() // @TODO change import so we can use __generateId() only
-    })
-  })
+      [id]: utils.__generateId(), // @TODO change import so we can use __generateId() only
+    });
+  });
 
-  return result
+  return result;
 };

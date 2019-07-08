@@ -1,6 +1,5 @@
 #### Generator module for food tech static files
 
-
 [![Build Status](https://travis-ci.org/GroceriStar/food-static-files-generator.svg?branch=master)](https://travis-ci.org/GroceriStar/food-static-files-generator)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/01c06647a2b62bec8b91/maintainability)](https://codeclimate.com/github/GroceriStar/food-static-files-generator/maintainability)
@@ -8,7 +7,13 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/01c06647a2b62bec8b91/test_coverage)](https://codeclimate.com/github/GroceriStar/food-static-files-generator/test_coverage)
 
 
- - [] We need to update readme here!
+- [ ] We need to update readme here!
+- [ ] ESLint configuration finish
+- [ ] Husky, Lint-Staged
+- [ ] Rollup fixes in configuration
+- [ ] plugin should generate files outside
+- [ ] ESLint warnings
+- [ ] Complete ES6 migration and test how it works
 
 
 

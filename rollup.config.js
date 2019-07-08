@@ -10,8 +10,8 @@ import  eslint  from "rollup-plugin-eslint"
 // https://gitlab.com/IvanSanchez/rollup-plugin-file-as-blob
 
 const extensions = [
-    '.js',
-  ]
+    '.js'
+]
 
 const name = 'StaticDataWrapper'
 
@@ -19,7 +19,7 @@ const external = [
     'fs',
     'path',
     'uuid'
-  ]
+]
 
 export default {
   input: './src/index.js',
@@ -42,8 +42,8 @@ export default {
       browser: true, // fixes ERROR!!! randomBytes(16)
     }),
 
-    //Allows verification of entry point and all imported files with ESLint.
-    // @TODO fix
+    // Allows verification of entry point and all imported files with ESLint.
+    // @TODO fix and enable eslint for rollup
     // eslint({
     //   /* your options */
     //   fix:true,
@@ -51,6 +51,7 @@ export default {
     //   throwOnError:true
 
     // }),
+      
     // Allow bundling cjs modules. Rollup doesn't understand cjs
     commonjs({
       include: [

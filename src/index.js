@@ -4,6 +4,6 @@ import {
   generateFiles 
 } from './generateFiles'
 
-exports default {
+export default {
     generateFiles
 }

@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { writeFile } = require('./writeFile');
+const { write, readData } = require('./writeFile');
 // var {
 //   usersGrocery,
 //   favorites,
@@ -32,7 +32,7 @@ function generateFiles(pathToSrc) {
 
     path = `${folderPath}/${fileName}.json`;
 
-    writeFile(path, data);
+    write(path, data())
   });
 }
 

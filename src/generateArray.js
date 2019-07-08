@@ -41,6 +41,6 @@ const getItemObjArr = () => {
 }
 
 export default {
-  setupPath
-  getItemObjArr,
+  setupPath,
+  getItemObjArr
 }

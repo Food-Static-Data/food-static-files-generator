@@ -1,29 +1,27 @@
-// @TODO import this things here
-// srcUtils
-// fixPath
-// updateContent
-// PATH
-// writeFile
-//
-//
-// fixPath
-// readData
-// makeFolder
-// saveFile
-
+//@TODO replace with actual methods
+// as we did it at other files
+import { fixPath, readAllFiles } from './utils'
+import {
+  updateContent,
+  write,
+  readData,
+  saveFile,
+  makeFolder
+} from './writeFile'
+import PATH from 'path';
 
 /**
- * For combineObjects()
+ * For combine()
  * @param {String} path Path of folder where all splitted files are stored
  * @param {var} keys List of keys that are to be removed
  */
-function combineObject(path, keys) {
+function combine(path, keys) {
   let suffix = "_combined.json";
   path = fixPath(path)
 
   //read all json files
   // @TODO if we change our import we can call readAllFiles()
-  var content = srcUtils.readAllFiles(path)
+  var content = readAllFiles(path)
   //modifying structure
   content = updateContent(content, keys)
   // for example: elements_combined.json
@@ -34,7 +32,7 @@ function combineObject(path, keys) {
 
 
 /**
- * For splitObject
+ * For split
  *
  * @describe split large files into single elements
  *
@@ -43,7 +41,7 @@ function combineObject(path, keys) {
  * @param {var} keys
  * @param {var} callback
  */
- function splitObject(fullPath, flag = 1,  keys = [], callback) {
+ function split(fullPath, flag = 1,  keys = [], callback) {
      /*
        flag=1 ==> name according to index
        flag=0 ==> name according to "name" attribute
@@ -72,3 +70,8 @@ function combineObject(path, keys) {
       }, 1000)
     }
  }
+
+export default {
+  combine,
+  split
+}

@@ -1,14 +1,10 @@
-// @TODO here we'll store all necessary methods that we can use at different places.
-
-// i think we should have here methods like
-// __generateId
-// __generateId
-// getFileKey - i don't like the name
-
 import pathExists from 'path-exists';
 import uuidv1 from 'uuid/v1';
 import dayjs from 'dayjs';
 import fs from 'fs';
+
+//@TODO I dont like that we name this object as constant. it confusing.
+// nobody is doing it
 import PATH from 'path';
 
 const checkFilePath = async (path) => {
@@ -139,38 +135,3 @@ const generateArrWithId = (data, id) => {
 
   return result
 };
-
-
-// @TODO WTF tests are doing there? bad bad bad coder did it!
-// test expecting json file not to be empty
-const jsonFileNotEmptyTest = (file) => {
-  describe(`tests for ${file}`, () => {
-    it(`${file} data files returns array`, () => {
-      expect(file).not.toBe('');
-    });
-  });
-};
-
-const jsonSchemaTest = (file, example, schema) => {
-  describe(`test ${file} json schema`, () => {
-    it(`validates ${file} json-schema`, () => {
-      expect(example).toMatchSchema(schema);
-    });
-  });
-};
-// checkFilePath('./generator/utils1.js') using method checkFilePath
-
-export default {
-  checkFilePath,
-  __generateId,
-  __generateDate,
-  generateArrWithId,
-  
-  jsonFileNotEmptyTest,
-  jsonSchemaTest,
-
-  getFileInfo,
-  readAllFiles,
-  isDirectory,
-  fixPath
-}

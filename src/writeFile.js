@@ -1,7 +1,9 @@
 // const filePath = require('../files')
-const fs = require('fs')
-const PATH = require('path')
-const srcUtils = require('./../src/utils')
+
+import { writeFile, readFileSync, mkdirSync } from 'fs'
+// @TODO instead of importing whole object here - which will increase a size of a bundle, deconstruct it and import only methods that we're using here
+// import * as PATH from 'path'
+import { isDirectory } from './../src/utils'
 
 //const { promisify } = require('util')
 // const _ = require('lodash')
@@ -11,7 +13,7 @@ const srcUtils = require('./../src/utils')
  * for makeReadable()
  * @param {Object} data a json object
  * */
-function makeReadable(data) {
+const makeReadable = (data) => {
     var dataStr = JSON.stringify(data)
 
     const replaceList = [
@@ -34,12 +36,12 @@ function makeReadable(data) {
  * @param {String} path
  * @param {Object} data
  */
-function writeFile(path, data) {
+const write = (path, data) => {
     var dataStr = makeReadable(data)
         //dataStr = '[' + dataStr + ']'
         //console.log(dataStr)
 
-    fs.writeFile(path, dataStr, function(err) {
+      writeFile(path, dataStr, function(err) {
         if (err) {
           return console.log(err)
         }
@@ -56,10 +58,10 @@ function writeFile(path, data) {
  * @param {string} file
  * */
  // @TODO if inside at this function we use path+file, maybe it's better to pass one variable?
-function readData(path, file) {
+const readData = (path, file) => {
   console.log(path + file);
 
-  const data = fs.readFileSync(path + file);
+  const data = readFileSync(path + file);
   console.log(data);
 
   const fileData = JSON.parse(data);
@@ -72,12 +74,12 @@ function readData(path, file) {
  * @param {Object} fileData
  * @param {var} flag
  * */
-function saveFile(folderNamePath, file, fileData, flag) {
+const saveFile = (folderNamePath, file, fileData, flag) => {
     var fileDataLength = fileData.length
     for (var i = 0; i < fileDataLength; i++) {
       var fileName = getFileName(file, fileData[i], flag, i)
       var elementPath = folderNamePath + '/' + fileName
-      writeFile(elementPath, fileData[i])
+      write(elementPath, fileData[i])
     }
 }
 
@@ -85,12 +87,13 @@ function saveFile(folderNamePath, file, fileData, flag) {
  * @param {String} path
  * @param {String} file
  */
-function makeFolder(path, file) {
-  var folderName = file.slice(0, -5) + '_elements'
+const makeFolder = (path, file) => {
+  const suffix = '_elements'  
+  var folderName = file.slice(0, -5) + suffix
   var folderNamePath = path + folderName
   // @TODO if we update our import - we'll be able to use just isDirectory()
-  if (srcUtils.isDirectory(folderNamePath)) {
-      fs.mkdirSync(folderNamePath)
+  if (isDirectory(folderNamePath)) {
+      mkdirSync(folderNamePath)
   }
   return folderNamePath
 }
@@ -101,7 +104,7 @@ function makeFolder(path, file) {
  * fixFileName()
  * @param {string} fileName
  */
-function fixFileName(fileName) {
+const fixFileName = (fileName) => {
   fileName = fileName.replace(/ /g, '_') // Replace space with underscore
   fileName = fileName.toLowerCase() // Maintain Uniformity
   return fileName
@@ -114,7 +117,7 @@ function fixFileName(fileName) {
  * @param {var} flag
  * @param {var} index
  */
-function getFileName(file, fileData, flag, index) {
+const getFileName = (file, fileData, flag, index) => {
     var fileName
     if (flag === 1){
       // for example: 23-someJsonFile.json
@@ -134,7 +137,7 @@ function getFileName(file, fileData, flag, index) {
  * @param {var} content
  * @param {var} keys
  */
-function updateContent(content, keys) {
+const updateContent = (content, keys) => {
 
   content.forEach((contentElem) => {
     contentElem.forEach((obj) => {
@@ -146,11 +149,11 @@ function updateContent(content, keys) {
   return content
 }
 
-module.exports = {
-  writeFile,
-  test,
-  splitObject,
-  combineObject,
+export default {
+  write,
+  // test,
+  // splitObject,
+  // combineObject,
   makeReadable,
   readData
 }

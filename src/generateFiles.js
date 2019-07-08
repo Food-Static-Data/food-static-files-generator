@@ -1,5 +1,5 @@
-const fs = require('fs');
-const { writeFile, readData } = require('./writeFile');
+import mkdirSync from 'fs';
+import { write, readData } from './writeFile';
 // var {
 //   usersGrocery,
 //   favorites,
@@ -8,40 +8,34 @@ const { writeFile, readData } = require('./writeFile');
 //   getMeasurementSystem,
 //   getMeasurementUnits
 // } = require('./generateArray')
-
-
-
-const {
-  config, setupPath
-} = require('./configGenerator')
+import isDirectory from './utils';
+import config from './configGenerator';
+import setupPath from './generateArray';
 
 // @TODO I don't like that we have all of these path manipulations inside of this method
 // folderData = './src/data/'
-function generateFiles (pathToSrc) {
-    // console.log(config[0]["data"]())
-    setupPath(pathToSrc)
+const generateFiles = pathToSrc => {
+  let path;
+  setupPath(pathToSrc);
 
-    config.map(settings => {
-      var fileName = settings['name']
-      // @TODO I don't like this long line
-      var folder = fileName.charAt(0).toUpperCase() + fileName.slice(1)
-      //   var path = './output/' + fileName + '.json';
-      var folderPath = pathToSrc +'/data/' + folder
+  config.map((settings) => {
+    const { fileName, data } = settings;
+    const uppercaseFileName = fileName.charAt(0).toUpperCase();
 
-      // @TODO use isDirectory?
-      if (!fs.existsSync(folderPath)) {
-        fs.mkdirSync(folderPath)
-      }
+    const folder = uppercaseFileName.concat(fileName.slice(1));
+    //   var path = './output/' + fileName + '.json';
+    const folderPath = `${pathToSrc}/data/${folder}`;
 
-      var path = folderPath + '/' + fileName + '.json'
-      var data = settings['data']()
+    if (isDirectory(folderPath)) {
+      mkdirSync(folderPath);
+    }
 
-      writeFile(path, data)
-    })
+    path = `${folderPath}/${fileName}.json`;
 
+    write(path, data())
+  });
+};
 
-}
-
-module.exports = {
+export default {
   generateFiles,
 };

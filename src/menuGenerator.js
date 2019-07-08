@@ -1,13 +1,9 @@
-const _ = require('lodash');
-const {
-  __generateId,
-  __generateDate,
-  generateArrWithId,
-} = require('./utils');
+import { times } from 'lodash';
+import { __generateId, __generateDate } from './utils';
 
 const getMenuGenerator = (numberOfWeeks) => {
   let
-    result = _.times(numberOfWeeks, (index) => ({
+    result = times(numberOfWeeks, (index) => ({
       id: __generateId(),
       title: `Weekly menu ${index}`,
       date: __generateDate(),
@@ -17,6 +13,6 @@ const getMenuGenerator = (numberOfWeeks) => {
   return result;
 };
 
-module.exports = {
+export default {
   getMenuGenerator,
 }

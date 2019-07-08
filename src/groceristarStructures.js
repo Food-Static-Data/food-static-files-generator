@@ -1,16 +1,17 @@
-const { generateArrWithId } = require('./utils');
+import { map } from 'lodash';
+import { generateArrWithId } = from './utils';
 
-function favorites() {
+const favorites = () => {
   var groceryId = generateArrWithId(files.grocery, 'grocery_id');
   var usersId = generateArrWithId(files.users, 'user_id');
   var ingredientsId = generateArrWithId(
     files.ingredients,
    'ingredient_id'
- );
+   );
 
   const result = [];
 
-  _.map(usersId, (user, index) => {
+  map(usersId, (user, index) => {
     result.push({
       ingredient_id: ingredientsId[index++].ingredient_id,
       user_id: user.user_id,
@@ -21,15 +22,15 @@ function favorites() {
   });
 
   return result;
-}
+};
 
-function usersGrocery() {
+const usersGrocery = () => {
   const groceryId = generateArrWithId(grocery, 'grocery_id');
   const usersId = generateArrWithId(users, 'user_id');
   // return object for three users
   const result = [];
 
-  _.map(usersId, (user, index) => {
+  map(usersId, (user, index) => {
     result.push({
       user_id: user.user_id,
       // one grocery id for all users
@@ -39,7 +40,7 @@ function usersGrocery() {
   return result;
 }
 
-module.exports = {
+export default {
   favorites,
   usersGrocery
 }

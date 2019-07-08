@@ -29,7 +29,7 @@ function combineObject(path, keys) {
   // for example: elements_combined.json
   var fileNamePath = path + PATH.basename(path) + suffix
   //saving
-  writeFile(fileNamePath, content)
+  write(fileNamePath, content)
 }
 
 

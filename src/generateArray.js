@@ -1,7 +1,8 @@
-const _ = require('lodash');
+import { map } from 'lodash';
 // const utils = require('@utils')
-const { generateArrWithId } = require('./utils');
+import { generateArrWithId } from './utils';
 
+const generateArrWithId = generateArrWithId;
 // const {
 //   users,
 //   grocery,
@@ -17,16 +18,16 @@ const { generateArrWithId } = require('./utils');
 //@TODO maybe in future it can be improved
 var files;
 
-function setupPath(pathToSrc){
- files = require(pathToSrc.concat('/files'));
-}
+const setupPath = pathToSrc => {
+ files = require(pathToSrc + '/files');
+};
 
-function getItemObjArr() {
+const getItemObjArr = () => {
   const ingredientsId = generateArrWithId(ingredients, 'ingredient_id');
   const items = [1, 2, 3];
   const result = [];
 
-  _.map(items, (item, index) => {
+  map(items, (item, index) => {
     result.push({
       item_id: item,
       name: ingredientsId[index++].name,
@@ -39,7 +40,7 @@ function getItemObjArr() {
   return result;
 }
 
-module.exports = {
-  getItemObjArr,
+export default {
   setupPath
+  getItemObjArr,
 }

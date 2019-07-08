@@ -1,7 +1,9 @@
 // const filePath = require('../files')
-const fs = require('fs')
-const PATH = require('path')
-const srcUtils = require('./../src/utils')
+
+import { writeFile, readFileSync, mkdirSync } from 'fs';
+
+// import * as PATH from 'path'
+import { isDirectory } from './../src/utils';
 
 //const { promisify } = require('util')
 // const _ = require('lodash')
@@ -11,60 +13,58 @@ const srcUtils = require('./../src/utils')
  * for makeReadable()
  * @param {Object} data a json object
  * */
-function makeReadable(data) {
-    var dataStr = JSON.stringify(data)
+const makeReadable = (data) => {
+  var dataStr = JSON.stringify(data)
 
-    const replaceList = [
-      [ '/{"/g',  '{ "' ],
-      [ '/{"/g',  '{ " ' ],
-      [ '/},{/g', ' },\n{' ],
-      [ '/":/g',  '": ' ],
-      [ '/,"/g', ',\n "' ]
-    ]
+  const replaceList = [
+    ['/{"/g', '{ "'],
+    ['/{"/g', '{ " '],
+    ['/},{/g', ' },\n{'],
+    ['/":/g', '": '],
+    ['/,"/g', ',\n "']
+  ];
 
-    replaceList.forEach((replacer) => {
-      dataStr = dataStr.replace(replacer[0], replacer[1])
-    })
+  replaceList.forEach((replacer) => {
+    dataStr = dataStr.replace(replacer[0], replacer[1]);
+  });
 
-    return dataStr
-}
+  return dataStr;
+};
 
 /**
  * Write in file
  * @param {String} path
  * @param {Object} data
  */
-function writeFile(path, data) {
-    var dataStr = makeReadable(data)
-        //dataStr = '[' + dataStr + ']'
-        //console.log(dataStr)
+const write = (path, data) => {
+  var dataStr = makeReadable(data)
+  // dataStr = '[' + dataStr + ']'
+  // console.log(dataStr)
 
-    fs.writeFile(path, dataStr, function(err) {
-        if (err) {
-          return console.log(err)
-        }
+  writeFile(path, dataStr, function (err) {
+    if (err) {
+      return console.log(err);
+    }
 
-        console.info(path + ' file generated successfully!')
-    })
-}
-
-
+    console.info(path + ' file generated successfully!');
+  });
+};
 
 /**
  * readData()
  * @param {string} path
  * @param {string} file
  * */
- // @TODO if inside at this function we use path+file, maybe it's better to pass one variable?
-function readData(path, file) {
+// @TODO if inside at this function we use path+file, maybe it's better to pass one variable?
+const readData = (path, file) => {
   console.log(path + file);
 
-  const data = fs.readFileSync(path + file);
+  const data = readFileSync(path + file);
   console.log(data);
 
   const fileData = JSON.parse(data);
   return fileData;
-}
+};
 
 /**
  * @param {String} folderNamePath
@@ -72,28 +72,29 @@ function readData(path, file) {
  * @param {Object} fileData
  * @param {var} flag
  * */
-function saveFile(folderNamePath, file, fileData, flag) {
-    var fileDataLength = fileData.length
-    for (var i = 0; i < fileDataLength; i++) {
-      var fileName = getFileName(file, fileData[i], flag, i)
-      var elementPath = folderNamePath + '/' + fileName
-      writeFile(elementPath, fileData[i])
-    }
-}
+const saveFile = (folderNamePath, file, fileData, flag) => {
+  let fileDataLength = fileData.length;
+  for (let i = 0; i < fileDataLength; i++) {
+    let fileName = getFileName(file, fileData[i], flag, i)
+    let elementPath = folderNamePath + '/' + fileName;
+    write(elementPath, fileData[i]);
+  }
+};
 
 /**
  * @param {String} path
  * @param {String} file
  */
-function makeFolder(path, file) {
-  var folderName = file.slice(0, -5) + '_elements'
-  var folderNamePath = path + folderName
+const makeFolder = (path, file) => {
+  const suffix = '_elements';
+  let folderName = file.slice(0, -5) + suffix;
+  let folderNamePath = path + folderName;
   // @TODO if we update our import - we'll be able to use just isDirectory()
-  if (srcUtils.isDirectory(folderNamePath)) {
-      fs.mkdirSync(folderNamePath)
+  if (isDirectory(folderNamePath)) {
+    mkdirSync(folderNamePath);
   }
-  return folderNamePath
-}
+  return folderNamePath;
+};
 // execute function
 // splitObject()
 
@@ -101,11 +102,11 @@ function makeFolder(path, file) {
  * fixFileName()
  * @param {string} fileName
  */
-function fixFileName(fileName) {
-  fileName = fileName.replace(/ /g, '_') // Replace space with underscore
-  fileName = fileName.toLowerCase() // Maintain Uniformity
-  return fileName
-}
+const fixFileName = (fileName) => {
+  fileName = fileName.replace(/ /g, '_'); // Replace space with underscore
+  fileName = fileName.toLowerCase(); // Maintain Uniformity
+  return fileName;
+};
 
 /**
  * getFileName()
@@ -114,19 +115,19 @@ function fixFileName(fileName) {
  * @param {var} flag
  * @param {var} index
  */
-function getFileName(file, fileData, flag, index) {
-    var fileName
-    if (flag === 1){
-      // for example: 23-someJsonFile.json
-      fileName = index + '-' + file
-    } else {
-      // for example: someValueOfName.json
-      fileName = fileData.name + '.json'
-    }
+const getFileName = (file, fileData, flag, index) => {
+  let fileName;
+  if (flag === 1) {
+    // for example: 23-someJsonFile.json
+    fileName = index + '-' + file;
+  } else {
+    // for example: someValueOfName.json
+    fileName = fileData.name + '.json';
+  }
 
-    fileName = fixFileName(fileName)
-    return fileName
-}
+  fileName = fixFileName(fileName);
+  return fileName;
+};
 
 
 /**
@@ -134,22 +135,24 @@ function getFileName(file, fileData, flag, index) {
  * @param {var} content
  * @param {var} keys
  */
-function updateContent(content, keys) {
+const updateContent = (content, keys) => {
 
   content.forEach((contentElem) => {
     contentElem.forEach((obj) => {
       keys.forEach((key) => {
-        delete obj[key]
+        delete obj[key];
       })
-    })
-  })
-  return content
-}
+    });
+  });
+  return content;
+};
 
-module.exports = {
-  writeFile,
-  splitObject,
-  combineObject,
+
+export default {
+  write,
+  // test,
+  // splitObject,
+  // combineObject,
   makeReadable,
   readData
 }

@@ -1,9 +1,9 @@
-// @TODO I think we should make accessible more of our methods from the outside.
+// @TODO I think we should make our module more accessible to our methods from the outside.
 
-const {
+import {
   generateFiles 
-} = require('./generateFiles')
+} from './generateFiles'
 
-module.exports = {
+exports default {
     generateFiles
 }

@@ -1,11 +1,11 @@
-const { write } = require('./writeFile');
+import write from './writeFile';
 
-const { getMenuGenerator } = require('./generateArray');
+import getMenuGenerator from './generateArray'
 
 // right now it's used only for getMenuGenerator i think it wrong.
 // and we need to regenerate all files from scratch each time. especially if we re creating a new files or make cnahnges at
 // @TODO big issue
-function generateFile() {
+const generateFile = () => {
   const fileName = 'generatedMenu';
   const path = `./output/${fileName}.json`; // i don't like this paths. at least we can move first part outside - aka output...
 
@@ -15,8 +15,8 @@ function generateFile() {
   const data = getMenuGenerator(2);
 
   write(path, data);
-}
-
-module.exports = {
-  generateFile,
 };
+
+export default {
+  generateFile
+}

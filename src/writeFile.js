@@ -1,9 +1,8 @@
 // const filePath = require('../files')
 
-import { writeFile, readFileSync, mkdirSync } from 'fs';
-
+import { readFileSync } from 'fs';
+import { write, save, makeFolder } from './fileSystem'
 // import * as PATH from 'path'
-import { isDirectory } from './utils';
 
 // const { promisify } = require('util')
 // const _ = require('lodash')
@@ -34,25 +33,6 @@ const makeReadable = (data) => {
 };
 
 /**
- * Write in file
- * @param {String} path
- * @param {Object} data
- */
-const write = (path, data) => {
-  const dataStr = makeReadable(data);
-  // dataStr = '[' + dataStr + ']'
-  // console.log(dataStr)
-
-  writeFile(path, dataStr, (err) => {
-    if (err) {
-      return console.log(err);
-    }
-
-    console.info(`${path} file generated successfully!`);
-  });
-};
-
-/**
  * readData()
  * @param {string} path
  * @param {string} file
@@ -68,35 +48,6 @@ const readData = (path, file) => {
   return fileData;
 };
 
-/**
- * @param {String} folderNamePath
- * @param {String} file
- * @param {Object} fileData
- * @param {var} flag
- * */
-const saveFile = (folderNamePath, file, fileData, flag) => {
-  const fileDataLength = fileData.length;
-  for (let i = 0; i < fileDataLength; i++) {
-    const fileName = getFileName(file, fileData[i], flag, i);
-    const elementPath = `${folderNamePath}/${fileName}`;
-    write(elementPath, fileData[i]);
-  }
-};
-
-/**
- * @param {String} path
- * @param {String} file
- */
-const makeFolder = (path, file) => {
-  const suffix = '_elements';
-  const folderName = file.slice(0, -5) + suffix;
-  const folderNamePath = path + folderName;
-  // @TODO if we update our import - we'll be able to use just isDirectory()
-  if (isDirectory(folderNamePath)) {
-    mkdirSync(folderNamePath);
-  }
-  return folderNamePath;
-};
 // execute function
 // splitObject()
 
@@ -155,5 +106,5 @@ export {
   makeReadable,
   readData,
   makeFolder,
-  saveFile
+  save
 };

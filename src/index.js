@@ -7,7 +7,8 @@ import {
   split,
 } from './objects';
 
-import { write, readData } from './writeFile'
+import { readData } from './writeFile'
+import { write } from './fileSystem'
 
 export {
   generateFiles,

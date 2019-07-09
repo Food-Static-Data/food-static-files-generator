@@ -1,7 +1,7 @@
 // const filePath = require('../files')
 
 import { readFileSync } from 'fs';
-import { write, save, makeFolder } from './fileSystem'
+import { write, save } from './fileSystem'
 // import * as PATH from 'path'
 
 // const { promisify } = require('util')
@@ -105,6 +105,5 @@ export {
   updateContent,
   makeReadable,
   readData,
-  makeFolder,
   save
 };

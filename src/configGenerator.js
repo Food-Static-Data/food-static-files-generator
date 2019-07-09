@@ -3,13 +3,15 @@ import {
   // favorites,
   // getMenuGenerator,
   // items,
-  
+
 } from './generateArray';
 
 import {
   getMeasurementSystem,
   getMeasurementUnits,
 } from './measurements'
+
+
 // @TODO we has commented methods here before.
 // not sure why we also completely delete them
 const config = [
@@ -27,4 +29,4 @@ const config = [
   },
 ];
 
-export default config ;
+export default config

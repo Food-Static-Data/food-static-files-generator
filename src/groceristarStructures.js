@@ -1,5 +1,5 @@
 import { map } from 'lodash';
-import { generateArrWithId } = from './utils';
+import { generateArrWithId } from './utils';
 
 const favorites = () => {
   let groceryId = generateArrWithId(files.grocery, 'grocery_id');

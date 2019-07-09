@@ -1,8 +1,7 @@
 import { map } from 'lodash';
-// const utils = require('@utils')
 import { generateArrWithId } from './utils';
 
-// const generateArrWithId = generateArrWithId;
+
 // const {
 //   users,
 //   grocery,
@@ -22,7 +21,9 @@ const setupPath = pathToSrc => {
  files = require(pathToSrc + '/files');
 };
 
-const getItemObjArr = () => {
+// @TODO this method should be also moved out.
+// yes, my function name is not better, but at least it's less confusing
+const getItemCustomStructureObjectArray = () => {
   const ingredientsId = generateArrWithId(ingredients, 'ingredient_id');
   const items = [1, 2, 3];
   const result = [];

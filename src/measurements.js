@@ -1,7 +1,7 @@
 // trying to separate code from generate Array.
 // but we'll move them out soon.
 // @TODO can we replace it with alias?
-import { readAllFiles } from './utils'
+import { readAllFiles, generateArrWithId } from './utils'
 // const utils = require('./utils');
 // import utils from ('./utils')
 import PATH from 'path';
@@ -13,7 +13,7 @@ const setupPathMeasurements = pathToSrc => {
   if (files !== undefined) {
     files = require(pathToSrc + '/files');
   }else {
-    console.error("Error of setupPathMeasurements(): var files is undefined");
+    console.error("Error setupPathMeasurements(): var files is undefined");
     
   }
 };
@@ -40,6 +40,7 @@ function getMeasurementSystem() {
 const getMeasurementUnits = () => {
   if (files !== undefined) {
     const dirMeasurementUnits = PATH.parse(files.measurementUnits).dir;
+    
     let measurementUnitsList = readAllFiles(dirMeasurementUnits)[1];
 
     const result = [];
@@ -69,7 +70,7 @@ const getMeasurementUnits = () => {
 
     return result;
   } else {
-    console.error("Error: variable files is undefined");
+    console.error("Error getMeasurementUnits(): variable files is undefined");
 
   }
 

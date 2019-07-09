@@ -31,7 +31,7 @@ const makeReadable = (data) => {
 
   return dataStr;
   }else {
-    console.error("Error: In function makeReadable() data undefined");
+    console.error("Error makeReadable(): variable data undefined");
     
   }
   

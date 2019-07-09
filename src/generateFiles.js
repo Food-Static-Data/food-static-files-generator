@@ -37,7 +37,7 @@ const generateFiles = (pathToSrc) => {
 
       write(path, data());
     }else {
-      console.error("Error: fileName or data is undefined!");
+      console.error("Error generateFiles: fileName or data is undefined!");
       
     }
     

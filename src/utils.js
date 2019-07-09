@@ -2,7 +2,7 @@ import pathExists from 'path-exists';
 import uuidv1 from 'uuid/v1';
 import dayjs from 'dayjs';
 import fs from 'fs';
-
+import _ from 'lodash'
 // @TODO I dont like that we name this object as constant. it confusing.
 // nobody is doing it
 import PATH from 'path';

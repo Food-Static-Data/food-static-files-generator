@@ -14,7 +14,8 @@ import { isDirectory } from './utils';
  * @param {Object} data a json object
  * */
 const makeReadable = (data) => {
-  let dataStr = JSON.stringify(data);
+  if(data !== undefined){
+    let dataStr = JSON.stringify(data);
 
   const replaceList = [
     ['/{"/g', '{ "'],
@@ -29,6 +30,11 @@ const makeReadable = (data) => {
   });
 
   return dataStr;
+  }else {
+    console.error("Error: In function makeReadable() data undefined");
+    
+  }
+  
 };
 
 /**

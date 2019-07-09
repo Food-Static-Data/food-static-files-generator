@@ -1,15 +1,21 @@
 // trying to separate code from generate Array.
 // but we'll move them out soon.
 // @TODO can we replace it with alias?
-import {readAllFiles} from './utils'
+import { readAllFiles } from './utils'
 // const utils = require('./utils');
 // import utils from ('./utils')
 import PATH from 'path';
 
 // Without files it wouldn't work without files... - Answer yes, I will fix it PS. Vadim :)
+var files = "";
 
-const setupPath = pathToSrc => {
- files = require(pathToSrc + '/files');
+const setupPathMeasurements = pathToSrc => {
+  if (files !== undefined) {
+    files = require(pathToSrc + '/files');
+  }else {
+    console.error("Error of setupPathMeasurements(): var files is undefined");
+    
+  }
 };
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
 function getMeasurementSystem() {
@@ -31,39 +37,46 @@ function getMeasurementSystem() {
 
 
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
-function getMeasurementUnits() {
-  const dirMeasurementUnits = PATH.parse(files.measurementUnits).dir;
-  let measurementUnitsList = readAllFiles(dirMeasurementUnits)[1];
-  const result = [];
+const getMeasurementUnits = () => {
+  if (files !== undefined) {
+    const dirMeasurementUnits = PATH.parse(files.measurementUnits).dir;
+    let measurementUnitsList = readAllFiles(dirMeasurementUnits)[1];
 
-  measurementUnitsList = generateArrWithId(
-    measurementUnitsList,
-    'id',
-  );
-  measurementUnitsList = generateArrWithId(
-    measurementUnitsList,
-    'system_id',
-  );
+    const result = [];
 
-  _.map(measurementUnitsList, (unit) => {
-    result.push({
-      id: unit.id,
-      system_id: unit.system_id,
-      type: unit.type,
-      name: unit.name,
-      singular: unit.singular,
-      plural: unit.plural,
-      short: unit.short,
-      pattern: unit.pattern,
-      error: 'null',
+    measurementUnitsList = generateArrWithId(
+      measurementUnitsList,
+      'id',
+    );
+    measurementUnitsList = generateArrWithId(
+      measurementUnitsList,
+      'system_id',
+    );
+
+    _.map(measurementUnitsList, (unit) => {
+      result.push({
+        id: unit.id,
+        system_id: unit.system_id,
+        type: unit.type,
+        name: unit.name,
+        singular: unit.singular,
+        plural: unit.plural,
+        short: unit.short,
+        pattern: unit.pattern,
+        error: 'null',
+      });
     });
-  });
 
-  return result;
+    return result;
+  } else {
+    console.error("Error: variable files is undefined");
+
+  }
+
 }
 
 export {
-  setupPath,
+  setupPathMeasurements,
   getMeasurementSystem,
   getMeasurementUnits,
 };

@@ -23,7 +23,9 @@ import {
 var files;
 
 const setupPath = pathToSrc => {
- files = require(pathToSrc + '/files');
+  if (files !== undefined){
+    files = require(pathToSrc + '/files');
+  }
 };
 
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now

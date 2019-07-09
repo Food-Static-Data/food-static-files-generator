@@ -18,12 +18,12 @@ const config = [
   //   data: getMeasurementSystem(),
   // },
   {
-    name: 'measurementUnits',
-    data: getMeasurementUnits(),
+    fileName: 'measurementUnits',
+    data: getMeasurementUnits,
   },
   {
-    name: 'usersGrocery',
-    data: usersGrocery(),
+    fileName: 'usersGrocery',
+    data: usersGrocery,
   },
 ];
 

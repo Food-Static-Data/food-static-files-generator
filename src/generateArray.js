@@ -2,7 +2,7 @@ import { map } from 'lodash';
 // const utils = require('@utils')
 import { generateArrWithId } from './utils';
 
-const generateArrWithId = generateArrWithId;
+// const generateArrWithId = generateArrWithId;
 // const {
 //   users,
 //   grocery,

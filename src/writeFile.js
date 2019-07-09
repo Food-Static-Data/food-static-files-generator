@@ -3,9 +3,9 @@
 import { writeFile, readFileSync, mkdirSync } from 'fs';
 
 // import * as PATH from 'path'
-import { isDirectory } from './../src/utils';
+import { isDirectory } from './utils';
 
-//const { promisify } = require('util')
+// const { promisify } = require('util')
 // const _ = require('lodash')
 
 // @TODO i don't like this function name
@@ -14,14 +14,14 @@ import { isDirectory } from './../src/utils';
  * @param {Object} data a json object
  * */
 const makeReadable = (data) => {
-  var dataStr = JSON.stringify(data)
+  let dataStr = JSON.stringify(data);
 
   const replaceList = [
     ['/{"/g', '{ "'],
     ['/{"/g', '{ " '],
     ['/},{/g', ' },\n{'],
     ['/":/g', '": '],
-    ['/,"/g', ',\n "']
+    ['/,"/g', ',\n "'],
   ];
 
   replaceList.forEach((replacer) => {
@@ -37,16 +37,16 @@ const makeReadable = (data) => {
  * @param {Object} data
  */
 const write = (path, data) => {
-  var dataStr = makeReadable(data)
+  const dataStr = makeReadable(data);
   // dataStr = '[' + dataStr + ']'
   // console.log(dataStr)
 
-  writeFile(path, dataStr, function (err) {
+  writeFile(path, dataStr, (err) => {
     if (err) {
       return console.log(err);
     }
 
-    console.info(path + ' file generated successfully!');
+    console.info(`${path} file generated successfully!`);
   });
 };
 
@@ -73,10 +73,10 @@ const readData = (path, file) => {
  * @param {var} flag
  * */
 const saveFile = (folderNamePath, file, fileData, flag) => {
-  let fileDataLength = fileData.length;
+  const fileDataLength = fileData.length;
   for (let i = 0; i < fileDataLength; i++) {
-    let fileName = getFileName(file, fileData[i], flag, i)
-    let elementPath = folderNamePath + '/' + fileName;
+    const fileName = getFileName(file, fileData[i], flag, i);
+    const elementPath = `${folderNamePath}/${fileName}`;
     write(elementPath, fileData[i]);
   }
 };
@@ -87,8 +87,8 @@ const saveFile = (folderNamePath, file, fileData, flag) => {
  */
 const makeFolder = (path, file) => {
   const suffix = '_elements';
-  let folderName = file.slice(0, -5) + suffix;
-  let folderNamePath = path + folderName;
+  const folderName = file.slice(0, -5) + suffix;
+  const folderNamePath = path + folderName;
   // @TODO if we update our import - we'll be able to use just isDirectory()
   if (isDirectory(folderNamePath)) {
     mkdirSync(folderNamePath);
@@ -119,10 +119,10 @@ const getFileName = (file, fileData, flag, index) => {
   let fileName;
   if (flag === 1) {
     // for example: 23-someJsonFile.json
-    fileName = index + '-' + file;
+    fileName = `${index}-${file}`;
   } else {
     // for example: someValueOfName.json
-    fileName = fileData.name + '.json';
+    fileName = `${fileData.name}.json`;
   }
 
   fileName = fixFileName(fileName);
@@ -136,12 +136,11 @@ const getFileName = (file, fileData, flag, index) => {
  * @param {var} keys
  */
 const updateContent = (content, keys) => {
-
   content.forEach((contentElem) => {
     contentElem.forEach((obj) => {
       keys.forEach((key) => {
         delete obj[key];
-      })
+      });
     });
   });
   return content;
@@ -154,5 +153,5 @@ export default {
   // splitObject,
   // combineObject,
   makeReadable,
-  readData
-}
+  readData,
+};

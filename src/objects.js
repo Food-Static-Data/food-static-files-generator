@@ -1,40 +1,38 @@
-// @TODO import this things here
-// srcUtils
-// fixPath
-// updateContent
-// PATH
-// writeFile
-//
-//
-// fixPath
-// readData
-// makeFolder
-// saveFile
-
+// @TODO replace with actual methods
+// as we did it at other files
+import PATH from 'path';
+import { fixPath, readAllFiles } from './utils';
+import {
+  updateContent,
+  write,
+  readData,
+  saveFile,
+  makeFolder,
+} from './writeFile';
 
 /**
- * For combineObjects()
+ * For combine()
  * @param {String} path Path of folder where all splitted files are stored
  * @param {var} keys List of keys that are to be removed
  */
-function combineObject(path, keys) {
-  let suffix = "_combined.json";
-  path = fixPath(path)
+function combine(path, keys) {
+  const suffix = '_combined.json';
+  path = fixPath(path);
 
-  //read all json files
+  // read all json files
   // @TODO if we change our import we can call readAllFiles()
-  var content = srcUtils.readAllFiles(path)
-  //modifying structure
-  content = updateContent(content, keys)
+  let content = readAllFiles(path);
+  // modifying structure
+  content = updateContent(content, keys);
   // for example: elements_combined.json
-  var fileNamePath = path + PATH.basename(path) + suffix
-  //saving
-  write(fileNamePath, content)
+  const fileNamePath = path + PATH.basename(path) + suffix;
+  // saving
+  write(fileNamePath, content);
 }
 
 
 /**
- * For splitObject
+ * For split
  *
  * @describe split large files into single elements
  *
@@ -43,32 +41,37 @@ function combineObject(path, keys) {
  * @param {var} keys
  * @param {var} callback
  */
- function splitObject(fullPath, flag = 1,  keys = [], callback) {
-     /*
+function split(fullPath, flag = 1, keys = [], callback) {
+  /*
        flag=1 ==> name according to index
        flag=0 ==> name according to "name" attribute
      */
-     const file = PATH.basename(fullPath)
-     let path = PATH.parse(fullPath).dir
+  const file = PATH.basename(fullPath);
+  let path = PATH.parse(fullPath).dir;
 
-     if (PATH.extname(file) !== '.json') {
-         console.log("Require .json file.")
-         return
-     }
+  if (PATH.extname(file) !== '.json') {
+    console.log('Require .json file.');
+    return;
+  }
 
-    path = fixPath(path)
+  path = fixPath(path);
 
-    // @TODO can we fix path outside of this function, so then we can path one variable here...
-    // Reading data...
-    let fileData = readData(path, file)
-     // new folder to save splitted files
-    var folderNamePath = makeFolder(path, file)
-    // saving files
-    saveFile(folderNamePath, file, fileData, flag)
+  // @TODO can we fix path outside of this function, so then we can path one variable here...
+  // Reading data...
+  const fileData = readData(path, file);
+  // new folder to save splitted files
+  const folderNamePath = makeFolder(path, file);
+  // saving files
+  saveFile(folderNamePath, file, fileData, flag);
 
-    if (callback instanceof Function) {
-      setTimeout(function() {
-          callback(folderNamePath, keys)
-      }, 1000)
-    }
- }
+  if (callback instanceof Function) {
+    setTimeout(() => {
+      callback(folderNamePath, keys);
+    }, 1000);
+  }
+}
+
+export default {
+  combine,
+  split,
+};

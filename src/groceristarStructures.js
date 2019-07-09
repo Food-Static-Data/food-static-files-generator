@@ -2,9 +2,9 @@ import { map } from 'lodash';
 import { generateArrWithId } = from './utils';
 
 const favorites = () => {
-  var groceryId = generateArrWithId(files.grocery, 'grocery_id');
-  var usersId = generateArrWithId(files.users, 'user_id');
-  var ingredientsId = generateArrWithId(
+  let groceryId = generateArrWithId(files.grocery, 'grocery_id');
+  let usersId = generateArrWithId(files.users, 'user_id');
+  let ingredientsId = generateArrWithId(
     files.ingredients,
    'ingredient_id'
    );

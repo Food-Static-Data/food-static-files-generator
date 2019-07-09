@@ -1,3 +1,5 @@
+#### Generator module for food tech static files
+
 [![Build Status](https://travis-ci.org/GroceriStar/food-static-files-generator.svg?branch=master)](https://travis-ci.org/GroceriStar/food-static-files-generator)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/01c06647a2b62bec8b91/maintainability)](https://codeclimate.com/github/GroceriStar/food-static-files-generator/maintainability)
@@ -5,12 +7,17 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/01c06647a2b62bec8b91/test_coverage)](https://codeclimate.com/github/GroceriStar/food-static-files-generator/test_coverage)
 
 
-We need to update readme here!
-
+- [ ] We need to update readme here!
+- [ ] ESLint configuration finish
+- [ ] Husky, Lint-Staged
+- [ ] Rollup fixes in configuration
+- [ ] plugin should generate files outside
+- [ ] ESLint warnings
+- [ ] Complete ES6 migration and test how it works
+- [ ] remove __ from 2 of our methods... it's a rudiment as well
 
 
 we need to create a plan, about what and how this new version of generator will work and where we'll save files, etc....
-So before starting to code something new here - we need to have a long conversation with a team members
 
 
 
@@ -29,10 +36,10 @@ To split json file you will require `sd/generator/writeFile.js` . Call the funct
 The splitted elements will be stored at the given `path`/`filename_elements`.
 
 
-#### splitObject
-`splitObject('path_of_directory','fileName',0)` - split files by their name attribute.
+#### split
+`split('path_of_directory','fileName',0)` - split files by their name attribute.
 
-`splitObject('path_of_directory','fileName',1)` - split files by indexing them from 0.
+`split('path_of_directory','fileName',1)` - split files by indexing them from 0.
 
 Checkout the folder `fileName_elements` in the `path_of_directory` to see files or you can use function `getFileInfo()`.
 
@@ -42,12 +49,12 @@ If `flag=1` it will return the content of all files present in the path else if 
 
 If there is only one parameter that is `path` or with `flag=0` it will return list of all files present in the directory.
 
-You can combine objects by calling function **combineObjects()** from writeFile.js. It takes 2 parameters `path` and list of `keys_to_be_removed`.
+You can combine objects by calling function **combine()** from writeFile.js. It takes 2 parameters `path` and list of `keys_to_be_removed`.
 
-####  combineObject
-**combineObject(path, keys_to_be_removed)** - This will read all files in the given path and remove the keys given the list of keys_to_be_removed and saves it into a new file in the given `path` as name `<dirName>_combined.json`.
+#### combine
+**combine(path, keys_to_be_removed)** - This will read all files in the given path and remove the keys given the list of keys_to_be_removed and saves it into a new file in the given `path` as name `<dirName>_combined.json`.
 
-Example:- combineObject('/abc/pqr/', ['id', 'img'])
+Example:- combine('/abc/pqr/', ['id', 'img'])
 
 If you want to modify the json structure of splitted files and combine them again to a single file then you can call splitObject with a call back function.
 
@@ -60,8 +67,6 @@ and we need to clean up a lot of things here are not necessary. let's discuss it
 
 -----
 
-
-#### Food tech static files generator module
 
 Table of Contents
 =================

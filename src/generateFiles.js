@@ -14,7 +14,7 @@ import setupPath from './generateArray';
 
 // @TODO I don't like that we have all of these path manipulations inside of this method
 // folderData = './src/data/'
-const generateFiles = pathToSrc => {
+const generateFiles = (pathToSrc) => {
   let path;
   setupPath(pathToSrc);
 
@@ -32,7 +32,7 @@ const generateFiles = pathToSrc => {
 
     path = `${folderPath}/${fileName}.json`;
 
-    write(path, data())
+    write(path, data());
   });
 };
 

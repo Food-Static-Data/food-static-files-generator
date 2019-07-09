@@ -4,7 +4,7 @@ import {
   // getMenuGenerator,
   // items,
   getMeasurementSystem,
-  getMeasurementUnits
+  getMeasurementUnits,
 } from './generateArray';
 
 // @TODO we has commented methods here before.

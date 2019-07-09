@@ -147,11 +147,11 @@ const updateContent = (content, keys) => {
 };
 
 
-export default {
+export {
   write,
-  // test,
-  // splitObject,
-  // combineObject,
+  updateContent,
   makeReadable,
   readData,
+  makeFolder,
+  saveFile
 };

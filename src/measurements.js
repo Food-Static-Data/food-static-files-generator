@@ -1,12 +1,16 @@
 // trying to separate code from generate Array.
 // but we'll move them out soon.
 // @TODO can we replace it with alias?
-const utils = require('./utils');
+import {readAllFiles} from './utils'
+// const utils = require('./utils');
 // import utils from ('./utils')
+import PATH from 'path';
 
+// Without files it wouldn't work without files... - Answer yes, I will fix it PS. Vadim :)
 
-// Without files it wouldn't work without files...
-
+const setupPath = pathToSrc => {
+ files = require(pathToSrc + '/files');
+};
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
 function getMeasurementSystem() {
   const result = [];
@@ -29,7 +33,7 @@ function getMeasurementSystem() {
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
 function getMeasurementUnits() {
   const dirMeasurementUnits = PATH.parse(files.measurementUnits).dir;
-  let measurementUnitsList = utils.readAllFiles(dirMeasurementUnits)[1];
+  let measurementUnitsList = readAllFiles(dirMeasurementUnits)[1];
   const result = [];
 
   measurementUnitsList = generateArrWithId(
@@ -58,7 +62,8 @@ function getMeasurementUnits() {
   return result;
 }
 
-module.exports = {
+export {
+  setupPath,
   getMeasurementSystem,
   getMeasurementUnits,
 };

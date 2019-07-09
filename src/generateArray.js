@@ -101,11 +101,10 @@ const items = () => {
   return result;
 };
 
-export default {
+export  {
   usersGrocery,
   favorites,
   getMenuGenerator,
   items,
-
   setupPath
 }

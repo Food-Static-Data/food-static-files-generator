@@ -131,3 +131,12 @@ const generateArrWithId = (data, id) => {
 
   return result;
 };
+
+export { 
+  isDirectory,
+  __generateId,
+  __generateDate,
+  generateArrWithId,
+  readAllFiles,
+  fixPath
+ }

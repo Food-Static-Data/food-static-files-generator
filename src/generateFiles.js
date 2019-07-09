@@ -1,5 +1,5 @@
 import mkdirSync from 'fs';
-import { write, readData } from './writeFile';
+import { write } from './writeFile';
 // var {
 //   usersGrocery,
 //   favorites,
@@ -8,9 +8,9 @@ import { write, readData } from './writeFile';
 //   getMeasurementSystem,
 //   getMeasurementUnits
 // } = require('./generateArray')
-import isDirectory from './utils';
+import { isDirectory } from './utils';
 import config from './configGenerator';
-import setupPath from './generateArray';
+import { setupPath } from './generateArray';
 
 // @TODO I don't like that we have all of these path manipulations inside of this method
 // folderData = './src/data/'
@@ -36,6 +36,4 @@ const generateFiles = (pathToSrc) => {
   });
 };
 
-export default {
-  generateFiles,
-};
+export default generateFiles

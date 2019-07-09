@@ -14,7 +14,6 @@ const generateFiles = (pathToSrc) => {
 
   config.map((settings) => {
     const { fileName, data } = settings;
-    if (fileName !== undefined && data !== undefined){
       const uppercaseFileName = fileName.charAt(0).toUpperCase();
 
       const folder = uppercaseFileName.concat(fileName.slice(1));
@@ -28,10 +27,6 @@ const generateFiles = (pathToSrc) => {
       path = `${folderPath}/${fileName}.json`;
 
       write(path, data());
-    }else {
-      console.error("Error generateFiles: fileName or data is undefined!");
-    }
-    
   });
 };
 

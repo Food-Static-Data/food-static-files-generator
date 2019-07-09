@@ -20,14 +20,10 @@ import {
 // console.log(pathToSrc);
 
 //@TODO maybe in future it can be improved
-var files = "";
+var files = '';
 
 const setupPath = pathToSrc => {
-  if (files !== undefined){
     files = require(pathToSrc + '/files');
-  }else {
-    console.error("Error setupPath: variable files is undefined");
-  }
 };
 
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now

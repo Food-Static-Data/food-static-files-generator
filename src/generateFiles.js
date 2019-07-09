@@ -1,13 +1,5 @@
 import mkdirSync from 'fs';
 import { write } from './writeFile';
-// var {
-//   usersGrocery,
-//   favorites,
-//   getMenuGenerator,
-//   items,
-//   getMeasurementSystem,
-//   getMeasurementUnits
-// } = require('./generateArray')
 import { isDirectory } from './utils';
 import config from './configGenerator';
 import { setupPath } from './generateArray';
@@ -38,7 +30,6 @@ const generateFiles = (pathToSrc) => {
       write(path, data());
     }else {
       console.error("Error generateFiles: fileName or data is undefined!");
-      
     }
     
   });

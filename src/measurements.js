@@ -12,9 +12,8 @@ var files = "";
 const setupPathMeasurements = pathToSrc => {
   if (files !== undefined) {
     files = require(pathToSrc + '/files');
-  }else {
+  } else {
     console.error("Error setupPathMeasurements(): var files is undefined");
-    
   }
 };
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
@@ -40,7 +39,7 @@ function getMeasurementSystem() {
 const getMeasurementUnits = () => {
   if (files !== undefined) {
     const dirMeasurementUnits = PATH.parse(files.measurementUnits).dir;
-    
+
     let measurementUnitsList = readAllFiles(dirMeasurementUnits)[1];
 
     const result = [];
@@ -71,9 +70,7 @@ const getMeasurementUnits = () => {
     return result;
   } else {
     console.error("Error getMeasurementUnits(): variable files is undefined");
-
   }
-
 }
 
 export {

@@ -1,4 +1,4 @@
-import write from './writeFile';
+import write from './fileSystem';
 
 import getMenuGenerator from './generateArray';
 

@@ -1,5 +1,5 @@
 import mkdirSync from 'fs';
-import { write } from './writeFile';
+import { write } from './fileSystem';
 import { isDirectory } from './utils';
 import config from './configGenerator';
 import { setupPath } from './generateArray';

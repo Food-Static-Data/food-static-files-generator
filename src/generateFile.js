@@ -17,6 +17,6 @@ const generateFile = () => {
   write(path, data);
 };
 
-export default {
+export {
   generateFile,
 };

@@ -20,7 +20,9 @@ const name = 'StaticFilesGenerator'
 const external = [
   'fs',
   'path',
-  'uuid'
+  'uuid',
+  'lodash'
+  // './src/utils.js'
 ]
 
 let plugins = [
@@ -54,12 +56,17 @@ let plugins = [
 
   // Allow bundling cjs modules. Rollup doesn't understand cjs
   commonjs({
+    namedExports: {
+      'path-exists': ['pathExists'],
+      // './src/utils' :['isDirectory']
+    },
     include: [
       'node_modules/path-exists/**',
       'node_modules/uuid/**',
       'node_modules/dayjs/**',
+      // './src/utils.js'
     ],
-    exclude: 'node_modules/lodash/**',
+    // exclude: 'node_modules/lodash/**',
     // include: 'node_modules/**',
     ignore: [
       "conditional-runtime-dependency"

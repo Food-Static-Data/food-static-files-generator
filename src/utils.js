@@ -2,7 +2,7 @@ import pathExists from 'path-exists';
 import uuidv1 from 'uuid/v1';
 import dayjs from 'dayjs';
 import fs from 'fs';
-
+import _ from 'lodash'
 // @TODO I dont like that we name this object as constant. it confusing.
 // nobody is doing it
 import PATH from 'path';
@@ -125,9 +125,18 @@ const generateArrWithId = (data, id) => {
   _.map(data, (element) => {
     result.push({
       ...element,
-      [id]: utils.__generateId(), // @TODO change import so we can use __generateId() only
+      [id]: __generateId(), // @TODO change import so we can use __generateId() only
     });
   });
 
   return result;
 };
+
+export { 
+  isDirectory,
+  __generateId,
+  __generateDate,
+  generateArrWithId,
+  readAllFiles,
+  fixPath
+ }

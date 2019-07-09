@@ -3,25 +3,28 @@ import {
   // favorites,
   // getMenuGenerator,
   // items,
-  getMeasurementSystem,
-  getMeasurementUnits,
+  
 } from './generateArray';
 
+import {
+  getMeasurementSystem,
+  getMeasurementUnits,
+} from './measurements'
 // @TODO we has commented methods here before.
 // not sure why we also completely delete them
 const config = [
   {
-    name: 'measurementSystem',
-    data: getMeasurementSystem(),
+    fileName: 'measurementSystem',
+    data: getMeasurementSystem,
   },
   {
-    name: 'measurementUnits',
-    data: getMeasurementUnits(),
+    fileName: 'measurementUnits',
+    data: getMeasurementUnits,
   },
   {
-    name: 'usersGrocery',
-    data: usersGrocery(),
+    fileName: 'usersGrocery',
+    data: usersGrocery,
   },
 ];
 
-export default { config };
+export default config ;

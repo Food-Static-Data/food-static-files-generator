@@ -20,10 +20,10 @@ import {
 // console.log(pathToSrc);
 
 //@TODO maybe in future it can be improved
-var files;
+var files = '';
 
 const setupPath = pathToSrc => {
- files = require(pathToSrc + '/files');
+    files = require(pathToSrc + '/files');
 };
 
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
@@ -67,8 +67,8 @@ const favorites = () => {
 
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
 const usersGrocery = () => {
-  const groceryId = generateArrWithId(grocery, 'grocery_id');
-  const usersId = generateArrWithId(users, 'user_id');
+  const groceryId = generateArrWithId(files.grocery, 'grocery_id');
+  const usersId = generateArrWithId(files.users, 'user_id');
   // return object for three users
   const result = [];
 
@@ -101,11 +101,10 @@ const items = () => {
   return result;
 };
 
-export default {
+export  {
   usersGrocery,
   favorites,
   getMenuGenerator,
   items,
-
   setupPath
 }

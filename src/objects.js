@@ -71,7 +71,7 @@ function split(fullPath, flag = 1, keys = [], callback) {
   }
 }
 
-export default {
+export  {
   combine,
   split,
 };

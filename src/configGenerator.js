@@ -14,8 +14,8 @@ import {
 // not sure why we also completely delete them
 const config = [
   {
-    name: 'measurementSystem',
-    data: getMeasurementSystem(),
+    fileName: 'measurementSystem',
+    data: getMeasurementSystem,
   },
   {
     fileName: 'measurementUnits',

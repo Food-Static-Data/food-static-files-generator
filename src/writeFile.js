@@ -1,9 +1,13 @@
 // const filePath = require('../files')
 
-import { writeFile, readFileSync, mkdirSync } from 'fs';
+import {
+  writeFile,
+  readFileSync,
+  mkdirSync,
+} from 'fs';
 
 // import * as PATH from 'path'
-import { isDirectory } from './utils';
+import isDirectory from './utils';
 
 // const { promisify } = require('util')
 // const _ = require('lodash')
@@ -47,6 +51,8 @@ const write = (path, data) => {
     }
 
     console.info(`${path} file generated successfully!`);
+
+    return undefined;
   });
 };
 
@@ -67,6 +73,40 @@ const readData = (path, file) => {
 };
 
 /**
+ * fixFileName()
+ * @param {string} fileName
+ */
+const fixFileName = (fileName) => {
+  let correctedFileName;
+
+  correctedFileName = fileName.replace(/ /g, '_'); // Replace space with underscore
+  correctedFileName = fileName.toLowerCase(); // Maintain Uniformity
+
+  return correctedFileName;
+};
+
+/**
+ * getFileName()
+ * @param {string} file
+ * @param {Object} fileData
+ * @param {var} flag
+ * @param {var} index
+ */
+const getFileName = (file, fileData, flag, index) => {
+  let fileName;
+  if (flag === 1) {
+    // for example: 23-someJsonFile.json
+    fileName = `${index}-${file}`;
+  } else {
+    // for example: someValueOfName.json
+    fileName = `${fileData.name}.json`;
+  }
+
+  fileName = fixFileName(fileName);
+  return fileName;
+};
+
+/**
  * @param {String} folderNamePath
  * @param {String} file
  * @param {Object} fileData
@@ -74,7 +114,7 @@ const readData = (path, file) => {
  * */
 const saveFile = (folderNamePath, file, fileData, flag) => {
   const fileDataLength = fileData.length;
-  for (let i = 0; i < fileDataLength; i++) {
+  for (let i = 0; i < fileDataLength; i += 1) {
     const fileName = getFileName(file, fileData[i], flag, i);
     const elementPath = `${folderNamePath}/${fileName}`;
     write(elementPath, fileData[i]);
@@ -99,59 +139,29 @@ const makeFolder = (path, file) => {
 // splitObject()
 
 /**
- * fixFileName()
- * @param {string} fileName
- */
-const fixFileName = (fileName) => {
-  fileName = fileName.replace(/ /g, '_'); // Replace space with underscore
-  fileName = fileName.toLowerCase(); // Maintain Uniformity
-  return fileName;
-};
-
-/**
- * getFileName()
- * @param {string} file
- * @param {Object} fileData
- * @param {var} flag
- * @param {var} index
- */
-const getFileName = (file, fileData, flag, index) => {
-  let fileName;
-  if (flag === 1) {
-    // for example: 23-someJsonFile.json
-    fileName = `${index}-${file}`;
-  } else {
-    // for example: someValueOfName.json
-    fileName = `${fileData.name}.json`;
-  }
-
-  fileName = fixFileName(fileName);
-  return fileName;
-};
-
-
-/**
  * For updateContent()
  * @param {var} content
  * @param {var} keys
  */
 const updateContent = (content, keys) => {
-  content.forEach((contentElem) => {
+  const contentCopy = content;
+
+  contentCopy.forEach((contentElem) => {
     contentElem.forEach((obj) => {
       keys.forEach((key) => {
         delete obj[key];
       });
     });
   });
-  return content;
+  return contentCopy;
 };
 
 
 export default {
   write,
-  // test,
-  // splitObject,
-  // combineObject,
+  saveFile,
   makeReadable,
   readData,
+  updateContent,
+  makeFolder,
 };

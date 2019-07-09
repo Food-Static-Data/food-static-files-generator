@@ -2,8 +2,8 @@ import { times } from 'lodash';
 import { __generateId, __generateDate } from './utils';
 
 const getMenuGenerator = (numberOfWeeks) => {
-  let
-    result = times(numberOfWeeks, (index) => ({
+  const
+    result = times(numberOfWeeks, index => ({
       id: __generateId(),
       title: `Weekly menu ${index}`,
       date: __generateDate(),
@@ -15,4 +15,4 @@ const getMenuGenerator = (numberOfWeeks) => {
 
 export default {
   getMenuGenerator,
-}
+};

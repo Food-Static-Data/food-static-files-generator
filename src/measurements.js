@@ -1,7 +1,7 @@
 // trying to separate code from generate Array.
 // but we'll move them out soon.
 // @TODO can we replace it with alias?
-const utils = require('./utils');
+import utils from './utils';
 // import utils from ('./utils')
 
 
@@ -58,7 +58,7 @@ function getMeasurementUnits() {
   return result;
 }
 
-module.exports = {
+export default {
   getMeasurementSystem,
   getMeasurementUnits,
 };

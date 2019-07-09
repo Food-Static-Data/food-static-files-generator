@@ -125,7 +125,7 @@ const generateArrWithId = (data, id) => {
   _.map(data, (element) => {
     result.push({
       ...element,
-      [id]: utils.__generateId(), // @TODO change import so we can use __generateId() only
+      [id]: __generateId(), // @TODO change import so we can use __generateId() only
     });
   });
 

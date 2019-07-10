@@ -13,7 +13,12 @@ const presets = [
 // Add this to working tests
 const env = {
   test: {
-    presets: [['@babel/preset-env']]
+    presets: [['@babel/preset-env', {
+      "targets": {
+        "node": "current"
+      }
+    }
+  ]]
   }
 }
 

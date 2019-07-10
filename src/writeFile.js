@@ -105,5 +105,6 @@ export {
   updateContent,
   makeReadable,
   readData,
-  save
+  save,
+  getFileName
 };

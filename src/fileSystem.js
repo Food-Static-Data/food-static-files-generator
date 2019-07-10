@@ -21,7 +21,10 @@ const write = (path, data) => {
     }
 
     console.info(`${path} file generated successfully!`);
+    return true;
   });
+  
+  return false;
 };
 
 /**
@@ -36,7 +39,9 @@ const save = (folderNamePath, file, fileData, flag) => {
     const fileName = getFileName(file, fileData[i], flag, i);
     const elementPath = `${folderNamePath}/${fileName}`;
     write(elementPath, fileData[i]);
+    return true;
   }
+  return false;
 };
 
 /**

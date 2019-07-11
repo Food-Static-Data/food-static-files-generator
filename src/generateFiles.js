@@ -2,7 +2,7 @@ import mkdirSync from 'fs';
 import { write } from './fileSystem';
 import { isDirectory } from './utils';
 import config from './configGenerator';
-import { setupPath } from './generateArray';
+// import { setupPath } from './generateArray';
 // import { setupPathMeasurements } from './measurements';
 
 // console.log('generate file start');

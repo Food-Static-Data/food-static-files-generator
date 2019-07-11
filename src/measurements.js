@@ -41,7 +41,6 @@ const getMeasurementUnits = () => {
 
     measurementUnitsList = generateArrWithId(measurementUnitsList, 'id');
     measurementUnitsList = generateArrWithId(measurementUnitsList, 'system_id');
-    
     _.map(measurementUnitsList, (unit) => {
       result.push({
         id: unit.id,

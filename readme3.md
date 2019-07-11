@@ -19,7 +19,7 @@
 #### getFileInfo
 ```
 ```
-#### generateId
+#### generateID
 ```
 ```
 #### generateDate

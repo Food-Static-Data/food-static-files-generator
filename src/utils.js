@@ -142,7 +142,7 @@ export {
   fixPath,
   getList,
   getFileInfo,
-  generateId,
+  generateID,
   generateDate,
   generateArrWithId,
 };

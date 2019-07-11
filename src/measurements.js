@@ -7,7 +7,7 @@ import { setupPath } from './generateArray';
 // import utils from ('./utils')
 import PATH from 'path';
 import _ from 'lodash';
-
+const {parse} = PATH;
 // Without files it wouldn't work without files... - Answer yes, I will fix it PS. Vadim :)
 // var files = '';
 
@@ -34,7 +34,7 @@ const getMeasurementSystem = () => {
 
 const getMeasurementUnits = () => {
     const files = setupPath('../../sd/data');
-    const dirMeasurementUnits = PATH.parse(files.measurementUnits).dir;
+    const dirMeasurementUnits = parse(files.measurementUnits).dir;
     const result = [];
 
     let measurementUnitsList = readAllFiles(dirMeasurementUnits)[1];

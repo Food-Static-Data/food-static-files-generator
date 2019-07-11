@@ -7,7 +7,7 @@ import _ from 'lodash';
 // @TODO I dont like that we name this object as constant. it confusing.
 // nobody is doing it
 import PATH from 'path';
-
+const {resolve} = PATH;
 const checkFilePath = async (path) => {
   if (await pathExists(path)) {
     console.log(`Filepath ${path} exist`);
@@ -32,7 +32,7 @@ const isDirectory = (folderNamePath) => {
  * @param {String} path
  */
 const fixPath = (path) => {
-  let newPath = PATH.resolve(__dirname, path);
+  let newPath = resolve(__dirname, path);
   if (newPath.charAt(newPath.length - 1) !== '/') {
     newPath += '/';
   }

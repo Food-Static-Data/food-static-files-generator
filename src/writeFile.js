@@ -8,8 +8,10 @@ import { write, save } from './fileSystem';
 // const _ = require('lodash')
 
 
-  // @param {Object} data a json object 
-const makeReadable = (data) => {
+/**
+ * for stripSymbols()
+ * @param {Object} data a json object
+ * */const stripSymbols = (data) => {
     let dataStr = JSON.stringify(data);
 
   const replaceList = [
@@ -31,11 +33,10 @@ const makeReadable = (data) => {
 
 /**
  * readData()
- * @param {string} path
- * @param {string} file
+ * @param {string} absolutePath
  * */
-// @TODO if inside at this function we use path+file, maybe it's better to pass one variable?
-const readData = (absolutePath) => {
+
+ const readData = (absolutePath) => {
   console.log(absolutePath);
 
   const data = readFileSync(absolutePath);

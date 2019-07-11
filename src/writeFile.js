@@ -1,7 +1,7 @@
 // const filePath = require('../files')
 
 import { readFileSync } from 'fs';
-import { write, save } from './fileSystem'
+import { write, save } from './fileSystem';
 // import * as PATH from 'path'
 
 // const { promisify } = require('util')
@@ -9,11 +9,11 @@ import { write, save } from './fileSystem'
 
 // @TODO i don't like this function name
 /**
- * for makeReadable()
+ * for makeJsonReadable()
  * @param {Object} data a json object
  * */
-const makeReadable = (data) => {
-    let dataStr = JSON.stringify(data);
+const makeJsonReadable = (data) => {
+  let dataStr = JSON.stringify(data);
 
   const replaceList = [
     ['/{"/g', '{ "'],
@@ -28,8 +28,6 @@ const makeReadable = (data) => {
   });
 
   return dataStr;
-
-
 };
 
 /**
@@ -37,14 +35,11 @@ const makeReadable = (data) => {
  * @param {string} path
  * @param {string} file
  * */
-// @TODO if inside at this function we use path+file, maybe it's better to pass one variable?
-const readData = (path, file) => {
-  console.log(path + file);
+const readData = (fullPath) => {
 
-  const data = readFileSync(path + file);
-  console.log(data);
-
+  const data = readFileSync(fullPath);
   const fileData = JSON.parse(data);
+
   return fileData;
 };
 
@@ -69,12 +64,11 @@ const updateContent = (content, keys) => {
   return contentCopy;
 };
 
-
 export {
   write,
   updateContent,
-  makeReadable,
+  makeJsonReadable,
   readData,
   save,
-  getFileName
+  getFileName,
 };

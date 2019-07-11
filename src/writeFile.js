@@ -28,8 +28,6 @@ const makeReadable = (data) => {
   });
 
   return dataStr;
-
-
 };
 
 /**
@@ -46,6 +44,70 @@ const readData = (path, file) => {
 
   const fileData = JSON.parse(data);
   return fileData;
+};
+
+/**
+ * fixFileName()
+ * @param {string} fileName
+ */
+const fixFileName = (fileName) => {
+  let correctedFileName;
+
+  correctedFileName = fileName.replace(/ /g, '_'); // Replace space with underscore
+  correctedFileName = fileName.toLowerCase(); // Maintain Uniformity
+
+  return correctedFileName;
+};
+
+/**
+ * getFileName()
+ * @param {string} file
+ * @param {Object} fileData
+ * @param {var} flag
+ * @param {var} index
+ */
+const getFileName = (file, fileData, flag, index) => {
+  let fileName;
+  if (flag === 1) {
+    // for example: 23-someJsonFile.json
+    fileName = `${index}-${file}`;
+  } else {
+    // for example: someValueOfName.json
+    fileName = `${fileData.name}.json`;
+  }
+
+  fileName = fixFileName(fileName);
+  return fileName;
+};
+
+/**
+ * @param {String} folderNamePath
+ * @param {String} file
+ * @param {Object} fileData
+ * @param {var} flag
+ * */
+const saveFile = (folderNamePath, file, fileData, flag) => {
+  const fileDataLength = fileData.length;
+  for (let i = 0; i < fileDataLength; i += 1) {
+    const fileName = getFileName(file, fileData[i], flag, i);
+    const elementPath = `${folderNamePath}/${fileName}`;
+    write(elementPath, fileData[i]);
+  }
+};
+
+/**
+ * @param {String} path
+ * @param {String} file
+ */
+const makeFolder = (path, file) => {
+  const suffix = '_elements';
+  const folderName = file.slice(0, -5) + suffix;
+  const folderNamePath = path + folderName;
+  // @TODO if we update our import - we'll be able to use just isDirectory()
+  if (isDirectory(folderNamePath)) {
+    mkdirSync(folderNamePath);
+  }
+  return folderNamePath;
 };
 
 // execute function
@@ -71,10 +133,11 @@ const updateContent = (content, keys) => {
 
 
 export {
-  write,
-  updateContent,
   makeReadable,
   readData,
-  save,
-  getFileName
+  fixFileName,
+  getFileName,
+  saveFile,
+  makeFolder,
+  updateContent,
 };

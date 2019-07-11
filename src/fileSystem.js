@@ -2,7 +2,7 @@
 // we can also rename WriteFile to write
 // saveFile to save - because we didn't save or wrtie anything else here
 import { writeFile, mkdirSync } from 'fs';
-import { makeReadable, getFileName } from './writeFile'
+import { makeReadable, getFileName } from './writeFile';
 import { isDirectory } from './utils';
 
 /**
@@ -23,7 +23,7 @@ const write = (path, data) => {
     console.info(`${path} file generated successfully!`);
     return true;
   });
-  
+
   return false;
 };
 

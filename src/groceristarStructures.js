@@ -1,13 +1,12 @@
 import { map } from 'lodash';
 import { generateArrWithId } from './utils';
+import { setupPath } from './generateArray';
 
 const favorites = () => {
+  const files = setupPath('../../sd/data');
   const groceryId = generateArrWithId(files.grocery, 'grocery_id');
   const usersId = generateArrWithId(files.users, 'user_id');
-  const ingredientsId = generateArrWithId(
-    files.ingredients,
-    'ingredient_id',
-  );
+  const ingredientsId = generateArrWithId(files.ingredients, 'ingredient_id');
 
   const result = [];
 
@@ -25,7 +24,8 @@ const favorites = () => {
 };
 
 const usersGrocery = () => {
-  const groceryId = generateArrWithId(grocery, 'grocery_id');
+  const files = setupPath('../../sd/data');
+  const groceryId = generateArrWithId(files.grocery, 'grocery_id');
   const usersId = generateArrWithId(users, 'user_id');
   // return object for three users
   const result = [];
@@ -42,7 +42,8 @@ const usersGrocery = () => {
 
 // yes, my function name is not better, but at least it's less confusing
 const getItemCustomStructureObjectArray = () => {
-  const ingredientsId = generateArrWithId(ingredients, 'ingredient_id');
+  const files = setupPath('../../sd/data');
+  const ingredientsId = generateArrWithId(files.ingredients, 'ingredient_id');
   const items = [1, 2, 3];
   const result = [];
 

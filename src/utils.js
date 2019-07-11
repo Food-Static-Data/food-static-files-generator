@@ -117,7 +117,7 @@ const getFileInfo = (path, flag = 0, fileName = 'undefined') => {
 
 const generateID = () => uuidv1();
 
-const generateID = () => dayjs().toDate();
+const generateDate = () => dayjs().toDate();
 
 // @TODO
 // 1. this function looks like a duplicate with getFileKey
@@ -135,10 +135,14 @@ const generateArrWithId = (data, id) => {
 };
 
 export {
+  checkFilePath,
   isDirectory,
-  generateID,
-  generateID,
-  generateArrWithId,
   readAllFiles,
-  fixPath
- }
+  getListContent,
+  fixPath,
+  getList,
+  getFileInfo,
+  generateId,
+  generateDate,
+  generateArrWithId,
+};

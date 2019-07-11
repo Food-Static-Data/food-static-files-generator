@@ -1,6 +1,6 @@
 const _ = require('lodash');
-// const { generateID, generateID } = require('../../../src/utils.js')
-const { generateID, generateID } = require('@utils.js');
+// const { generateID, generateDate } = require('../../../src/utils.js')
+const { generateID, generateDate } = require('@utils.js');
 
 const {
   favorites,
@@ -37,8 +37,8 @@ const getDepartmentsKey = function () {
     departmentId: generateID(),
     name: item.name,
     desc: 'description for department1', // @TODO this was a blank field, but it cannot look like this all the time
-    created_at: generateID(),
-    updated_at: generateID(),
+    created_at: generateDate(),
+    updated_at: generateDate(),
   }));
 };
 
@@ -70,8 +70,8 @@ const getIngredientsKey = function (limit = false) {
     name: item.name,
     description: 'description', // @TODO this was a blank field before, but it cannot be as it is all the time
     custom: false,
-    created_at: generateID(),
-    updated_at: generateID(),
+    created_at: generateDate(),
+    updated_at: generateDate(),
     id: 1, // @TODO this method should be extended, in order to get connection with ingredients and departments
     department_id: 1,
   }));
@@ -86,8 +86,8 @@ const getGroceryKey = function () {
     img: item.img,
     desc: item.desc,
     slug: item.slug,
-    created_at: generateID(),
-    updated_at: generateID(),
+    created_at: generateDate(),
+    updated_at: generateDate(),
     id: 1,
     favs: false,
   }));

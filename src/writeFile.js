@@ -1,19 +1,14 @@
 // const filePath = require('../files')
-
 import { readFileSync } from 'fs';
-import { write, save } from './fileSystem';
-// import * as PATH from 'path'
+
 
 // const { promisify } = require('util')
-// const _ = require('lodash')
-
 
 /**
  * for stripSymbols()
  * @param {Object} data a json object
- * 
+ *
  */
-
 const stripSymbols = (data) => {
   let dataStr = JSON.stringify(data);
 
@@ -35,7 +30,7 @@ const stripSymbols = (data) => {
 /**
  * readData()
  * @param {string} absolutePath
- * 
+ *
  */
  const readData = (absolutePath) => {
   console.log(absolutePath);
@@ -48,8 +43,39 @@ const stripSymbols = (data) => {
   return fileData;
 };
 
-// execute function
-// splitObject()
+/**
+ * fixFileName()
+ * @param {string} fileName
+ */
+const fixFileName = (fileName) => {
+  let correctedFileName;
+
+  correctedFileName = fileName.replace(/ /g, '_'); // Replace space with underscore
+  correctedFileName = fileName.toLowerCase(); // Maintain Uniformity
+
+  return correctedFileName;
+};
+
+/**
+ * getFileName()
+ * @param {string} file
+ * @param {Object} fileData
+ * @param {var} flag
+ * @param {var} index
+ */
+const getFileName = (file, fileData, flag, index) => {
+  let fileName;
+  if (flag === 1) {
+    // for example: 23-someJsonFile.json
+    fileName = `${index}-${file}`;
+  } else {
+    // for example: someValueOfName.json
+    fileName = `${fileData.name}.json`;
+  }
+
+  fileName = fixFileName(fileName);
+  return fileName;
+};
 
 /**
  * For updateContent()
@@ -70,10 +96,8 @@ const updateContent = (content, keys) => {
 };
 
 export {
-  write,
-  updateContent,
   stripSymbols,
   readData,
-  save,
   getFileName,
+  updateContent,
 };

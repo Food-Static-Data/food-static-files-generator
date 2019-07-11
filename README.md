@@ -13,7 +13,7 @@
 - [ ] Rollup fixes in configuration
 - [ ] plugin should generate files outside
 - [ ] ESLint warnings
-- [ ] Complete ES6 migration and test how it works
+- [x] Complete ES6 migration and test how it works
 - [ ] remove __ from 2 of our methods... it's a rudiment as well
 - [ ] replace configGenerator with callbacks because all methods will be passed from the outside
 

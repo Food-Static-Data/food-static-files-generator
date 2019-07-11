@@ -1,7 +1,7 @@
 const _ = require('lodash');
-const { __generateId } = require('../../../src/utils');
+const { generateID } = require('../../../src/utils');
 
-// const { __generateId } = require('@utils')
+// const { generateID } = require('@utils')
 // const { departments, ingredients, grocery } = require('@files')
 const { departments, ingredients, grocery } = require('../../../src/files');
 /**
@@ -104,7 +104,7 @@ const getAllIngredientsWithId = () => {
 };
 
 const getResult = property => _.map(property, p => ({
-  key: __generateId(),
+  key: generateID(),
   ...p,
 }));
 

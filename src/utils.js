@@ -115,9 +115,9 @@ const getFileInfo = (path, flag = 0, fileName = 'undefined') => {
   return getList(pathCopy);
 };
 
-const __generateId = () => uuidv1();
+const generateID = () => uuidv1();
 
-const __generateDate = () => dayjs().toDate();
+const generateID = () => dayjs().toDate();
 
 // @TODO
 // 1. this function looks like a duplicate with getFileKey
@@ -127,7 +127,7 @@ const generateArrWithId = (data, id) => {
   _.map(data, (element) => {
     result.push({
       ...element,
-      [id]: __generateId(),
+      [id]: generateID(),
     });
   });
 
@@ -136,8 +136,8 @@ const generateArrWithId = (data, id) => {
 
 export {
   isDirectory,
-  __generateId,
-  __generateDate,
+  generateID,
+  generateID,
   generateArrWithId,
   readAllFiles,
   fixPath

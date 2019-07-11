@@ -25,7 +25,9 @@
 #### generateDate
 ```
 ```
+
 #### stripSymbols
+
 ```
 ```
 #### writeFile

@@ -11,8 +11,11 @@ import { write, save } from './fileSystem';
 /**
  * for stripSymbols()
  * @param {Object} data a json object
- * */const stripSymbols = (data) => {
-    let dataStr = JSON.stringify(data);
+ * 
+ */
+
+const stripSymbols = (data) => {
+  let dataStr = JSON.stringify(data);
 
   const replaceList = [
     ['/{"/g', '{ "'],
@@ -27,15 +30,13 @@ import { write, save } from './fileSystem';
   });
 
   return dataStr;
-  
-  
 };
 
 /**
  * readData()
  * @param {string} absolutePath
- * */
-
+ * 
+ */
  const readData = (absolutePath) => {
   console.log(absolutePath);
 
@@ -43,6 +44,7 @@ import { write, save } from './fileSystem';
   console.log(data);
 
   const fileData = JSON.parse(data);
+
   return fileData;
 };
 
@@ -50,53 +52,22 @@ import { write, save } from './fileSystem';
 // splitObject()
 
 /**
- * fixFileName()
- * @param {string} fileName
- */
-const fixFileName = (fileName) => {
-  fileName = fileName.replace(/ /g, '_'); // Replace space with underscore
-  fileName = fileName.toLowerCase(); // Maintain Uniformity
-  return fileName;
-};
-
-/**
- * getFileName()
- * @param {string} file
- * @param {Object} fileData
- * @param {var} flag
- * @param {var} index
- */
-const getFileName = (file, fileData, flag, index) => {
-  let fileName;
-  if (flag === 1) {
-    // for example: 23-someJsonFile.json
-    fileName = `${index}-${file}`;
-  } else {
-    // for example: someValueOfName.json
-    fileName = `${fileData.name}.json`;
-  }
-
-  fileName = fixFileName(fileName);
-  return fileName;
-};
-
-
-/**
  * For updateContent()
  * @param {var} content
  * @param {var} keys
  */
 const updateContent = (content, keys) => {
-  content.forEach((contentElem) => {
+  const contentCopy = content;
+
+  contentCopy.forEach((contentElem) => {
     contentElem.forEach((obj) => {
       keys.forEach((key) => {
         delete obj[key];
       });
     });
   });
-  return content;
+  return contentCopy;
 };
-
 
 export {
   write,
@@ -104,5 +75,5 @@ export {
   stripSymbols,
   readData,
   save,
-  getFileName
+  getFileName,
 };

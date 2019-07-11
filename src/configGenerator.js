@@ -1,16 +1,5 @@
-import {
-  usersGrocery,
-  // favorites,
-  // getMenuGenerator,
-  // items,
-
-} from './generateArray';
-
-import {
-  getMeasurementSystem,
-  getMeasurementUnits,
-} from './measurements'
-
+import { getMeasurementSystem, getMeasurementUnits } from './measurements';
+import usersGrocery from './groceristarStructures';
 
 // @TODO we has commented methods here before.
 // not sure why we also completely delete them

@@ -7,12 +7,14 @@ import { write, save } from './fileSystem';
 // const { promisify } = require('util')
 // const _ = require('lodash')
 
-// @TODO i don't like this function name
+
 /**
- * for makeJsonReadable()
+ * for stripSymbols()
  * @param {Object} data a json object
- * */
-const makeJsonReadable = (data) => {
+ * 
+ */
+
+const stripSymbols = (data) => {
   let dataStr = JSON.stringify(data);
 
   const replaceList = [
@@ -32,12 +34,15 @@ const makeJsonReadable = (data) => {
 
 /**
  * readData()
- * @param {string} path
- * @param {string} file
- * */
-const readData = (fullPath) => {
+ * @param {string} absolutePath
+ * 
+ */
+ const readData = (absolutePath) => {
+  console.log(absolutePath);
 
-  const data = readFileSync(fullPath);
+  const data = readFileSync(absolutePath);
+  console.log(data);
+
   const fileData = JSON.parse(data);
 
   return fileData;
@@ -67,7 +72,7 @@ const updateContent = (content, keys) => {
 export {
   write,
   updateContent,
-  makeJsonReadable,
+  stripSymbols,
   readData,
   save,
   getFileName,

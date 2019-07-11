@@ -38,10 +38,9 @@ function getMeasurementSystem() {
 const getMeasurementUnits = () => {
     const files = setupPath('../../sd/data');
     const dirMeasurementUnits = PATH.parse(files.measurementUnits).dir;
+    const result = [];
 
     let measurementUnitsList = readAllFiles(dirMeasurementUnits)[1];
-
-    const result = [];
 
     measurementUnitsList = generateArrWithId(
       measurementUnitsList,
@@ -65,9 +64,8 @@ const getMeasurementUnits = () => {
         error: 'null',
       });
     });
-
+    
     return result;
-
 }
 
 export {

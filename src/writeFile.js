@@ -11,7 +11,7 @@ import { write, save } from './fileSystem';
 /**
  * for stripSymbols()
  * @param {Object} data a json object
- * 
+ *
  */
 
 const stripSymbols = (data) => {
@@ -35,7 +35,7 @@ const stripSymbols = (data) => {
 /**
  * readData()
  * @param {string} absolutePath
- * 
+ *
  */
  const readData = (absolutePath) => {
   console.log(absolutePath);
@@ -119,19 +119,10 @@ const updateContent = (content, keys) => {
 };
 
 export {
-<<<<<<< HEAD
-  makeReadable,
-  readData,
-  fixFileName,
-  getFileName,
-  saveFile,
-  updateContent,
-=======
   write,
   updateContent,
   stripSymbols,
   readData,
   save,
   getFileName,
->>>>>>> 3c8c65fc04b36c25be6376d1c86f5438da19bf3f
 };

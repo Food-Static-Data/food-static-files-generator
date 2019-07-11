@@ -1,10 +1,8 @@
-// here i want to keep methods like write, save
+/ here i want to keep methods like write, save
 // we can also rename WriteFile to write
 // saveFile to save - because we didn't save or wrtie anything else here
 import { writeFile, mkdirSync } from 'fs';
-
-import { stripSymbols, getFileName } from './writeFile'
-
+import { makeReadable, getFileName } from './writeFile'
 import { isDirectory } from './utils';
 
 /**
@@ -12,22 +10,20 @@ import { isDirectory } from './utils';
  * @param {String} path
  * @param {Object} data
  */
-const write = (path, data) => {
-
-  const dataStr = stripSymbols(data);
+const write = (path, data, callback) => {
+  const dataStr = makeReadable(data);
   // dataStr = '[' + dataStr + ']'
   // console.log(dataStr)
 
   writeFile(path, dataStr, (err) => {
     if (err) {
-      return console.log(err);
+      console.log(err);
+      callback(false);
     }
 
     console.info(`${path} file generated successfully!`);
-    return true;
+    callback(true);
   });
-  
-  return false;
 };
 
 /**
@@ -36,15 +32,17 @@ const write = (path, data) => {
  * @param {Object} fileData
  * @param {var} flag
  * */
-const save = (folderNamePath, file, fileData, flag) => {
+const save = (folderNamePath, file, fileData, flag, callback) => {
   const fileDataLength = fileData.length;
   for (let i = 0; i < fileDataLength; i++) {
     const fileName = getFileName(file, fileData[i], flag, i);
     const elementPath = `${folderNamePath}/${fileName}`;
-    write(elementPath, fileData[i]);
-    return true;
+    write(elementPath, fileData[i], success => {
+       if(!success) 
+        callback(false);
+    });
   }
-  return false;
+  callback(true);
 };
 
 /**

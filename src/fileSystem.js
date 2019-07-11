@@ -10,7 +10,7 @@ import { isDirectory } from './utils';
  * @param {String} path
  * @param {Object} data
  */
-const write = (path, data) => {
+const write = (path, data, callback) => {
 
   const dataStr = stripSymbols(data);
   // dataStr = '[' + dataStr + ']'
@@ -18,14 +18,13 @@ const write = (path, data) => {
 
   writeFile(path, dataStr, (err) => {
     if (err) {
-      return console.log(err);
+      console.log(err);
+      callback(false);
     }
 
     console.info(`${path} file generated successfully!`);
-    return true;
+    callback(true);
   });
-
-  return false;
 };
 
 /**
@@ -34,15 +33,17 @@ const write = (path, data) => {
  * @param {Object} fileData
  * @param {var} flag
  * */
-const save = (folderNamePath, file, fileData, flag) => {
+const save = (folderNamePath, file, fileData, flag, callback) => {
   const fileDataLength = fileData.length;
   for (let i = 0; i < fileDataLength; i++) {
     const fileName = getFileName(file, fileData[i], flag, i);
     const elementPath = `${folderNamePath}/${fileName}`;
-    write(elementPath, fileData[i]);
-    return true;
+    write(elementPath, fileData[i], status => {
+      if(!status)
+        callback(false);
+    });
   }
-  return false;
+  callback(true);
 };
 
 /**

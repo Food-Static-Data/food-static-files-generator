@@ -18,7 +18,7 @@ const jsonSchemaTest = (file, example, schema) => {
 };
 
 
-export default {
+export  {
   jsonFileNotEmptyTest,
   jsonSchemaTest,
 };

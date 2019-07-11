@@ -134,7 +134,7 @@ const generateArrWithId = (data, id) => {
   return result;
 };
 
-export default {
+export {
   checkFilePath,
   isDirectory,
   readAllFiles,

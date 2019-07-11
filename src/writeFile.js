@@ -1,13 +1,8 @@
 // const filePath = require('../files')
 
-import {
-  writeFile,
-  readFileSync,
-  mkdirSync,
-} from 'fs';
-
+import { readFileSync } from 'fs';
+import { write, save } from './fileSystem'
 // import * as PATH from 'path'
-import isDirectory from './utils';
 
 // const { promisify } = require('util')
 // const _ = require('lodash')
@@ -18,7 +13,7 @@ import isDirectory from './utils';
  * @param {Object} data a json object
  * */
 const makeReadable = (data) => {
-  let dataStr = JSON.stringify(data);
+    let dataStr = JSON.stringify(data);
 
   const replaceList = [
     ['/{"/g', '{ "'],
@@ -33,27 +28,6 @@ const makeReadable = (data) => {
   });
 
   return dataStr;
-};
-
-/**
- * Write in file
- * @param {String} path
- * @param {Object} data
- */
-const write = (path, data) => {
-  const dataStr = makeReadable(data);
-  // dataStr = '[' + dataStr + ']'
-  // console.log(dataStr)
-
-  writeFile(path, dataStr, (err) => {
-    if (err) {
-      return console.log(err);
-    }
-
-    console.info(`${path} file generated successfully!`);
-
-    return undefined;
-  });
 };
 
 /**
@@ -135,6 +109,7 @@ const makeFolder = (path, file) => {
   }
   return folderNamePath;
 };
+
 // execute function
 // splitObject()
 
@@ -157,11 +132,12 @@ const updateContent = (content, keys) => {
 };
 
 
-export default {
+export {
   write,
   saveFile,
   makeReadable,
   readData,
   updateContent,
   makeFolder,
+
 };

@@ -4,11 +4,10 @@ import PATH from 'path';
 import { fixPath, readAllFiles } from './utils';
 import {
   updateContent,
-  write,
   readData,
-  saveFile,
-  makeFolder,
 } from './writeFile';
+
+import { write, save, makeFolder } from './fileSystem'
 
 /**
  * For combine()
@@ -62,7 +61,7 @@ function split(fullPath, flag = 1, keys = [], callback) {
   // new folder to save splitted files
   const folderNamePath = makeFolder(path, file);
   // saving files
-  saveFile(folderNamePath, file, fileData, flag);
+  save(folderNamePath, file, fileData, flag);
 
   if (callback instanceof Function) {
     setTimeout(() => {
@@ -71,7 +70,7 @@ function split(fullPath, flag = 1, keys = [], callback) {
   }
 }
 
-export default {
+export  {
   combine,
   split,
 };

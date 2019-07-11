@@ -1,4 +1,4 @@
-import write from './writeFile';
+import write from './fileSystem';
 
 import getMenuGenerator from './generateArray';
 
@@ -17,6 +17,6 @@ const generateFile = () => {
   write(path, data);
 };
 
-export default {
+export {
   generateFile,
 };

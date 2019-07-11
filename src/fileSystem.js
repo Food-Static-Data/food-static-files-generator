@@ -2,7 +2,9 @@
 // we can also rename WriteFile to write
 // saveFile to save - because we didn't save or wrtie anything else here
 import { writeFile, mkdirSync } from 'fs';
-import { makeReadable, getFileName } from './writeFile';
+
+import { stripSymbols, getFileName } from './writeFile'
+
 import { isDirectory } from './utils';
 
 /**
@@ -11,7 +13,8 @@ import { isDirectory } from './utils';
  * @param {Object} data
  */
 const write = (path, data) => {
-  const dataStr = makeReadable(data);
+
+  const dataStr = stripSymbols(data);
   // dataStr = '[' + dataStr + ']'
   // console.log(dataStr)
 

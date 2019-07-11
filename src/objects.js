@@ -55,9 +55,9 @@ function split(fullPath, flag = 1, keys = [], callback) {
 
   path = fixPath(path);
 
-  // @TODO can we fix path outside of this function, so then we can path one variable here...
   // Reading data...
-  const fileData = readData(path, file);
+  const absolutePath = path+file;
+  const fileData = readData(absolutePath);
   // new folder to save splitted files
   const folderNamePath = makeFolder(path, file);
   // saving files

@@ -1,9 +1,8 @@
 // const filePath = require('../files')
 import { readFileSync } from 'fs';
-// import * as PATH from 'path'
+
 
 // const { promisify } = require('util')
-// const _ = require('lodash')
 
 /**
  * for stripSymbols()
@@ -77,9 +76,6 @@ const getFileName = (file, fileData, flag, index) => {
   fileName = fixFileName(fileName);
   return fileName;
 };
-
-// execute function
-// splitObject()
 
 /**
  * For updateContent()

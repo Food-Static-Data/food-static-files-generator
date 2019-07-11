@@ -2,9 +2,7 @@
 // we can also rename WriteFile to write
 // saveFile to save - because we didn't save or wrtie anything else here
 import { writeFile, mkdirSync } from 'fs';
-
-import { stripSymbols, getFileName } from './writeFile'
-
+import { stripSymbols, getFileName } from './writeFile';
 import { isDirectory } from './utils';
 
 /**

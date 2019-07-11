@@ -25,7 +25,9 @@
 #### generateDate
 ```
 ```
-#### makeReadable
+
+#### stripSymbols
+
 ```
 ```
 #### writeFile

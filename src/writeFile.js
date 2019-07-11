@@ -101,7 +101,7 @@ const updateContent = (content, keys) => {
 export {
   write,
   updateContent,
-  makeReadable,
+  stripSymbols,
   readData,
   save,
   getFileName

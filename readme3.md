@@ -25,7 +25,7 @@
 #### generateDate
 ```
 ```
-#### makeReadable
+#### makeJsonReadable
 ```
 ```
 #### writeFile

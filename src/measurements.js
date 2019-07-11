@@ -14,8 +14,7 @@ import _ from 'lodash';
 // const setupPathMeasurements = pathToSrc => {
 //     files = require(pathToSrc + '/files');
 // };
-// @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
-function getMeasurementSystem() {
+const getMeasurementSystem = () => {
   const files = setupPath('../../sd/data');
   const result = [];
   const measurementSystemId = generateArrWithId(
@@ -33,8 +32,6 @@ function getMeasurementSystem() {
   return result;
 }
 
-
-// @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
 const getMeasurementUnits = () => {
     const files = setupPath('../../sd/data');
     const dirMeasurementUnits = PATH.parse(files.measurementUnits).dir;
@@ -42,15 +39,9 @@ const getMeasurementUnits = () => {
 
     let measurementUnitsList = readAllFiles(dirMeasurementUnits)[1];
 
-    measurementUnitsList = generateArrWithId(
-      measurementUnitsList,
-      'id',
-    );
-    measurementUnitsList = generateArrWithId(
-      measurementUnitsList,
-      'system_id',
-    );
-
+    measurementUnitsList = generateArrWithId(measurementUnitsList, 'id');
+    measurementUnitsList = generateArrWithId(measurementUnitsList, 'system_id');
+    
     _.map(measurementUnitsList, (unit) => {
       result.push({
         id: unit.id,
@@ -64,7 +55,6 @@ const getMeasurementUnits = () => {
         error: 'null',
       });
     });
-    
     return result;
 }
 

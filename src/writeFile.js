@@ -124,5 +124,6 @@ export {
   stripSymbols,
   readData,
   save,
+  saveFile,
   getFileName,
 };

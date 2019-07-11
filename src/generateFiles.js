@@ -11,10 +11,10 @@ import { setupPath } from './generateArray';
 // folderData = './src/data/'
 const generateFiles = (pathToSrc) => {
   let path;
-//   console.log('1');
-  const files = setupPath(pathToSrc);
+  // console.log('1');
+  // const files = setupPath(pathToSrc);
   // setupPathMeasurements(pathToSrc);
-//   console.log('2');
+  // console.log('2');
 
   config.map((settings) => {
     const { fileName, data } = settings;

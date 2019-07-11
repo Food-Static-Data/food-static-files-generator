@@ -1,19 +1,15 @@
 // const filePath = require('../files')
-
 import { readFileSync } from 'fs';
-import { write, save } from './fileSystem';
 // import * as PATH from 'path'
 
 // const { promisify } = require('util')
 // const _ = require('lodash')
-
 
 /**
  * for stripSymbols()
  * @param {Object} data a json object
  *
  */
-
 const stripSymbols = (data) => {
   let dataStr = JSON.stringify(data);
 
@@ -82,21 +78,6 @@ const getFileName = (file, fileData, flag, index) => {
   return fileName;
 };
 
-/**
- * @param {String} folderNamePath
- * @param {String} file
- * @param {Object} fileData
- * @param {var} flag
- * */
-const saveFile = (folderNamePath, file, fileData, flag) => {
-  const fileDataLength = fileData.length;
-  for (let i = 0; i < fileDataLength; i += 1) {
-    const fileName = getFileName(file, fileData[i], flag, i);
-    const elementPath = `${folderNamePath}/${fileName}`;
-    write(elementPath, fileData[i]);
-  }
-};
-
 // execute function
 // splitObject()
 
@@ -119,11 +100,8 @@ const updateContent = (content, keys) => {
 };
 
 export {
-  write,
-  updateContent,
   stripSymbols,
   readData,
-  save,
-  saveFile,
   getFileName,
+  updateContent,
 };

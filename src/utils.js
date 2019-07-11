@@ -134,15 +134,11 @@ const generateArrWithId = (data, id) => {
   return result;
 };
 
-export default {
-  checkFilePath,
+export {
   isDirectory,
-  readAllFiles,
-  getListContent,
-  fixPath,
-  getList,
-  getFileInfo,
   __generateId,
   __generateDate,
   generateArrWithId,
-};
+  readAllFiles,
+  fixPath
+ }

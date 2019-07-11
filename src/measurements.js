@@ -1,12 +1,17 @@
 // trying to separate code from generate Array.
 // but we'll move them out soon.
 // @TODO can we replace it with alias?
-import utils from './utils';
+import { readAllFiles, generateArrWithId } from './utils'
+// const utils = require('./utils');
 // import utils from ('./utils')
+import PATH from 'path';
+import _ from 'lodash'
+// Without files it wouldn't work without files... - Answer yes, I will fix it PS. Vadim :)
+var files = '';
 
-
-// Without files it wouldn't work without files...
-
+const setupPathMeasurements = pathToSrc => {
+    files = require(pathToSrc + '/files');
+};
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
 function getMeasurementSystem() {
   const result = [];
@@ -27,38 +32,42 @@ function getMeasurementSystem() {
 
 
 // @TODO this is a method from a project. maybe we should move it there, because it's confusing right now
-function getMeasurementUnits() {
-  const dirMeasurementUnits = PATH.parse(files.measurementUnits).dir;
-  let measurementUnitsList = utils.readAllFiles(dirMeasurementUnits)[1];
-  const result = [];
+const getMeasurementUnits = () => {
+    const dirMeasurementUnits = PATH.parse(files.measurementUnits).dir;
 
-  measurementUnitsList = generateArrWithId(
-    measurementUnitsList,
-    'id',
-  );
-  measurementUnitsList = generateArrWithId(
-    measurementUnitsList,
-    'system_id',
-  );
+    let measurementUnitsList = readAllFiles(dirMeasurementUnits)[1];
 
-  _.map(measurementUnitsList, (unit) => {
-    result.push({
-      id: unit.id,
-      system_id: unit.system_id,
-      type: unit.type,
-      name: unit.name,
-      singular: unit.singular,
-      plural: unit.plural,
-      short: unit.short,
-      pattern: unit.pattern,
-      error: 'null',
+    const result = [];
+
+    measurementUnitsList = generateArrWithId(
+      measurementUnitsList,
+      'id',
+    );
+    measurementUnitsList = generateArrWithId(
+      measurementUnitsList,
+      'system_id',
+    );
+
+    _.map(measurementUnitsList, (unit) => {
+      result.push({
+        id: unit.id,
+        system_id: unit.system_id,
+        type: unit.type,
+        name: unit.name,
+        singular: unit.singular,
+        plural: unit.plural,
+        short: unit.short,
+        pattern: unit.pattern,
+        error: 'null',
+      });
     });
-  });
 
-  return result;
+    return result;
+
 }
 
-export default {
+export {
+  setupPathMeasurements,
   getMeasurementSystem,
   getMeasurementUnits,
 };

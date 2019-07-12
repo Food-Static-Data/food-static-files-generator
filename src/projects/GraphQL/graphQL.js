@@ -1,6 +1,6 @@
 const _ = require('lodash');
-// const { __generateId, __generateDate } = require('../../../src/utils.js')
-const { __generateId, __generateDate } = require('@utils.js');
+// const { generateID, generateDate } = require('../../../src/utils.js')
+const { generateID, generateDate } = require('@utils.js');
 
 const {
   favorites,
@@ -25,7 +25,7 @@ const {
 // @TODO as we may need to be able to call this function from the
 // outside of this project - we should move this method outside
 const getFileKey = file => _.map(file, (item, index) => ({
-  key: __generateId(),
+  key: generateID(),
   ...item,
 }));
 
@@ -34,11 +34,11 @@ const getFavoritesKey = () => getFileKey(favorites);
 const getDepartmentsKey = function () {
   const results = departments;
   return results.map((item, index) => ({
-    departmentId: __generateId(),
+    departmentId: generateID(),
     name: item.name,
     desc: 'description for department1', // @TODO this was a blank field, but it cannot look like this all the time
-    created_at: __generateDate(),
-    updated_at: __generateDate(),
+    created_at: generateDate(),
+    updated_at: generateDate(),
   }));
 };
 
@@ -50,7 +50,7 @@ const getUsersKey = function () {
   // let results = users
 
   return users.map((item, index) => ({
-    userId: __generateId(),
+    userId: generateID(),
     favs: false,
     ingredientId: 1,
     groceryId: 1,
@@ -65,13 +65,13 @@ const getIngredientsKey = function (limit = false) {
   }
 
   return results.map((item, index) => ({
-    ingredientId: __generateId(),
+    ingredientId: generateID(),
     favs: '',
     name: item.name,
     description: 'description', // @TODO this was a blank field before, but it cannot be as it is all the time
     custom: false,
-    created_at: __generateDate(),
-    updated_at: __generateDate(),
+    created_at: generateDate(),
+    updated_at: generateDate(),
     id: 1, // @TODO this method should be extended, in order to get connection with ingredients and departments
     department_id: 1,
   }));
@@ -81,13 +81,13 @@ const getGroceryKey = function () {
   // let results = grocery
 
   return grocery.map((item, index) => ({
-    groceryId: __generateId(),
+    groceryId: generateID(),
     name: item.name,
     img: item.img,
     desc: item.desc,
     slug: item.slug,
-    created_at: __generateDate(),
-    updated_at: __generateDate(),
+    created_at: generateDate(),
+    updated_at: generateDate(),
     id: 1,
     favs: false,
   }));

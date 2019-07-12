@@ -9,6 +9,7 @@ import {
 
 import { write, save, makeFolder } from './fileSystem'
 
+const {basename,parse,extname} =PATH;
 /**
  * For combine()
  * @param {String} path Path of folder where all splitted files are stored
@@ -24,7 +25,7 @@ function combine(path, keys) {
   // modifying structure
   content = updateContent(content, keys);
   // for example: elements_combined.json
-  const fileNamePath = path + PATH.basename(path) + suffix;
+  const fileNamePath = path + basename(path) + suffix;
   // saving
   write(fileNamePath, content);
 }
@@ -45,10 +46,10 @@ function split(fullPath, flag = 1, keys = [], callback) {
        flag=1 ==> name according to index
        flag=0 ==> name according to "name" attribute
      */
-  const file = PATH.basename(fullPath);
-  let path = PATH.parse(fullPath).dir;
+  const file = basename(fullPath);
+  let path = parse(fullPath).dir;
 
-  if (PATH.extname(file) !== '.json') {
+  if (extname(file) !== '.json') {
     console.log('Require .json file.');
     return;
   }

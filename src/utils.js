@@ -7,7 +7,7 @@ import _ from 'lodash';
 // @TODO I dont like that we name this object as constant. it confusing.
 // nobody is doing it
 import PATH from 'path';
-
+const {resolve} = PATH;
 const checkFilePath = async (path) => {
   if (await pathExists(path)) {
     console.log(`Filepath ${path} exist`);
@@ -32,7 +32,7 @@ const isDirectory = (folderNamePath) => {
  * @param {String} path
  */
 const fixPath = (path) => {
-  let newPath = PATH.resolve(__dirname, path);
+  let newPath = resolve(__dirname, path);
   if (newPath.charAt(newPath.length - 1) !== '/') {
     newPath += '/';
   }
@@ -115,9 +115,9 @@ const getFileInfo = (path, flag = 0, fileName = 'undefined') => {
   return getList(pathCopy);
 };
 
-const __generateId = () => uuidv1();
+const generateID = () => uuidv1();
 
-const __generateDate = () => dayjs().toDate();
+const generateDate = () => dayjs().toDate();
 
 // @TODO
 // 1. this function looks like a duplicate with getFileKey
@@ -127,7 +127,7 @@ const generateArrWithId = (data, id) => {
   _.map(data, (element) => {
     result.push({
       ...element,
-      [id]: __generateId(),
+      [id]: generateID(),
     });
   });
 
@@ -142,7 +142,7 @@ export {
   fixPath,
   getList,
   getFileInfo,
-  __generateId,
-  __generateDate,
+  generateID,
+  generateDate,
   generateArrWithId,
 };

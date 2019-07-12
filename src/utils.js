@@ -6,8 +6,7 @@ import _ from 'lodash';
 
 // @TODO I dont like that we name this object as constant. it confusing.
 // nobody is doing it
-import PATH from 'path';
-const {resolve} = PATH;
+import {resolve} from 'path';
 const checkFilePath = async (path) => {
   if (await pathExists(path)) {
     console.log(`Filepath ${path} exist`);

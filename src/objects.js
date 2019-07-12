@@ -1,6 +1,6 @@
 // @TODO replace with actual methods
 // as we did it at other files
-import PATH from 'path';
+import {basename,parse,extname} from 'path';
 import { fixPath, readAllFiles } from './utils';
 import {
   updateContent,
@@ -9,7 +9,6 @@ import {
 
 import { write, save, makeFolder } from './fileSystem'
 
-const {basename,parse,extname} =PATH;
 /**
  * For combine()
  * @param {String} path Path of folder where all splitted files are stored

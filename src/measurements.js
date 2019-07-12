@@ -5,7 +5,7 @@ import { readAllFiles, generateArrWithId } from './utils';
 import { setupPath } from './generateArray';
 // const utils = require('./utils');
 // import utils from ('./utils')
-import {parse} from 'path';
+import { parse } from 'path';
 import _ from 'lodash';
 // Without files it wouldn't work without files... - Answer yes, I will fix it PS. Vadim :)
 // var files = '';

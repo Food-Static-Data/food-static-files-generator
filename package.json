@@ -55,9 +55,9 @@
     "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-replace": "2.2.0",
     "shx": "0.3.2",
-    "babel-eslint": "^10.0.2",
-    "eslint-plugin-jest": "^22.7.1",
-    "rollup-plugin-eslint": "^7.0.0"
+    "babel-eslint": "10.0.2",
+    "eslint-plugin-jest": "22.7.2",
+    "rollup-plugin-eslint": "7.0.0"
   },
   "peerDependencies": {},
   "publishConfig": {

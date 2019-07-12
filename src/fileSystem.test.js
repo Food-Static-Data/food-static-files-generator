@@ -7,7 +7,7 @@ describe('testing fileSystem()', () =>{
         });
     });
 
-    test('testing function write()', () => {
+    test('testing function save()', () => {
       save('./output/', 'test.json', "[{'name':'Test'}]", false, status => {
         expect(status).toBe(true);
       });

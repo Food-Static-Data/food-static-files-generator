@@ -9,6 +9,7 @@ import { isDirectory } from './utils';
  * Write in file
  * @param {String} path
  * @param {Object} data
+ * @param {Function} callback
  */
 const write = (path, data, callback) => {
 
@@ -32,6 +33,7 @@ const write = (path, data, callback) => {
  * @param {String} file
  * @param {Object} fileData
  * @param {var} flag
+ * @param {Function} callback
  * */
 const save = (folderNamePath, file, fileData, flag, callback) => {
   const fileDataLength = fileData.length;
@@ -39,11 +41,9 @@ const save = (folderNamePath, file, fileData, flag, callback) => {
     const fileName = getFileName(file, fileData[i], flag, i);
     const elementPath = `${folderNamePath}/${fileName}`;
     write(elementPath, fileData[i], status => {
-      if(!status)
-        callback(false);
+      callback(status);
     });
   }
-  callback(true);
 };
 
 /**

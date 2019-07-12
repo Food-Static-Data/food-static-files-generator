@@ -2,7 +2,7 @@
 
 module.exports = {
   verbose: true,
-  collectCoverageFrom: ['src/**'],
+  collectCoverageFrom: ['src/tests/**'],
   coverageReporters: ['json', 'lcov', 'text-summary', 'html'],
   testURL: 'http://localhost',
   testPathIgnorePatterns: [

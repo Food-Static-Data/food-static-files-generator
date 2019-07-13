@@ -5,7 +5,7 @@ import { fixPath, readAllFiles } from './utils';
 import {
   updateContent,
   readData,
-} from './writeFile';
+} from './fileSystem';
 
 import { write, save, makeFolder } from './fileSystem'
 

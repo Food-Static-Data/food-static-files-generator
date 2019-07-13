@@ -1,13 +1,13 @@
 // here i want to keep methods like write, save
 // we can also rename WriteFile to write
 // saveFile to save - because we didn't save or wrtie anything else here
-import { writeFile, mkdirSync } from 'fs';
+import { writeFile, mkdirSync, readFileSync } from 'fs';
 import { stripSymbols, getFileName } from './writeFile';
 import { isDirectory } from './utils';
 
 /**
  * Write in file
- * @param {String} path
+ * @param {String} path 
  * @param {Object} data
  * @param {Function} callback
  */
@@ -26,6 +26,22 @@ const write = (path, data, callback) => {
     console.info(`${path} file generated successfully!`);
     callback(true);
   });
+};
+
+/**
+ * readData()
+ * @param {string} absolutePath
+ *
+ */
+const readData = (absolutePath) => {
+  console.log(absolutePath);
+
+  const data = readFileSync(absolutePath);
+  console.log(data);
+
+  const fileData = JSON.parse(data);
+
+  return fileData;
 };
 
 /**
@@ -63,6 +79,7 @@ const makeFolder = (path, file) => {
 
 export {
   write,
+  readData,
   save,
   makeFolder
 }

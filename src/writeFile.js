@@ -28,22 +28,6 @@ const stripSymbols = (data) => {
 };
 
 /**
- * readData()
- * @param {string} absolutePath
- *
- */
- const readData = (absolutePath) => {
-  console.log(absolutePath);
-
-  const data = readFileSync(absolutePath);
-  console.log(data);
-
-  const fileData = JSON.parse(data);
-
-  return fileData;
-};
-
-/**
  * fixFileName()
  * @param {string} fileName
  */
@@ -97,7 +81,6 @@ const updateContent = (content, keys) => {
 
 export {
   stripSymbols,
-  readData,
   getFileName,
   updateContent,
 };

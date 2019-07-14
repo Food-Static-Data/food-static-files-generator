@@ -14,6 +14,7 @@ const generateFile = () => {
   // we should pass a function aka callback as attribute to this method and call it here.
   const data = getMenuGenerator(2);
 
+  // @TODO should be pass a callback here?
   write(path, data);
 };
 

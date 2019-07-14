@@ -13,6 +13,6 @@ const getMenuGenerator = (numberOfWeeks) => {
   return result;
 };
 
-export default {
+export {
   getMenuGenerator,
 };

@@ -60,7 +60,7 @@ const getItemCustomStructureObjectArray = () => {
   return result;
 };
 
-export default {
+export {
   favorites,
   usersGrocery,
   getItemCustomStructureObjectArray,

@@ -3,10 +3,8 @@ import uuidv1 from 'uuid/v1';
 import dayjs from 'dayjs';
 import fs from 'fs';
 import _ from 'lodash';
-
-// @TODO I dont like that we name this object as constant. it confusing.
-// nobody is doing it
 import { resolve } from 'path';
+
 const checkFilePath = async (path) => {
   if (await pathExists(path)) {
     console.log(`Filepath ${path} exist`);

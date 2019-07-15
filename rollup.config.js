@@ -10,7 +10,8 @@ import babel from 'rollup-plugin-babel'
 import pkg from './package.json'
 import eslint from "rollup-plugin-eslint"
 
-
+// not all files you want to resolve are .js files
+// Default: [ '.mjs', '.js', '.json', '.node' ]
 const extensions = [
   '.js'
 ]
@@ -31,7 +32,24 @@ let plugins = [
   // Allows node_modules resolution
   resolve({
     extensions,
-    browser: true, // fixes ERROR!!! randomBytes(16)
+
+    // use "module" field for ES6 module if possible
+    module: true, // Default: true
+
+    // use "jsnext:main" if possible
+    // – see https://github.com/rollup/rollup/wiki/jsnext:main
+    //jsnext: true, // Default: false
+
+    // use "main" field or index.js, even if it's not an ES6 module
+    // (needs to be converted from CommonJS to ES6
+    // – see https://github.com/rollup/rollup-plugin-commonjs
+    main: true, // Default: true
+
+    // some package.json files have a `browser` field which
+    // specifies alternative files to load for people bundling
+    // for the browser. If that's you, use this option, otherwise
+    // pkg.browser will be ignored
+    browser: true, // Default: false // fixes ERROR!!! randomBytes(16)
   }),
 
   //@TODO maybe we should do it for production only? not sure
@@ -40,10 +58,10 @@ let plugins = [
     delimiters: ['', ''],
     values: {
       'crypto.randomBytes': 'require(\'randombytes\')'
+      //   "__BUILD_DATE__": () => new Date().toISOString(),
+      //   "__VERSION__": fs.readFileSync("version", "utf8").trim()
     }
   }),
-
-
 
   // Allows verification of entry point and all imported files with ESLint.
   // @TODO fix and enable eslint for rollup
@@ -78,6 +96,18 @@ let plugins = [
 
   builtins(),
 ]
+
+// example for adding plugin for env only
+// if(process.env.NODE_ENV == "production") {
+//   console.log("[config] In production environment - minifying JS");
+//   plugins.push(terser({
+//     numWorkers: os.cpus().length,
+//     compress: {
+//       ecma: 6
+//     }
+//   }));
+// }
+
 
 export default {
   input: './src/index.js',

@@ -1,4 +1,4 @@
-import { write, save, makeFolder } from '../fileSystem';
+import { write, save, makeFolder } from '../src/fileSystem';
 
 describe('testing fileSystem()', () => {
   test('testing function write()', () => {

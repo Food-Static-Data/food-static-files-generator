@@ -1,4 +1,5 @@
 // import cleanup from 'rollup-plugin-cleanup';
+// import copy from 'rollup-plugin-cpy';
 // https://github.com/mjeanroy/rollup-plugin-prettier
 // https://gitlab.com/IvanSanchez/rollup-plugin-file-as-blob
 
@@ -18,6 +19,8 @@ const extensions = [
 
 const name = 'StaticFilesGenerator'
 
+// packages that should be treated as external dependencies, not bundled
+// e.g. ['axios']
 const external = [
   'fs',
   'path',
@@ -27,7 +30,9 @@ const external = [
   'dayjs'
 ]
 
-let plugins = [
+
+// list of plugins used during building process
+const plugins = () => ([
 
   // Allows node_modules resolution
   resolve({
@@ -80,22 +85,36 @@ let plugins = [
     ]
   }),
 
-  // Compile TypeScript/JavaScript files
+  // use Babel to compile TypeScript/JavaScript files to ES5
   babel({
     extensions,
     include: ['src/*'],
-    exclude: [
-      'node_modules/**',
-      // '/src/data/__tests__',
-      // '/src/data/json-tests'
-    ]
-    // exclude: 'node_modules/**'
-    // presets: presets,
-    // plugins: plugins
+    // ignore node_modules/ in transpilation process
+    exclude: 'node_modules/**',
+    // ignore .babelrc (if defined) and use options defined here
+    // babelrc: false,
+    // use recommended babel-preset-env without es modules enabled
+    // and with possibility to set custom targets e.g. { node: '8' }
+    // presets: [['env', { modules: false, targets }]],
+    // solve a problem with spread operator transpilation https://github.com/rollup/rollup/issues/281
+    // plugins: ['babel-plugin-transform-object-rest-spread'],
+    // removes comments from output
+    comments: false,
   }),
 
+  // Compile TypeScript/JavaScript files
+
+
   builtins(),
-]
+  // remove flow annotations from output
+  // flow(),
+
+  // copy Flow definitions from source to destination directory
+  // copy({
+  //   files: ['src/*.flow'],
+  //   dest: 'dist',
+  // }),
+]);
 
 // example for adding plugin for env only
 // if(process.env.NODE_ENV == "production") {

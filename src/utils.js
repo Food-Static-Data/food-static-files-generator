@@ -131,6 +131,11 @@ const generateArrWithId = (data, id) => {
   return result;
 };
 
+const getFileKey = file => _.map(file, (item, index) => ({
+  key: generateID(),
+  ...item,
+}));
+
 export {
   checkFilePath,
   isDirectory,

@@ -14,7 +14,6 @@
 - [ ] plugin should generate files outside
 - [ ] ESLint warnings
 - [x] Complete ES6 migration and test how it works
-- [ ] remove __ from 2 of our methods... it's a rudiment as well
 - [ ] replace configGenerator with callbacks because all methods will be passed from the outside
 
 
@@ -24,7 +23,7 @@ we need to create a plan, about what and how this new version of generator will 
 
 ## Quick Start
 Several quick start options are available:
-* Clone the repo: `git clone https://github.com/GroceriStar/sd.git`
+* Clone the repo: `git clone https://github.com/GroceriStar/static-data-generator.git`
 * Install with npm: `npm install @groceristar/static-data-generator`
 * Install with yarn: `yarn add @groceristar/static-data-generator`
 
@@ -32,7 +31,7 @@ Several quick start options are available:
 
 
 ## How to split json into single elements
-To split json file you will require `sd/generator/writeFile.js` . Call the function **splitObject()** with parameters `path`(as string),`filename`(as string) and a `flag`(0 or 1).
+To split json file you will require `sd/generator/writeFile.js` . Call the function **split()** with parameters `path`(as string),`filename`(as string) and a `flag`(0 or 1).
 `Flag=0` means splitted elements are to be name after the `name` attribute and if `flag=1` then elements will be give named by a number with removed whitespaces and in lowercase to maintain uniformity.
 The splitted elements will be stored at the given `path`/`filename_elements`.
 
@@ -55,7 +54,7 @@ You can combine objects by calling function **combine()** from writeFile.js. It 
 #### combine
 **combine(path, keys_to_be_removed)** - This will read all files in the given path and remove the keys given the list of keys_to_be_removed and saves it into a new file in the given `path` as name `<dirName>_combined.json`.
 
-Example:- combine('/abc/pqr/', ['id', 'img'])
+Example: `combine('/abc/pqr/', ['id', 'img'])`
 
 If you want to modify the json structure of splitted files and combine them again to a single file then you can call splitObject with a call back function.
 
@@ -86,13 +85,13 @@ Table of Contents
   This is a module for using generator functions as a seperate module to generate static food data files
   The functions granted by this module are as follows:
 
-@TODO update this section
-### Generator commands
+//@TODO update this section
+<!-- ### Generator commands
 - `npm run generateFiles` or `yarn generateFiles`: generate all recipes in folder `dist`
 - `npm run generateFile`  or `yarn generateFile`: generate meal on two weeks in folder `dist`
-- `npm run generateArray` or `yarn generateArray`: More detailed information [here](#how-to-generate)
+- `npm run generateArray` or `yarn generateArray`: More detailed information [here](#how-to-generate) -->
 
-@TODO we need to update this section
+//@TODO we need to update this section
 ## How to generate additional files
 To run generator (it will run in writeFile.js function writeFiles()) `npm run generateFiles` to know if writing is success in console you will see `file generated successfully!` it will write multiple files.
 
@@ -100,190 +99,6 @@ In function `writeFiles()` should be array of files. In array config of objects.
 First property in object should be `name` and value filename, the second `data` and in value set function that returns data.
 
 Also you can write one file using function `writeFile()` just give it two parameters first -  `path`, second `data` that will need to write. Data should be object and JSON format.
-
-## Methods that generating custom js objects
-
-**getMenuGenerator(number_of_weeks)** - return an array of objects with weekly menu. Menus sorted in calendar date order starting from first.
-~~~~
-[
-  {
-    id: __generatedID,
-    title: String,
-    date: __generatedDate,
-    description: String,
-    notes: String,
-  },
-]
-~~~~
-
-**favorites()** - returns an array of objects, where each object has ingredients and groceries for specified user
-~~~
-[
-  {
-    ingredient_id: String,
-    user_id: String,
-    favs: String,
-    grocery_id: String,
-  },
-]
-~~~
-
-**usersGrocery()** - returns an array of objects, where each object has userID and groceryID
-~~~
-[
-  {
-    user_id: String,
-    grocery_id: String,
-  },
-]
-~~~
-
-**items()** - returns an array of objects, where each object has item parameters
-~~~
-[
-  {
-    item_id: String,
-    name: String,
-    description: String,
-    quantity: Number,
-    purchase: Boolean,
-  },
-]
-~~~
-
-**getMeasurementUnits()** - returns an array of objects, where each object has measurement unit parameters
-~~~
-[
-  {
-    id: String,
-    system_id: String,
-    type: String,
-    name: String,
-    singular: String,
-    plural: String,
-    short: String,
-    pattern: String,
-    error: Null,
-  }
-]
-~~~
-
-**getMeasurementSystem()** - returns an array of objects, where each object has... measurements
-~~~
-[
-  {
-    id: String,
-    alias: String,
-    title: String,
-  }
-]
-~~~
-
-**getFavoritesKey()** - returns an array of objects, where each object has key,ingredients and groceries for specified user
-~~~
-[
-  {
-    key:String,
-    ingredient_id: String,
-    user_id: String,
-    favs: String,
-    grocery_id: String
-  }
-]
-~~~
-
-**getDepartmentsKey()** - returns an array of objects, where each object has generated department_id,department,created and updated date
-~~~
-[
-  {
-  department_id: String
-    name: String,
-    desc: String,
-    created_at: Date,
-    updated_at: Date
-  }
-]
-~~~
-
-
-**getUserGroceryKey()** - returns an array of objects, where each object has key and userID and groceryID
-~~~
-[
-  {
-    key:String,
-    user_id: String,
-    grocery_id: String
-  }
-]
-~~~
-
-**getItemsKey()** - returns an array of objects, where each object has key and item parameter
-~~~
-[
-  {
-    key:String,
-    item_id: String,
-    name: String,
-    description: String,
-    quantity: Number,
-    purchase: Boolean
-  }
-]
-~~~
-
-
-**getUsersKey()** - returns an array of objects, where each object has key ,useId,favs,ingredient_id and grocery_id
-~~~
-[
-  {
-    key:String,
-    userId: String,
-    favs:Boolean,
-    ingredient_id:Number,
-    grocery_id: Number
-
-  }
-]
-~~~
-
-**getIngredientsKey()** - returns an array of objects, where each object has generated ingredient_id,fav,name,description,
-custom,created and updated date,id and department_id
-~~~
-[
-  {
-     ingredient_id:String,
-    favs: String,
-    name: String,
-    description: String,
-    custom: Boolean,
-    created_at: Date,
-    updated_at: Date,
-    id_1: Number,
-    department_id: Number
-
-  }
-]
-~~~
-
-**getGroceryKey()** - returns an array of objects, where each object has generated grocery_id,favs,name,img
-slug,created and updated date,id and description
-~~~
-[
-  {
-     grocery_id:String,
-    name: :String,
-    img: :Boolean,
-    desc: :String,
-    slug: :Boolean,
-    created_at:Date,
-    updated_at:Date,
-    id_1: Number,
-    favs: Boolean
-
-  }
-]
-~~~
-
 
 
 ## Generate Array API
@@ -369,6 +184,9 @@ npm test
 - https://github.com/GroceriStar/sd/
 
 - https://github.com/GroceriStar/sd-plain
+
+
+
 
 ---
 

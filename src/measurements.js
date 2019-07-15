@@ -2,7 +2,7 @@
 // but we'll move them out soon.
 // @TODO can we replace it with alias?
 import { readAllFiles, generateArrWithId } from './utils';
-import { setupPath } from './generateArray';
+import setupPath from './generateArray';
 // const utils = require('./utils');
 // import utils from ('./utils')
 import { parse } from 'path';

@@ -21,7 +21,6 @@ const write = (path, data, callback) => {
       console.log(err);
       callback(false);
     }
-
     console.info(`${path} file generated successfully!`);
     callback(true);
   });
@@ -34,10 +33,8 @@ const write = (path, data, callback) => {
  */
 const readData = (absolutePath) => {
   console.log(absolutePath);
-
   const data = readFileSync(absolutePath);
   console.log(data);
-
   const fileData = JSON.parse(data);
 
   return fileData;
@@ -59,7 +56,7 @@ const save = (folderNamePath, file, fileData, flag, callback) => {
     // - we just need to find a better way to rewrite a getFileName method
     const fileName = getFileName(file, fileData[i], flag, i);
     const elementPath = `${folderNamePath}/${fileName}`;
-    write(elementPath, fileData[i], status => {
+    write(elementPath, fileData[i], (status) => {
       callback(status);
     });
   }

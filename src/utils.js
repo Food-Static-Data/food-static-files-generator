@@ -20,6 +20,7 @@ const checkFilePath = async (path) => {
  * @param {string} folderNamePath
  *  */
 const isDirectory = (folderNamePath) => {
+  folderNamePath = fixPath(folderNamePath)
   if (fs.existsSync(folderNamePath)) {
     return false;
   }
@@ -67,10 +68,10 @@ const readAllFiles = (path) => {
 const getListContent = (path, fileName = 'undefined') => {
   if (fileName === 'undefined') {
     // read all files
-    return readAllFiles(path);
+    return readAllFiles(fixPath(path));
   }
   // read specified file
-  let data = fs.readData(path + fileName);
+  let data = fs.readData(fixPath(path) + fileName);
   data = JSON.parse(data);
   return data;
 };

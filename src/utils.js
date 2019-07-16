@@ -18,7 +18,9 @@ const checkFilePath = async (path) => {
  * @param {string} folderNamePath
  *  */
 const isDirectory = (folderNamePath) => {
-  if (fs.existsSync(folderNamePath)) {
+  const newPath = fixPath(folderNamePath);
+  console.log(newPath);
+  if (fs.existsSync(newPath)) {
     return false;
   }
   return true;

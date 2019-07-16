@@ -29,7 +29,6 @@ const write = (path, data, callback) => {
  *
  */
 const readData = (absolutePath) => {
-  
   console.log(absolutePath);
 
   // @TODO cover this case - absolutePath

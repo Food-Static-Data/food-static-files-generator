@@ -81,9 +81,10 @@ const getListContent = (path, fileName = 'undefined') => {
 // developer of this code - it looks confusing for me
 const getList = (path) => {
   const list = [];
-  const files = fs.readdirSync(path);
+  const newPath = fixPath(path);
+  const files = fs.readdirSync(newPath);
   files.forEach((file) => {
-    const fileStat = fs.statSync(path + file).isDirectory();
+    const fileStat = fs.statSync(newPath + file).isDirectory();
     if (!fileStat) {
       list.push(file);
     }

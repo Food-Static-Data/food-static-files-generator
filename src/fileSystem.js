@@ -29,12 +29,10 @@ const write = (path, data, callback) => {
  *
  */
 const readData = (absolutePath) => {
-  console.log(absolutePath);
-
   // @TODO cover this case - absolutePath
   // return file but it's empty. We need an if here
   const data = readFileSync(absolutePath);
-  console.log(data);
+  if (data == null) return null;
   const fileData = JSON.parse(data);
 
   return fileData;

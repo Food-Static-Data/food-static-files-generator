@@ -50,7 +50,7 @@ const readAllFiles = (path) => {
     const fileStat = fs.statSync(newPath + file).isDirectory();
     if (file.slice(-5) === '.json') {
       if (!fileStat) {
-        let data = fs.readFileSync(newPath + file);
+        let data = fs.readData(newPath + file);
         data = JSON.parse(data);
         content.push(data);
       }
@@ -70,7 +70,7 @@ const getListContent = (path, fileName = 'undefined') => {
     return readAllFiles(path);
   }
   // read specified file
-  let data = fs.readFileSync(path + fileName);
+  let data = fs.readData(path + fileName);
   data = JSON.parse(data);
   return data;
 };

@@ -7,12 +7,11 @@ import { isDirectory } from './utils';
 
 /**
  * Write in file
- * @param {String} path 
+ * @param {String} path
  * @param {Object} data
  * @param {Function} callback
  */
 const write = (path, data, callback) => {
-
   const dataStr = stripSymbols(data);
   // dataStr = '[' + dataStr + ']'
   // console.log(dataStr)
@@ -79,11 +78,11 @@ const makeFolder = (path, file) => {
     mkdirSync(folderNamePath);
   }
   return folderNamePath;
-}
+};
 
 export {
   write,
   readData,
   save,
   makeFolder
-}
+};

@@ -2,11 +2,8 @@
 // as we did it at other files
 import { basename, parse, extname } from 'path';
 import { fixPath, readAllFiles } from './utils';
-import {
-  updateContent,
-  readData,
-} from './fileSystem';
-
+import { readData } from './fileSystem';
+import { updateContent } from './writeFile';
 import { write, save, makeFolder } from './fileSystem'
 
 /**

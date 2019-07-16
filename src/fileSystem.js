@@ -1,6 +1,3 @@
-// here i want to keep methods like write, save
-// we can also rename WriteFile to write
-// saveFile to save - because we didn't save or wrtie anything else here
 import { writeFile, mkdirSync, readFileSync } from 'fs';
 import { stripSymbols, getFileName } from './writeFile';
 import { isDirectory } from './utils';
@@ -34,6 +31,9 @@ const write = (path, data, callback) => {
 const readData = (absolutePath) => {
   
   console.log(absolutePath);
+
+  // @TODO cover this case - absolutePath
+  // return file but it's empty. We need an if here
   const data = readFileSync(absolutePath);
   console.log(data);
   const fileData = JSON.parse(data);
@@ -48,7 +48,7 @@ const readData = (absolutePath) => {
  * @param {var} flag
  * @param {Function} callback
  * */
-// @TODO save got 5 attributes and most of them are about directory/files... 
+// @TODO save got 5 attributes and most of them are about directory/files...
 // there should be another way
 const save = (folderNamePath, file, fileData, flag, callback) => {
   const fileDataLength = fileData.length;

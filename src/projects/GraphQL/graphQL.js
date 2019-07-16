@@ -2,6 +2,8 @@ const _ = require('lodash');
 // const { generateID, generateDate } = require('../../../src/utils.js')
 const { generateID, generateDate } = require('@utils.js');
 
+
+// it should be grabbed from sd
 const {
   favorites,
   departments,

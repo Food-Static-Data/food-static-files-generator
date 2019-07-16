@@ -6,10 +6,8 @@ const presets = [
   ['@babel/preset-env', {
     'modules': false
   }]
-  // {
-  //
-  // }
 ]
+
 // Add this to working tests
 const env = {
   test: {
@@ -34,8 +32,10 @@ const plugins = [
   ],
   [
     '@babel/plugin-syntax-dynamic-import'
+  ],
+  [
+    '@babel/plugin-proposal-object-rest-spread'
   ]
-  // ["@babel/proposal-object-rest-spread"]
 ]
 
 module.exports = { presets, plugins, env }

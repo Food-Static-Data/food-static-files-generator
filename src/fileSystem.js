@@ -32,6 +32,7 @@ const write = (path, data, callback) => {
  *
  */
 const readData = (absolutePath) => {
+  
   console.log(absolutePath);
   const data = readFileSync(absolutePath);
   console.log(data);

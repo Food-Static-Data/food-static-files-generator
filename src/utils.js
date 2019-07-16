@@ -20,7 +20,6 @@ const checkFilePath = async (path) => {
  * @param {string} folderNamePath
  *  */
 const isDirectory = (folderNamePath) => {
-  folderNamePath = fixPath(folderNamePath)
   if (fs.existsSync(folderNamePath)) {
     return false;
   }

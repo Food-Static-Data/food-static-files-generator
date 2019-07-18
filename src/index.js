@@ -9,7 +9,7 @@ import {
 } from './objects';
 
 import {
-  readData,
+  read,
   write
 } from './fileSystem'
 
@@ -19,5 +19,5 @@ export {
   combine,
   split,
   write,
-  readData
+  read
 }

@@ -2,7 +2,7 @@
 // as we did it at other files
 import { basename, parse, extname } from 'path';
 import { fixPath, readAllFiles } from './utils';
-import { readData } from './fileSystem';
+import { read } from './fileSystem';
 import { updateContent } from './writeFile';
 import { write, save, makeFolder } from './fileSystem'
 
@@ -54,7 +54,7 @@ function split(fullPath, flag = 1, keys = [], callback) {
 
   // Reading data...
   const absolutePath = path+file;
-  const fileData = readData(absolutePath);
+  const fileData = read(absolutePath);
   // new folder to save splitted files
   const folderNamePath = makeFolder(path, file);
   // saving files

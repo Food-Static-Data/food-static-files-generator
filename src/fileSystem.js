@@ -26,11 +26,11 @@ const write = (path, data, callback) => {
 };
 
 /**
- * readData()
+ * read()
  * @param {string} absolutePath
  *
  */
-const readData = (absolutePath) => {
+const read = (absolutePath) => {
   console.log(absolutePath);
 
   // @TODO cover this case - absolutePath
@@ -82,7 +82,7 @@ const makeFolder = (path, file) => {
 
 export {
   write,
-  readData,
+  read,
   save,
   makeFolder
 }

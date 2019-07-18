@@ -13,7 +13,6 @@
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage",
     "lint": "eslint ./src --fix",
-    "code-fix": "eslint --fix",
     "format": "prettier",
     "play": "node ./src/play/play.js",
     "build:babel": "babel src -d dist",
@@ -71,6 +70,13 @@
     "path-exists": "^4.0.0",
     "randombytes": "^2.1.0",
     "uuid": "^3.3.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run clean",
+      "after": "lint-staged",
+      "then": "yarn precommit"
+    }
   },
   "files": [
     "dist"

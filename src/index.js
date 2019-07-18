@@ -1,6 +1,6 @@
 // @TODO I think we should make our module more accessible to our methods from the outside.
 
-import  generateFiles from './generateFiles'
+import generateFiles from './generateFiles';
 
 
 import {
@@ -10,8 +10,8 @@ import {
 
 import {
   read,
-  write
-} from './fileSystem'
+  write,
+} from './fileSystem';
 
 
 export {
@@ -19,5 +19,5 @@ export {
   combine,
   split,
   write,
-  read
-}
+  read,
+};

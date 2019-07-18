@@ -9,7 +9,6 @@ import { isDirectory } from './utils';
  * @param {Function} callback
  */
 const write = (path, data, callback) => {
-
   const dataStr = stripSymbols(data);
   // dataStr = '[' + dataStr + ']'
   // console.log(dataStr)
@@ -59,7 +58,7 @@ const save = (folderNamePath, file, fileData, flag, callback) => {
     // - we just need to find a better way to rewrite a getFileName method
     const fileName = getFileName(file, fileData[i], flag, i);
     const elementPath = `${folderNamePath}/${fileName}`;
-    write(elementPath, fileData[i], status => {
+    write(elementPath, fileData[i], (status) => {
       callback(status);
     });
   }
@@ -78,11 +77,11 @@ const makeFolder = (path, file) => {
     mkdirSync(folderNamePath);
   }
   return folderNamePath;
-}
+};
 
 export {
   write,
   read,
   save,
-  makeFolder
-}
+  makeFolder,
+};

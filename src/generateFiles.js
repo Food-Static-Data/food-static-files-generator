@@ -19,20 +19,20 @@ const generateFiles = (pathToSrc) => {
   config.map((settings) => {
     const { fileName, data } = settings;
     // console.log('3');
-      const uppercaseFileName = fileName.charAt(0).toUpperCase();
+    const uppercaseFileName = fileName.charAt(0).toUpperCase();
 
-      const folder = uppercaseFileName.concat(fileName.slice(1));
+    const folder = uppercaseFileName.concat(fileName.slice(1));
     //   var path = './output/' + fileName + '.json';
-      const folderPath = `${pathToSrc}/data/${folder}`;
+    const folderPath = `${pathToSrc}/data/${folder}`;
 
-      if (isDirectory(folderPath)) {
-        mkdirSync(folderPath);
-      }
+    if (isDirectory(folderPath)) {
+      mkdirSync(folderPath);
+    }
 
-      path = `${folderPath}/${fileName}.json`;
+    path = `${folderPath}/${fileName}.json`;
     //   console.log('4');
-      write(path, data());
+    write(path, data());
   });
 };
 
-export default generateFiles
+export default generateFiles;

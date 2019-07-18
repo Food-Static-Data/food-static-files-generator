@@ -2,9 +2,11 @@
 // as we did it at other files
 import { basename, parse, extname } from 'path';
 import { fixPath, readAllFiles } from './utils';
-import { read } from './fileSystem';
+import {
+  read, write, save, makeFolder,
+} from './fileSystem';
 import { updateContent } from './writeFile';
-import { write, save, makeFolder } from './fileSystem'
+
 
 /**
  * For combine()
@@ -53,7 +55,7 @@ function split(fullPath, flag = 1, keys = [], callback) {
   path = fixPath(path);
 
   // Reading data...
-  const absolutePath = path+file;
+  const absolutePath = path + file;
   const fileData = read(absolutePath);
   // new folder to save splitted files
   const folderNamePath = makeFolder(path, file);
@@ -67,7 +69,7 @@ function split(fullPath, flag = 1, keys = [], callback) {
   }
 }
 
-export  {
+export {
   combine,
   split,
 };

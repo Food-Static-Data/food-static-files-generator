@@ -8,26 +8,21 @@ import { isDirectory } from './utils';
  * @param {Object} data
  * @param {Function} callback
  */
-const write = (path, data) => {
+const write = (path, data) => new Promise((resolve) => {
+  const dataStr = stripSymbols(data);
+  // dataStr = '[' + dataStr + ']'
+  // console.log(dataStr)
 
-  return new Promise(resolve => {
-    const dataStr = stripSymbols(data);
-    // dataStr = '[' + dataStr + ']'
-    // console.log(dataStr)
-  
-    writeFile(path, dataStr, (err) => {
-      if (err) {
-        console.log(err);
-        resolve(false);
-      } else {
-        console.info(`${path} file generated successfully!`);
-        resolve(true);
-      }
-    });
-  })
-
-  
-};
+  writeFile(path, dataStr, (err) => {
+    if (err) {
+      console.log(err);
+      resolve(false);
+    } else {
+      console.info(`${path} file generated successfully!`);
+      resolve(true);
+    }
+  });
+});
 
 /**
  * read()
@@ -56,26 +51,22 @@ const read = (absolutePath) => {
  * */
 // @TODO save got 5 attributes and most of them are about directory/files...
 // there should be another way
-const save = (folderNamePath, file, fileData, flag) => {
-  
-  return new Promise(async resolve => {
-    const fileDataLength = fileData.length;
+const save = (folderNamePath, file, fileData, flag) => new Promise(async (resolve) => {
+  const fileDataLength = fileData.length;
 
-    for (let i = 0; i < fileDataLength; i++) {
-      // @TODO long line, I have feeling that it can be improved
-      // - we just need to find a better way to rewrite a getFileName method
-      const fileName = getFileName(file, fileData[i], flag, i);
-      const elementPath = `${folderNamePath}/${fileName}`;
-      const success = await write(elementPath, fileData[i]);
-      if(!success){
-        resolve(false)
-        //@TODO should we add here some console.info that might show us that we have an issue?
-      }
-        
+  for (let i = 0; i < fileDataLength; i++) {
+    // @TODO long line, I have feeling that it can be improved
+    // - we just need to find a better way to rewrite a getFileName method
+    const fileName = getFileName(file, fileData[i], flag, i);
+    const elementPath = `${folderNamePath}/${fileName}`;
+    const success = await write(elementPath, fileData[i]);
+    if (!success) {
+      resolve(false);
+      // @TODO should we add here some console.info that might show us that we have an issue?
     }
-    resolve(true);
-  });
-};
+  }
+  resolve(true);
+});
 
 /**
  * @param {String} path

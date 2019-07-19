@@ -32,7 +32,7 @@ const readData = (absolutePath) => {
   
   const data = readFileSync(absolutePath);
   if (data == null) {
-    //@TODO add console.info message so we'll be able to catch this case
+    console.info(`${data} : data not found`);
     return null;
   }
   const fileData = JSON.parse(data);

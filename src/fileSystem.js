@@ -37,7 +37,7 @@ const read = (absolutePath) => {
   const data = readFileSync(absolutePath);
   if (data === '') {
     console.log(`${absolutePath} returned empty`);
-  } 
+  }
   console.log(data);
   const fileData = JSON.parse(data);
   return fileData;

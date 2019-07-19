@@ -26,10 +26,10 @@ const fixPath = (path) => {
 };
 
 /**
- * isDirectory()
+ * isADirectory()
  * @param {string} folderNamePath
  *  */
-const isDirectory = (folderNamePath) => {
+const isADirectory = (folderNamePath) => {
   const newPath = fixPath(folderNamePath);
   console.log(newPath);
   if (fs.existsSync(newPath)) {
@@ -48,7 +48,7 @@ const readAllFiles = (path) => {
   const newPath = fixPath(path);
   const files = fs.readdirSync(newPath);
   files.forEach((file) => {
-    const fileStat = fs.statSync(newPath + file).isDirectory();
+    const fileStat = fs.statSync(newPath + file).isADirectory();
     if (file.slice(-5) === '.json') {
       if (!fileStat) {
         let data = fs.readData(newPath + file);
@@ -87,10 +87,10 @@ const getList = (path) => {
   const newPath = fixPath(path);
   const files = fs.readdirSync(newPath);
   files.forEach((file) => {
-    // @TODO I don't like this long line. and isDirectory are method from FS or our method?
+    // @TODO I don't like this long line. and isADirectory are method from FS or our method?
     // if we have a method that have similar name to fs - we need to change our name, 
     // in order to reduce any possible bugs
-    const fileStat = fs.statSync(newPath + file).isDirectory();
+    const fileStat = fs.statSync(newPath + file).isADirectory();
     if (!fileStat) {
       list.push(file);
     }
@@ -145,7 +145,7 @@ const getFileKey = file => _.map(file, (item, index) => ({
 
 export {
   checkFilePath,
-  isDirectory,
+  isADirectory,
   readAllFiles,
   getListContent,
   fixPath,

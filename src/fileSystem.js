@@ -1,6 +1,6 @@
 import { writeFile, mkdirSync, readFileSync } from 'fs';
 import { stripSymbols, getFileName } from './writeFile';
-import { isDirectory } from './utils';
+import { isADirectory } from './utils';
 
 /**
  * Write in file
@@ -70,8 +70,8 @@ const makeFolder = (path, file) => {
   const suffix = '_elements';
   const folderName = file.slice(0, -5) + suffix;
   const folderNamePath = path + folderName;
-  // @TODO if we update our import - we'll be able to use just isDirectory()
-  if (!isDirectory(folderNamePath)) {
+  // @TODO if we update our import - we'll be able to use just isADirectory()
+  if (!isADirectory(folderNamePath)) {
     mkdirSync(folderNamePath);
   }
   return folderNamePath;

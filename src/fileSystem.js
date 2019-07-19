@@ -35,10 +35,11 @@ const read = (absolutePath) => {
   // @TODO cover this case - absolutePath
   // return file but it's empty. We need an if here
   const data = readFileSync(absolutePath);
+  if (data === '') {
+    console.log(`${absolutePath} returned empty`);
+  }
   console.log(data);
-
   const fileData = JSON.parse(data);
-
   return fileData;
 };
 
@@ -63,6 +64,7 @@ const save = (folderNamePath, file, fileData, flag) => new Promise(async (resolv
     if (!success) {
       resolve(false);
       // @TODO should we add here some console.info that might show us that we have an issue?
+      console.info(`${fileName} is the filename, ${elementPath} is the elementPath and success is false`);
     }
   }
   resolve(true);

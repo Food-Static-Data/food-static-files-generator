@@ -14,6 +14,18 @@ const checkFilePath = async (path) => {
 };
 
 /**
+ * fixPath()
+ * @param {String} path
+ */
+const fixPath = (path) => {
+  let newPath = resolve(__dirname, path);
+  if (newPath.charAt(newPath.length - 1) !== '/') {
+    newPath += '/';
+  }
+  return newPath;
+};
+
+/**
  * isDirectory()
  * @param {string} folderNamePath
  *  */
@@ -26,17 +38,6 @@ const isDirectory = (folderNamePath) => {
   return true;
 };
 
-/**
- * fixPath()
- * @param {String} path
- */
-const fixPath = (path) => {
-  let newPath = resolve(__dirname, path);
-  if (newPath.charAt(newPath.length - 1) !== '/') {
-    newPath += '/';
-  }
-  return newPath;
-};
 
 /**
  * For readAllFiles()

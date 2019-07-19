@@ -71,7 +71,7 @@ const makeFolder = (path, file) => {
   const folderName = file.slice(0, -5) + suffix;
   const folderNamePath = path + folderName;
   // @TODO if we update our import - we'll be able to use just isDirectory()
-  if (isDirectory(folderNamePath)) {
+  if (!isDirectory(folderNamePath)) {
     mkdirSync(folderNamePath);
   }
   return folderNamePath;

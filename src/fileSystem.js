@@ -67,8 +67,11 @@ const save = (folderNamePath, file, fileData, flag) => {
       const fileName = getFileName(file, fileData[i], flag, i);
       const elementPath = `${folderNamePath}/${fileName}`;
       const success = await write(elementPath, fileData[i]);
-      if(!success)
+      if(!success){
         resolve(false)
+        //@TODO should we add here some console.info that might show us that we have an issue?
+      }
+        
     }
     resolve(true);
   });

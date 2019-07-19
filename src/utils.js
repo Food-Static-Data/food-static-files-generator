@@ -87,9 +87,6 @@ const getList = (path) => {
   const newPath = fixPath(path);
   const files = fs.readdirSync(newPath);
   files.forEach((file) => {
-    // @TODO I don't like this long line. and isADirectory are method from FS or our method?
-    // if we have a method that have similar name to fs - we need to change our name, 
-    // in order to reduce any possible bugs
     const fileStat = fs.statSync(newPath + file).isADirectory();
     if (!fileStat) {
       list.push(file);

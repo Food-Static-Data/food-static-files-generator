@@ -1,20 +1,21 @@
 import { write, save, makeFolder } from '../src/fileSystem';
 
 describe('testing fileSystem()', () => {
-  test('testing function write()', () => {
-    write('./output/test.json', [{
+  // test write()
+  test('testing function write()', async () => {
+    const result =  await write('./output/test.json', [{
       'name': 'Test'
-    }], status => {
-      expect(status).toBe(true);
-    });
+    }]);
+    expect(result).toBe(true);
   });
 
-  test('testing function save()', () => {
-    save('./output/', 'test.json', "[{'name':'Test'}]", false, status => {
-      expect(status).toBe(true);
-    });
+  // test save()
+  test('testing function save()', async () => {
+    const result = await save('./output/', 'test.json', "[{'name':'Test'}]", false);
+    expect(result).toBe(true);
   });
 
+  // test makeFolder()
   test('testing makeFolder()', () => {
     const result = makeFolder('./output/', 'test.json');
     expect(result).toBe('./output/test_elements');

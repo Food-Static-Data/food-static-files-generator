@@ -19,7 +19,7 @@ import { updateContent } from './writeFile';
  * @param {String} path Path of folder where all splitted files are stored
  * @param {var} keys List of keys that are to be removed
  */
-function combine(path, keys) {
+const combine = (path, keys) => new Promise(async (resolve) => {
   const suffix = '_combined.json';
   const updatedPath = fixPath(path);
 
@@ -32,8 +32,11 @@ function combine(path, keys) {
   // @TODO long line...
   const fileNamePath = updatedPath + basename(updatedPath) + suffix;
   // saving
-  write(fileNamePath, content);
-}
+  await write(fileNamePath, content);
+
+  resolve();
+});
+
 
 //@TODO update with promise instead of callbacks
 /**

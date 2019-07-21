@@ -13,7 +13,7 @@ import {
 } from './fileSystem';
 import { updateContent } from './writeFile';
 
-
+//@TODO update with promise instead of callbacks
 /**
  * For combine()
  * @param {String} path Path of folder where all splitted files are stored
@@ -35,7 +35,7 @@ function combine(path, keys) {
   write(fileNamePath, content);
 }
 
-
+//@TODO update with promise instead of callbacks
 /**
  * For split
  *

@@ -1,8 +1,3 @@
-// import cleanup from 'rollup-plugin-cleanup';
-// import copy from 'rollup-plugin-cpy';
-// https://github.com/mjeanroy/rollup-plugin-prettier
-// https://gitlab.com/IvanSanchez/rollup-plugin-file-as-blob
-
 import commonjs from 'rollup-plugin-commonjs'
 import resolve from 'rollup-plugin-node-resolve'
 import builtins from 'rollup-plugin-node-builtins'
@@ -24,9 +19,9 @@ const name = 'StaticFilesGenerator'
 const external = [
   'fs',
   'path',
+  'path-exists',
   'uuid/v1',
   'lodash',
-  'path-exists',
   'dayjs'
 ]
 
@@ -88,9 +83,6 @@ const plugins = () => ([
     // removes comments from output
     comments: false,
   }),
-
-  // Compile TypeScript/JavaScript files
-
 
   builtins(),
   // remove flow annotations from output

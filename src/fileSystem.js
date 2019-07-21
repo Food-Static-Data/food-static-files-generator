@@ -55,16 +55,27 @@ const read = (absolutePath) => {
 const save = (folderNamePath, file, fileData, flag) => new Promise(async (resolve) => {
   const fileDataLength = fileData.length;
 
+  // @TODO replace with lodash
   for (let i = 0; i < fileDataLength; i++) {
     // @TODO long line, I have feeling that it can be improved
-    // - we just need to find a better way to rewrite a getFileName method
-    const fileName = getFileName(file, fileData[i], flag, i);
+    // - we just need to find a better way to
+    // rewrite a getFileName method
+    const fileName = getFileName(
+      file,
+      fileData[i],
+      flag,
+      i
+    );
+
     const elementPath = `${folderNamePath}/${fileName}`;
     const success = await write(elementPath, fileData[i]);
     if (!success) {
       resolve(false);
-      // @TODO should we add here some console.info that might show us that we have an issue?
-      console.info(`${fileName} is the filename, ${elementPath} is the elementPath and success is false`);
+
+      console.info(
+        `${fileName} is the filename, ` +
+        `${elementPath} is the elementPath and success is false`
+      );
     }
   }
   resolve(true);
@@ -78,7 +89,8 @@ const makeFolder = (path, file) => {
   const suffix = '_elements';
   const folderName = file.slice(0, -5) + suffix;
   const folderNamePath = path + folderName;
-  // @TODO if we update our import - we'll be able to use just isDirectory()
+  // @TODO if we update our import
+  // we'll be able to use just isDirectory()
   if (isDirectory(folderNamePath)) {
     mkdirSync(folderNamePath);
   }

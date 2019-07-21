@@ -1,9 +1,15 @@
 // @TODO replace with actual methods
 // as we did it at other files
 import { basename, parse, extname } from 'path';
-import { fixPath, readAllFiles } from './utils';
 import {
-  read, write, save, makeFolder,
+  fixPath,
+  readAllFiles,
+} from './utils';
+import {
+  read,
+  write,
+  save,
+  makeFolder,
 } from './fileSystem';
 import { updateContent } from './writeFile';
 
@@ -15,15 +21,16 @@ import { updateContent } from './writeFile';
  */
 function combine(path, keys) {
   const suffix = '_combined.json';
-  path = fixPath(path);
+  const updatedPath = fixPath(path);
 
   // read all json files
   // @TODO if we change our import we can call readAllFiles()
-  let content = readAllFiles(path);
+  let content = readAllFiles(updatedPath);
   // modifying structure
   content = updateContent(content, keys);
   // for example: elements_combined.json
-  const fileNamePath = path + basename(path) + suffix;
+  // @TODO long line...
+  const fileNamePath = updatedPath + basename(updatedPath) + suffix;
   // saving
   write(fileNamePath, content);
 }
@@ -45,20 +52,20 @@ function split(fullPath, flag = 1, keys = [], callback) {
        flag=0 ==> name according to "name" attribute
      */
   const file = basename(fullPath);
-  let path = parse(fullPath).dir;
+  const path = parse(fullPath).dir;
 
   if (extname(file) !== '.json') {
     console.log('Require .json file.');
     return;
   }
 
-  path = fixPath(path);
+  const updatedPath = fixPath(path);
 
   // Reading data...
-  const absolutePath = path + file;
+  const absolutePath = updatedPath + file;
   const fileData = read(absolutePath);
   // new folder to save splitted files
-  const folderNamePath = makeFolder(path, file);
+  const folderNamePath = makeFolder(updatedPath, file);
   // saving files
   save(folderNamePath, file, fileData, flag);
 

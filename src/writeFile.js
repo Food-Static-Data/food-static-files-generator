@@ -1,9 +1,6 @@
-// const filePath = require('../files')
-import { readFileSync } from 'fs';
-
-
 // const { promisify } = require('util')
 
+// @TODO move to utils.js
 /**
  * for stripSymbols()
  * @param {Object} data a json object
@@ -69,6 +66,8 @@ const getFileName = (file, fileData, flag, index) => {
 const updateContent = (content, keys) => {
   const contentCopy = content;
 
+// @TODO error  Assignment to property of function parameter 'obj'
+no-param-reassign
   contentCopy.forEach((contentElem) => {
     contentElem.forEach((obj) => {
       keys.forEach((key) => {

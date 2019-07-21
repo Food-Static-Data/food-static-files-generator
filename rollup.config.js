@@ -82,6 +82,7 @@ const plugins = () => ([
     // plugins: ['babel-plugin-transform-object-rest-spread'],
     // removes comments from output
     comments: false,
+    
   }),
 
   builtins(),

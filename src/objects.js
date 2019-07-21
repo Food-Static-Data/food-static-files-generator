@@ -13,7 +13,7 @@ import {
 } from './fileSystem';
 import { updateContent } from './writeFile';
 
-//@TODO update with promise instead of callbacks
+//@TODO update with promise 
 /**
  * For combine()
  * @param {String} path Path of folder where all splitted files are stored

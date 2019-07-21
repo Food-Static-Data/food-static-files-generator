@@ -33,6 +33,8 @@ const combine = (path, keys) => new Promise(async (resolve) => {
   const fileNamePath = updatedPath + basename(updatedPath) + suffix;
   // saving
   await write(fileNamePath, content);
+
+  resolve();
 });
 
 

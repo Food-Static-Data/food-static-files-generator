@@ -67,7 +67,7 @@
   },
   "dependencies": {
     "dayjs": "^1.8.13",
-    "fs": "^0.0.1-security",
+    "fs": "^0.0.2",
     "lodash": "^4.17.11",
     "path": "^0.12.7",
     "path-exists": "^4.0.0",

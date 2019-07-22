@@ -52,11 +52,12 @@ const read = (absolutePath) => {
  * */
 // @TODO save got 5 attributes and most of them are about directory/files...
 // there should be another way
-const save = (folderNamePath, file, fileData, flag) => new Promise(async (resolve) => {
+const save = (folderNamePath, file, fileData, flag) => {
   const fileDataLength = fileData.length;
+  let success = true;
 
   // @TODO replace with lodash
-  for (let i = 0; i < fileDataLength; i++) {
+  for (let i = 0; i < fileDataLength && success; i++) {
     // @TODO long line, I have feeling that it can be improved
     // - we just need to find a better way to
     // rewrite a getFileName method
@@ -64,22 +65,25 @@ const save = (folderNamePath, file, fileData, flag) => new Promise(async (resolv
       file,
       fileData[i],
       flag,
-      i
+      i,
     );
 
     const elementPath = `${folderNamePath}/${fileName}`;
-    const success = await write(elementPath, fileData[i]);
-    if (!success) {
-      resolve(false);
-
-      console.info(
-        `${fileName} is the filename, ` +
-        `${elementPath} is the elementPath and success is false`
+    const result = write(elementPath, fileData[i]);
+    if (!result) {
+      console.log(
+        `${fileName} is the filename, `
+         + `${elementPath} is the elementPath and success is false`
       );
     }
+
+    success = success && result;
   }
-  resolve(true);
-});
+
+  return new Promise((resolve) => {
+    resolve(success);
+  });
+};
 
 /**
  * @param {String} path

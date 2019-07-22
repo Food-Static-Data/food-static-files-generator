@@ -13,12 +13,10 @@
 // @TODO maybe in future it can be improved
 // let files;
 
-const setupPath = (pathToSrc) => {
+const setupPath = pathToSrc => {
   const files = require(`${pathToSrc}/files`);
 
   return files;
 };
 
-export default {
-  setupPath,
-};
+export default setupPath;

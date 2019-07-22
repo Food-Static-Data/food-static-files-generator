@@ -12,13 +12,15 @@
 
 // @TODO maybe in future it can be improved
 // let files;
+import path from "path";
 
-const setupPath = (pathToSrc) => {
-  const files = require(`${pathToSrc}/files`);
+const setupPath = pathToSrc => {
+  console.log("This is path TO Src");
+  const fullPathToSrc = path.join(__dirname, pathToSrc);
+  console.log(fullPathToSrc);
+  const files = require(`${fullPathToSrc}/files`);
 
   return files;
 };
 
-export default {
-  setupPath,
-};
+export default setupPath;

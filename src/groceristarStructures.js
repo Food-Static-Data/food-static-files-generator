@@ -26,7 +26,7 @@ const favorites = () => {
 const usersGrocery = () => {
   const files = setupPath("../../sd/src");
   const groceryId = generateArrWithId(files.grocery, "grocery_id");
-  const usersId = generateArrWithId(users, "user_id");
+  const usersId = generateArrWithId(files.users, "user_id");
   // return object for three users
   const result = [];
 

@@ -1,6 +1,6 @@
 import { write } from './fileSystem';
 
-import getMenuGenerator from './generateArray';
+import getMenuGenerator from './utils';
 
 // right now it's used only for getMenuGenerator i think it wrong.
 // and we need to regenerate all files from scratch each time. especially if we re creating a new files or make cnahnges at

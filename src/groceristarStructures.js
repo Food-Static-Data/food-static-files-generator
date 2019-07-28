@@ -1,6 +1,6 @@
 import { map } from "lodash";
 import { generateArrWithId } from "./utils";
-import setupPath from "./generateArray";
+import setupPath from "./utils";
 
 const favorites = () => {
   const files = setupPath("../../sd/data");

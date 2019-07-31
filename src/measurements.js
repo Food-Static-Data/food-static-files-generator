@@ -3,8 +3,9 @@
 // @TODO can we replace it with alias?
 import { parse } from "path";
 import _ from "lodash";
-import { readAllFiles, generateArrWithId } from "./utils";
-import setupPath from "./utils";
+import { setupPath, readAllFiles, generateArrWithId } from "./utils";
+
+// import setupPath from "./utils";
 // const utils = require('./utils');
 // import utils from ('./utils')
 // Without files it wouldn't work without files... - Answer yes, I will fix it PS. Vadim :)

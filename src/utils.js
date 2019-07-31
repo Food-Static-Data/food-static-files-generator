@@ -1,12 +1,12 @@
-import pathExists from 'path-exists';
-import uuidv1 from 'uuid/v1';
-import dayjs from 'dayjs';
-import fs from 'fs';
-import _ from 'lodash';
-import { resolve } from 'path';
+import pathExists from "path-exists";
+import uuidv1 from "uuid/v1";
+import dayjs from "dayjs";
+import fs from "fs";
+import _ from "lodash";
+import { resolve } from "path";
 import path from "path";
 
-const checkFilePath = async (path) => {
+const checkFilePath = async path => {
   if (await pathExists(path)) {
     console.log(`Filepath ${path} exist`);
   } else {
@@ -18,7 +18,7 @@ const checkFilePath = async (path) => {
  * isDirectory()
  * @param {string} folderNamePath
  *  */
-const isDirectory = (folderNamePath) => {
+const isDirectory = folderNamePath => {
   if (fs.existsSync(folderNamePath)) {
     return false;
   }
@@ -29,10 +29,10 @@ const isDirectory = (folderNamePath) => {
  * fixPath()
  * @param {String} path
  */
-const fixPath = (path) => {
+const fixPath = path => {
   let newPath = resolve(__dirname, path);
-  if (newPath.charAt(newPath.length - 1) !== '/') {
-    newPath += '/';
+  if (newPath.charAt(newPath.length - 1) !== "/") {
+    newPath += "/";
   }
   return newPath;
 };
@@ -41,13 +41,13 @@ const fixPath = (path) => {
  * For readAllFiles()
  * @param {String} path
  */
-const readAllFiles = (path) => {
+const readAllFiles = path => {
   const content = [];
   const newPath = fixPath(path);
   const files = fs.readdirSync(newPath);
-  files.forEach((file) => {
+  files.forEach(file => {
     const fileStat = fs.statSync(newPath + file).isDirectory();
-    if (file.slice(-5) === '.json') {
+    if (file.slice(-5) === ".json") {
       if (!fileStat) {
         let data = fs.readFileSync(newPath + file);
         data = JSON.parse(data);
@@ -63,8 +63,8 @@ const readAllFiles = (path) => {
  * @param {String} path
  * @param {String} fileName
  */
-const getListContent = (path, fileName = 'undefined') => {
-  if (fileName === 'undefined') {
+const getListContent = (path, fileName = "undefined") => {
+  if (fileName === "undefined") {
     // read all files
     return readAllFiles(path);
   }
@@ -80,10 +80,10 @@ const getListContent = (path, fileName = 'undefined') => {
  */
 // @TODO get list of what? maybe we can name it better? as not a
 // developer of this code - it looks confusing for me
-const getList = (path) => {
+const getList = path => {
   const list = [];
   const files = fs.readdirSync(path);
-  files.forEach((file) => {
+  files.forEach(file => {
     const fileStat = fs.statSync(path + file).isDirectory();
     if (!fileStat) {
       list.push(file);
@@ -98,7 +98,7 @@ const getList = (path) => {
  * @param {var} flag
  * @param {String} fileName
  */
-const getFileInfo = (path, flag = 0, fileName = 'undefined') => {
+const getFileInfo = (path, flag = 0, fileName = "undefined") => {
   /*
       flag = 1 --> means return content
       if file name is given then content of that file else return content of all files.
@@ -122,20 +122,21 @@ const generateDate = () => dayjs().toDate();
 // 2. it's pretty useful for other cases, so i think we should move it into utils and reuse
 const generateArrWithId = (data, id) => {
   const result = [];
-  _.map(data, (element) => {
+  _.map(data, element => {
     result.push({
       ...element,
-      [id]: generateID(),
+      [id]: generateID()
     });
   });
 
   return result;
 };
 
-const getFileKey = file => _.map(file, (item, index) => ({
-  key: generateID(),
-  ...item,
-}));
+const getFileKey = file =>
+  _.map(file, (item, index) => ({
+    key: generateID(),
+    ...item
+  }));
 
 // const {
 //   users,
@@ -161,7 +162,6 @@ const setupPath = pathToSrc => {
   return files;
 };
 
-
 export {
   checkFilePath,
   isDirectory,
@@ -173,5 +173,5 @@ export {
   generateID,
   generateDate,
   generateArrWithId,
-  setupPath,
+  setupPath
 };

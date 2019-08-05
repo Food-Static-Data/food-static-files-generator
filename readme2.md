@@ -120,3 +120,11 @@ Generator using this file:
 1. configGenerator.js
 2. generateFiles.js
 3. writeFiles.js
+
+
+#### Debugging
+To make debugging generator. Execute this command
+
+`npm run debug:generator`
+
+Rollup will build index.cjs in dist folder. Then in runGenerator.js happens calling function generateFiles()

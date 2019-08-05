@@ -14,6 +14,8 @@ import { setupPath, readAllFiles, generateArrWithId } from "./utils";
 // const setupPathMeasurements = pathToSrc => {
 //     files = require(pathToSrc + '/files');
 // };
+
+
 const getMeasurementSystem = () => {
   const files = setupPath("../../sd/src");
   const result = [];

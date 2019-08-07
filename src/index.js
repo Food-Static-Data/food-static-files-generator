@@ -1,23 +1,15 @@
 // @TODO I think we should make our module more accessible to our methods from the outside.
 
-import generateFiles from './generateFiles';
+// import generateFiles from './generateFiles';
 
+import { combine, split } from "./objects";
 
-import {
-  combine,
-  split,
-} from './objects';
-
-import {
-  read,
-  write,
-} from './fileSystem';
-
+import { read, write } from "./fileSystem";
 
 export {
-  generateFiles,
+  // generateFiles,
   combine,
   split,
   write,
-  read,
+  read
 };

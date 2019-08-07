@@ -7,7 +7,6 @@ import fs from "fs";
 import _ from "lodash";
 import path, { resolve } from "path";
 
-
 const checkFilePath = async filePath => {
   if (await pathExists(filePath)) {
     console.log(`Filepath ${filePath} exist`);
@@ -134,10 +133,11 @@ const generateArrWithId = (data, id) => {
   return result;
 };
 
- const getFileKey = file => _.map(file, (item, index) => ({
-   key: generateID(),
-   ...item,
- }));
+const getFileKey = file =>
+  _.map(file, (item, index) => ({
+    key: generateID(),
+    ...item
+  }));
 
 // const {
 //   users,

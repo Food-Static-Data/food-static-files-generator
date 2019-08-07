@@ -3,8 +3,7 @@ import uuidv1 from "uuid/v1";
 import dayjs from "dayjs";
 import fs from "fs";
 import _ from "lodash";
-import { resolve } from "path";
-import path from "path";
+import path, { resolve } from "path";
 
 const checkFilePath = async path => {
   if (await pathExists(path)) {

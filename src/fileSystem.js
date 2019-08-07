@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 import { writeFile, mkdirSync, readFileSync } from "fs";
 import { stripSymbols, getFileName } from "./writeFile";
 import { isDirectory } from "./utils";
@@ -70,8 +69,7 @@ const save = (folderNamePath, file, fileData, flag) => {
     const result = write(elementPath, fileData[i]);
     if (!result) {
       console.log(
-        `${fileName} is the filename, ` +
-          `${elementPath} is the elementPath and success is false`
+        `${fileName} is the filename, ${elementPath} is the elementPath and success is false`
       );
     }
 

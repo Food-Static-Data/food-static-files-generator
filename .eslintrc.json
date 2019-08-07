@@ -4,8 +4,7 @@
     "es6": true,
     "node": true
   },
-
-  "extends": ["airbnb-base", "plugin:jest/recommended"],
+  "extends": ["airbnb-base", "plugin:jest/recommended", "eslint:recommended"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -15,5 +14,13 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "rules": {}
+  "rules": {
+    "quotes": ["error", "single"],
+    "no-console": [
+      "error",
+      {
+        "allow": ["warn", "info"]
+      }
+    ]
+  }
 }

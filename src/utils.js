@@ -133,10 +133,10 @@ const generateArrWithId = (data, id) => {
   return result;
 };
 
-// const getFileKey = file => _.map(file, (item, index) => ({
-//   key: generateID(),
-//   ...item,
-// }));
+ const getFileKey = file => _.map(file, (item, index) => ({
+   key: generateID(),
+   ...item,
+ }));
 
 // const {
 //   users,
@@ -173,5 +173,6 @@ export {
   generateID,
   generateDate,
   generateArrWithId,
-  setupPath
+  setupPath,
+  getFileKey
 };

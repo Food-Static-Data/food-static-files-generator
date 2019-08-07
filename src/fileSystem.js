@@ -1,6 +1,8 @@
-import { writeFile, mkdirSync, readFileSync } from 'fs';
-import { stripSymbols, getFileName } from './writeFile';
-import { isDirectory } from './utils';
+/* eslint-disable no-console */
+
+import { writeFile, mkdirSync, readFileSync } from "fs";
+import { stripSymbols, getFileName } from "./writeFile";
+import { isDirectory } from "./utils";
 
 /**
  * Write in file
@@ -8,34 +10,35 @@ import { isDirectory } from './utils';
  * @param {Object} data
  * @param {Function} callback
  */
-const write = (path, data) => new Promise((resolve) => {
-  const dataStr = stripSymbols(data);
-  // dataStr = '[' + dataStr + ']'
-  // console.log(dataStr)
+const write = (path, data) =>
+  new Promise(resolve => {
+    const dataStr = stripSymbols(data);
+    // dataStr = '[' + dataStr + ']'
+    // console.log(dataStr)
 
-  writeFile(path, dataStr, (err) => {
-    if (err) {
-      console.log(err);
-      resolve(false);
-    } else {
-      console.info(`${path} file generated successfully!`);
-      resolve(true);
-    }
+    writeFile(path, dataStr, err => {
+      if (err) {
+        console.error(err);
+        resolve(false);
+      } else {
+        console.info(`${path} file generated successfully!`);
+        resolve(true);
+      }
+    });
   });
-});
 
 /**
  * read()
  * @param {string} absolutePath
  *
  */
-const read = (absolutePath) => {
+const read = absolutePath => {
   console.log(absolutePath);
 
   // @TODO cover this case - absolutePath
   // return file but it's empty. We need an if here
   const data = readFileSync(absolutePath);
-  if (data === '') {
+  if (data === "") {
     console.log(`${absolutePath} returned empty`);
   }
   console.log(data);
@@ -57,30 +60,25 @@ const save = (folderNamePath, file, fileData, flag) => {
   let success = true;
 
   // @TODO replace with lodash
-  for (let i = 0; i < fileDataLength && success; i++) {
+  for (let i = 0; i < fileDataLength && success; i += 1) {
     // @TODO long line, I have feeling that it can be improved
     // - we just need to find a better way to
     // rewrite a getFileName method
-    const fileName = getFileName(
-      file,
-      fileData[i],
-      flag,
-      i,
-    );
+    const fileName = getFileName(file, fileData[i], flag, i);
 
     const elementPath = `${folderNamePath}/${fileName}`;
     const result = write(elementPath, fileData[i]);
     if (!result) {
       console.log(
-        `${fileName} is the filename, `
-         + `${elementPath} is the elementPath and success is false`
+        `${fileName} is the filename, ` +
+          `${elementPath} is the elementPath and success is false`
       );
     }
 
     success = success && result;
   }
 
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     resolve(success);
   });
 };
@@ -90,7 +88,7 @@ const save = (folderNamePath, file, fileData, flag) => {
  * @param {String} file
  */
 const makeFolder = (path, file) => {
-  const suffix = '_elements';
+  const suffix = "_elements";
   const folderName = file.slice(0, -5) + suffix;
   const folderNamePath = path + folderName;
   // @TODO if we update our import
@@ -101,9 +99,4 @@ const makeFolder = (path, file) => {
   return folderNamePath;
 };
 
-export {
-  write,
-  read,
-  save,
-  makeFolder,
-};
+export { write, read, save, makeFolder };

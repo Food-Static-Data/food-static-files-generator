@@ -1,16 +1,17 @@
+/* eslint-disable no-console */
+
 import pathExists from "path-exists";
 import uuidv1 from "uuid/v1";
 import dayjs from "dayjs";
 import fs from "fs";
 import _ from "lodash";
-import { resolve } from "path";
-import path from "path";
+import { path, resolve } from "path";
 
-const checkFilePath = async path => {
-  if (await pathExists(path)) {
-    console.log(`Filepath ${path} exist`);
+const checkFilePath = async filePath => {
+  if (await pathExists(filePath)) {
+    console.log(`Filepath ${filePath} exist`);
   } else {
-    console.log(`Filepath ${path} doesn\`t exist`);
+    console.log(`Filepath ${filePath} doesn\`t exist`);
   }
 };
 
@@ -29,8 +30,8 @@ const isDirectory = folderNamePath => {
  * fixPath()
  * @param {String} path
  */
-const fixPath = path => {
-  let newPath = resolve(__dirname, path);
+const fixPath = filePath => {
+  let newPath = resolve(__dirname, filePath);
   if (newPath.charAt(newPath.length - 1) !== "/") {
     newPath += "/";
   }
@@ -39,11 +40,11 @@ const fixPath = path => {
 
 /**
  * For readAllFiles()
- * @param {String} path
+ * @param {String} filePath
  */
-const readAllFiles = path => {
+const readAllFiles = filePath => {
   const content = [];
-  const newPath = fixPath(path);
+  const newPath = fixPath(filePath);
   const files = fs.readdirSync(newPath);
   files.forEach(file => {
     const fileStat = fs.statSync(newPath + file).isDirectory();
@@ -60,31 +61,31 @@ const readAllFiles = path => {
 
 /**
  * For getListContent()
- * @param {String} path
+ * @param {String} filePath
  * @param {String} fileName
  */
-const getListContent = (path, fileName = "undefined") => {
+const getListContent = (filePath, fileName = "undefined") => {
   if (fileName === "undefined") {
     // read all files
-    return readAllFiles(path);
+    return readAllFiles(filePath);
   }
   // read specified file
-  let data = fs.readFileSync(path + fileName);
+  let data = fs.readFileSync(filePath + fileName);
   data = JSON.parse(data);
   return data;
 };
 
 /**
  * For getList()
- * @param {String} path
+ * @param {String} filePath
  */
 // @TODO get list of what? maybe we can name it better? as not a
 // developer of this code - it looks confusing for me
-const getList = path => {
+const getList = filePath => {
   const list = [];
-  const files = fs.readdirSync(path);
+  const files = fs.readdirSync(filePath);
   files.forEach(file => {
-    const fileStat = fs.statSync(path + file).isDirectory();
+    const fileStat = fs.statSync(filePath + file).isDirectory();
     if (!fileStat) {
       list.push(file);
     }
@@ -94,17 +95,17 @@ const getList = path => {
 
 /**
  * For getFileInfo()
- * @param {String} path
+ * @param {String} filePath
  * @param {var} flag
  * @param {String} fileName
  */
-const getFileInfo = (path, flag = 0, fileName = "undefined") => {
+const getFileInfo = (filePath, flag = 0, fileName = "undefined") => {
   /*
       flag = 1 --> means return content
       if file name is given then content of that file else return content of all files.
       only path is given( flag=0 )--> give list of all files in directory.
     */
-  const pathCopy = fixPath(path);
+  const pathCopy = fixPath(filePath);
   if (flag === 1) {
     // get content from file
     return getListContent(pathCopy, fileName);
@@ -132,11 +133,10 @@ const generateArrWithId = (data, id) => {
   return result;
 };
 
-const getFileKey = file =>
-  _.map(file, (item, index) => ({
-    key: generateID(),
-    ...item
-  }));
+ const getFileKey = file => _.map(file, (item, index) => ({
+   key: generateID(),
+   ...item,
+ }));
 
 // const {
 //   users,
@@ -173,5 +173,6 @@ export {
   generateID,
   generateDate,
   generateArrWithId,
-  setupPath
+  setupPath,
+  getFileKey
 };

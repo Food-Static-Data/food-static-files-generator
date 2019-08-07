@@ -1,9 +1,9 @@
-const _ = require('lodash');
-const { generateID } = require('../../../src/utils');
+const _ = require("lodash");
+const { generateID } = require("../../src/utils");
 
 // const { generateID } = require('@utils')
 // const { departments, ingredients, grocery } = require('@files')
-const { departments, ingredients, grocery } = require('../../../src/files');
+const { departments, ingredients, grocery } = require("../../../src/files");
 /**
  * @returns {array} of keys for departments and ingredients
  */
@@ -14,11 +14,11 @@ const getKeyArrayDepAndIng = () => {
   const departments = getAllDepartmentsWithId();
   const ingredients = getAllIngredientsWithId();
 
-  _.forEach(departments, (department) => {
-    _.forEach(ingredients, (ingredient) => {
+  _.forEach(departments, department => {
+    _.forEach(ingredients, ingredient => {
       if (_.includes(ingredient, department.name)) {
         keys.push({
-          [department.key]: ingredient.key,
+          [department.key]: ingredient.key
         });
       }
     });
@@ -32,13 +32,16 @@ const ultimateGroceryList = () => {
   const ultimategroceries = [];
   const groceries = getAllGroceryWithId();
 
-  _.map(groceries, (grocery) => {
+  _.map(groceries, grocery => {
     const ultimategrocery = {};
 
     ultimategrocery.name = grocery.name;
     ultimategrocery.groceryId = grocery.key;
     ultimategroceries.messages = {};
-    ultimategrocery.departments = getGroceryDepartmentsWithIngredients(grocery.departments, grocery.key);
+    ultimategrocery.departments = getGroceryDepartmentsWithIngredients(
+      grocery.departments,
+      grocery.key
+    );
     ultimategrocery.ultimate = { name: grocery.name, id: grocery.key };
 
     ultimategroceries.push(ultimategrocery);
@@ -51,14 +54,24 @@ const ultimateGroceryList = () => {
 const getGroceryDepartmentsWithIngredients = (grocerydepartments, key) => {
   const results = [];
   const departments = getAllDepartmentsWithId();
-  _.map(grocerydepartments, (grocerydepartment) => {
+  _.map(grocerydepartments, grocerydepartment => {
     // search for a particular grocery department in the department json to get the department object
-    const department = _.filter(departments, department => department.name === grocerydepartment);
+    const department = _.filter(
+      departments,
+      department => department.name === grocerydepartment
+    );
 
     if (department) {
-      const departmentIngredients = { id: department.key, name: department.name, type: department.type };
+      const departmentIngredients = {
+        id: department.key,
+        name: department.name,
+        type: department.type
+      };
 
-      departmentIngredients.ingredients = getDepartmentIngredients(grocerydepartment, key); // add all the ingredients in this department to the obj
+      departmentIngredients.ingredients = getDepartmentIngredients(
+        grocerydepartment,
+        key
+      ); // add all the ingredients in this department to the obj
       results.push(departmentIngredients);
     }
   });
@@ -70,12 +83,12 @@ const getGroceryDepartmentsWithIngredients = (grocerydepartments, key) => {
 const getDepartmentIngredients = (department, key) => {
   const results = [];
   const ingredients = getAllIngredientsWithId();
-  _.map(ingredients, (ingredient) => {
+  _.map(ingredients, ingredient => {
     if (_.includes(ingredient, department)) {
       const ingredientItem = [
         ingredient.key,
         ingredient.name,
-        `/del/ing/${ingredient.key}/${key}`,
+        `/del/ing/${ingredient.key}/${key}`
       ];
       results.push(ingredientItem);
     }
@@ -103,14 +116,15 @@ const getAllIngredientsWithId = () => {
   return result;
 };
 
-const getResult = property => _.map(property, p => ({
-  key: generateID(),
-  ...p,
-}));
+const getResult = property =>
+  _.map(property, p => ({
+    key: generateID(),
+    ...p
+  }));
 
 module.exports = {
   getKeyArrayDepAndIng,
   ultimateGroceryList,
   getDepartmentIngredients,
-  getGroceryDepartmentsWithIngredients,
+  getGroceryDepartmentsWithIngredients
 };

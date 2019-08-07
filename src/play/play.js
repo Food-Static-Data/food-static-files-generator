@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 // const arr = require('../../src/filesObjects')
 // // const arr = require('@filesObjects')
 
@@ -18,13 +20,11 @@
 // })
 
 // -------------------------------------------------------
-const path = require('path');
-const { generateFiles } = require('../index');
+const path = require("path");
+const { generateFiles } = require("../index");
 // const  { generateFiles } = require('../../dist/index.cjs')
 
-
-const path1 = path.join(__dirname, '../../../sd/src');
-
+const path1 = path.join(__dirname, "../../../sd/src");
 
 console.log(path1);
 generateFiles(path1);
@@ -32,7 +32,6 @@ generateFiles(path1);
 // ---------------------------------------------------------
 // describe('testing if generateFiles() working', () => {
 //     test('Test', () => {
-
 
 //     })
 // })

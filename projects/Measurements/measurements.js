@@ -3,7 +3,7 @@
 // @TODO can we replace it with alias?
 import { parse } from "path";
 import _ from "lodash";
-import { setupPath, readAllFiles, generateArrWithId } from "./utils";
+import { setupPath, readAllFiles, generateArrWithId } from "../../src/utils";
 
 // import setupPath from "./utils";
 // const utils = require('./utils');
@@ -14,7 +14,6 @@ import { setupPath, readAllFiles, generateArrWithId } from "./utils";
 // const setupPathMeasurements = pathToSrc => {
 //     files = require(pathToSrc + '/files');
 // };
-
 
 const getMeasurementSystem = () => {
   const files = setupPath("../../sd/src");

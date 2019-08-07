@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { writeFile, mkdirSync, readFileSync } from "fs";
 import { stripSymbols, getFileName } from "./writeFile";
 import { isDirectory } from "./utils";
@@ -16,7 +17,7 @@ const write = (path, data) =>
 
     writeFile(path, dataStr, err => {
       if (err) {
-        console.log(err);
+        console.error(err);
         resolve(false);
       } else {
         console.info(`${path} file generated successfully!`);

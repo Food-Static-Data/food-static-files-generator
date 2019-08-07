@@ -2,6 +2,7 @@ import mkdirSync from "fs";
 import { write } from "./fileSystem";
 import { isDirectory } from "./utils";
 import config from "../projects/configGenerator";
+
 // import { setupPath } from './generateArray';
 // import { setupPathMeasurements } from './measurements';
 
@@ -9,8 +10,8 @@ import config from "../projects/configGenerator";
 // folderData = './src/data/'
 const generateFiles = pathToSrc => {
   let path;
-  // const files = setupPath(pathToSrc);
-  // setupPathMeasurements(pathToSrc);
+  const files = setupPath(pathToSrc);
+  setupPathMeasurements(pathToSrc);
 
   config.map(settings => {
     const { fileName, data } = settings;

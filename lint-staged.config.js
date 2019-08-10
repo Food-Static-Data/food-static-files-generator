@@ -23,11 +23,11 @@
 // }
 
 module.exports = {
-  '**/*.+(js|json)': [
+  "**/*.+(js|json)": [
     //   'eslint --fix',
     //   'prettier --write',
     //   'jest --findRelatedTests',
-    'npm run lint',
-    'git add'
+    "npm run lint",
+    "git add"
   ]
-}
+};

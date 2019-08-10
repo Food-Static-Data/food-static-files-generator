@@ -8,11 +8,10 @@ import config from "../projects/configGenerator";
 
 // @TODO I don't like that we have all of these path manipulations inside of this method
 // folderData = './src/data/'
-d;
 const generateFiles = pathToSrc => {
   let path;
-  const files = setupPath(pathToSrc);
-  setupPathMeasurements(pathToSrc);
+  // const files = setupPath(pathToSrc);
+  // setupPathMeasurements(pathToSrc);
 
   config.map(settings => {
     const { fileName, data } = settings;
@@ -28,6 +27,7 @@ const generateFiles = pathToSrc => {
 
     path = `${folderPath}/${fileName}.json`;
     write(path, data());
+    return 0;
   });
 };
 

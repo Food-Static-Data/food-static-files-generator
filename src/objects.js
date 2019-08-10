@@ -15,7 +15,7 @@ import { updateContent } from "./writeFile";
  * @param {var} keys List of keys that are to be removed
  */
 const combine = (path, keys) =>
-  new Promise(async resolve => {
+  new Promise(resolve => {
     const suffix = "_combined.json";
     const updatedPath = fixPath(path);
 
@@ -28,7 +28,7 @@ const combine = (path, keys) =>
     // @TODO long line...
     const fileNamePath = updatedPath + basename(updatedPath) + suffix;
     // saving
-    await write(fileNamePath, content);
+    write(fileNamePath, content);
 
     resolve();
   });

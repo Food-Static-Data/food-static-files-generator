@@ -80,7 +80,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run clean && npm run formato && npm run build",
-      "after": "lint-staged",
+      "after": "lint-staged -c ./lint-staged.config.js",
       "then": "yarn precommit"
     }
   },

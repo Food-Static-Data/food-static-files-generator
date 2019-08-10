@@ -134,7 +134,7 @@ const generateArrWithId = (data, id) => {
 };
 
 const getFileKey = file =>
-  _.map(file, (item, index) => ({
+  _.map(file, item => ({
     key: generateID(),
     ...item
   }));
@@ -158,7 +158,8 @@ const setupPath = pathToSrc => {
   console.log("This is path TO Src");
   const fullPathToSrc = path.join(__dirname, pathToSrc);
   console.log(fullPathToSrc);
-  const files = require(`${fullPathToSrc}/files`);
+  const fullPathToSrcFiles = `${fullPathToSrc}/files`;
+  const files = require(fullPathToSrcFiles);
 
   return files;
 };

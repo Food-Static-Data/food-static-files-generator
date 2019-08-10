@@ -4,6 +4,7 @@
     "es6": true,
     "node": true
   },
+  "plugins": ["json"],
   "extends": ["airbnb-base", "plugin:jest/recommended", "eslint:recommended"],
   "globals": {
     "Atomics": "readonly",
@@ -16,6 +17,9 @@
   },
   "rules": {
     "quotes": ["error", "single"],
+    "import/no-dynamic-require": 0,
+    "global-require": 0,
+    "no-param-reassign": 0,
     "no-console": [
       "error",
       {

@@ -12,7 +12,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage",
-    "lint": "eslint ./src --fix",
+    "lint": "eslint ./src --fix --ignore-pattern \"./package.json\" ",
+    "lint-staged": "lint-staged -c ./lint-staged.config.js",
     "format": "prettier ./src/**",
     "formato": "pretty-quick --staged",
     "play": "node ./src/play/play.js",
@@ -70,6 +71,7 @@
   "dependencies": {
     "@babel/runtime": "^7.5.5",
     "dayjs": "^1.8.13",
+    "eslint-plugin-json": "^1.4.0",
     "fs": "^0.0.2",
     "lodash": "^4.17.11",
     "path": "^0.12.7",
@@ -79,8 +81,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run clean && npm run formato && npm run build",
-      "after": "lint-staged",
+      "pre-commit": "npm run lint-staged && npm run clean && npm run formato && npm run build",
+      "after": "lint-staged -c ./lint-staged.config.js",
       "then": "yarn precommit"
     }
   },

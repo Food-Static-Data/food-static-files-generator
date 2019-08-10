@@ -8,6 +8,7 @@ import config from "../projects/configGenerator";
 
 // @TODO I don't like that we have all of these path manipulations inside of this method
 // folderData = './src/data/'
+d;
 const generateFiles = pathToSrc => {
   let path;
   const files = setupPath(pathToSrc);

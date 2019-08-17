@@ -6,9 +6,8 @@
     "bundle": "rollup -c",
     "dev": "rollup -c -w",
     "build": "npm run clean && npm run bundle",
-    "#prepare": "yarn clean",
+    "build:babel": "babel src -d dist",
     "clean": "shx rm -rf ./coverage && shx rm -rf ./dist",
-    "prepublish": "yarn clean && yarn lint && yarn build",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage",
@@ -17,7 +16,6 @@
     "format": "prettier ./src/**",
     "formato": "pretty-quick --staged",
     "play": "node ./src/play/play.js",
-    "build:babel": "babel src -d dist",
     "debug:generator": "rollup -c && node ./debug/runGenerator.js",
     "debug:write": "rollup -c && node ./debug/runWrite.js"
   },

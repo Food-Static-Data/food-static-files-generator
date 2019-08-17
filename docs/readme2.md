@@ -4,6 +4,7 @@
 - Readme part: https://github.com/GroceriStar/sd#generator-commands
 
 Should have
+
 - ES6 style code
 - Separated place for tests
 - Separated build via Travis CI
@@ -14,16 +15,19 @@ Should have
 - it should have a separated package.json, with only necessary modules that we have at generator
 
 #### Tasks
+
 - https://github.com/GroceriStar/sd/issues/158
 - https://github.com/GroceriStar/sd/issues/332
 
 #### Features
 
 #### Stretch Goals
+
 - work as a microservice that outside working as separated entity, by using code here.
 - should generator have a frontend version available as well?
 
 ## How to generate additional files
+
 In generator you will see folder structure like this:
 
 ```
@@ -81,6 +85,7 @@ In generator you will see folder structure like this:
 ### Simple generation
 
 Before starting generating files make this steps:
+
 1. Add in `configGenerator.js` into array `config` object that will have structure like this:
 
 ```
@@ -92,6 +97,7 @@ Before starting generating files make this steps:
 ```
 
 This object should has two property:
+
 1. `name` - filename of json.
 2. `data` - array or object that you will want to write into json. Also this data should be json formatted. To make it more simple all functions that using configGenerator.js located in generateArray.js.
 
@@ -104,6 +110,7 @@ By default generating files happens in `/src/data`.
 ```
 npm run generateFiles
 ```
+
 You will see logging output about success generation.
 
 ### Advanced generation
@@ -117,12 +124,13 @@ Note
 Also this method create folder if it doesn't exist.
 
 Generator using this file:
+
 1. configGenerator.js
 2. generateFiles.js
 3. writeFiles.js
 
-
 #### Debugging
+
 To make debugging generator. Execute this command
 
 `npm run debug:generator`

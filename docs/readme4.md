@@ -1,8 +1,8 @@
-
 ## Methods that generating custom js objects
 
 **getMenuGenerator(number_of_weeks)** - return an array of objects with weekly menu. Menus sorted in calendar date order starting from first.
-~~~~
+
+```
 [
   {
     id: __generatedID,
@@ -12,10 +12,11 @@
     notes: String,
   },
 ]
-~~~~
+```
 
 **favorites()** - returns an array of objects, where each object has ingredients and groceries for specified user
-~~~
+
+```
 [
   {
     ingredient_id: String,
@@ -24,20 +25,22 @@
     grocery_id: String,
   },
 ]
-~~~
+```
 
 **usersGrocery()** - returns an array of objects, where each object has userID and groceryID
-~~~
+
+```
 [
   {
     user_id: String,
     grocery_id: String,
   },
 ]
-~~~
+```
 
 **items()** - returns an array of objects, where each object has item parameters
-~~~
+
+```
 [
   {
     item_id: String,
@@ -47,10 +50,11 @@
     purchase: Boolean,
   },
 ]
-~~~
+```
 
 **getMeasurementUnits()** - returns an array of objects, where each object has measurement unit parameters
-~~~
+
+```
 [
   {
     id: String,
@@ -64,10 +68,11 @@
     error: Null,
   }
 ]
-~~~
+```
 
 **getMeasurementSystem()** - returns an array of objects, where each object has... measurements
-~~~
+
+```
 [
   {
     id: String,
@@ -75,10 +80,11 @@
     title: String,
   }
 ]
-~~~
+```
 
 **getFavoritesKey()** - returns an array of objects, where each object has key,ingredients and groceries for specified user
-~~~
+
+```
 [
   {
     key:String,
@@ -88,10 +94,11 @@
     grocery_id: String
   }
 ]
-~~~
+```
 
 **getDepartmentsKey()** - returns an array of objects, where each object has generated department_id,department,created and updated date
-~~~
+
+```
 [
   {
   department_id: String
@@ -101,11 +108,11 @@
     updated_at: Date
   }
 ]
-~~~
-
+```
 
 **getUserGroceryKey()** - returns an array of objects, where each object has key and userID and groceryID
-~~~
+
+```
 [
   {
     key:String,
@@ -113,10 +120,11 @@
     grocery_id: String
   }
 ]
-~~~
+```
 
 **getItemsKey()** - returns an array of objects, where each object has key and item parameter
-~~~
+
+```
 [
   {
     key:String,
@@ -127,11 +135,11 @@
     purchase: Boolean
   }
 ]
-~~~
-
+```
 
 **getUsersKey()** - returns an array of objects, where each object has key ,useId,favs,ingredient_id and grocery_id
-~~~
+
+```
 [
   {
     key:String,
@@ -142,11 +150,12 @@
 
   }
 ]
-~~~
+```
 
 **getIngredientsKey()** - returns an array of objects, where each object has generated ingredient_id,fav,name,description,
 custom,created and updated date,id and department_id
-~~~
+
+```
 [
   {
      ingredient_id:String,
@@ -161,11 +170,12 @@ custom,created and updated date,id and department_id
 
   }
 ]
-~~~
+```
 
 **getGroceryKey()** - returns an array of objects, where each object has generated grocery_id,favs,name,img
 slug,created and updated date,id and description
-~~~
+
+```
 [
   {
      grocery_id:String,
@@ -180,4 +190,4 @@ slug,created and updated date,id and description
 
   }
 ]
-~~~
+```

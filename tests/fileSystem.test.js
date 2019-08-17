@@ -1,7 +1,7 @@
 import { write, save, makeFolder } from '../src/fileSystem';
 
 
-//@todo I think we should separate our tests into different describe blocks.
+// @todo I think we should separate our tests into different describe blocks.
 // so it will look more clear. Right now our block related to fileSystem file, not to a method as it stated.
 // 1. have 3 describe blocks for our methods.
 // 2. have different explanations at describe blocks

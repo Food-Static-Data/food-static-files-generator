@@ -5,10 +5,10 @@ const path = require('path')
 // js
 // |- sd
 // |- food-static-files-generator
-const path1 = path.join(__dirname, '../../sd/src') 
+const staticDataDirectory = path.join(__dirname, '../../sd/src') 
 console.log("--------------------------------");
 console.log("----You are in Debug mode----");
 
 
-console.log("Path to module sd: " +  path1);
-generateFiles(path1)
+console.log("Path to module sd: " +  staticDataDirectory);
+generateFiles(staticDataDirectory)

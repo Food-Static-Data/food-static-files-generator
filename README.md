@@ -9,13 +9,14 @@
 - [ ] We need to update readme here!
 - [x] ESLint configuration finish
 - [x] Husky, Lint-Staged
-- [ ] Rollup fixes in configuration
-- [ ] plugin should generate files outside
-- [ ] ESLint warnings
+- [x] Rollup fixes in configuration
+- [x] ESLint warnings
 - [x] Complete ES6 migration and test how it works
+- [ ] plugin should generate files outside
 - [ ] replace configGenerator with callbacks because all methods will be passed from the outside
 
-we need to create a plan, about what and how this new version of generator will work and where we'll save files, etc....
+we need to create a plan, about what and how this new version of generator
+will work and where we'll save files, etc.... https://github.com/GroceriStar/food-static-files-generator/issues/209
 
 ## Quick Start
 

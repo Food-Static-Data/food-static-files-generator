@@ -25,4 +25,5 @@ yarn.lock
 
 src/settings.json
 
+# Output folder that we're using for quick debug
 output

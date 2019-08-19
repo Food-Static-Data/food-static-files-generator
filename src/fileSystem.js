@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+// @TODO We get an idea to replace console.logs and console.errors with a tools
+// that is better for logging and reporting
 import { writeFile, mkdirSync, readFileSync } from "fs";
 import { stripSymbols, getFileName } from "./writeFile";
 import { isDirectory } from "./utils";
@@ -9,11 +11,11 @@ import { isDirectory } from "./utils";
  * @param {Object} data
  * @param {Function} callback
  */
+// @TODO cover a test case, when dataStr is not an array.
+// we can just pass a string there
 const write = (path, data) =>
   new Promise(resolve => {
     const dataStr = stripSymbols(data);
-    // dataStr = '[' + dataStr + ']'
-    // console.log(dataStr)
 
     writeFile(path, dataStr, err => {
       if (err) {
@@ -52,7 +54,7 @@ const read = absolutePath => {
  * @param {var} flag
  * @param {Function} callback
  * */
-// @TODO save got 5 attributes and most of them are about directory/files...
+// @TODO save got 4 attributes and most of them are about directory/files...
 // there should be another way
 const save = (folderNamePath, file, fileData, flag) => {
   const fileDataLength = fileData.length;
@@ -69,7 +71,9 @@ const save = (folderNamePath, file, fileData, flag) => {
     const result = write(elementPath, fileData[i]);
     if (!result) {
       console.log(
-        `${fileName} is the filename, ${elementPath} is the elementPath and success is false`
+        `${fileName} is the filename, ` +
+          `${elementPath} is the elementPath ` +
+          "and success is false"
       );
     }
 
@@ -89,8 +93,7 @@ const makeFolder = (path, file) => {
   const suffix = "_elements";
   const folderName = file.slice(0, -5) + suffix;
   const folderNamePath = path + folderName;
-  // @TODO if we update our import
-  // we'll be able to use just isDirectory()
+
   if (isDirectory(folderNamePath)) {
     mkdirSync(folderNamePath);
   }

@@ -19,12 +19,12 @@ const checkFilePath = async filePath => {
  * isDirectory()
  * @param {string} folderNamePath
  *  */
-const isDirectory = folderNamePath => {
-  if (fs.existsSync(folderNamePath)) {
-    return false;
-  }
-  return true;
-};
+// const isDirectory = folderNamePath => {
+//   if (fs.existsSync(folderNamePath)) {
+//     return false;
+//   }
+//   return true;
+// };
 
 /**
  * fixPath()
@@ -47,6 +47,7 @@ const readAllFiles = filePath => {
   const newPath = fixPath(filePath);
   const files = fs.readdirSync(newPath);
   files.forEach(file => {
+    // @TODO this is a very long and confusing line
     const fileStat = fs.statSync(newPath + file).isDirectory();
     if (file.slice(-5) === ".json") {
       if (!fileStat) {
@@ -166,7 +167,6 @@ const setupPath = pathToSrc => {
 
 export {
   checkFilePath,
-  isDirectory,
   readAllFiles,
   getListContent,
   fixPath,

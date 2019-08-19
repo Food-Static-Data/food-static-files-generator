@@ -1,6 +1,6 @@
 import { mkdirSync } from "fs";
-import { write } from "./fileSystem";
-import { isDirectory } from "./utils";
+import { write, isFolderExists } from "./fileSystem";
+// import { isDirectory } from "./utils";
 import config from "../projects/configGenerator";
 
 // import { setupPath } from './generateArray';
@@ -21,7 +21,7 @@ const generateFiles = pathToSrc => {
     //   var path = './output/' + fileName + '.json';
     const folderPath = `${pathToSrc}/data/${folder}`;
 
-    if (isDirectory(folderPath)) {
+    if (isFolderExists(folderPath)) {
       mkdirSync(folderPath);
     }
 

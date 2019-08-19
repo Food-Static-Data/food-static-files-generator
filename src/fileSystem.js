@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 // @TODO We get an idea to replace console.logs and console.errors with a tools
 // that is better for logging and reporting
-import { writeFile, mkdirSync, readFileSync } from "fs";
+import { writeFile, mkdirSync, readFileSync, existsSync } from "fs";
 import { stripSymbols, getFileName } from "./writeFile";
-import { isDirectory } from "./utils";
+// import { isDirectory } from "./utils";
 
 /**
  * Write in file
@@ -86,6 +86,18 @@ const save = (folderNamePath, file, fileData, flag) => {
 };
 
 /**
+ * isFolderExists prev. isDirectory()
+ * @param {string} folderNamePath
+ *
+ */
+const isFolderExists = folderNamePath => {
+  if (existsSync(folderNamePath)) {
+    return false;
+  }
+  return true;
+};
+
+/**
  * @param {String} path
  * @param {String} file
  */
@@ -94,10 +106,10 @@ const makeFolder = (path, file) => {
   const folderName = file.slice(0, -5) + suffix;
   const folderNamePath = path + folderName;
 
-  if (isDirectory(folderNamePath)) {
+  if (isFolderExists(folderNamePath)) {
     mkdirSync(folderNamePath);
   }
   return folderNamePath;
 };
 
-export { write, read, save, makeFolder };
+export { write, read, save, makeFolder, isFolderExists };

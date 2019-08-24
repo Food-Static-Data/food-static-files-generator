@@ -168,10 +168,10 @@ const setupPath = pathToSrc => {
 export {
   checkFilePath,
   readAllFiles,
-  getListContent,
   fixPath,
   getList,
   getFileInfo,
+  getListContent,
   generateID,
   generateDate,
   generateArrWithId,

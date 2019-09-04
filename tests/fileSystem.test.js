@@ -1,6 +1,10 @@
 import fs from "fs";
 import { write, save, makeFolder } from "../src/fileSystem";
 
+// @TODO I think it will be better to have all inner describe blocks separated from this main describe block.
+// actually, I think we don't need that one main block.
+// for example, if we need a place for creating new variables, we can use jest methods for `before tests` section.
+
 describe("testing fileSystem", () => {
   const testFolder = "./output/";
   const testFile = "test.json";
@@ -8,6 +12,7 @@ describe("testing fileSystem", () => {
   const testFileContent = [{ name: "Test" }];
 
   describe("testing function write()", () => {
+    
     // test write()
     test("testing successul case", async () => {
       const result = await write(testFullPath, testFileContent);
@@ -17,6 +22,7 @@ describe("testing fileSystem", () => {
     });
 
     test("testing invalid file name", async () => {
+      // I think this line can cause an error. But I can be wrong
       await expect(write(null, testFileContent)).rejects.toBeTruthy(); // throw an exception
     });
 
@@ -29,6 +35,7 @@ describe("testing fileSystem", () => {
   });
 
   describe("testing function save()", () => {
+    
     // test save()
     test("testing function save()", async () => {
       const result = await save(
@@ -42,6 +49,7 @@ describe("testing fileSystem", () => {
   });
 
   describe("testing function makeFolder()", () => {
+    
     // test makeFolder()
     test("testing makeFolder()", async () => {
       const result = await makeFolder(testFolder, testFile);

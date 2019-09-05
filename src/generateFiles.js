@@ -1,19 +1,19 @@
-import { mkdirSync } from "fs";
-import { write, isFolderExists } from "./fileSystem";
+import { mkdirSync } from 'fs';
+import { write, isFolderExists } from './fileSystem';
 // import { isDirectory } from "./utils";
-import config from "../projects/configGenerator";
+import config from '../projects/configGenerator';
 
 // import { setupPath } from './generateArray';
 // import { setupPathMeasurements } from './measurements';
 
 // @TODO I don't like that we have all of these path manipulations inside of this method
 // folderData = './src/data/'
-const generateFiles = pathToSrc => {
+const generateFiles = (pathToSrc) => {
   let path;
   // const files = setupPath(pathToSrc);
   // setupPathMeasurements(pathToSrc);
 
-  config.map(settings => {
+  config.map((settings) => {
     const { fileName, data } = settings;
     const uppercaseFileName = fileName.charAt(0).toUpperCase();
 

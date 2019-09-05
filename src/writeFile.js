@@ -6,18 +6,18 @@
  * @param {Object} data a json object
  *
  */
-const stripSymbols = data => {
+const stripSymbols = (data) => {
   let dataStr = JSON.stringify(data);
 
   const replaceList = [
     ['/{"/g', '{ "'],
     ['/{"/g', '{ " '],
-    ["/},{/g", " },\n{"],
+    ['/},{/g', ' },\n{'],
     ['/":/g', '": '],
-    ['/,"/g', ',\n "']
+    ['/,"/g', ',\n "'],
   ];
 
-  replaceList.forEach(replacer => {
+  replaceList.forEach((replacer) => {
     dataStr = dataStr.replace(replacer[0], replacer[1]);
   });
 
@@ -28,10 +28,10 @@ const stripSymbols = data => {
  * fixFileName()
  * @param {string} fileName
  */
-const fixFileName = fileName => {
+const fixFileName = (fileName) => {
   let correctedFileName;
 
-  correctedFileName = fileName.replace(/ /g, "_"); // Replace space with underscore
+  correctedFileName = fileName.replace(/ /g, '_'); // Replace space with underscore
   correctedFileName = fileName.toLowerCase(); // Maintain Uniformity
 
   return correctedFileName;
@@ -68,9 +68,9 @@ const updateContent = (content, keys) => {
 
   // @TODO error  Assignment to property of function parameter 'obj'
   // no - param - reassign;
-  contentCopy.forEach(contentElem => {
-    contentElem.forEach(obj => {
-      keys.forEach(key => {
+  contentCopy.forEach((contentElem) => {
+    contentElem.forEach((obj) => {
+      keys.forEach((key) => {
         delete obj[key];
       });
     });

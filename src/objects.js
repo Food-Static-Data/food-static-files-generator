@@ -2,11 +2,13 @@
 
 // @TODO replace with actual methods
 // as we did it at other files
-import { basename, parse, extname } from "path";
-import { fixPath, readAllFiles } from "./utils";
+import { basename, parse, extname } from 'path';
+import { fixPath, readAllFiles } from './utils';
 
-import { read, write, save, makeFolder } from "./fileSystem";
-import { updateContent } from "./writeFile";
+import {
+  read, write, save, makeFolder,
+} from './fileSystem';
+import { updateContent } from './writeFile';
 
 // @TODO update with promise
 /**
@@ -14,24 +16,23 @@ import { updateContent } from "./writeFile";
  * @param {String} path Path of folder where all splitted files are stored
  * @param {var} keys List of keys that are to be removed
  */
-const combine = (path, keys) =>
-  new Promise(resolve => {
-    const suffix = "_combined.json";
-    const updatedPath = fixPath(path);
+const combine = (path, keys) => new Promise((resolve) => {
+  const suffix = '_combined.json';
+  const updatedPath = fixPath(path);
 
-    // read all json files
-    // @TODO if we change our import we can call readAllFiles()
-    let content = readAllFiles(updatedPath);
-    // modifying structure
-    content = updateContent(content, keys);
-    // for example: elements_combined.json
-    // @TODO long line...
-    const fileNamePath = updatedPath + basename(updatedPath) + suffix;
-    // saving
-    write(fileNamePath, content);
+  // read all json files
+  // @TODO if we change our import we can call readAllFiles()
+  let content = readAllFiles(updatedPath);
+  // modifying structure
+  content = updateContent(content, keys);
+  // for example: elements_combined.json
+  // @TODO long line...
+  const fileNamePath = updatedPath + basename(updatedPath) + suffix;
+  // saving
+  write(fileNamePath, content);
 
-    resolve();
-  });
+  resolve();
+});
 
 // @TODO update with promise instead of callbacks
 /**
@@ -52,8 +53,8 @@ function split(fullPath, flag = 1, keys = [], callback) {
   const file = basename(fullPath);
   const path = parse(fullPath).dir;
 
-  if (extname(file) !== ".json") {
-    console.log("Require .json file.");
+  if (extname(file) !== '.json') {
+    console.log('Require .json file.');
     return;
   }
 

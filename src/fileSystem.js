@@ -1,8 +1,10 @@
 /* eslint-disable no-console */
 // @TODO We get an idea to replace console.logs and console.errors with a tools
 // that is better for logging and reporting
-import { writeFile, mkdirSync, readFileSync, existsSync } from "fs";
-import { stripSymbols, getFileName } from "./writeFile";
+import {
+  writeFile, mkdirSync, readFileSync, existsSync,
+} from 'fs';
+import { stripSymbols, getFileName } from './writeFile';
 // import { isDirectory } from "./utils";
 
 /**
@@ -13,33 +15,32 @@ import { stripSymbols, getFileName } from "./writeFile";
  */
 // @TODO cover a test case, when dataStr is not an array.
 // we can just pass a string there
-const write = (path, data) =>
-  new Promise(resolve => {
-    const dataStr = stripSymbols(data);
+const write = (path, data) => new Promise((resolve) => {
+  const dataStr = stripSymbols(data);
 
-    writeFile(path, dataStr, err => {
-      if (err) {
-        console.error(err);
-        resolve(false);
-      } else {
-        console.info(`${path} file generated successfully!`);
-        resolve(true);
-      }
-    });
+  writeFile(path, dataStr, (err) => {
+    if (err) {
+      console.error(err);
+      resolve(false);
+    } else {
+      console.info(`${path} file generated successfully!`);
+      resolve(true);
+    }
   });
+});
 
 /**
  * read()
  * @param {string} absolutePath
  *
  */
-const read = absolutePath => {
+const read = (absolutePath) => {
   console.log(absolutePath);
 
   // @TODO cover this case - absolutePath
   // return file but it's empty. We need an if here
   const data = readFileSync(absolutePath);
-  if (data === "") {
+  if (data === '') {
     console.log(`${absolutePath} returned empty`);
   }
   console.log(data);
@@ -71,16 +72,16 @@ const save = (folderNamePath, file, fileData, flag) => {
     const result = write(elementPath, fileData[i]);
     if (!result) {
       console.log(
-        `${fileName} is the filename, ` +
-          `${elementPath} is the elementPath ` +
-          "and success is false"
+        `${fileName} is the filename, `
+          + `${elementPath} is the elementPath `
+          + 'and success is false',
       );
     }
 
     success = success && result;
   }
 
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     resolve(success);
   });
 };
@@ -90,7 +91,7 @@ const save = (folderNamePath, file, fileData, flag) => {
  * @param {string} folderNamePath
  *
  */
-const isFolderExists = folderNamePath => {
+const isFolderExists = (folderNamePath) => {
   if (existsSync(folderNamePath)) {
     return false;
   }
@@ -102,7 +103,7 @@ const isFolderExists = folderNamePath => {
  * @param {String} file
  */
 const makeFolder = (path, file) => {
-  const suffix = "_elements";
+  const suffix = '_elements';
   const folderName = file.slice(0, -5) + suffix;
   const folderNamePath = path + folderName;
 
@@ -112,4 +113,6 @@ const makeFolder = (path, file) => {
   return folderNamePath;
 };
 
-export { write, read, save, makeFolder, isFolderExists };
+export {
+  write, read, save, makeFolder, isFolderExists,
+};

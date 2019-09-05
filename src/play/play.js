@@ -20,11 +20,11 @@
 // })
 
 // -------------------------------------------------------
-const path = require("path");
-const { generateFiles } = require("../index");
+const path = require('path');
+const { generateFiles } = require('../index');
 // const  { generateFiles } = require('../../dist/index.cjs')
 
-const path1 = path.join(__dirname, "../../../sd/src");
+const path1 = path.join(__dirname, '../../../sd/src');
 
 console.log(path1);
 generateFiles(path1);

@@ -12,7 +12,7 @@
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage",
     "lint": "eslint ./src --fix --ignore-pattern \"./package.json\" ",
-    "format": "prettier ./src/**",
+    "format": "prettier ./src/** --write",
     "formato": "pretty-quick --staged",
     "play": "node ./src/play/play.js",
     "debug:generator": "rollup -c && node ./debug/runGenerator.js",

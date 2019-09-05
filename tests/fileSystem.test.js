@@ -1,59 +1,50 @@
 import fs from "fs";
 import { write, save, makeFolder } from "../src/fileSystem";
 
-// @TODO I think it will be better to have all inner describe blocks separated from this main describe block.
-// actually, I think we don't need that one main block.
-// for example, if we need a place for creating new variables, we can use jest methods for `before tests` section.
+const testFolder = "./output/";
+const testFile = "test.json";
+const testFullPath = testFolder + testFile;
+const testFileContent = [{ name: "Test" }];
 
-describe("testing fileSystem", () => {
-  const testFolder = "./output/";
-  const testFile = "test.json";
-  const testFullPath = testFolder + testFile;
-  const testFileContent = [{ name: "Test" }];
-
-  describe("testing function write()", () => {
-    
-    // test write()
-    test("testing successul case", async () => {
-      const result = await write(testFullPath, testFileContent);
-      expect(result).toBe(true);
-      expect(fs.existsSync(testFullPath)).toBe(true);
-      fs.unlinkSync(testFullPath);
-    });
-
-    test("testing invalid file name", async () => {
-      // I think this line can cause an error. But I can be wrong
-      await expect(write(null, testFileContent)).rejects.toBeTruthy(); // throw an exception
-    });
-
-    test("testing null content", async () => {
-      const result = await write(testFullPath, null);
-      expect(result).toBe(true);
-      expect(fs.existsSync(testFullPath)).toBe(true);
-      fs.unlinkSync(testFullPath);
-    });
+describe("testing function write()", () => {
+  // test write()
+  test("testing successul case", async () => {
+    const result = await write(testFullPath, testFileContent);
+    expect(result).toBe(true);
+    expect(fs.existsSync(testFullPath)).toBe(true);
+    fs.unlinkSync(testFullPath);
   });
 
-  describe("testing function save()", () => {
-    
-    // test save()
-    test("testing function save()", async () => {
-      const result = await save(
-        testFolder,
-        testFile,
-        testFileContent.toString(),
-        false
-      );
-      expect(result).toBe(true);
-    });
+  test("testing invalid file name", async () => {
+    // I think this line can cause an error. But I can be wrong
+    await expect(write(null, testFileContent)).rejects.toBeTruthy(); // throw an exception
   });
 
-  describe("testing function makeFolder()", () => {
-    
-    // test makeFolder()
-    test("testing makeFolder()", async () => {
-      const result = await makeFolder(testFolder, testFile);
-      expect(result).toBe(`${testFolder}test_elements`);
-    });
+  test("testing null content", async () => {
+    const result = await write(testFullPath, null);
+    expect(result).toBe(true);
+    expect(fs.existsSync(testFullPath)).toBe(true);
+    fs.unlinkSync(testFullPath);
+  });
+});
+
+describe("testing function save()", () => {
+  // test save()
+  test("testing function save()", async () => {
+    const result = await save(
+      testFolder,
+      testFile,
+      testFileContent.toString(),
+      false
+    );
+    expect(result).toBe(true);
+  });
+});
+
+describe("testing function makeFolder()", () => {
+  // test makeFolder()
+  test("testing makeFolder()", async () => {
+    const result = await makeFolder(testFolder, testFile);
+    expect(result).toBe(`${testFolder}test_elements`);
   });
 });

@@ -10,11 +10,22 @@
 //   }
 // }
 
+// module.exports = {
+//   "**/*.+(js|json)": [
+//     //   'prettier --write',
+//     //   'jest --findRelatedTests',
+//     "npm run lint",
+//     "git add"
+//   ]
+// }; "lint-staged": "lint-staged -c ./lint-staged.config.js",
+
 module.exports = {
-  "**/*.+(js|json)": [
+  '**/*.+(js)': [
+    //   'eslint --fix',
     //   'prettier --write',
     //   'jest --findRelatedTests',
-    "npm run lint",
-    "git add"
-  ]
+    'pretty-quick --staged',
+    'npm run lint',
+    'git add',
+  ],
 };

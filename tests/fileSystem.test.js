@@ -1,6 +1,7 @@
 import fs from "fs";
 import { write, save, makeFolder } from "../src/fileSystem";
 
+// @TODO use before hook for our variables later. https://stackoverflow.com/questions/50580235/declaring-variable-in-beforeeach
 const testFolder = "./output/";
 const testFile = "test.json";
 const testFullPath = testFolder + testFile;

@@ -4,8 +4,8 @@
 import {
   writeFile, mkdirSync, readFileSync, existsSync,
 } from 'fs';
+import isValid from 'is-valid-path';
 import { stripSymbols, getFileName } from './writeFile';
-var isValid = require('is-valid-path');
 
 // import { isDirectory } from "./utils";
 
@@ -18,10 +18,9 @@ var isValid = require('is-valid-path');
 // @TODO cover a test case, when dataStr is not an array.
 // we can just pass a string there
 const write = (path, data) => new Promise((resolve) => {
-  if(!isValid(path))
-    {
-        console.log("path is not valid")
-    }
+  if (!isValid(path)) {
+    console.log('path is not valid');
+  }
   const dataStr = stripSymbols(data);
 
   writeFile(path, dataStr, (err) => {

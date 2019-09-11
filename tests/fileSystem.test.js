@@ -7,11 +7,16 @@ import {
   isFolderExists,
 } from '../src/fileSystem';
 
-// @TODO use before hook for our variables later. https://stackoverflow.com/questions/50580235/declaring-variable-in-beforeeach
+// @TODO use before hook for our variables later.
+// seec https://stackoverflow.com/questions/50580235/declaring-variable-in-beforeeach
 const testFolder = './output/';
 const testFile = 'test.json';
 const testFullPath = testFolder + testFile;
 const testFileContent = [{ name: 'Test' }];
+
+// @TODO next step for us will be to extend our test with real cases.
+// i.e. instead of passing simple array into test, we can actually run tests with our real
+// files / objects
 
 describe('testing function write()', () => {
   // test write()
@@ -65,6 +70,9 @@ describe('testing function isFolderExists()', () => {
   });
 
   test('test isFolderExists() returns false', async () => {
+    // @TODO lets make a const variable for path to folder and use
+    // some important folders(few), like `src` or `dist`(sometimes dist
+    // are actually removed, cleaned up)
     const result = isFolderExists('./nofolderxxx');
     expect(result).toBe(false);
   });

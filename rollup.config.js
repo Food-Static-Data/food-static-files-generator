@@ -1,20 +1,28 @@
-import commonjs from "rollup-plugin-commonjs";
-import resolve from "rollup-plugin-node-resolve";
-import builtins from "rollup-plugin-node-builtins";
-import replace from "rollup-plugin-replace";
-import babel from "rollup-plugin-babel";
-import pkg from "./package.json";
-import eslint from "rollup-plugin-eslint";
+import commonjs from 'rollup-plugin-commonjs';
+import resolve from 'rollup-plugin-node-resolve';
+import builtins from 'rollup-plugin-node-builtins';
+import replace from 'rollup-plugin-replace';
+import babel from 'rollup-plugin-babel';
+// import eslint from 'rollup-plugin-eslint';
+import pkg from './package.json';
 
 // not all files you want to resolve are .js files
 // Default: [ '.mjs', '.js', '.json', '.node' ]
-const extensions = [".js"];
+const extensions = ['.js'];
 
-const name = "StaticFilesGenerator";
+const name = 'StaticFilesGenerator';
 
 // packages that should be treated as external dependencies, not bundled
 // e.g. ['axios']
-const external = ["fs", "path", "path-exists", "uuid/v1", "lodash", "dayjs"];
+const external = [
+  'fs',
+  'path',
+  'path-exists',
+  'uuid/v1',
+  'lodash',
+  'dayjs',
+  'is-valid-path',
+];
 
 // list of plugins used during building process
 const plugins = () => [
@@ -25,18 +33,18 @@ const plugins = () => [
     // the fields to scan in a package.json to determine the entry point
     // if this list contains "browser", overrides specified in "pkg.browser"
     // will be used
-    mainFields: ["module", "main", "browser"] // Default: ['module', 'main']
+    mainFields: ['module', 'main', 'browser'], // Default: ['module', 'main']
   }),
 
-  //@TODO maybe we should do it for production only? not sure
+  // @TODO maybe we should do it for production only? not sure
   replace({
-    include: ["node_modules/uuid/**"],
-    delimiters: ["", ""],
+    include: ['node_modules/uuid/**'],
+    delimiters: ['', ''],
     values: {
-      "crypto.randomBytes": "require('randombytes')"
+      'crypto.randomBytes': 'require(\'randombytes\')',
       //   "__BUILD_DATE__": () => new Date().toISOString(),
       //   "__VERSION__": fs.readFileSync("version", "utf8").trim()
-    }
+    },
   }),
 
   // Allows verification of entry point and all imported files with ESLint.
@@ -51,15 +59,15 @@ const plugins = () => [
 
   // Allow bundling cjs modules. Rollup doesn't understand cjs
   commonjs({
-    ignore: ["conditional-runtime-dependency"]
+    ignore: ['conditional-runtime-dependency'],
   }),
 
   // use Babel to compile TypeScript/JavaScript files to ES5
   babel({
     extensions,
-    include: ["src/*"],
+    include: ['src/*'],
     // ignore node_modules/ in transpilation process
-    exclude: "node_modules/**",
+    exclude: 'node_modules/**',
     // ignore .babelrc (if defined) and use options defined here
     // babelrc: false,
     // use recommended babel-preset-env without es modules enabled
@@ -69,10 +77,10 @@ const plugins = () => [
     // plugins: ['babel-plugin-transform-object-rest-spread'],
     // removes comments from output
     comments: false,
-    runtimeHelpers: true
+    runtimeHelpers: true,
   }),
 
-  builtins()
+  builtins(),
   // remove flow annotations from output
   // flow(),
 
@@ -96,40 +104,41 @@ const plugins = () => [
 
 export default {
   // source file / entrypoint
-  input: "src/index.js",
+  input: 'src/index.js',
   // output configuration
   output: [
     {
       // output file location
       file: pkg.main,
       // format of generated JS file, also: esm, and others are available
-      format: "cjs"
+      format: 'cjs',
     },
     {
       // output file location
       file: pkg.module,
       // format of generated JS file, also: esm, and others are available
-      format: "es",
+      format: 'es',
       // format: 'esm',
       // add sourcemaps
-      sourcemap: true
+      sourcemap: true,
     },
     {
       // output file location
       file: pkg.browser,
       // format of generated JS file, also: esm, and others are available
-      format: "iife",
+      format: 'iife',
       // name visible for other scripts
-      name
+      name,
       // https://rollupjs.org/guide/en#output-globals-g-globals
       // globals: {}
-    }
+    },
   ],
 
-  // Specify here external modules which you don't want to include in your bundle (for instance: 'lodash', 'moment' etc.)
+  // Specify here external modules which you don't want to include
+  // in your bundle (for instance: 'lodash', 'moment' etc.)
   // https://rollupjs.org/guide/en#external-e-external
   external,
 
   // build es modules or commonjs
-  plugins: plugins()
+  plugins: plugins(),
 };

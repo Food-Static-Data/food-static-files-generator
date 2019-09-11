@@ -16,17 +16,6 @@ const checkFilePath = async (filePath) => {
 };
 
 /**
- * isDirectory()
- * @param {string} folderNamePath
- *  */
-// const isDirectory = folderNamePath => {
-//   if (fs.existsSync(folderNamePath)) {
-//     return false;
-//   }
-//   return true;
-// };
-
-/**
  * fixPath()
  * @param {String} path
  */
@@ -42,6 +31,9 @@ const fixPath = (filePath) => {
  * For readAllFiles()
  * @param {String} filePath
  */
+// @TODO as we removed isDirectory - this method wouldn't work. 
+// let's figure out what to do.
+// i think this method should work, used and moved into fileSystem.js
 const readAllFiles = (filePath) => {
   const content = [];
   const newPath = fixPath(filePath);

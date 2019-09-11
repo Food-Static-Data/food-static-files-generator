@@ -44,6 +44,7 @@ const fixFileName = (fileName) => {
  * @param {var} flag
  * @param {var} index
  */
+// @TODO if we use fileData.name - why we didn't just pass it here?
 const getFileName = (file, fileData, flag, index) => {
   let fileName;
   if (flag === 1) {

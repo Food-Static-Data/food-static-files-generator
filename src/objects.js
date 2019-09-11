@@ -22,6 +22,7 @@ const combine = (path, keys) => new Promise((resolve) => {
 
   // read all json files
   // @TODO if we change our import we can call readAllFiles()
+  // @TODO as we removed isDirectory method at prev releases - this method will break.
   let content = readAllFiles(updatedPath);
   // modifying structure
   content = updateContent(content, keys);

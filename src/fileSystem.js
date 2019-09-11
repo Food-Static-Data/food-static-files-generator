@@ -90,12 +90,7 @@ const save = (folderNamePath, file, fileData, flag) => {
  * @param {string} folderNamePath
  *
  */
-const isFolderExists = folderNamePath => {
-  if (existsSync(folderNamePath)) {
-    return false;
-  }
-  return true;
-};
+const isFolderExists = folderNamePath => existsSync(folderNamePath);
 
 /**
  * @param {String} path
@@ -106,7 +101,7 @@ const makeFolder = (path, file) => {
   const folderName = file.slice(0, -5) + suffix;
   const folderNamePath = path + folderName;
 
-  if (isFolderExists(folderNamePath)) {
+  if (!isFolderExists(folderNamePath)) {
     mkdirSync(folderNamePath);
   }
   return folderNamePath;

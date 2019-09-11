@@ -7,7 +7,6 @@ import {
 import isValid from 'is-valid-path';
 import { stripSymbols, getFileName } from './writeFile';
 
-// import { isDirectory } from "./utils";
 
 /**
  * Write in file

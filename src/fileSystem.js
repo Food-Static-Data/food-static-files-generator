@@ -2,7 +2,12 @@
 // @TODO We get an idea to replace console.logs and console.errors with a tools
 // that is better for logging and reporting
 import {
-  writeFile, mkdirSync, readFileSync, existsSync,
+  writeFile,
+  mkdirSync,
+  readFileSync,
+  existsSync,
+  readdirSync,
+  statSync,
 } from 'fs';
 import { stripSymbols, getFileName } from './writeFile';
 // import { isDirectory } from "./utils";
@@ -99,6 +104,18 @@ const isFolderExists = (folderNamePath) => {
 };
 
 /**
+ * @param {string} path
+ *
+ */
+const dirSync = (filepath) => readdirSync(filepath);
+
+/**
+ * @param {string} path
+ *
+ */
+const syncStats = (filepath) => statSync(filepath);
+
+/**
  * @param {String} path
  * @param {String} file
  */
@@ -114,5 +131,5 @@ const makeFolder = (path, file) => {
 };
 
 export {
-  write, read, save, makeFolder, isFolderExists,
+  write, read, save, makeFolder, isFolderExists, dirSync, syncStats,
 };

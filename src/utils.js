@@ -3,9 +3,9 @@
 import pathExists from 'path-exists';
 import uuidv1 from 'uuid/v1';
 import dayjs from 'dayjs';
-import fs from 'fs';
 import _ from 'lodash';
 import path, { resolve } from 'path';
+import { read, dirSync, syncStats } from './fileSystem';
 
 const checkFilePath = async (filePath) => {
   if (await pathExists(filePath)) {
@@ -45,14 +45,13 @@ const fixPath = (filePath) => {
 const readAllFiles = (filePath) => {
   const content = [];
   const newPath = fixPath(filePath);
-  const files = fs.readdirSync(newPath);
+  const files = dirSync(newPath);
   files.forEach((file) => {
     // @TODO this is a very long and confusing line
-    const fileStat = fs.statSync(newPath + file).isDirectory();
+    const fileStat = syncStats(newPath + file).isDirectory();
     if (file.slice(-5) === '.json') {
       if (!fileStat) {
-        let data = fs.readFileSync(newPath + file);
-        data = JSON.parse(data);
+        const data = read(newPath + file);
         content.push(data);
       }
     }
@@ -71,8 +70,7 @@ const getListContent = (filePath, fileName = 'undefined') => {
     return readAllFiles(filePath);
   }
   // read specified file
-  let data = fs.readFileSync(filePath + fileName);
-  data = JSON.parse(data);
+  const data = read(filePath + fileName);
   return data;
 };
 
@@ -84,9 +82,9 @@ const getListContent = (filePath, fileName = 'undefined') => {
 // developer of this code - it looks confusing for me
 const getList = (filePath) => {
   const list = [];
-  const files = fs.readdirSync(filePath);
+  const files = dirSync(filePath);
   files.forEach((file) => {
-    const fileStat = fs.statSync(filePath + file).isDirectory();
+    const fileStat = syncStats(filePath + file).isDirectory();
     if (!fileStat) {
       list.push(file);
     }

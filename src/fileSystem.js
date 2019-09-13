@@ -44,6 +44,9 @@ const write = (path, data) => new Promise((resolve) => {
  */
 const read = (absolutePath) => {
   console.log(absolutePath);
+  if (!isValid(absolutePath)) {
+    console.log('path is not valid');
+  }
 
   // @TODO cover this case - absolutePath
   // return file but it's empty. We need an if here
@@ -66,6 +69,9 @@ const read = (absolutePath) => {
 // @TODO save got 4 attributes and most of them are about directory/files...
 // there should be another way
 const save = (folderNamePath, file, fileData, flag) => {
+  if (!isValid(folderNamePath)) {
+    console.log('path is not valid');
+  }
   const fileDataLength = fileData.length;
   let success = true;
 
@@ -118,6 +124,9 @@ const syncStats = (filepath) => statSync(filepath);
  * @param {String} file
  */
 const makeFolder = (path, file) => {
+  if (!isValid(path)) {
+    console.log('path is not valid');
+  }
   const suffix = '_elements';
   const folderName = file.slice(0, -5) + suffix;
   const folderNamePath = path + folderName;

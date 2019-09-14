@@ -31,7 +31,7 @@ const fixPath = (filePath) => {
  * For readAllFiles()
  * @param {String} filePath
  */
-// @TODO as we removed isDirectory - this method wouldn't work. 
+// @TODO as we removed isDirectory - this method wouldn't work.
 // let's figure out what to do.
 // i think this method should work, used and moved into fileSystem.js
 const readAllFiles = (filePath) => {
@@ -67,16 +67,16 @@ const getListContent = (filePath, fileName = 'undefined') => {
 };
 
 /**
- * For getList()
+ * For getOnlyFiles()
  * @param {String} filePath
  */
 // @TODO get list of what? maybe we can name it better? as not a
 // developer of this code - it looks confusing for me
-const getList = (filePath) => {
+const getOnlyFiles = (filePath) => {
   const list = [];
   const files = dirSync(filePath);
   files.forEach((file) => {
-    const fileStat = syncStats(filePath + file).isDirectory();
+    const fileStat = syncStats(`${filePath}/${file}`).isDirectory();
     if (!fileStat) {
       list.push(file);
     }
@@ -102,7 +102,7 @@ const getFileInfo = (filePath, flag = 0, fileName = 'undefined') => {
     return getListContent(pathCopy, fileName);
   }
   // return list of files
-  return getList(pathCopy);
+  return getOnlyFiles(pathCopy);
 };
 
 const generateID = () => uuidv1();
@@ -158,7 +158,7 @@ export {
   checkFilePath,
   readAllFiles,
   fixPath,
-  getList,
+  getOnlyFiles,
   getFileInfo,
   getListContent,
   generateID,

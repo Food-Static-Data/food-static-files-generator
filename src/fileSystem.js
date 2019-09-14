@@ -24,7 +24,14 @@ const write = (path, data) => new Promise((resolve) => {
   if (!isValid(path)) {
     console.log('path is not valid');
   }
-  const dataStr = stripSymbols(data);
+
+  let dataStr;
+
+  if (typeof data === 'string') {
+    dataStr = data;
+  } else {
+    dataStr = stripSymbols(data);
+  }
 
   writeFile(path, dataStr, (err) => {
     if (err) {

@@ -28,7 +28,7 @@
 
 ```
 
-#### getList
+#### getOnlyFiles
 
 ```
 

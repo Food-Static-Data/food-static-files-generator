@@ -1,5 +1,9 @@
 /* eslint-disable */
+
 const path = require("path");
+
+// @TODO should not work at this moment.
+// I'm making some changes so it will break
 const { generateFiles } = require("../dist/index.cjs");
 
 // module sd and food-static-files-generator should be in one folder

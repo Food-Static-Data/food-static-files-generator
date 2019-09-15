@@ -1,4 +1,4 @@
-./dist/**
-./debug/**
-./projects/**
-./projects3.0/**
+/dist/*.js
+/debug/*.js
+/projects/*.js
+/projects3.0/*.js

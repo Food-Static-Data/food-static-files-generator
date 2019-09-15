@@ -1,7 +1,8 @@
 import { mkdirSync } from 'fs';
 import { write, isFolderExists } from './fileSystem';
 // import { isDirectory } from "./utils";
-import config from '../projects/configGenerator';
+// @TODO Hmm, I'm updating line below, but don't feel well about it.
+import config from '../projects3.0/configGenerator';
 
 // import { setupPath } from './generateArray';
 // import { setupPathMeasurements } from './measurements';

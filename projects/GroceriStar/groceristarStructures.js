@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { map } from "lodash";
 import { generateArrWithId, setupPath } from "../../src/utils";
 

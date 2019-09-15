@@ -1,7 +1,7 @@
-const _ = require('lodash');
+/* eslint-disable */
+const _ = require("lodash");
 // const { generateID, generateDate } = require('../../../src/utils.js')
-const { generateID, generateDate } = require('@utils.js');
-
+const { generateID, generateDate } = require("@utils.js");
 
 // it should be grabbed from sd
 const {
@@ -11,8 +11,8 @@ const {
   items,
   users,
   ingredients,
-  grocery,
-} = require('../../../src/files.js');
+  grocery
+} = require("../../../src/files.js");
 //
 // const {
 //   favorites,
@@ -26,21 +26,22 @@ const {
 
 // @TODO as we may need to be able to call this function from the
 // outside of this project - we should move this method outside
-const getFileKey = file => _.map(file, (item, index) => ({
-  key: generateID(),
-  ...item,
-}));
+const getFileKey = file =>
+  _.map(file, (item, index) => ({
+    key: generateID(),
+    ...item
+  }));
 
 const getFavoritesKey = () => getFileKey(favorites);
 
-const getDepartmentsKey = function () {
+const getDepartmentsKey = function() {
   const results = departments;
   return results.map((item, index) => ({
     departmentId: generateID(),
     name: item.name,
-    desc: 'description for department1', // @TODO this was a blank field, but it cannot look like this all the time
+    desc: "description for department1", // @TODO this was a blank field, but it cannot look like this all the time
     created_at: generateDate(),
-    updated_at: generateDate(),
+    updated_at: generateDate()
   }));
 };
 
@@ -48,18 +49,18 @@ const getUserGroceryKey = () => getFileKey(userGrocery);
 
 const getItemsKey = () => getFileKey(items);
 
-const getUsersKey = function () {
+const getUsersKey = function() {
   // let results = users
 
   return users.map((item, index) => ({
     userId: generateID(),
     favs: false,
     ingredientId: 1,
-    groceryId: 1,
+    groceryId: 1
   }));
 };
 
-const getIngredientsKey = function (limit = false) {
+const getIngredientsKey = function(limit = false) {
   let results = ingredients;
 
   if (limit) {
@@ -68,18 +69,18 @@ const getIngredientsKey = function (limit = false) {
 
   return results.map((item, index) => ({
     ingredientId: generateID(),
-    favs: '',
+    favs: "",
     name: item.name,
-    description: 'description', // @TODO this was a blank field before, but it cannot be as it is all the time
+    description: "description", // @TODO this was a blank field before, but it cannot be as it is all the time
     custom: false,
     created_at: generateDate(),
     updated_at: generateDate(),
     id: 1, // @TODO this method should be extended, in order to get connection with ingredients and departments
-    department_id: 1,
+    department_id: 1
   }));
 };
 
-const getGroceryKey = function () {
+const getGroceryKey = function() {
   // let results = grocery
 
   return grocery.map((item, index) => ({
@@ -91,7 +92,7 @@ const getGroceryKey = function () {
     created_at: generateDate(),
     updated_at: generateDate(),
     id: 1,
-    favs: false,
+    favs: false
   }));
 };
 
@@ -102,5 +103,5 @@ module.exports = {
   getItemsKey,
   getUsersKey,
   getIngredientsKey,
-  getGroceryKey,
+  getGroceryKey
 };

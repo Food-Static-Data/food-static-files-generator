@@ -8,5 +8,12 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@groceristar/sd-wrapper": "^4.14.3",
+    "@groceristar/static-data-generator": "^0.1.19",
+    "lodash": "^4.17.15",
+    "nodemon": "^1.19.2",
+    "path": "^0.12.7"
+  }
 }

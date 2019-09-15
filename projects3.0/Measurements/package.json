@@ -8,5 +8,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@groceristar/static-data-generator": "^0.1.19",
+    "nodemon": "^1.19.2"
+  }
 }

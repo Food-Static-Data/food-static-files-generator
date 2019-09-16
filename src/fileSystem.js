@@ -20,6 +20,7 @@ import { stripSymbols, getFileName } from './writeFile';
 const write = (path, data) => new Promise((resolve) => {
   if (!isValid(path)) {
     console.log('path is not valid');
+    return;
   }
   const dataStr = stripSymbols(data);
 
@@ -43,6 +44,7 @@ const read = (absolutePath) => {
   console.log(absolutePath);
   if (!isValid(absolutePath)) {
     console.log('path is not valid');
+    return;
   }
 
   // @TODO cover this case - absolutePath
@@ -68,6 +70,7 @@ const read = (absolutePath) => {
 const save = (folderNamePath, file, fileData, flag) => {
   if (!isValid(folderNamePath)) {
     console.log('path is not valid');
+    return;
   }
   const fileDataLength = fileData.length;
   let success = true;
@@ -116,6 +119,7 @@ const isFolderExists = (folderNamePath) => {
 const makeFolder = (path, file) => {
   if (!isValid(path)) {
     console.log('path is not valid');
+    return;
   }
   const suffix = '_elements';
   const folderName = file.slice(0, -5) + suffix;

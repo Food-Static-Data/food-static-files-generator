@@ -4,10 +4,10 @@
 import {
   writeFile,
   mkdirSync,
-  readFileSync,
   existsSync,
   readdirSync,
   statSync,
+  readFile,
 } from 'fs';
 import isValid from 'is-valid-path';
 import { stripSymbols, getFileName } from './writeFile';
@@ -49,22 +49,26 @@ const write = (path, data) => new Promise((resolve) => {
  * @param {string} absolutePath
  *
  */
-const read = (absolutePath) => {
+const read = (absolutePath) => new Promise((resolve, reject) => {
   console.log(absolutePath);
   if (!isValid(absolutePath)) {
-    console.log('path is not valid');
+    console.log('path is invalid');
   }
-
-  // @TODO cover this case - absolutePath
-  // return file but it's empty. We need an if here
-  const data = readFileSync(absolutePath);
-  if (data === '') {
-    console.log(`${absolutePath} returned empty`);
-  }
-  console.log(data);
-  const fileData = JSON.parse(data);
-  return fileData;
-};
+  let dataStr;
+  readFile(absolutePath, (err, data) => {
+    if (!err) {
+      if (data === '') {
+        console.log(`${absolutePath} returned empty`);
+      }
+      console.log(data);
+      dataStr = JSON.parse(data);
+      resolve(dataStr);
+    } else {
+      console.log(err);
+      reject(err);
+    }
+  });
+});
 
 /**
  * @param {String} folderNamePath

@@ -2,23 +2,34 @@
 // but we'll move them out soon.
 // @TODO can we replace it with alias?
 
-import { parse } from "path";
-import _ from "lodash";
-import {
+const { parse } = require("path");
+const _ = "lodash";
+const {
   setupPath,
   readAllFiles,
   generateArrWithId
-} from "@groceristar/static-data-generator";
+} = require("@groceristar/static-data-generator");
 
-// var files = '';
+// import { parse } from "path";
+// import _ from "lodash";
+// import {
+//   setupPath,
+//   readAllFiles,
+//   generateArrWithId
+// } from "@groceristar/static-data-generator";
+//
 
 // const setupPathMeasurements = pathToSrc => {
 //     files = require(pathToSrc + '/files');
 // };
 
+const {
+  measurementSystem,
+  measurementUnits
+} = require("@groceristar/sd-wrapper");
+
 const getMeasurementSystem = () => {
-  // "@groceristar/sd-wrapper"
-  const files = setupPath("../../sd/src");
+  // const files = setupPath("../../sd/src");
   const result = [];
   const measurementSystemId = generateArrWithId(files.measurementSystem, "id");
 
@@ -33,9 +44,8 @@ const getMeasurementSystem = () => {
 };
 
 const getMeasurementUnits = () => {
-  // "@groceristar/sd-wrapper"
-  const files = setupPath("../../sd/src");
-  const dirMeasurementUnits = parse(files.measurementUnits).dir;
+  // const files = setupPath("../../sd/src");
+  const dirMeasurementUnits = parse(measurementUnits).dir;
   const result = [];
 
   let measurementUnitsList = readAllFiles(dirMeasurementUnits)[1];

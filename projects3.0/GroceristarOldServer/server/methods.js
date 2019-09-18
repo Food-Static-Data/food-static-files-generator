@@ -2,17 +2,15 @@
 const _ = require("lodash");
 const { generateID } = require("@groceristar/static-data-generator");
 
-// const { generateID } = require('@utils')
-// const { departments, ingredients, grocery } = require('@files')
 const {
   departments,
   ingredients,
   grocery
 } = require("@groceristar/sd-wrapper");
+
 /**
  * @returns {array} of keys for departments and ingredients
  */
-
 const getKeyArrayDepAndIng = () => {
   const keys = [];
 
@@ -114,7 +112,7 @@ const getAllDepartmentsWithId = () => {
 
   return result;
 };
-//
+
 const getAllIngredientsWithId = () => {
   const result = getResult(ingredients);
 

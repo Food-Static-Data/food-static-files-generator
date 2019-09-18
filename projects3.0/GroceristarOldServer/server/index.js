@@ -1,3 +1,10 @@
 // @TODO update it later. right now i care about speed
-const groceristar = require("./groceristar");
-const groceristarStructures = require("./groceristarStructures");
+const methods = require("./methods");
+const structures = require("./structures");
+
+// @TODO should we run a generator script for making a new files here?
+
+module.exports = {
+  methods,
+  structures
+};

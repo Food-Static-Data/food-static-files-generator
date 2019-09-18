@@ -1,9 +1,15 @@
 /* eslint-disable */
-import { map } from "lodash";
-import {
+const { map } = require("lodash");
+const {
   generateArrWithId,
   setupPath
-} from "@groceristar/static-data-generator";
+} = require("@groceristar/static-data-generator");
+
+// import { map } from "lodash";
+// import {
+//   generateArrWithId,
+//   setupPath
+// } from "@groceristar/static-data-generator";
 
 const favorites = () => {
   // "@groceristar/sd-wrapper"
@@ -66,4 +72,6 @@ const getItemCustomStructureObjectArray = () => {
   return result;
 };
 
-export { favorites, usersGrocery, getItemCustomStructureObjectArray };
+// export { favorites, usersGrocery, getItemCustomStructureObjectArray };
+
+module.exports = { favorites, usersGrocery, getItemCustomStructureObjectArray };

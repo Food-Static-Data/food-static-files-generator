@@ -1,4 +1,6 @@
 /* eslint-disable */
+
+// @TODO replace later with ES6 version
 const _ = require("lodash");
 const { generateID } = require("@groceristar/static-data-generator");
 

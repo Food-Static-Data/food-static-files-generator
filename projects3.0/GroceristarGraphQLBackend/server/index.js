@@ -1,3 +1,4 @@
+// @TODO replace later with ES6 version
 const _ = require("lodash");
 
 const {

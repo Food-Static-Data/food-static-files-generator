@@ -12,6 +12,7 @@
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage",
     "lint": "eslint ./src --fix --ignore-pattern \"./package.json\" ",
+    "lint-staged": "lint-staged -c lint-staged.config.js",
     "format": "prettier ./src/** --write",
     "formato": "pretty-quick --staged",
     "play": "node ./src/play/play.js",

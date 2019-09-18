@@ -18,7 +18,6 @@ const { grocery, users, ingredients } = require("@groceristar/sd-wrapper");
 // console.log(ingredients)
 
 const favorites = () => {
-  // "@groceristar/sd-wrapper"
   // const files = setupPath("../../sd/data");
   const groceryId = generateArrWithId(grocery, "grocery_id");
   const usersId = generateArrWithId(users, "user_id");
@@ -40,7 +39,6 @@ const favorites = () => {
 };
 
 const usersGrocery = () => {
-  //"@groceristar/sd-wrapper"
   // const files = setupPath("../../sd/src");
   const groceryId = generateArrWithId(grocery, "grocery_id");
   const usersId = generateArrWithId(users, "user_id");
@@ -59,7 +57,6 @@ const usersGrocery = () => {
 
 // yes, my function name is not better, but at least it's less confusing
 const getItemCustomStructureObjectArray = () => {
-  //"@groceristar/sd-wrapper"
   // const files = setupPath("../../sd/data");
   const ingredientsId = generateArrWithId(ingredients, "ingredient_id");
   const items = [1, 2, 3];

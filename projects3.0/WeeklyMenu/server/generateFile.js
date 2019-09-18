@@ -1,6 +1,10 @@
-import { write } from "./fileSystem";
+const { write } = require("./fileSystem");
 
-import getMenuGenerator from "./utils";
+// @TODO I think we don't have it at utils anymore....
+const getMenuGenerator = require("./utils");
+
+// import { write } from "./fileSystem";
+// import getMenuGenerator from "./utils";
 
 // right now it is used only for getMenuGenerator, but I think it is wrong.
 // and we need to regenerate all files from scratch each time. especially if

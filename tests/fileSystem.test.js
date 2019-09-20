@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs, { readdirSync } from 'fs';
 import {
   write,
   save,
@@ -15,7 +15,7 @@ const testFullPath = testFolder + testFile;
 const testFileContent = [{ name: 'Test' }];
 
 // @TODO next step for us will be to extend our test with real cases.
-// i.e. instead of passing simple array into test, 
+// i.e. instead of passing simple array into test,
 // we can actually run tests with our real files / objects
 
 describe('testing function write()', () => {
@@ -71,7 +71,7 @@ describe('testing function isFolderExists()', () => {
 
   test('test isFolderExists() returns false', async () => {
     // @TODO lets make a const variable for path to folder and use
-    // some important folders(few), like `src` or 
+    // some important folders(few), like `src` or
     // `dist`(sometimes dist are actually removed, cleaned up)
     const result = isFolderExists('./nofolderxxx');
     expect(result).toBe(false);
@@ -91,5 +91,19 @@ describe('testing function read()', () => {
 
     // removed test file
     fs.unlinkSync(testFullPath);
+  });
+
+  test('testing with output', async () => {
+    const outputFiles = readdirSync('./output/');
+    let testPath; let content; let
+      result;
+    for (const file of outputFiles) {
+      if (file !== 'undefined.json') {
+        testPath = `./output/${file}`;
+        content = JSON.parse(fs.readFileSync(testPath));
+        result = await read(testPath);
+        expect(result).toStrictEqual(content);
+      }
+    }
   });
 });

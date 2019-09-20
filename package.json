@@ -71,6 +71,7 @@
     "eslint-plugin-json": "^1.4.0",
     "fs": "^0.0.2",
     "is-valid-path": "^0.1.1",
+    "jshint": "^2.10.2",
     "lodash": "^4.17.11",
     "path": "^0.12.7",
     "path-exists": "^4.0.0",

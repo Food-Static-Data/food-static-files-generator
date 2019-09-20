@@ -55,13 +55,13 @@ const read = (absolutePath) => new Promise((resolve, reject) => {
     console.log('path is invalid');
   }
   let dataStr;
-  readFile(absolutePath, (err, data) => {
+  readFile(absolutePath, 'utf8', (err, data) => {
     if (!err) {
       if (data === '') {
         console.log(`${absolutePath} returned empty`);
       }
-      console.log(data);
       dataStr = JSON.parse(data);
+      console.log(dataStr);
       resolve(dataStr);
     } else {
       console.log(err);

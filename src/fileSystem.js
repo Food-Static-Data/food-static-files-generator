@@ -7,10 +7,10 @@ import {
   existsSync,
   readdirSync,
   statSync,
-  readFile
-} from "fs";
-import isValid from "is-valid-path";
-import { stripSymbols, getFileName } from "./writeFile";
+  readFile,
+} from 'fs';
+import isValid from 'is-valid-path';
+import { stripSymbols, getFileName } from './writeFile';
 
 /**
  * Write in file
@@ -20,57 +20,55 @@ import { stripSymbols, getFileName } from "./writeFile";
  */
 // @TODO cover a test case, when dataStr is not an array.
 // we can just pass a string there
-const write = (path, data) =>
-  new Promise(resolve => {
-    if (!isValid(path)) {
-      console.log("path is not valid");
-    }
+const write = (path, data) => new Promise((resolve) => {
+  if (!isValid(path)) {
+    console.log('path is not valid');
+  }
 
-    let dataStr;
+  let dataStr;
 
-    if (typeof data === "string") {
-      dataStr = data;
+  if (typeof data === 'string') {
+    dataStr = data;
+  } else {
+    dataStr = stripSymbols(data);
+  }
+
+  writeFile(path, dataStr, (err) => {
+    if (err) {
+      console.error(err);
+      resolve(false);
     } else {
-      dataStr = stripSymbols(data);
+      console.info(`${path} file generated successfully!`);
+      resolve(true);
     }
-
-    writeFile(path, dataStr, err => {
-      if (err) {
-        console.error(err);
-        resolve(false);
-      } else {
-        console.info(`${path} file generated successfully!`);
-        resolve(true);
-      }
-    });
   });
+});
 
 /**
  * read()
  * @param {string} absolutePath
  *
  */
-const read = absolutePath =>
-  new Promise((resolve, reject) => {
-    console.log(absolutePath);
-    if (!isValid(absolutePath)) {
-      console.log("path is invalid");
-    }
-    let dataStr;
-    readFile(absolutePath, "utf8", (err, data) => {
-      if (!err) {
-        if (data === "") {
-          console.log(`${absolutePath} returned empty`);
-        }
-        dataStr = JSON.parse(data);
-        console.log(dataStr);
-        resolve(dataStr);
-      } else {
-        console.log(err);
-        reject(err);
+const read = (absolutePath) => new Promise((resolve, reject) => {
+  console.log(absolutePath);
+  if (!isValid(absolutePath)) {
+    console.log('path is invalid');
+  }
+  let dataStr;
+  readFile(absolutePath, 'utf8', (err, data) => {
+    if (!err) {
+      if (data === '') {
+        console.log(`${absolutePath} returned empty`);
       }
-    });
+      dataStr = JSON.parse(data);
+      console.log(dataStr);
+      resolve(dataStr);
+    } else {
+      console.log(err);
+      reject(err);
+    }
   });
+});
 
 /**
  * @param {String} folderNamePath
@@ -83,7 +81,7 @@ const read = absolutePath =>
 // there should be another way
 const save = (folderNamePath, file, fileData, flag) => {
   if (!isValid(folderNamePath)) {
-    console.log("path is not valid");
+    console.log('path is not valid');
   }
   const fileDataLength = fileData.length;
   let success = true;
@@ -99,16 +97,16 @@ const save = (folderNamePath, file, fileData, flag) => {
     const result = write(elementPath, fileData[i]);
     if (!result) {
       console.log(
-        `${fileName} is the filename, ` +
-          `${elementPath} is the elementPath ` +
-          "and success is false"
+        `${fileName} is the filename, `
+          + `${elementPath} is the elementPath `
+          + 'and success is false',
       );
     }
 
     success = success && result;
   }
 
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     resolve(success);
   });
 };
@@ -118,19 +116,19 @@ const save = (folderNamePath, file, fileData, flag) => {
  * @param {string} folderNamePath
  *
  */
-const isFolderExists = folderNamePath => existsSync(folderNamePath);
+const isFolderExists = (folderNamePath) => existsSync(folderNamePath);
 
 /**
  * @param {string} path
  *
  */
-const dirSync = filepath => readdirSync(filepath);
+const dirSync = (filepath) => readdirSync(filepath);
 
 /**
  * @param {string} path
  *
  */
-const syncStats = filepath => statSync(filepath);
+const syncStats = (filepath) => statSync(filepath);
 
 /**
  * @param {String} path
@@ -138,9 +136,9 @@ const syncStats = filepath => statSync(filepath);
  */
 const makeFolder = (path, file) => {
   if (!isValid(path)) {
-    console.log("path is not valid");
+    console.log('path is not valid');
   }
-  const suffix = "_elements";
+  const suffix = '_elements';
   const folderName = file.slice(0, -5) + suffix;
   const folderNamePath = path + folderName;
 
@@ -150,4 +148,6 @@ const makeFolder = (path, file) => {
   return folderNamePath;
 };
 
-export { write, read, save, makeFolder, isFolderExists, dirSync, syncStats };
+export {
+  write, read, save, makeFolder, isFolderExists, dirSync, syncStats,
+};

@@ -94,12 +94,15 @@ describe('testing function read()', () => {
   });
 
   test('testing with output', async () => {
+    // @ODO later we can use consts from outside for cases like this.
     const outputFiles = readdirSync('./output/');
-    let testPath; let content; let
-      result;
+    let testPath, content, result;
+    
     for (const file of outputFiles) {
       if (file !== 'undefined.json') {
+        // @ODO later we can use consts from outside for cases like this.
         testPath = `./output/${file}`;
+        // @TODO long line
         content = JSON.parse(fs.readFileSync(testPath));
         result = await read(testPath);
         expect(result).toStrictEqual(content);

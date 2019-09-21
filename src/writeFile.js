@@ -1,5 +1,3 @@
-// const { promisify } = require('util')
-
 // @TODO move to utils.js
 /**
  * for stripSymbols()

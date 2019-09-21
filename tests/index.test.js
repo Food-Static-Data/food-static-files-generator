@@ -1,3 +1,4 @@
+/* eslint-disable */
 /* global test, describe, it, expect */
 
 // const { existsSync, access } = require ('fs')
@@ -15,14 +16,13 @@
 //   })
 // })
 // const  { generateFiles } = require('./index')
-import path from 'path';
+// import path from 'path';
 // const path1 = path.join(__dirname, '../../sd/src')
 
 // console.log(path1 );
-describe('testing if generateFiles() working', () => {
-  test('Test', () => {
-
-    // generateFiles(path1)
-
-  });
-});
+// describe('testing if generateFiles() working', () => {
+//   test('Test', () => {
+//     console.log('update me -> index.test.js');
+//     // generateFiles(path1)
+//   });
+// });

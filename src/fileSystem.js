@@ -34,12 +34,12 @@ const write = (path, data) => new Promise((resolve) => {
   }
 
   writeFile(path, dataStr, (err) => {
-    if (err) {
-      console.error(err);
-      resolve(false);
-    } else {
+    if (!err) {
       console.info(`${path} file generated successfully!`);
       resolve(true);
+    } else {
+      console.error(err);
+      resolve(false);
     }
   });
 });

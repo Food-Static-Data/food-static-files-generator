@@ -10,6 +10,7 @@ const { generateFiles } = require("../dist/index.cjs");
 // js
 // |- sd
 // |- food-static-files-generator
+//// will not work correctly....
 const staticDataDirectory = path.join(__dirname, "../../sd/src");
 console.log("--------------------------------");
 console.log("----You are in Debug mode----");

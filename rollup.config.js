@@ -20,7 +20,6 @@ const external = [
   'path-exists',
   'uuid/v1',
   'lodash',
-  'dayjs',
   'is-valid-path',
 ];
 

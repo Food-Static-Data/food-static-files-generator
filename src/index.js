@@ -1,6 +1,10 @@
-// import generateFiles from './generateFiles';
-// @TODO not sure if we need to export it
-import { getFileInfo, getListContent } from './utils';
+import {
+  getFileInfo,
+  getListContent,
+  generateID,
+  generateDate,
+  getFileKey,
+} from './utils';
 import { combine, split } from './objects';
 import { read, write, isFolderExists } from './fileSystem';
 
@@ -11,6 +15,10 @@ export {
   write,
   read,
   isFolderExists,
+  // utils methods below
   getFileInfo,
   getListContent,
+  generateID,
+  generateDate,
+  getFileKey,
 };

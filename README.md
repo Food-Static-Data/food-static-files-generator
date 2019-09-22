@@ -32,7 +32,7 @@ Several quick start options are available:
 
 ## How to split json into single elements
 
-To split json file you will require `sd/generator/writeFile.js` . Call the function **split()** with parameters `path`(as string),`filename`(as string) and a `flag`(0 or 1).
+To split json file you will require `sd/generator/utils.js` . Call the function **split()** with parameters `path`(as string),`filename`(as string) and a `flag`(0 or 1).
 `Flag=0` means splitted elements are to be name after the `name` attribute and if `flag=1` then elements will be give named by a number with removed whitespaces and in lowercase to maintain uniformity.
 The splitted elements will be stored at the given `path`/`filename_elements`.
 
@@ -50,7 +50,7 @@ If `flag=1` it will return the content of all files present in the path else if 
 
 If there is only one parameter that is `path` or with `flag=0` it will return list of all files present in the directory.
 
-You can combine objects by calling function **combine()** from writeFile.js. It takes 2 parameters `path` and list of `keys_to_be_removed`.
+You can combine objects by calling function **combine()** from utils.js. It takes 2 parameters `path` and list of `keys_to_be_removed`.
 
 #### combine
 
@@ -94,7 +94,7 @@ The functions granted by this module are as follows:
 
 ## How to generate additional files
 
-To run generator (it will run in writeFile.js function writeFiles()) `npm run generateFiles` to know if writing is success in console you will see `file generated successfully!` it will write multiple files.
+To run generator (it will run in utils.js function writeFiles()) `npm run generateFiles` to know if writing is success in console you will see `file generated successfully!` it will write multiple files.
 
 In function `writeFiles()` should be array of files. In array config of objects.
 First property in object should be `name` and value filename, the second `data` and in value set function that returns data.

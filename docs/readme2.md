@@ -78,8 +78,7 @@ In generator you will see folder structure like this:
 │           ├── Serving_Size8.json
 │           └── Serving_Size9.json
 ├── Readme.md
-├── utils.js
-└── writeFile.js
+└── utils.js
 ```
 
 ### Simple generation
@@ -118,7 +117,7 @@ You will see logging output about success generation.
 Upper was simple instructions how works generation. To know how it works deeper see below.
 
 When you will run command `npm run generateFiles` it will call function generateFiles() in generateFiles.js.
-generateFiles() gets data from config and after some manipulation with path, calls `writeFile(path, data)` that in writeFile.js.
+generateFiles() gets data from config and after some manipulation with path, calls `writeFile(path, data)` that in utils.js.
 
 Note
 Also this method create folder if it doesn't exist.
@@ -127,7 +126,7 @@ Generator using this file:
 
 1. configGenerator.js
 2. generateFiles.js
-3. writeFiles.js
+3. utils.js
 
 #### Debugging
 

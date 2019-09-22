@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import _ from 'lodash';
 import path, { resolve } from 'path';
 import { read, dirSync, syncStats } from './fileSystem';
+import { stripSymbols, getFileName, updateContent } from './writeFile';
 
 const checkFilePath = async (filePath) => {
   if (await pathExists(filePath)) {
@@ -166,4 +167,7 @@ export {
   generateArrWithId,
   setupPath,
   getFileKey,
+  stripSymbols,
+  getFileName,
+  updateContent,
 };

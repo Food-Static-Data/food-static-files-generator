@@ -11,6 +11,7 @@ import {
 } from 'fs';
 import isValid from 'is-valid-path';
 import { stripSymbols, getFileName } from './writeFile';
+import _ from 'lodash'; //imports whole library of lodash (temporary)
 
 /**
  * Write in file

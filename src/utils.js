@@ -7,6 +7,26 @@ import _ from 'lodash';
 import path, { resolve } from 'path';
 import { read, dirSync, syncStats } from './fileSystem';
 
+/**
+ * For updateContent()
+ * @param {var} content
+ * @param {var} keys
+ */
+const updateContent = (content, keys) => {
+  const contentCopy = content;
+
+  // @TODO error  Assignment to property of function parameter 'obj'
+  // no - param - reassign;
+  contentCopy.forEach((contentElem) => {
+    contentElem.forEach((obj) => {
+      keys.forEach((key) => {
+        delete obj[key];
+      });
+    });
+  });
+  return contentCopy;
+};
+
 const checkFilePath = async (filePath) => {
   if (await pathExists(filePath)) {
     console.log(`Filepath ${filePath} exist`);
@@ -166,4 +186,5 @@ export {
   generateArrWithId,
   setupPath,
   getFileKey,
+  updateContent,
 };

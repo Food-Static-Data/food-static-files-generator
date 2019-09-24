@@ -91,7 +91,8 @@ const save = (folderNamePath, file, fileData, flag) => {
     // @TODO long line, I have feeling that it can be improved
     // - we just need to find a better way to
     // rewrite a getFileName method
-    const fileName = getFileName(file, fileData[i], flag, i);
+    // replace with method from lodash library
+    const fileName = (file, fileData[i], flag, i);
 
     const elementPath = `${folderNamePath}/${fileName}`;
     const result = write(elementPath, fileData[i]);

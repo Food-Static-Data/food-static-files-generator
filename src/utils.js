@@ -8,6 +8,64 @@ import path, { resolve } from 'path';
 import { read, dirSync, syncStats } from './fileSystem';
 
 /**
+ * fixFileName()
+ * @param {string} fileName
+ */
+const fixFileName = (fileName) => {
+  let correctedFileName;
+
+  correctedFileName = fileName.replace(/ /g, '_'); // Replace space with underscore
+  correctedFileName = fileName.toLowerCase(); // Maintain Uniformity
+
+  return correctedFileName;
+};
+
+/**
+ * for stripSymbols()
+ * @param {Object} data a json object
+ *
+ */
+const stripSymbols = (data) => {
+  let dataStr = JSON.stringify(data);
+
+  const replaceList = [
+    ['/{"/g', '{ "'],
+    ['/{"/g', '{ " '],
+    ['/},{/g', ' },\n{'],
+    ['/":/g', '": '],
+    ['/,"/g', ',\n "'],
+  ];
+
+  replaceList.forEach((replacer) => {
+    dataStr = dataStr.replace(replacer[0], replacer[1]);
+  });
+
+  return dataStr;
+};
+
+/**
+ * getFileName()
+ * @param {string} file
+ * @param {Object} fileData
+ * @param {var} flag
+ * @param {var} index
+ */
+// @TODO if we use fileData.name - why we didn't just pass it here?
+const getFileName = (file, fileData, flag, index) => {
+  let fileName;
+  if (flag === 1) {
+    // for example: 23-someJsonFile.json
+    fileName = `${index}-${file}`;
+  } else {
+    // for example: someValueOfName.json
+    fileName = `${fileData.name}.json`;
+  }
+
+  fileName = fixFileName(fileName);
+  return fileName;
+};
+
+/**
  * For updateContent()
  * @param {var} content
  * @param {var} keys
@@ -187,4 +245,7 @@ export {
   setupPath,
   getFileKey,
   updateContent,
+  stripSymbols,
+  getFileName,
+  fixFileName,
 };

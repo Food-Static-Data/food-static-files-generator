@@ -1,9 +1,9 @@
 const _ = require("lodash");
-// import {
-//   setupPath,
-//   readAllFiles,
-//   generateArrWithId
-// } from "@groceristar/static-data-generator";
+import {
+  //   setupPath,
+  //   readAllFiles,
+  generateArrWithId
+} from "@groceristar/static-data-generator";
 
 const {
   measurementSystem,
@@ -17,8 +17,7 @@ const {
 const getMeasurementSystem = () => {
   // const files = setupPath("../../sd/src");
   const result = [];
-  const measurementSystemId
-    = generateArrWithId(measurementSystem, "id");
+  const measurementSystemId = generateArrWithId(measurementSystem, "id");
 
   _.map(measurementSystemId, system => {
     result.push({

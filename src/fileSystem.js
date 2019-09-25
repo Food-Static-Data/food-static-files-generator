@@ -1,3 +1,4 @@
+// jshint esversion: 6
 /* eslint-disable no-console */
 // @TODO We get an idea to replace console.logs and console.errors with a tools
 // that is better for logging and reporting
@@ -99,9 +100,8 @@ const save = (folderNamePath, file, fileData, flag) => {
     const result = write(elementPath, fileData[i]);
     if (!result) {
       console.log(
-        `${fileName} is the filename, `
-          + `${elementPath} is the elementPath `
-          + 'and success is false',
+        `${fileName} is the filename, ` + `${elementPath} is the elementPath ` + 'and success is false'
+          //trailing comma only available in es8
       );
     }
 

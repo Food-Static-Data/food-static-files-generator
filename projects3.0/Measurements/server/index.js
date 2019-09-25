@@ -4,14 +4,19 @@
 
 const { parse } = require("path");
 const _ = "lodash";
+// import { parse } from "path";
+const { getMeasurementSystem, getMeasurementUnits } = require("./methods");
+
 const {
   setupPath,
   readAllFiles,
-  generateArrWithId
+  generateArrWithId,
+
+  write
 } = require("@groceristar/static-data-generator");
 
-// import { parse } from "path";
+const generatedFilesPath = "./output/test.json";
+write(generatedFilesPath, getMeasurementUnits);
+write(generatedFilesPath, getMeasurementUnits);
 
-const { write } = require("../dist/index.cjs");
-
-write("./output/test.json", [{ name: "Test" }]);
+// write("./output/test.json", [{ name: "Test" }]);

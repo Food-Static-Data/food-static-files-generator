@@ -4,21 +4,21 @@ const _ = require("lodash");
 //   readAllFiles,
 //   generateArrWithId
 // } from "@groceristar/static-data-generator";
-//
-
-// const setupPathMeasurements = pathToSrc => {
-//     files = require(pathToSrc + '/files');
-// };
 
 const {
   measurementSystem,
   measurementUnits
 } = require("@groceristar/sd-wrapper");
 
+// const setupPathMeasurements = pathToSrc => {
+//     files = require(pathToSrc + '/files');
+// };
+
 const getMeasurementSystem = () => {
   // const files = setupPath("../../sd/src");
   const result = [];
-  const measurementSystemId = generateArrWithId(measurementSystem, "id");
+  const measurementSystemId
+    = generateArrWithId(measurementSystem, "id");
 
   _.map(measurementSystemId, system => {
     result.push({

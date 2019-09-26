@@ -4,8 +4,11 @@ import pathExists from 'path-exists';
 import uuidv1 from 'uuid/v1';
 import dayjs from 'dayjs';
 import _ from 'lodash';
+import { mkdirSync } from 'fs';
 import path, { resolve } from 'path';
-import { read, dirSync, syncStats } from './fileSystem';
+import {
+  read, dirSync, syncStats, isFolderExists,
+} from './fileSystem';
 
 /**
  * fixFileName()
@@ -207,21 +210,6 @@ const getFileKey = (file) => _.map(file, (item) => ({
   ...item,
 }));
 
-// const {
-//   users,
-//   grocery,
-//   ingredients,
-//   measurementSystem,
-//   measurementUnits
-// } = require('@files')
-// const { pathToSrc }  = require('./settings.json')
-// console.log("path to src");
-
-// console.log(pathToSrc);
-
-// @TODO maybe in future it can be improved
-// let files;
-
 const setupPath = (pathToSrc) => {
   console.log('This is path TO Src');
   const fullPathToSrc = path.join(__dirname, pathToSrc);
@@ -230,6 +218,22 @@ const setupPath = (pathToSrc) => {
   const files = require(fullPathToSrcFiles);
 
   return files;
+};
+
+const pathPreparation = (fileName) => {
+  const pathToSrc = '';
+  const uppercaseFileName = fileName.charAt(0).toUpperCase();
+
+  const folder = uppercaseFileName.concat(fileName.slice(1));
+  //   var path = './output/' + fileName + '.json';
+  const folderPath = `${pathToSrc}/data/${folder}`;
+
+  if (isFolderExists(folderPath)) {
+    mkdirSync(folderPath);
+  }
+
+  const updatedPath = `${folderPath}/${fileName}.json`;
+  return updatedPath;
 };
 
 export {
@@ -248,4 +252,5 @@ export {
   stripSymbols,
   getFileName,
   fixFileName,
+  pathPreparation,
 };

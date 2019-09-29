@@ -1,10 +1,7 @@
 const { write } = require("@groceristar/static-data-generator");
 
-// @TODO I think we don't have it at utils anymore....
-const { getMenuGenerator } = require("./methods");
 
-// import { write } from "./fileSystem";
-// import getMenuGenerator from "./utils";
+const { getMenuGenerator } = require("./methods");
 
 // right now it is used only for getMenuGenerator, but I think it is wrong.
 // and we need to regenerate all files from scratch each time. especially if

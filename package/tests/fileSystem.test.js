@@ -1,4 +1,4 @@
-import fs, { readdirSync } from 'fs';
+import fs, { readdirSync, existsSync, unlinkSync } from 'fs';
 import {
   write,
   save,
@@ -8,7 +8,7 @@ import {
 } from '../src/fileSystem';
 
 // @TODO use before hook for our variables later.
-// seec https://stackoverflow.com/questions/50580235/declaring-variable-in-beforeeach
+// see https://stackoverflow.com/questions/50580235/declaring-variable-in-beforeeach
 const testFolder = './output/';
 const testFile = 'test.json';
 const testFullPath = testFolder + testFile;
@@ -97,7 +97,7 @@ describe('testing function read()', () => {
     // @ODO later we can use consts from outside for cases like this.
     const outputFiles = readdirSync('./output/');
     let testPath, content, result;
-    
+
     for (const file of outputFiles) {
       if (file !== 'undefined.json') {
         // @ODO later we can use consts from outside for cases like this.

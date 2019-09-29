@@ -7,6 +7,16 @@ const structures = require("./structures");
 //   getMeasurementUnits
 // } = require("./methods");
 
+//const {
+//  favorites, 
+//  usersGrocery, 
+//  getItemCustomStructureObjectArray
+//} = require("./structures");
+// favorites();
+// usersGrocery();
+// getItemCustomStructureObjectArray();
+
+
 
 
 // @TODO should we run a generator script for making a new files here?
@@ -22,8 +32,9 @@ const structures = require("./structures");
 
 // 2. just testing write method with more real data
 // const generatedFilesPath = "./output/test.json";
-// write(generatedFilesPath, getMeasurementUnits);
-// write(generatedFilesPath, getMeasurementUnits);
+// write(generatedFilesPath, favorites);
+// write(generatedFilesPath, usersGrocery);
+// write(generatedFilesPath, getItemCustomStructureObjectArray);
 
 
 

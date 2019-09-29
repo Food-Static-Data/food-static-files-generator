@@ -1,7 +1,7 @@
-const { write } = require("./fileSystem");
+const { write } = require("@groceristar/static-data-generator");
 
 // @TODO I think we don't have it at utils anymore....
-const getMenuGenerator = require("./utils");
+const { getMenuGenerator } = require("./methods");
 
 // import { write } from "./fileSystem";
 // import getMenuGenerator from "./utils";

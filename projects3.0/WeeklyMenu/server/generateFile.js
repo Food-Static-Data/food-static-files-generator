@@ -8,7 +8,8 @@ const { getMenuGenerator } = require("./methods");
 // @TODO big issue
 const generateFile = () => {
   const fileName = "generatedMenu";
-  // i don't like this paths. at least we can move first part outside - aka output...
+  // 1. i don't like this paths. at least we can move first part outside - aka output...
+  // 2. should we test this path with methods from generator aka isPathExists or something similar
   const path = `./output/${fileName}.json`; 
 
   // @TODO right now we're using only one method from our list.

@@ -1,7 +1,6 @@
 const { write } = require("@groceristar/static-data-generator");
-
-
 const { getMenuGenerator } = require("./methods");
+
 
 // right now it is used only for getMenuGenerator, but I think it is wrong.
 // and we need to regenerate all files from scratch each time. especially if
@@ -9,7 +8,8 @@ const { getMenuGenerator } = require("./methods");
 // @TODO big issue
 const generateFile = () => {
   const fileName = "generatedMenu";
-  const path = `./output/${fileName}.json`; // i don't like this paths. at least we can move first part outside - aka output...
+  // i don't like this paths. at least we can move first part outside - aka output...
+  const path = `./output/${fileName}.json`; 
 
   // @TODO right now we're using only one method from our list.
   // so it works only for one case.

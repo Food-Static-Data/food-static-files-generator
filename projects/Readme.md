@@ -1,4 +1,4 @@
-##
+## previous name - projects3.0
 
 This folder helping us to separated logic of generating files that we need for our projects.
 Now it should help to upgrade our module `generator` and get rid of files like GenerateFile, GenerateFiles, etc.

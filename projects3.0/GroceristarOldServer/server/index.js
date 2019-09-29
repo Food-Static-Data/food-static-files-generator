@@ -1,30 +1,32 @@
-// @TODO update it later. right now i care about speed
+const { write } = require("@groceristar/static-data-generator");
 const methods = require("./methods");
 const structures = require("./structures");
-
-// @TODO should we run a generator script for making a new files here?
-
-// structures.favorites();
-
-// const { write } = require("../dist/index.cjs");
-
-// write("./output/test.json", [{ name: "Test" }]);
-
-// module.exports = {
-//   methods,
-//   structures
-// };
 
 // const {
 //   getMeasurementSystem,
 //   getMeasurementUnits
 // } = require("./methods");
-//
 
-const { write } = require("@groceristar/static-data-generator");
 
-// for running quick tests
+
+// @TODO should we run a generator script for making a new files here?
+// structures.favorites();
+
+
+
+// 1. for running quick tests
 //  write("./output/test.json", [{ name: "Test" }]);
-const generatedFilesPath = "./output/test.json";
-write(generatedFilesPath, getMeasurementUnits);
-write(generatedFilesPath, getMeasurementUnits);
+
+
+
+
+// 2. just testing write method with more real data
+// const generatedFilesPath = "./output/test.json";
+// write(generatedFilesPath, getMeasurementUnits);
+// write(generatedFilesPath, getMeasurementUnits);
+
+
+
+// 3. same as "using generateFile method here instead of previous versions just for testing how it works"
+// const generateFile = require('./generateFile')
+// generateFile();

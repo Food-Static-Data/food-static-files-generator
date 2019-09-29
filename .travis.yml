@@ -8,6 +8,7 @@ node_js:
 #after_success: npm run coveralls
 
 install:
+  - cd ./package 
   - npm install
 
 script:

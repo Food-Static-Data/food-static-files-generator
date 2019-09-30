@@ -21,7 +21,7 @@ const utils = require('./utils');
  */
 // @TODO cover a test case, when dataStr is not an array.
 // we can just pass a string there
-const write = (path, data) => new Promise((resolve) => {
+const write = (path, data) => new Promise((resolve, reject) => {
   if (!isValid(path)) {
     console.log('path is not valid');
   }
@@ -40,7 +40,7 @@ const write = (path, data) => new Promise((resolve) => {
       resolve(true);
     } else {
       console.error(err);
-      resolve(false);
+      reject(err);
     }
   });
 });

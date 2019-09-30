@@ -1,4 +1,4 @@
-import fs, { readdirSync, existsSync, unlinkSync } from 'fs';
+import fs, { readdirSync } from 'fs';
 import {
   write,
   save,
@@ -96,9 +96,10 @@ describe('testing function read()', () => {
   test('testing with output', async () => {
     // @ODO later we can use consts from outside for cases like this.
     const outputFiles = readdirSync('./output/');
-    let testPath, content, result;
-
-    for (const file of outputFiles) {
+    let testPath;
+    let content;
+    let result;
+    outputFiles.forEach(async (file) => {
       if (file !== 'undefined.json') {
         // @ODO later we can use consts from outside for cases like this.
         testPath = `./output/${file}`;
@@ -107,6 +108,6 @@ describe('testing function read()', () => {
         result = await read(testPath);
         expect(result).toStrictEqual(content);
       }
-    }
+    });
   });
 });

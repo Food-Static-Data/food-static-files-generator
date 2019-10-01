@@ -1,0 +1,29 @@
+# IDE & OS specific
+.DS_Store
+.idea
+
+# Logs
+logs
+*.log
+
+# Dependencies
+node_modules
+
+# Coverage
+coverage
+
+# Types
+flow-typed/npm/*
+!flow-typed/npm/module_vx.x.x.js
+
+# Release
+dist/*
+
+#build
+package-lock.json
+yarn.lock
+
+src/settings.json
+
+# Output folder that we're using for quick debug
+output

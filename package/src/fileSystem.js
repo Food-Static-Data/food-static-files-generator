@@ -116,24 +116,7 @@ const save = (folderNamePath, file, fileData, flag) => {
   });
 };
 
-/**
- * isFolderExists prev. isDirectory()
- * @param {string} folderNamePath
- *
- */
-const isFolderExists = (folderNamePath) => existsSync(folderNamePath);
 
-/**
- * @param {string} path
- *
- */
-const dirSync = (filepath) => readdirSync(filepath);
-
-/**
- * @param {string} path
- *
- */
-const syncStats = (filepath) => statSync(filepath);
 
 /**
  * @param {String} path
@@ -153,6 +136,47 @@ const makeFolder = (path, file) => {
   return folderNamePath;
 };
 
+/**
+ * For getListContent()
+ * @param {String} filePath
+ * @param {String} fileName
+ */
+const getListContent = (filePath, fileName = 'undefined') => {
+  if (fileName === 'undefined') {
+    // read all files
+    return readAllFiles(filePath);
+  }
+  // read specified file
+  const data = read(filePath + fileName);
+  return data;
+};
+
+/**
+ * For readAllFiles()
+ * @param {String} filePath
+ */
+// @TODO as we removed isDirectory - this method wouldn't work.
+// let's figure out what to do.
+// i think this method should work, used and moved into fileSystem.js
+const readAllFiles = (filePath) => {
+  const content = [];
+  const newPath = fixPath(filePath);
+  const files = dirSync(newPath);
+  files.forEach((file) => {
+    // @TODO this is a very long and confusing line
+    const fileStat = syncStats(newPath + file).isDirectory();
+    if (file.slice(-5) === '.json') {
+      if (!fileStat) {
+        const data = read(newPath + file);
+        content.push(data);
+      }
+    }
+  });
+  return content;
+};
+
+
 export {
   write, read, save, makeFolder, isFolderExists, dirSync, syncStats,
+  getListContent
 };

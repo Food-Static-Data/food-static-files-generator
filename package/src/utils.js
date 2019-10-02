@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { mkdirSync } from 'fs';
+import { mkdirSync, readdirSync, statSync, existsSync } from 'fs';
 import { resolve, join } from 'path';
 import pathExists from 'path-exists';
 import _ from 'lodash';
@@ -10,7 +10,7 @@ import {
   read,
   // dirSync,
   // syncStats,
-  isFolderExists,
+  // isFolderExists,
 } from './fileSystem';
 
 // @TODO what is the purpose of this method?
@@ -26,6 +26,13 @@ const dirSync = (filepath) => readdirSync(filepath);
  *
  */
 const syncStats = (filepath) => statSync(filepath);
+
+/**
+ * isFolderExists prev. isDirectory()
+ * @param {string} folderNamePath
+ *
+ */
+const isFolderExists = (folderNamePath) => existsSync(folderNamePath);
 
 
 /**
@@ -126,44 +133,9 @@ const fixPath = (filePath) => {
   return newPath;
 };
 
-/**
- * For readAllFiles()
- * @param {String} filePath
- */
-// @TODO as we removed isDirectory - this method wouldn't work.
-// let's figure out what to do.
-// i think this method should work, used and moved into fileSystem.js
-const readAllFiles = (filePath) => {
-  const content = [];
-  const newPath = fixPath(filePath);
-  const files = dirSync(newPath);
-  files.forEach((file) => {
-    // @TODO this is a very long and confusing line
-    const fileStat = syncStats(newPath + file).isDirectory();
-    if (file.slice(-5) === '.json') {
-      if (!fileStat) {
-        const data = read(newPath + file);
-        content.push(data);
-      }
-    }
-  });
-  return content;
-};
 
-/**
- * For getListContent()
- * @param {String} filePath
- * @param {String} fileName
- */
-const getListContent = (filePath, fileName = 'undefined') => {
-  if (fileName === 'undefined') {
-    // read all files
-    return readAllFiles(filePath);
-  }
-  // read specified file
-  const data = read(filePath + fileName);
-  return data;
-};
+
+
 
 /**
  * For getOnlyFiles()
@@ -256,11 +228,11 @@ const pathPreparation = (fileName) => {
 
 export {
   checkFilePath,
-  readAllFiles,
+  // readAllFiles,
   fixPath,
   getOnlyFiles,
   getFileInfo,
-  getListContent,
+  // getListContent,
   generateID,
   generateDate,
   generateArrWithId,

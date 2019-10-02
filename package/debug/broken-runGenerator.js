@@ -16,4 +16,5 @@ console.log("--------------------------------");
 console.log("----You are in Debug mode----");
 
 console.log(`Path to module sd: ${staticDataDirectory}`);
+
 generateFiles(staticDataDirectory);

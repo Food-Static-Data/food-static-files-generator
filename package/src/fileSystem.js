@@ -117,7 +117,6 @@ const save = (folderNamePath, file, fileData, flag) => {
 };
 
 
-
 /**
  * @param {String} path
  * @param {String} file
@@ -136,20 +135,6 @@ const makeFolder = (path, file) => {
   return folderNamePath;
 };
 
-/**
- * For getListContent()
- * @param {String} filePath
- * @param {String} fileName
- */
-const getListContent = (filePath, fileName = 'undefined') => {
-  if (fileName === 'undefined') {
-    // read all files
-    return readAllFiles(filePath);
-  }
-  // read specified file
-  const data = read(filePath + fileName);
-  return data;
-};
 
 /**
  * For readAllFiles()
@@ -175,8 +160,42 @@ const readAllFiles = (filePath) => {
   return content;
 };
 
+/**
+ * For getListContent()
+ * @param {String} filePath
+ * @param {String} fileName
+ */
+const getListContent = (filePath, fileName = 'undefined') => {
+  if (fileName === 'undefined') {
+    // read all files
+    return readAllFiles(filePath);
+  }
+  // read specified file
+  const data = read(filePath + fileName);
+  return data;
+};
+/**
+ * For getFileInfo()
+ * @param {String} filePath
+ * @param {var} flag
+ * @param {String} fileName
+ */
+
+const getFileInfo = (filePath, flag = 0, fileName = 'undefined') => {
+  /*
+      flag = 1 --> means return content
+      if file name is given then content of that file else return content of all files.
+      only path is given( flag=0 )--> give list of all files in directory.
+    */
+  const pathCopy = fixPath(filePath);
+  if (flag === 1) {
+    // get content from file
+    return getListContent(pathCopy, fileName);
+  }
+  // return list of files
+  return getOnlyFiles(pathCopy);
+};
 
 export {
-  write, read, save, makeFolder, isFolderExists, dirSync, syncStats,
-  getListContent
+  write, read, save, makeFolder, getListContent,
 };

@@ -3,10 +3,10 @@
 // @TODO replace with actual methods
 // as we did it at other files
 import { basename, parse, extname } from 'path';
-import { fixPath, readAllFiles, updateContent } from './utils';
+import { fixPath, updateContent } from './utils';
 
 import {
-  read, write, save, makeFolder,
+  read, write, save, makeFolder, readAllFiles,
 } from './fileSystem';
 
 // @TODO update with promise

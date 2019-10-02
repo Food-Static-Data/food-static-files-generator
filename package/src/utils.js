@@ -1,17 +1,14 @@
 /* eslint-disable no-console */
-import { mkdirSync, readdirSync, statSync, existsSync } from 'fs';
+import {
+  mkdirSync, readdirSync, statSync, existsSync,
+} from 'fs';
 import { resolve, join } from 'path';
 import pathExists from 'path-exists';
 import _ from 'lodash';
 import uuidv1 from 'uuid/v1';
 import dayjs from 'dayjs';
 // @TODO lint has issues related to import/no-cycle
-import {
-  read,
-  // dirSync,
-  // syncStats,
-  // isFolderExists,
-} from './fileSystem';
+
 
 // @TODO what is the purpose of this method?
 /**
@@ -134,9 +131,6 @@ const fixPath = (filePath) => {
 };
 
 
-
-
-
 /**
  * For getOnlyFiles()
  * @param {String} filePath
@@ -155,26 +149,6 @@ const getOnlyFiles = (filePath) => {
   return list;
 };
 
-/**
- * For getFileInfo()
- * @param {String} filePath
- * @param {var} flag
- * @param {String} fileName
- */
-const getFileInfo = (filePath, flag = 0, fileName = 'undefined') => {
-  /*
-      flag = 1 --> means return content
-      if file name is given then content of that file else return content of all files.
-      only path is given( flag=0 )--> give list of all files in directory.
-    */
-  const pathCopy = fixPath(filePath);
-  if (flag === 1) {
-    // get content from file
-    return getListContent(pathCopy, fileName);
-  }
-  // return list of files
-  return getOnlyFiles(pathCopy);
-};
 
 const generateID = () => uuidv1();
 
@@ -231,7 +205,7 @@ export {
   // readAllFiles,
   fixPath,
   getOnlyFiles,
-  getFileInfo,
+  // getFileInfo,
   // getListContent,
   generateID,
   generateDate,

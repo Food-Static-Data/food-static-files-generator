@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 import pathExists from 'path-exists';
 import uuidv1 from 'uuid/v1';
 import dayjs from 'dayjs';

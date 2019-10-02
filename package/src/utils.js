@@ -7,10 +7,9 @@ import pathExists from 'path-exists';
 import _ from 'lodash';
 import uuidv1 from 'uuid/v1';
 import dayjs from 'dayjs';
-// @TODO lint has issues related to import/no-cycle
 
-
-// @TODO what is the purpose of this method?
+// @TODO what is the purpose of this method? Just separation?
+// are we using them few times, right?
 /**
  * @param {string} path
  *
@@ -217,4 +216,7 @@ export {
   getFileName,
   fixFileName,
   pathPreparation,
+  isFolderExists,
+  dirSync,
+  syncStats,
 };

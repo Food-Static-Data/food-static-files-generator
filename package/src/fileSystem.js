@@ -4,9 +4,9 @@
 import {
   writeFile,
   mkdirSync,
-  existsSync,
-  readdirSync,
-  statSync,
+  // existsSync,
+  // readdirSync,
+  // statSync,
   readFile,
 } from 'fs';
 import isValid from 'is-valid-path';
@@ -14,7 +14,11 @@ import isValid from 'is-valid-path';
 import {
   stripSymbols,
   getFileName,
-  // fixFileName
+  isFolderExists,
+  fixPath,
+  dirSync,
+  syncStats,
+  getOnlyFiles,
 } from './utils';
 
 /**
@@ -197,5 +201,5 @@ const getFileInfo = (filePath, flag = 0, fileName = 'undefined') => {
 };
 
 export {
-  write, read, save, makeFolder, getListContent,
+  write, read, save, makeFolder, readAllFiles, getListContent, getFileInfo,
 };

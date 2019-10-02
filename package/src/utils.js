@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
+import { mkdirSync } from 'fs';
+import { resolve, join } from 'path';
 import pathExists from 'path-exists';
+import _ from 'lodash';
 import uuidv1 from 'uuid/v1';
 import dayjs from 'dayjs';
-import _ from 'lodash';
-import { mkdirSync } from 'fs';
-import path, { resolve } from 'path';
 import {
-  read, dirSync, syncStats, isFolderExists,
+  read, dirSync, syncStats, isFolderExists
 } from './fileSystem';
 
 /**
@@ -211,7 +211,7 @@ const getFileKey = (file) => _.map(file, (item) => ({
 
 const setupPath = (pathToSrc) => {
   console.log('This is path TO Src');
-  const fullPathToSrc = path.join(__dirname, pathToSrc);
+  const fullPathToSrc = join(__dirname, pathToSrc);
   console.log(fullPathToSrc);
   const fullPathToSrcFiles = `${fullPathToSrc}/files`;
   const files = require(fullPathToSrcFiles);

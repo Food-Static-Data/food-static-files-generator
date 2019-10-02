@@ -11,7 +11,11 @@ import {
 } from 'fs';
 import isValid from 'is-valid-path';
 
-const utils = require('./utils');
+import {
+  stripSymbols,
+  getFileName,
+  // fixFileName
+} from './utils';
 
 /**
  * Write in file
@@ -31,7 +35,7 @@ const write = (path, data) => new Promise((resolve, reject) => {
   if (typeof data === 'string') {
     dataStr = data;
   } else {
-    dataStr = utils.stripSymbols(data);
+    dataStr = stripSymbols(data);
   }
 
   writeFile(path, dataStr, (err) => {
@@ -92,7 +96,7 @@ const save = (folderNamePath, file, fileData, flag) => {
     // @TODO long line, I have feeling that it can be improved
     // - we just need to find a better way to
     // rewrite a getFileName method
-    const fileName = utils.getFileName(file, fileData[i], flag, i);
+    const fileName = getFileName(file, fileData[i], flag, i);
 
     const elementPath = `${folderNamePath}/${fileName}`;
     const result = write(elementPath, fileData[i]);

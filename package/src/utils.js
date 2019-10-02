@@ -5,9 +5,28 @@ import pathExists from 'path-exists';
 import _ from 'lodash';
 import uuidv1 from 'uuid/v1';
 import dayjs from 'dayjs';
+// @TODO lint has issues related to import/no-cycle
 import {
-  read, dirSync, syncStats, isFolderExists
+  read,
+  // dirSync,
+  // syncStats,
+  isFolderExists,
 } from './fileSystem';
+
+// @TODO what is the purpose of this method?
+/**
+ * @param {string} path
+ *
+ */
+const dirSync = (filepath) => readdirSync(filepath);
+
+// @TODO what is the purpose of this method?
+/**
+ * @param {string} path
+ *
+ */
+const syncStats = (filepath) => statSync(filepath);
+
 
 /**
  * fixFileName()

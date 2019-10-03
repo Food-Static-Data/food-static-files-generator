@@ -94,7 +94,7 @@ const save = (folderNamePath, file, fileData, flag) => {
   _.forEach(array, function (file, fileName, flag, elementPath, fileData) {
     fileName = (file, fileData, flag);
     elementPath = `${folderNamePath}/${fileName}`;
-    const result = document.write(elementPath, fileData);
+    const result = write(elementPath, fileData);
 
     if (!result) {
       console.log(
@@ -104,6 +104,7 @@ const save = (folderNamePath, file, fileData, flag) => {
 
     success = success && result;
   });
+
   // end of replacement for loop
   for (let i = 0; i < fileDataLength && success; i += 1) {
     // @TODO long line, I have feeling that it can be improved

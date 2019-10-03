@@ -1,5 +1,5 @@
 {
-  "name": "@groceristar/",
+  "name": "@groceristar/data-methods-graphql",
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
@@ -13,7 +13,7 @@
     "lint": "eslint ./src --fix --ignore-pattern \"./package.json\" ",
     "lint-staged": "lint-staged -c lint-staged.config.js",
     "format": "prettier ./src/** --write",
-    "formato": "pretty-quick --staged",
+    "formato": "pretty-quick --staged"
   },
   "description": "module to use static JSON files with groceristar projects",
   "main": "dist/index.cjs.js",

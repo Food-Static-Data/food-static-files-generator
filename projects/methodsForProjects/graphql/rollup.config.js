@@ -15,12 +15,10 @@ const name = 'StaticFilesGenerator';
 // packages that should be treated as external dependencies, not bundled
 // e.g. ['axios']
 const external = [
-  'fs',
-  'path',
-  'path-exists',
-  'uuid/v1',
   'lodash',
-  'is-valid-path',
+  '@groceristar/static-data-generator',
+  '@groceristar/sd-wrapper',
+  'uuid/v1',
 ];
 
 // list of plugins used during building process

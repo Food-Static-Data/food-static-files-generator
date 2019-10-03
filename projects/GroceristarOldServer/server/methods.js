@@ -1,4 +1,5 @@
 /* eslint-disable */
+// @groceristar/data-methods-gsoldserver
 
 // @TODO replace later with ES6 version
 const _ = require("lodash");

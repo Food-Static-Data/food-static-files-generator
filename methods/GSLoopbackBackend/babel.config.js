@@ -1,37 +1,52 @@
-'use strict'
+"use strict";
+
+// const path = require('path')
 
 const presets = [
-  ['@babel/preset-env', {
-    'modules': false
-  }]
-  // {
-  //
-  // }
-]
+  [
+    "@babel/preset-env",
+    {
+      modules: false
+    }
+  ]
+];
+
 // Add this to working tests
-// const env = {
-//   test: {
-//     presets: [['@babel/preset-env']]
-//   }
-// }
+const env = {
+  test: {
+    presets: [
+      [
+        "@babel/preset-env",
+        {
+          targets: {
+            node: "current"
+          }
+        }
+      ]
+    ]
+  }
+};
 
 const plugins = [
   [
-    require.resolve('babel-plugin-module-resolver'),
+    require.resolve("babel-plugin-module-resolver"),
     {
-      root: ['./src/'],
+      root: ["./src/"],
       alias: {
-        '~': './src/data',
-        '@files': './src/files.js',
-        '@utils': './src/utils.js',
-        '@generator': './generator'
+        "~": "./src/data"
       }
     }
   ],
+  ["@babel/plugin-syntax-dynamic-import"],
+  ["@babel/plugin-proposal-object-rest-spread"],
+  ["@babel/plugin-transform-async-to-generator"],
   [
-    '@babel/plugin-syntax-dynamic-import'
+    "@babel/plugin-transform-runtime",
+    {
+      helpers: true,
+      regenerator: true
+    }
   ]
+];
 
-]
-
-module.exports = { presets, plugins }
+module.exports = { presets, plugins, env };

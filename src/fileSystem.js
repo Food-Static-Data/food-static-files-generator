@@ -79,6 +79,26 @@ const read = (absolutePath) => new Promise((resolve, reject) => {
  * @param {var} flag
  * @param {Function} callback
  * */
+ 
+ // lodash start of replacement for loop
+ 
+ var array = _.range(0, fileDataLength, 1);
+ _.forEach(array, function (file, fileName, flag, elementPath, fileData) {
+   fileName = (file, fileData, flag);
+   elementPath = `${folderNamePath}/${fileName}`;
+   const result = write(elementPath, fileData);
+ 
+   if (!result) {
+     console.log(
+       `${fileName} is the filename, ` + `${elementPath} is the elementPath ` + 'and success is false'
+     );
+   }
+ 
+   success = success && result;
+ });
+ 
+ // end of replacement for loop
+ 
 // @TODO save got 4 attributes and most of them are about directory/files...
 // there should be another way
 const save = (folderNamePath, file, fileData, flag) => {

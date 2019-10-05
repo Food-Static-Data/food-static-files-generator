@@ -1,11 +1,22 @@
-import _ from 'lodash'
-
+import { times } from "lodash";
 import {
-  menu
-} from '@files'
+  generateID,
+  generateDate
+} from "@groceristar/static-data-generator";
 
-import { __generateId, __generateDate } from '@utils'
+// import { recipes } from '@groceristar/sd-wrapper'
+
+const getMenuGenerator = numberOfWeeks => {
+  const result = times(numberOfWeeks, index => ({
+    id: generateID(),
+    title: `Weekly menu ${index}`,
+    date: generateDate(),
+    description: `description for Weekly menu ${index}`,
+    notes: `This is a chef notes for wm ${index}`
+  }));
+  return result;
+};
 
 export {
-
-}
+  getMenuGenerator
+};

@@ -7,7 +7,8 @@ const {
   mkdir
 } = require("fs");
 const { write } = require("@groceristar/static-data-generator");
-const { getMenuGenerator } = require("./methods");
+const { getMenuGenerator } = require("@groceristar/data-methods-weeklymenu");
+// const { getMenuGenerator } = require("./methods");
 const generateFile = require("./generateFile");
 
 mkdir("./output", (error, result) => {

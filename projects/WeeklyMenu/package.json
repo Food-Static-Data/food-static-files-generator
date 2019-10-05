@@ -11,8 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@groceristar/data-methods-weeklymenu": "^0.0.2",
     "@groceristar/sd-wrapper": "^4.14.3",
-    "@groceristar/static-data-generator": "^1.0.7",
+    "@groceristar/static-data-generator": "^1.1.1",
     "lodash": "^4.17.15",
     "nodemon": "^1.19.2",
     "path": "^0.12.7"

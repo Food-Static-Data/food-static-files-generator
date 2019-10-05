@@ -1,16 +1,1 @@
-[
-  {
-    "id": "0dc74ea1-e7a0-11e9-9a8b-63cd6be6786e",
-    "title": "Weekly menu 0",
-    "date": "2019-10-05T18:43:42.346Z",
-    "description": "description for Weekly menu 0",
-    "notes": "This is a chef notes for wm 0"
-  },
-  {
-    "id": "0dc775b0-e7a0-11e9-9a8b-63cd6be6786e",
-    "title": "Weekly menu 1",
-    "date": "2019-10-05T18:43:42.347Z",
-    "description": "description for Weekly menu 1",
-    "notes": "This is a chef notes for wm 1"
-  }
-]
+[{"id":"c18c7cd0-e7b4-11e9-a27b-8b16a518992e","title":"Weekly menu 0","date":"2019-10-05T21:11:53.885Z","description":"description for Weekly menu 0","notes":"This is a chef notes for wm 0"},{"id":"c18c7cd1-e7b4-11e9-a27b-8b16a518992e","title":"Weekly menu 1","date":"2019-10-05T21:11:53.885Z","description":"description for Weekly menu 1","notes":"This is a chef notes for wm 1"}]

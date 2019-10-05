@@ -1,5 +1,6 @@
 const { write } = require("@groceristar/static-data-generator");
-const { getMenuGenerator } = require("./methods");
+// const { getMenuGenerator } = require("./methods");
+const { getMenuGenerator } = require("@groceristar/data-methods-weeklymenu");
 
 // right now it is used only for getMenuGenerator, but I think it is wrong.
 // and we need to regenerate all files from scratch each time. especially if

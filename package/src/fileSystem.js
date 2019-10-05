@@ -4,9 +4,11 @@
 import {
   writeFile,
   mkdirSync,
-  // existsSync,
-  // readdirSync,
-  // statSync,
+  lstatSync,
+  rmdirSync,
+  unlinkSync,
+  existsSync,
+  readdirSync,
   readFile,
 } from 'fs';
 import isValid from 'is-valid-path';
@@ -120,7 +122,6 @@ const save = (folderNamePath, file, fileData, flag) => {
   });
 };
 
-
 /**
  * @param {String} path
  * @param {String} file
@@ -138,7 +139,6 @@ const makeFolder = (path, file) => {
   }
   return folderNamePath;
 };
-
 
 /**
  * For readAllFiles()
@@ -200,6 +200,33 @@ const getFileInfo = (filePath, flag = 0, fileName = 'undefined') => {
   return getOnlyFiles(pathCopy);
 };
 
+/**
+ * For deleteFolderRecursive()
+ * @param {String} path
+ */
+const deleteFolderRecursive = (path) => {
+  if (existsSync(path)) {
+    readdirSync(path).forEach((file) => {
+      const curPath = `${path}/${file}`;
+      if (lstatSync(curPath).isDirectory()) {
+        // recurse
+        deleteFolderRecursive(curPath);
+      } else {
+        // delete file
+        unlinkSync(curPath);
+      }
+    });
+    rmdirSync(path);
+  }
+};
+
 export {
-  write, read, save, makeFolder, readAllFiles, getListContent, getFileInfo,
+  write,
+  read,
+  save,
+  makeFolder,
+  readAllFiles,
+  getListContent,
+  getFileInfo,
+  deleteFolderRecursive,
 };

@@ -14,6 +14,8 @@
 we need to create a plan, about what and how this new version of generator
 will work and where we'll save files, etc.... https://github.com/GroceriStar/food-static-files-generator/issues/209
 
+
+- [ ] Remove Debug/Output/Play folder and replace them with tests suits
 <!--prettier --write \"src/**/*.{js,jsx,ts,tsx,scss,less}\"-->
 
 ## Quick Start

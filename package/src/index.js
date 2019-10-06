@@ -4,7 +4,10 @@ import {
   generateDate,
   getFileKey,
 } from './utils';
-import { combine, split } from './objects';
+import {
+  combine,
+  split 
+} from './objects';
 import {
   read, write, getFileInfo,
   getListContent,

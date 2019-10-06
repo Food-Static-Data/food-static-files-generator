@@ -1,5 +1,11 @@
 const { write } = require("@groceristar/static-data-generator");
-const methods = require("./methods");
+// const methods = require("./methods");
+const {
+  getKeyArrayDepAndIng,
+  ultimateGroceryList,
+  getDepartmentIngredients,
+  getGroceryDepartmentsWithIngredients
+ } = require("@groceristar/data-methods-gsoldserver");
 const structures = require("./structures");
 
 // const {
@@ -8,8 +14,8 @@ const structures = require("./structures");
 // } = require("./methods");
 
 //const {
-//  favorites, 
-//  usersGrocery, 
+//  favorites,
+//  usersGrocery,
 //  getItemCustomStructureObjectArray
 //} = require("./structures");
 // favorites();

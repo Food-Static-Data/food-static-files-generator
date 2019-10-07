@@ -82,20 +82,7 @@ const read = (absolutePath) => new Promise((resolve, reject) => {
 
  // lodash start of replacement for loop
 
- var array = _.range(0, fileDataLength, 1);
- _.forEach(array, function (file, fileName, flag, elementPath, fileData) {
-   fileName = (file, fileData, flag);
-   elementPath = `${folderNamePath}/${fileName}`;
-   const result = write(elementPath, fileData);
-
-   if (!result) {
-     console.log(
-       `${fileName} is the filename, ` + `${elementPath} is the elementPath ` + 'and success is false'
-     );
-   }
-
-   success = success && result;
- });
+ 
 
  // end of replacement for loop
 
@@ -108,41 +95,22 @@ const save = (folderNamePath, file, fileData, flag) => {
   const fileDataLength = fileData.length;
   let success = true;
 
-  // lodash start of replacement for loop
-
+  // proposed start of replacement of for loop
   var array = _.range(0, fileDataLength, 1);
   _.forEach(array, function (file, fileName, flag, elementPath, fileData) {
     fileName = (file, fileData, flag);
     elementPath = `${folderNamePath}/${fileName}`;
     const result = write(elementPath, fileData);
-
+ 
     if (!result) {
       console.log(
         `${fileName} is the filename, ` + `${elementPath} is the elementPath ` + 'and success is false'
       );
     }
-
+ 
     success = success && result;
   });
-
-  // end of replacement for loop
-  for (let i = 0; i < fileDataLength && success; i += 1) {
-    // @TODO long line, I have feeling that it can be improved
-    // - we just need to find a better way to
-    // rewrite a getFileName method
-    const fileName = (file, fileData[i], flag, i);
-
-    const elementPath = `${folderNamePath}/${fileName}`;
-    const result = write(elementPath, fileData[i]);
-    if (!result) {
-      console.log(
-        `${fileName} is the filename, ` + `${elementPath} is the elementPath ` + 'and success is false'
-          //trailing comma only available in es8
-      );
-    }
-
-    success = success && result;
-  }
+  // up to here
 
   return new Promise((resolve) => {
     resolve(success);

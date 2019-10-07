@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 // @TODO We get an idea to replace console.logs and console.errors with a tools
 // that is better for logging and reporting
+import _ from 'lodash'; //imports whole library of lodash (temporary)
 import {
   writeFile,
   mkdirSync,
@@ -12,7 +13,6 @@ import {
 } from 'fs';
 import isValid from 'is-valid-path';
 import { stripSymbols, getFileName } from './writeFile';
-import _ from 'lodash'; //imports whole library of lodash (temporary)
 
 /**
  * Write in file
@@ -95,7 +95,7 @@ const save = (folderNamePath, file, fileData, flag) => {
     fileName = (file, fileData, flag);
     elementPath = `${folderNamePath}/${fileName}`;
     const result = write(elementPath, fileData);
- 
+
     if (!result) {
       console.log(
         `${fileName} is the filename, ` + `${elementPath} is the elementPath ` + 'and success is false'

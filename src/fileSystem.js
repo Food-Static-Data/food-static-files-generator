@@ -3,6 +3,7 @@
 // @TODO We get an idea to replace console.logs and console.errors with a tools
 // that is better for logging and reporting
 const _ = require('lodash'); //imports whole library of lodash (temporary)
+
 import {
   writeFile,
   mkdirSync,

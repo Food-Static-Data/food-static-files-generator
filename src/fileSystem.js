@@ -80,12 +80,6 @@ const read = (absolutePath) => new Promise((resolve, reject) => {
  * @param {Function} callback
  * */
 
- // lodash start of replacement for loop
-
- 
-
- // end of replacement for loop
-
 // @TODO save got 4 attributes and most of them are about directory/files...
 // there should be another way
 const save = (folderNamePath, file, fileData, flag) => {
@@ -107,7 +101,7 @@ const save = (folderNamePath, file, fileData, flag) => {
         `${fileName} is the filename, ` + `${elementPath} is the elementPath ` + 'and success is false'
       );
     }
- 
+
     success = success && result;
   });
   // up to here

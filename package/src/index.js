@@ -9,7 +9,10 @@ import {
   split 
 } from './objects';
 import {
-  read, write, getFileInfo,
+  read, 
+  write, 
+  getFileInfo, 
+  readDir,
   getListContent,
 } from './fileSystem';
 
@@ -18,6 +21,7 @@ export {
   split,
   write,
   read,
+  readDir,
   isFolderExists,
   // utils methods below
   getFileInfo,

@@ -10,7 +10,7 @@ import {
   existsSync,
   readdirSync,
   readFile,
-  readdir
+  readdir,
 } from 'fs';
 import isValid from 'is-valid-path';
 
@@ -172,14 +172,12 @@ const readAllFiles = (filePath) => {
  * @param {dirPath} dirPath directory path
  * @returns {Promise<string[]>} Promise<srting[]>
  */
-const readDir = (dirPath) => {
-  return new Promise((resolve, reject) => {
-    fs.readdir(dirPath, (err, files) => {
-      if (err) reject(err);
-      resolve(files);
-    });
+const readDir = (dirPath) => new Promise((resolve, reject) => {
+  readdir(dirPath, (err, files) => {
+    if (err) reject(err);
+    resolve(files);
   });
-};
+});
 
 /**
  * For getListContent()
@@ -246,5 +244,5 @@ export {
   getListContent,
   getFileInfo,
   deleteFolderRecursive,
-  readDir
+  readDir,
 };

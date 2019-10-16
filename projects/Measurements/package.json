@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server/index.js"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
     "@groceristar/static-data-generator": "^1.0.7",
     "lodash": "^4.17.15",
     "nodemon": "^1.19.2",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "uuid": "^3.3.3"
   }
 }

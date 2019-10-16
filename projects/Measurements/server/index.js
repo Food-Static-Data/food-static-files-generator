@@ -2,7 +2,7 @@
 const fs = require('fs');
 const { parse } = require("path");
 const _ = "lodash";
-const { getMeasurementSystem, getMeasurementUnits } = require("./methods");
+const { getMeasurementSystems, getMeasurementUnits } = require("./methods");
 
 const { write } = require("@groceristar/static-data-generator");
 
@@ -39,8 +39,8 @@ tests().then(()=>{
 const checkWithRealData = async()=>{
     const generatedFilesPath_ms = "./output/ms.json";
     const generatedFilesPath_mu = "./output/mu.json";
-    await write(generatedFilesPath_ms, getMeasurementSystem);
-    await write(generatedFilesPath_mu, getMeasurementUnits);
+    await write(generatedFilesPath_ms, getMeasurementSystems());
+    await write(generatedFilesPath_mu, getMeasurementUnits());
 }
 
 checkWithRealData().then(()=>{

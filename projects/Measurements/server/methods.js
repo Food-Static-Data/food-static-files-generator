@@ -1,8 +1,22 @@
 const _ = require("lodash");
-const { generateArrWithId } = require("@groceristar/static-data-generator");
+const uuidv1 = require('uuid/v1');
 
+const generateID = () => uuidv1();
+const generateArrWithId = (data, id) => {
+  const result = [];
+  _.map(data, (element) => {
+    result.push({
+      ...element,
+      [id]: generateID(),
+    });
+  });
+
+  return result;
+};
+
+// CHANGE sd-wrapper index.cjs -> index.cjs.js
 const {
-  measurementSystem,
+  measurementSystems,
   measurementUnits
 } = require("@groceristar/sd-wrapper");
 
@@ -10,10 +24,10 @@ const {
 // //     files = require(pathToSrc + '/files');
 // // };
 
-const getMeasurementSystem = () => {
+const getMeasurementSystems = () => {
   // const files = setupPath("../../sd/src");
   const result = [];
-  const measurementSystemId = generateArrWithId(measurementSystem, "id");
+  const measurementSystemId = generateArrWithId(measurementSystems, "id");
 
   _.map(measurementSystemId, system => {
     result.push({
@@ -28,11 +42,11 @@ const getMeasurementSystem = () => {
 
 const getMeasurementUnits = () => {
   // const files = setupPath("../../sd/src");
-  const dirMeasurementUnits = parse(measurementUnits).dir;
+  // const dirMeasurementUnits = parse(measurementUnits).dir;
   const result = [];
 
-  let measurementUnitsList = readAllFiles(dirMeasurementUnits)[1];
-
+  // let measurementUnitsList = readAllFiles(dirMeasurementUnits)[1];
+  let measurementUnitsList = measurementUnits
   measurementUnitsList = generateArrWithId(measurementUnitsList, "id");
   measurementUnitsList = generateArrWithId(measurementUnitsList, "system_id");
 
@@ -54,6 +68,6 @@ const getMeasurementUnits = () => {
 
 module.exports = {
   // setupPathMeasurements,
-  getMeasurementSystem,
+  getMeasurementSystems,
   getMeasurementUnits
 };

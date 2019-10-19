@@ -1,9 +1,24 @@
 /* eslint-disable */
 const { map } = require("lodash");
 const {
-  generateArrWithId,
   setupPath
 } = require("@groceristar/static-data-generator");
+const _ = require('lodash')
+
+const uuidv1 = require('uuid/v1');
+
+const generateID = () => uuidv1();
+const generateArrWithId = (data, id) => {
+  const result = [];
+  _.map(data, (element) => {
+    result.push({
+      ...element,
+      [id]: generateID(),
+    });
+  });
+
+  return result;
+};
 
 // import { map } from "lodash";
 // import {

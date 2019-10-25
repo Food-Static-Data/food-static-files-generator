@@ -1,6 +1,6 @@
 const _ = require("lodash");
 const uuidv1 = require('uuid/v1');
-
+const {mkdir} = require("fs");
 const generateID = () => uuidv1();
 const generateArrWithId = (data, id) => {
   const result = [];
@@ -13,7 +13,6 @@ const generateArrWithId = (data, id) => {
 
   return result;
 };
-
 // CHANGE sd-wrapper index.cjs -> index.cjs.js
 const {
   measurementSystems,
@@ -23,6 +22,18 @@ const {
 // // const setupPathMeasurements = pathToSrc => {
 // //     files = require(pathToSrc + '/files');
 // // };
+
+
+
+// Create output directory 
+const createOutputFolder = async() => {
+  await mkdir('./output',(error,result)=>{
+    if(error){
+        return console.log('Could not create directory');
+    }
+    console.log('Directory succesfully created');
+  });
+};
 
 const getMeasurementSystems = () => {
   // const files = setupPath("../../sd/src");
@@ -69,5 +80,6 @@ const getMeasurementUnits = () => {
 module.exports = {
   // setupPathMeasurements,
   getMeasurementSystems,
-  getMeasurementUnits
+  getMeasurementUnits,
+  createOutputFolder
 };

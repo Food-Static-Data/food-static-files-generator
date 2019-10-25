@@ -1,4 +1,5 @@
 const { times } = require("lodash");
+const {mkdir} = require("fs");
 const {
   generateID,
   generateDate
@@ -16,6 +17,17 @@ const getMenuGenerator = numberOfWeeks => {
   return result;
 };
 
+// Create output directory 
+const createOutputFolder = async() => {
+  await mkdir('./output',(error,result)=>{
+    if(error){
+        return console.log('Could not create directory');
+    }
+    console.log('Directory succesfully created');
+  });
+};
+
 module.exports = {
-  getMenuGenerator
+  getMenuGenerator,
+  createOutputFolder
 };

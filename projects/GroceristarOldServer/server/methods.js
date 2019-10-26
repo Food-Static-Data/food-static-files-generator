@@ -4,8 +4,18 @@ const {
   setupPath
 } = require("@groceristar/static-data-generator");
 const _ = require('lodash')
-
+const {mkdir} = require('fs');
 const uuidv1 = require('uuid/v1');
+
+// Create output directory 
+const createOutputFolder = async() => {
+  await mkdir('./output',(error,result)=>{
+    if(error){
+        return console.log('Could not create directory');
+    }
+    console.log('Directory succesfully created');
+  });
+};
 
 const generateID = () => uuidv1();
 const generateArrWithId = (data, id) => {
@@ -92,4 +102,4 @@ const getItemCustomStructureObjectArray = () => {
 
 // export { favorites, usersGrocery, getItemCustomStructureObjectArray };
 
-module.exports = { favorites, usersGrocery, getItemCustomStructureObjectArray };
+module.exports = { favorites, usersGrocery, getItemCustomStructureObjectArray, createOutputFolder };

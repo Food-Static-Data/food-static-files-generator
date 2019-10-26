@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "nodemon server/index.js",
-    "start" : "node server/index.js"
+    "start": "node server/index.js"
   },
   "keywords": [],
   "author": "",
@@ -18,5 +18,8 @@
     "lodash": "^4.17.15",
     "nodemon": "^1.19.2",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
   }
 }

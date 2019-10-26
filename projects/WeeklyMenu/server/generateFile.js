@@ -6,7 +6,7 @@ const { getMenuGenerator } = require("@groceristar/data-methods-weeklymenu");
 // and we need to regenerate all files from scratch each time. especially if
 // we are creating a new file or making changes at
 // @TODO big issue
-const generateFile = numberOfWeeks => {
+const generateFile = async(numberOfWeeks) => {
   const fileName = "generatedMenu";
   // 1. i don't like this paths. at least we can move first part outside - aka output...
   // 2. should we test this path with methods from generator aka isPathExists or something similar
@@ -18,7 +18,7 @@ const generateFile = numberOfWeeks => {
   const data = getMenuGenerator(numberOfWeeks);
 
   // @TODO should be pass a callback here?
-  write(path, data);
+  await write(path, data);
 };
 
 module.exports = generateFile;

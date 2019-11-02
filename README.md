@@ -8,7 +8,7 @@
 
 - [ ] We need to update readme here!
 - [ ] plugin should generate files outside
-- [ ] replace configGenerator with callbacks because all methods will be passed from the outside
+- [x] replace configGenerator with callbacks because all methods will be passed from the outside
 - [ ] husky, lint-staged should work again
 
 we need to create a plan, about what and how this new version of generator

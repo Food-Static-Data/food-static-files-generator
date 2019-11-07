@@ -17,7 +17,7 @@ flow-typed/npm/*
 !flow-typed/npm/module_vx.x.x.js
 
 # Release
-dist/*
+package/dist/*
 
 #build
 package-lock.json
@@ -26,4 +26,4 @@ yarn.lock
 src/settings.json
 
 # Output folder that we're using for quick debug
-output
+output/*

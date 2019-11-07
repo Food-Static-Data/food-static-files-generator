@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 /* eslint-disable no-console */
 // @TODO We get an idea to replace console.logs and console.errors with a tools
 // that is better for logging and reporting
+=======
+// jshint esversion: 6
+/* eslint-disable no-console */
+// @TODO We get an idea to replace console.logs and console.errors with a tools
+// that is better for logging and reporting
+const _ = require('lodash'); //imports whole library of lodash (temporary)
+
+>>>>>>> 2fe0c4827f01e2b7b68a948b921829697e612e14
 import {
   writeFile,
   mkdirSync,
@@ -86,6 +95,10 @@ const read = (absolutePath) => new Promise((resolve, reject) => {
  * @param {var} flag
  * @param {Function} callback
  * */
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2fe0c4827f01e2b7b68a948b921829697e612e14
 // @TODO save got 4 attributes and most of them are about directory/files...
 // there should be another way
 const save = (folderNamePath, file, fileData, flag) => {
@@ -95,10 +108,14 @@ const save = (folderNamePath, file, fileData, flag) => {
   const fileDataLength = fileData.length;
   let success = true;
 
+<<<<<<< HEAD
 
 
   // lodash start of replacement for loop
 
+=======
+  // proposed start of replacement of for loop
+>>>>>>> 2fe0c4827f01e2b7b68a948b921829697e612e14
   var array = _.range(0, fileDataLength, 1);
   _.forEach(array, function (file, fileName, flag, elementPath, fileData) {
     fileName = (file, fileData, flag);
@@ -113,6 +130,7 @@ const save = (folderNamePath, file, fileData, flag) => {
 
     success = success && result;
   });
+<<<<<<< HEAD
 
   // end of replacement for loop
 
@@ -136,6 +154,9 @@ const save = (folderNamePath, file, fileData, flag) => {
 
     success = success && result;
   }
+=======
+  // up to here
+>>>>>>> 2fe0c4827f01e2b7b68a948b921829697e612e14
 
   return new Promise((resolve) => {
     resolve(success);

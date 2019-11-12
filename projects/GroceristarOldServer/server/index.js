@@ -1,43 +1,33 @@
 const { write } = require("@groceristar/static-data-generator");
-const methods = require("./methods");
-const structures = require("./structures");
+// const methods = require("./methods");
 
-// const {
-//   getMeasurementSystem,
-//   getMeasurementUnits
-// } = require("./methods");
+const {
+ favorites,
+ usersGrocery,
+ getItemCustomStructureObjectArray,
+ createOutputFolder
+} = require("./methods");
 
-//const {
-//  favorites, 
-//  usersGrocery, 
-//  getItemCustomStructureObjectArray
-//} = require("./structures");
-// favorites();
-// usersGrocery();
-// getItemCustomStructureObjectArray();
+const generateData = async() => {
+  const toCreate = [
+    {
+      path: "./output/favourites.json",
+      toCall : favorites()
+    },
+    {
+      path:"./output/usersGrocery.json",
+      toCall: usersGrocery()
+    },
+    {
+      path: "./output/getItemCustomStructureObjectArray.json",
+      toCall: getItemCustomStructureObjectArray()
+    }
+  ];  
+  for(const entity of toCreate){
+    await write(entity['path'],entity['toCall']);
+  };
+};
 
-
-
-
-// @TODO should we run a generator script for making a new files here?
-// structures.favorites();
-
-
-
-// 1. for running quick tests
-//  write("./output/test.json", [{ name: "Test" }]);
-
-
-
-
-// 2. just testing write method with more real data
-// const generatedFilesPath = "./output/test.json";
-// write(generatedFilesPath, favorites);
-// write(generatedFilesPath, usersGrocery);
-// write(generatedFilesPath, getItemCustomStructureObjectArray);
-
-
-
-// 3. same as "using generateFile method here instead of previous versions just for testing how it works"
-// const generateFile = require('./generateFile')
-// generateFile();
+createOutputFolder().then(async result => {
+  await generateData()
+})

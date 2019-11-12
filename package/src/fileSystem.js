@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /* eslint-disable no-console */
 // @TODO We get an idea to replace console.logs and console.errors with a tools
 // that is better for logging and reporting
@@ -9,7 +9,6 @@
 // that is better for logging and reporting
 const _ = require('lodash'); //imports whole library of lodash (temporary)
 
->>>>>>> 2fe0c4827f01e2b7b68a948b921829697e612e14
 import {
   writeFile,
   mkdirSync,
@@ -113,14 +112,12 @@ const save = (folderNamePath, file, fileData, flag) => {
   const fileDataLength = fileData.length;
   let success = true;
 
-<<<<<<< HEAD
-
 
   // lodash start of replacement for loop
 
-=======
+
   // proposed start of replacement of for loop
->>>>>>> 2fe0c4827f01e2b7b68a948b921829697e612e14
+
   var array = _.range(0, fileDataLength, 1);
   _.forEach(array, function (file, fileName, flag, elementPath, fileData) {
     fileName = (file, fileData, flag);

@@ -1,9 +1,3 @@
-
-/* eslint-disable no-console */
-// @TODO We get an idea to replace console.logs and console.errors with a tools
-// that is better for logging and reporting
-=======
-// jshint esversion: 6
 /* eslint-disable no-console */
 // @TODO We get an idea to replace console.logs and console.errors with a tools
 // that is better for logging and reporting

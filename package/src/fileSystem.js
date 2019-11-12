@@ -116,9 +116,7 @@ const save = (folderNamePath, file, fileData, flag) => {
     const result = write(elementPath, fileData);
 
     if (!result) {
-      console.log(
-        `${fileName} is the filename, ` + `${elementPath} is the elementPath ` + 'and success is false'
-      );
+      console.log(`${fileName} is the filename, ` + `${elementPath} is the elementPath ` + 'and success is false');
     }
 
     success = success && result;

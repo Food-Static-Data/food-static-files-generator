@@ -93,10 +93,7 @@ const read = (absolutePath) => new Promise((resolve, reject) => {
  * @param {var} flag
  * @param {Function} callback
  * */
-<<<<<<< HEAD
-=======
 
->>>>>>> 2fe0c4827f01e2b7b68a948b921829697e612e14
 // @TODO save got 4 attributes and most of them are about directory/files...
 // there should be another way
 const save = (folderNamePath, file, fileData, flag) => {
@@ -126,33 +123,30 @@ const save = (folderNamePath, file, fileData, flag) => {
 
     success = success && result;
   });
-<<<<<<< HEAD
 
   // end of replacement for loop
 
 
   // @TODO replace with lodash
-  for (let i = 0; i < fileDataLength && success; i += 1) {
-    // @TODO long line, I have feeling that it can be improved
-    // - we just need to find a better way to
-    // rewrite a getFileName method
-    const fileName = getFileName(file, fileData[i], flag, i);
+  // for loop saved just in case we need it
+//   for (let i = 0; i < fileDataLength && success; i += 1) {
+//     // @TODO long line, I have feeling that it can be improved
+//     // - we just need to find a better way to
+//     // rewrite a getFileName method
+//     const fileName = getFileName(file, fileData[i], flag, i);
 
-    const elementPath = `${folderNamePath}/${fileName}`;
-    const result = write(elementPath, fileData[i]);
-    if (!result) {
-      console.log(
-        `${fileName} is the filename, `
-          + `${elementPath} is the elementPath `
-          + 'and success is false',
-      );
-    }
+//     const elementPath = `${folderNamePath}/${fileName}`;
+//     const result = write(elementPath, fileData[i]);
+//     if (!result) {
+//       console.log(
+//         `${fileName} is the filename, `
+//           + `${elementPath} is the elementPath `
+//           + 'and success is false',
+//       );
+//     }
 
-    success = success && result;
-  }
-=======
-  // up to here
->>>>>>> 2fe0c4827f01e2b7b68a948b921829697e612e14
+//     success = success && result;
+//   }
 
   return new Promise((resolve) => {
     resolve(success);

@@ -13,10 +13,13 @@ const _ = require('lodash'); //imports whole library of lodash (temporary)
 import {
   writeFile,
   mkdirSync,
-  // existsSync,
-  // readdirSync,
-  // statSync,
+  lstatSync,
+  rmdirSync,
+  unlinkSync,
+  existsSync,
+  readdirSync,
   readFile,
+  readdir,
 } from 'fs';
 import isValid from 'is-valid-path';
 
@@ -75,9 +78,11 @@ const read = (absolutePath) => new Promise((resolve, reject) => {
   let dataStr;
   readFile(absolutePath, 'utf8', (err, data) => {
     if (!err) {
+      // @TODO add else statement
       if (data === '') {
         console.log(`${absolutePath} returned empty`);
       }
+
       dataStr = JSON.parse(data);
       console.log(dataStr);
       resolve(dataStr);
@@ -163,7 +168,6 @@ const save = (folderNamePath, file, fileData, flag) => {
   });
 };
 
-
 /**
  * @param {String} path
  * @param {String} file
@@ -181,7 +185,6 @@ const makeFolder = (path, file) => {
   }
   return folderNamePath;
 };
-
 
 /**
  * For readAllFiles()
@@ -206,6 +209,18 @@ const readAllFiles = (filePath) => {
   });
   return content;
 };
+
+/**
+ * @async
+ * @param {dirPath} dirPath directory path
+ * @returns {Promise<string[]>} Promise<srting[]>
+ */
+const readDir = (dirPath) => new Promise((resolve, reject) => {
+  readdir(dirPath, (err, files) => {
+    if (err) reject(err);
+    resolve(files);
+  });
+});
 
 /**
  * For getListContent()
@@ -243,6 +258,34 @@ const getFileInfo = (filePath, flag = 0, fileName = 'undefined') => {
   return getOnlyFiles(pathCopy);
 };
 
+/**
+ * For deleteFolderRecursive()
+ * @param {String} path
+ */
+const deleteFolderRecursive = (path) => {
+  if (existsSync(path)) {
+    readdirSync(path).forEach((file) => {
+      const curPath = `${path}/${file}`;
+      if (lstatSync(curPath).isDirectory()) {
+        // recurse
+        deleteFolderRecursive(curPath);
+      } else {
+        // delete file
+        unlinkSync(curPath);
+      }
+    });
+    rmdirSync(path);
+  }
+};
+
 export {
-  write, read, save, makeFolder, readAllFiles, getListContent, getFileInfo,
+  write,
+  read,
+  save,
+  makeFolder,
+  readAllFiles,
+  getListContent,
+  getFileInfo,
+  deleteFolderRecursive,
+  readDir,
 };

@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
 
-// @TODO replace with actual methods
-// as we did it at other files
 import { basename, parse, extname } from 'path';
 import { fixPath, updateContent } from './utils';
 
@@ -9,7 +7,6 @@ import {
   read, write, save, makeFolder, readAllFiles,
 } from './fileSystem';
 
-// @TODO update with promise
 /**
  * For combine()
  * @param {String} path Path of folder where all splitted files are stored

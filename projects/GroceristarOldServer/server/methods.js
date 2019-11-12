@@ -1,135 +1,105 @@
 /* eslint-disable */
-
-// @TODO replace later with ES6 version
-const _ = require("lodash");
-const { generateID } = require("@groceristar/static-data-generator");
-
+const { map } = require("lodash");
 const {
-  departments,
-  ingredients,
-  grocery
-} = require("@groceristar/sd-wrapper");
+  setupPath
+} = require("@groceristar/static-data-generator");
+const _ = require('lodash')
+const {mkdir} = require('fs');
+const uuidv1 = require('uuid/v1');
 
-/**
- * @returns {array} of keys for departments and ingredients
- */
-const getKeyArrayDepAndIng = () => {
-  const keys = [];
+// Create output directory 
+const createOutputFolder = async() => {
+  await mkdir('./output',(error,result)=>{
+    if(error){
+        return console.log('Could not create directory');
+    }
+    console.log('Directory succesfully created');
+  });
+};
 
-  const departments = getAllDepartmentsWithId();
-  const ingredients = getAllIngredientsWithId();
-
-  _.forEach(departments, department => {
-    _.forEach(ingredients, ingredient => {
-      if (_.includes(ingredient, department.name)) {
-        keys.push({
-          [department.key]: ingredient.key
-        });
-      }
+const generateID = () => uuidv1();
+const generateArrWithId = (data, id) => {
+  const result = [];
+  _.map(data, (element) => {
+    result.push({
+      ...element,
+      [id]: generateID(),
     });
   });
 
-  return keys;
+  return result;
 };
 
-// get ultimate grocery list for each grocery store
-const ultimateGroceryList = () => {
-  const ultimategroceries = [];
-  const groceries = getAllGroceryWithId();
+// import { map } from "lodash";
+// import {
+//   generateArrWithId,
+//   setupPath
+// } from "@groceristar/static-data-generator";
 
-  _.map(groceries, grocery => {
-    const ultimategrocery = {};
+const { grocery, users, ingredients } = require("@groceristar/sd-wrapper");
 
-    ultimategrocery.name = grocery.name;
-    ultimategrocery.groceryId = grocery.key;
-    ultimategroceries.messages = {};
-    ultimategrocery.departments = getGroceryDepartmentsWithIngredients(
-      grocery.departments,
-      grocery.key
-    );
-    ultimategrocery.ultimate = { name: grocery.name, id: grocery.key };
+// console.log(grocery)
+// console.log(users)
+// console.log(ingredients)
 
-    ultimategroceries.push(ultimategrocery);
+const favorites = () => {
+  // const files = setupPath("../../sd/data");
+  const groceryId = generateArrWithId(grocery, "grocery_id");
+  const usersId = generateArrWithId(users, "user_id");
+  const ingredientsId = generateArrWithId(ingredients, "ingredient_id");
+
+  const result = [];
+
+  map(usersId, (user, index) => {
+    result.push({
+      ingredient_id: ingredientsId[index++].ingredient_id,
+      user_id: user.user_id,
+      favs: `desc for department${index}`,
+      // one grocery id for all users
+      grocery_id: groceryId[(index += 1)].grocery_id
+    });
   });
-
-  return ultimategroceries;
-};
-
-// get all departments with their ingredients in a grocery
-const getGroceryDepartmentsWithIngredients = (grocerydepartments, key) => {
-  const results = [];
-  const departments = getAllDepartmentsWithId();
-  _.map(grocerydepartments, grocerydepartment => {
-    // search for a particular grocery department in the department json to get the department object
-    const department = _.filter(
-      departments,
-      department => department.name === grocerydepartment
-    );
-
-    if (department) {
-      const departmentIngredients = {
-        id: department.key,
-        name: department.name,
-        type: department.type
-      };
-
-      departmentIngredients.ingredients = getDepartmentIngredients(
-        grocerydepartment,
-        key
-      ); // add all the ingredients in this department to the obj
-      results.push(departmentIngredients);
-    }
-  });
-
-  return results;
-};
-
-// get all ingredients in a department
-const getDepartmentIngredients = (department, key) => {
-  const results = [];
-  const ingredients = getAllIngredientsWithId();
-  _.map(ingredients, ingredient => {
-    if (_.includes(ingredient, department)) {
-      const ingredientItem = [
-        ingredient.key,
-        ingredient.name,
-        `/del/ing/${ingredient.key}/${key}`
-      ];
-      results.push(ingredientItem);
-    }
-  });
-
-  return results;
-};
-
-// get grocery with key
-const getAllGroceryWithId = () => {
-  const result = getResult(grocery);
 
   return result;
 };
 
-const getAllDepartmentsWithId = () => {
-  const result = getResult(departments);
+const usersGrocery = () => {
+  // const files = setupPath("../../sd/src");
+  const groceryId = generateArrWithId(grocery, "grocery_id");
+  const usersId = generateArrWithId(users, "user_id");
+  // return object for three users
+  const result = [];
+
+  map(usersId, (user, index) => {
+    result.push({
+      user_id: user.user_id,
+      // one grocery id for all users
+      grocery_id: groceryId[(index += 1)].grocery_id
+    });
+  });
+  return result;
+};
+
+// yes, my function name is not better, but at least it's less confusing
+const getItemCustomStructureObjectArray = () => {
+  // const files = setupPath("../../sd/data");
+  const ingredientsId = generateArrWithId(ingredients, "ingredient_id");
+  const items = [1, 2, 3];
+  const result = [];
+
+  map(items, (item, index) => {
+    result.push({
+      item_id: item,
+      name: ingredientsId[(index += 1)].name,
+      description: "something about the item",
+      quantity: 50,
+      purchase: false
+    });
+  });
 
   return result;
 };
 
-const getAllIngredientsWithId = () => {
-  const result = getResult(ingredients);
+// export { favorites, usersGrocery, getItemCustomStructureObjectArray };
 
-  return result;
-};
-
-const getResult = property =>
-  _.map(property, p => ({
-    key: generateID(),
-    ...p
-  }));
-
-module.exports = {
-  getKeyArrayDepAndIng,
-  ultimateGroceryList,
-  getDepartmentIngredients,
-  getGroceryDepartmentsWithIngredients
-};
+module.exports = { favorites, usersGrocery, getItemCustomStructureObjectArray, createOutputFolder };

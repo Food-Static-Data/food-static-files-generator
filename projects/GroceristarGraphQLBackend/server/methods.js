@@ -1,10 +1,11 @@
-// @TODO replace later with ES6 version
+const graphql = require('@groceristar/data-methods-graphql')
+
+// // @TODO replace later with ES6 version
 const _ = require("lodash");
 
 const {
   generateID,
-  generateDate,
-  getFileKey
+  generateDate
 } = require("@groceristar/static-data-generator");
 
 // it should be grabbed from sd
@@ -18,6 +19,8 @@ const {
   grocery
 } = require("@groceristar/sd-wrapper");
 
+const {mkdir} = require('fs');
+
 // @TODO as we may need to be able to call this function from the
 // outside of this project - we should move this method outside
 //
@@ -28,6 +31,16 @@ const getFileKey = file =>
   }));
 
 const getFavoritesKey = () => getFileKey(favorites);
+
+// Create output directory 
+const createOutputFolder = async() => {
+  await mkdir('./output',(error,result)=>{
+    if(error){
+        return console.log('Could not create directory');
+    }
+    console.log('Directory succesfully created');
+  });
+};
 
 const getDepartmentsKey = function() {
   const results = departments;
@@ -98,5 +111,6 @@ module.exports = {
   getItemsKey,
   getUsersKey,
   getIngredientsKey,
-  getGroceryKey
+  getGroceryKey,
+  createOutputFolder
 };

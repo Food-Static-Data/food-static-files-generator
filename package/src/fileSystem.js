@@ -128,7 +128,7 @@ const save = (folderNamePath, file, fileData, flag) => {
   // @TODO replace with lodash
   // for loop saved just in case we need it
 //   for (let i = 0; i < fileDataLength && success; i += 1) {
-//     // @TODO long line, I have feeling that it can be improved
+//     // long line, I have feeling that it can be improved - to do
 //     // - we just need to find a better way to
 //     // rewrite a getFileName method
 //     const fileName = getFileName(file, fileData[i], flag, i);

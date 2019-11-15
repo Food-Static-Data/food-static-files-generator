@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 // @TODO We get an idea to replace console.logs and console.errors with a tools
 // that is better for logging and reporting
+const _ = require('lodash'); //imports whole library of lodash (temporary)
+
 import {
   writeFile,
   mkdirSync,
@@ -91,6 +93,7 @@ const read = (absolutePath) => new Promise((resolve, reject) => {
  * @param {var} flag
  * @param {Function} callback
  * */
+
 // @TODO save got 4 attributes and most of them are about directory/files...
 // there should be another way
 const save = (folderNamePath, file, fileData, flag) => {
@@ -100,25 +103,48 @@ const save = (folderNamePath, file, fileData, flag) => {
   const fileDataLength = fileData.length;
   let success = true;
 
-  // @TODO replace with lodash
-  for (let i = 0; i < fileDataLength && success; i += 1) {
-    // @TODO long line, I have feeling that it can be improved
-    // - we just need to find a better way to
-    // rewrite a getFileName method
-    const fileName = getFileName(file, fileData[i], flag, i);
 
-    const elementPath = `${folderNamePath}/${fileName}`;
-    const result = write(elementPath, fileData[i]);
+  // lodash start of replacement for loop
+
+
+  // proposed start of replacement of for loop
+
+  var array = _.range(0, fileDataLength, 1);
+  _.forEach(array, function (file, fileName, flag, elementPath, fileData) {
+    fileName = (file, fileData, flag);
+    elementPath = `${folderNamePath}/${fileName}`;
+    const result = write(elementPath, fileData);
+
     if (!result) {
-      console.log(
-        `${fileName} is the filename, `
-          + `${elementPath} is the elementPath `
-          + 'and success is false',
-      );
+      console.log(`${fileName} is the filename, ` + `${elementPath} is the elementPath ` + 'and success is false');
     }
 
     success = success && result;
-  }
+  });
+
+  // end of replacement for loop
+
+
+  // @TODO replace with lodash
+  // for loop saved just in case we need it
+//   for (let i = 0; i < fileDataLength && success; i += 1) {
+//     // long line, I have feeling that it can be improved - to do
+//     // - we just need to find a better way to
+//     // rewrite a getFileName method
+//     const fileName = getFileName(file, fileData[i], flag, i);
+
+//     const elementPath = `${folderNamePath}/${fileName}`;
+//     const result = write(elementPath, fileData[i]);
+//     if (!result) {
+//       console.log(
+//         `${fileName} is the filename, `
+//           + `${elementPath} is the elementPath `
+//           + 'and success is false',
+//       );
+//     }
+
+//     success = success && result;
+//   }
 
   return new Promise((resolve) => {
     resolve(success);

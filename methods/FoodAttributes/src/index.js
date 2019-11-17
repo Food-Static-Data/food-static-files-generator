@@ -1,10 +1,17 @@
+// import {
+//   holiday,
+//   allergies,
+//   course,
+//   cuisine,
+//   diet,
+
+
+//   departments
+// } from './files'
+
+
 import {
-  holiday,
-  allergies,
-  course,
-  cuisine,
-  diet,
+    holiday
+} from '@groceristar/sd-wrapper'
 
-
-  departments
-} from './files'
+console.log(holiday)

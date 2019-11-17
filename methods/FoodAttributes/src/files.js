@@ -1,21 +1,29 @@
-import {
-  holiday,
-  allergies,
-  course,
-  cuisine,
-  diet,
+// import {
+//   holiday,
+//   allergies,
+//   course,
+//   cuisine,
+//   diet,
 
 
-  departments
-} from '@groceristar/sd-wrapper'
+//   departments
+// } from '@groceristar/sd-wrapper'
 
-export {
-  holiday,
-  allergies,
-  course,
-  cuisine,
-  diet,
+// // const holiday 
+
+// // const allergies
+// // const course 
+// // const cuisine
+// // const departments
+// // const diet 
+
+// export {
+//   holiday,
+//   allergies,
+//   course,
+//   cuisine,
+//   diet,
 
 
-  departments
-}
+//   departments
+// }

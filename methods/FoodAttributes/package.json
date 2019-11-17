@@ -62,15 +62,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@groceristar/sd-wrapper": "^4.10.0",
-    "lodash": "^4.17.11",
+    "@groceristar/sd-wrapper": "^4.15.1",
+    "eslint": "^6.6.0",
+    "lodash": "^4.17.15",
     "path": "^0.12.7",
-    "uuid": "^3.3.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "clean"
-    }
+    "uuid": "^3.3.3"
   },
   "files": [
     "dist"

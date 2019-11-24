@@ -129,7 +129,9 @@ export default {
       // name visible for other scripts
       name,
       // https://rollupjs.org/guide/en#output-globals-g-globals
-      // globals: {}
+      globals: {
+        path: "path"
+      }
     },
   ],
 

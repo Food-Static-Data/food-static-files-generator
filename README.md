@@ -11,7 +11,7 @@
 - [x] replace configGenerator with callbacks because all methods will be passed from the outside
 - [ ] husky, lint-staged should work again
 
-- [ ] Remove Debug/Output/Play folder and replace them with tests suits
+- [x] Remove Debug/Output/Play folder and replace them with tests suits
 <!--prettier --write \"src/**/*.{js,jsx,ts,tsx,scss,less}\"-->
 
 ## Quick Start

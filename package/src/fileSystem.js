@@ -18,7 +18,6 @@ import isValid from "is-valid-path";
 
 import {
   stripSymbols,
-  getFileName,
   isFolderExists,
   fixPath,
   dirSync,
@@ -100,7 +99,7 @@ const read = absolutePath =>
 
 // @TODO save got 4 attributes and most of them are about directory/files...
 // there should be another way
-const save = (folderNamePath, file, fileData, flag) => {
+const save = (folderNamePath, fileData) => {
   if (!isValid(folderNamePath)) {
     console.log("path is not valid");
   }
@@ -113,8 +112,6 @@ const save = (folderNamePath, file, fileData, flag) => {
 
   const array = _.range(0, fileDataLength, 1);
   _.forEach(array, (fileName, i, elementPath) => {
-
-    fileName = getFileName(file, fileData[i], flag);
     
     elementPath = `${folderNamePath}/${fileName}`;
     const result = write(elementPath, fileData[i]);

@@ -12,9 +12,9 @@ import {
   existsSync,
   readdirSync,
   readFile,
-  readdir
-} from "fs";
-import isValid from "is-valid-path";
+  readdir,
+} from 'fs';
+import isValid from 'is-valid-path';
 
 import {
   stripSymbols,
@@ -23,10 +23,10 @@ import {
   fixPath,
   dirSync,
   syncStats,
-  getOnlyFiles
-} from "./utils";
+  getOnlyFiles,
+} from './utils';
 
-const _ = require("lodash");
+const _ = require('lodash');
 
 /**
  * Write in file
@@ -36,59 +36,57 @@ const _ = require("lodash");
  */
 // @TODO cover a test case, when dataStr is not an array.
 // we can just pass a string there
-const write = (path, data) =>
-  new Promise((resolve, reject) => {
-    if (!isValid(path)) {
-      console.log("path is not valid");
-    }
+const write = (path, data) => new Promise((resolve, reject) => {
+  if (!isValid(path)) {
+    console.log('path is not valid');
+  }
 
-    let dataStr;
+  let dataStr;
 
-    if (typeof data === "string") {
-      dataStr = data;
+  if (typeof data === 'string') {
+    dataStr = data;
+  } else {
+    dataStr = stripSymbols(data);
+  }
+
+  writeFile(path, dataStr, (err) => {
+    if (!err) {
+      console.info(`${path} file generated successfully!`);
+      resolve(true);
     } else {
-      dataStr = stripSymbols(data);
+      console.error(err);
+      reject(err);
     }
-
-    writeFile(path, dataStr, err => {
-      if (!err) {
-        console.info(`${path} file generated successfully!`);
-        resolve(true);
-      } else {
-        console.error(err);
-        reject(err);
-      }
-    });
   });
+});
 
 /**
  * read()
  * @param {string} absolutePath
  *
  */
-const read = absolutePath =>
-  new Promise((resolve, reject) => {
-    console.log(absolutePath);
-    if (!isValid(absolutePath)) {
-      console.log("path is invalid");
-    }
-    let dataStr;
-    readFile(absolutePath, "utf8", (err, data) => {
-      if (!err) {
-        // @TODO add else statement
-        if (data === "") {
-          console.log(`${absolutePath} returned empty`);
-        }
-
-        dataStr = JSON.parse(data);
-        console.log(dataStr);
-        resolve(dataStr);
-      } else {
-        console.log(err);
-        reject(err);
+const read = (absolutePath) => new Promise((resolve, reject) => {
+  console.log(absolutePath);
+  if (!isValid(absolutePath)) {
+    console.log('path is invalid');
+  }
+  let dataStr;
+  readFile(absolutePath, 'utf8', (err, data) => {
+    if (!err) {
+      // @TODO add else statement
+      if (data === '') {
+        console.log(`${absolutePath} returned empty`);
       }
-    });
+
+      dataStr = JSON.parse(data);
+      console.log(dataStr);
+      resolve(dataStr);
+    } else {
+      console.log(err);
+      reject(err);
+    }
   });
+});
 
 /**
  * @param {String} folderNamePath
@@ -102,7 +100,7 @@ const read = absolutePath =>
 // there should be another way
 const save = (folderNamePath, file, fileData, flag) => {
   if (!isValid(folderNamePath)) {
-    console.log("path is not valid");
+    console.log('path is not valid');
   }
   const fileDataLength = fileData.length;
   let success = true;
@@ -112,16 +110,35 @@ const save = (folderNamePath, file, fileData, flag) => {
   // proposed start of replacement of for loop
 
   const array = _.range(0, fileDataLength, 1);
-  _.forEach(array, (file, fileName, flag, elementPath, fileData) => {
-    fileName = (file, fileData, flag);
+
+  // NB:- the old looping function-keeping it incase of error in the changes
+  // _.forEach(array, (file, fileName, flag, elementPath, fileData) => {
+  //   fileName = getFileName(file, fileData, flag);
+  //   elementPath = `${folderNamePath}/${fileName}`;
+  //   const result = write(elementPath, fileData);
+
+  //   if (!result) {
+  //     console.log(
+  //       `${fileName} is the filename, ` +
+  //         `${elementPath} is the elementPath ` +
+  //         "and success is false"
+  //     );
+  //   }
+
+  //   success = success && result;
+  // });
+
+  // NB:- replication of the looping above with changes
+  _.forEach(array, (fileName, elementPath) => {
+    fileName = getFileName(file, fileData, flag);
     elementPath = `${folderNamePath}/${fileName}`;
     const result = write(elementPath, fileData);
 
     if (!result) {
       console.log(
-        `${fileName} is the filename, ` +
-          `${elementPath} is the elementPath ` +
-          "and success is false"
+        `${fileName} is the filename, `
+          + `${elementPath} is the elementPath `
+          + 'and success is false',
       );
     }
 
@@ -151,7 +168,7 @@ const save = (folderNamePath, file, fileData, flag) => {
   //     success = success && result;
   //   }
 
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     resolve(success);
   });
 };
@@ -162,9 +179,9 @@ const save = (folderNamePath, file, fileData, flag) => {
  */
 const makeFolder = (path, file) => {
   if (!isValid(path)) {
-    console.log("path is not valid");
+    console.log('path is not valid');
   }
-  const suffix = "_elements";
+  const suffix = '_elements';
   const folderName = file.slice(0, -5) + suffix;
   const folderNamePath = path + folderName;
 
@@ -181,14 +198,14 @@ const makeFolder = (path, file) => {
 // @TODO as we removed isDirectory - this method wouldn't work.
 // let's figure out what to do.
 // i think this method should work, used and moved into fileSystem.js
-const readAllFiles = filePath => {
+const readAllFiles = (filePath) => {
   const content = [];
   const newPath = fixPath(filePath);
   const files = dirSync(newPath);
-  files.forEach(file => {
+  files.forEach((file) => {
     // @TODO this is a very long and confusing line
     const fileStat = syncStats(newPath + file).isDirectory();
-    if (file.slice(-5) === ".json") {
+    if (file.slice(-5) === '.json') {
       if (!fileStat) {
         const data = read(newPath + file);
         content.push(data);
@@ -203,21 +220,20 @@ const readAllFiles = filePath => {
  * @param {dirPath} dirPath directory path
  * @returns {Promise<string[]>} Promise<srting[]>
  */
-const readDir = dirPath =>
-  new Promise((resolve, reject) => {
-    readdir(dirPath, (err, files) => {
-      if (err) reject(err);
-      resolve(files);
-    });
+const readDir = (dirPath) => new Promise((resolve, reject) => {
+  readdir(dirPath, (err, files) => {
+    if (err) reject(err);
+    resolve(files);
   });
+});
 
 /**
  * For getListContent()
  * @param {String} filePath
  * @param {String} fileName
  */
-const getListContent = (filePath, fileName = "undefined") => {
-  if (fileName === "undefined") {
+const getListContent = (filePath, fileName = 'undefined') => {
+  if (fileName === 'undefined') {
     // read all files
     return readAllFiles(filePath);
   }
@@ -232,7 +248,7 @@ const getListContent = (filePath, fileName = "undefined") => {
  * @param {String} fileName
  */
 
-const getFileInfo = (filePath, flag = 0, fileName = "undefined") => {
+const getFileInfo = (filePath, flag = 0, fileName = 'undefined') => {
   /*
       flag = 1 --> means return content
       if file name is given then content of that file else return content of all files.
@@ -251,9 +267,9 @@ const getFileInfo = (filePath, flag = 0, fileName = "undefined") => {
  * For deleteFolderRecursive()
  * @param {String} path
  */
-const deleteFolderRecursive = path => {
+const deleteFolderRecursive = (path) => {
   if (existsSync(path)) {
-    readdirSync(path).forEach(file => {
+    readdirSync(path).forEach((file) => {
       const curPath = `${path}/${file}`;
       if (lstatSync(curPath).isDirectory()) {
         // recurse
@@ -276,5 +292,5 @@ export {
   getListContent,
   getFileInfo,
   deleteFolderRecursive,
-  readDir
+  readDir,
 };

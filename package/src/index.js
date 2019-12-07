@@ -1,12 +1,14 @@
-import { isFolderExists, generateID, generateDate, getFileKey } from "./utils";
-import { combine, split } from "./objects";
+import {
+  isFolderExists, generateID, generateDate, getFileKey,
+} from './utils';
+import { combine, split } from './objects';
 import {
   read,
   write,
   getFileInfo,
   readDir,
-  getListContent
-} from "./fileSystem";
+  getListContent,
+} from './fileSystem';
 // @TODO to explore - should we export all of these methods or not?
 export {
   combine,
@@ -20,5 +22,5 @@ export {
   getListContent,
   generateID,
   generateDate,
-  getFileKey
+  getFileKey,
 };

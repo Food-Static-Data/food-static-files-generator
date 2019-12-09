@@ -7,6 +7,7 @@ import pathExists from 'path-exists';
 import _ from 'lodash';
 import uuidv1 from 'uuid/v1';
 import dayjs from 'dayjs';
+import isValid from 'is-valid-path';
 
 // @TODO what is the purpose of this method? Just separation?
 // are we using them few times, right?
@@ -30,6 +31,11 @@ const syncStats = (filepath) => statSync(filepath);
  */
 const isFolderExists = (folderNamePath) => existsSync(folderNamePath);
 
+const isPathValid = (path) => {
+  if (!isValid(path)) {
+    console.log('path is not valid');
+  }
+};
 
 /**
  * fixFileName()
@@ -110,6 +116,7 @@ const updateContent = (content, keys) => {
 };
 
 const checkFilePath = async (filePath) => {
+  isPathValid(filePath);
   if (await pathExists(filePath)) {
     console.log(`Filepath ${filePath} exist`);
   } else {
@@ -122,13 +129,13 @@ const checkFilePath = async (filePath) => {
  * @param {String} path
  */
 const fixPath = (filePath) => {
+  isPathValid(filePath);
   let newPath = resolve(__dirname, filePath);
   if (newPath.charAt(newPath.length - 1) !== '/') {
     newPath += '/';
   }
   return newPath;
 };
-
 
 /**
  * For getOnlyFiles()
@@ -138,6 +145,7 @@ const fixPath = (filePath) => {
 // developer of this code - it looks confusing for me
 const getOnlyFiles = (filePath) => {
   const list = [];
+  isPathValid(filePath);
   const files = dirSync(filePath);
   files.forEach((file) => {
     const fileStat = syncStats(`${filePath}/${file}`).isDirectory();
@@ -147,7 +155,6 @@ const getOnlyFiles = (filePath) => {
   });
   return list;
 };
-
 
 const generateID = () => uuidv1();
 
@@ -219,4 +226,5 @@ export {
   isFolderExists,
   dirSync,
   syncStats,
+  isPathValid,
 };

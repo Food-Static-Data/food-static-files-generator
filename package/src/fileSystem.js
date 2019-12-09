@@ -14,7 +14,7 @@ import {
   readFile,
   readdir,
 } from 'fs';
-import isValid from 'is-valid-path';
+// import isValid from 'is-valid-path';
 
 import {
   stripSymbols,
@@ -24,6 +24,7 @@ import {
   dirSync,
   syncStats,
   getOnlyFiles,
+  isPathValid,
 } from './utils';
 
 const _ = require('lodash');
@@ -37,9 +38,7 @@ const _ = require('lodash');
 // @TODO cover a test case, when dataStr is not an array.
 // we can just pass a string there
 const write = (path, data) => new Promise((resolve, reject) => {
-  if (!isValid(path)) {
-    console.log('path is not valid');
-  }
+  isPathValid(path);
 
   let dataStr;
 
@@ -67,9 +66,7 @@ const write = (path, data) => new Promise((resolve, reject) => {
  */
 const read = (absolutePath) => new Promise((resolve, reject) => {
   console.log(absolutePath);
-  if (!isValid(absolutePath)) {
-    console.log('path is invalid');
-  }
+  isPathValid(absolutePath);
   let dataStr;
   readFile(absolutePath, 'utf8', (err, data) => {
     if (!err) {
@@ -99,9 +96,7 @@ const read = (absolutePath) => new Promise((resolve, reject) => {
 // @TODO save got 4 attributes and most of them are about directory/files...
 // there should be another way
 const save = (folderNamePath, file, fileData, flag) => {
-  if (!isValid(folderNamePath)) {
-    console.log('path is not valid');
-  }
+  isPathValid(folderNamePath);
   const fileDataLength = fileData.length;
   let success = true;
 
@@ -178,9 +173,7 @@ const save = (folderNamePath, file, fileData, flag) => {
  * @param {String} file
  */
 const makeFolder = (path, file) => {
-  if (!isValid(path)) {
-    console.log('path is not valid');
-  }
+  isPathValid(path);
   const suffix = '_elements';
   const folderName = file.slice(0, -5) + suffix;
   const folderNamePath = path + folderName;

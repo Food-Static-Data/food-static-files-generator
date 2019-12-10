@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
 import { basename, parse, extname } from 'path';
-import { fixPath, updateContent } from './utils';
+import { fixPath, updateContent, isPathValid } from './utils';
 
 import {
   read, write, save, makeFolder, readAllFiles,
@@ -14,6 +14,7 @@ import {
  */
 const combine = (path, keys) => new Promise((resolve) => {
   const suffix = '_combined.json';
+  isPathValid(path);
   const updatedPath = fixPath(path);
 
   // read all json files
@@ -48,6 +49,7 @@ function split(fullPath, flag = 1, keys = [], callback) {
        flag=0 ==> name according to "name" attribute
      */
   const file = basename(fullPath);
+  isPathValid(fullPath);
   const path = parse(fullPath).dir;
 
   if (extname(file) !== '.json') {

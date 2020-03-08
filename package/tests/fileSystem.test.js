@@ -65,7 +65,7 @@ describe('testing function makeFolder()', () => {
 
 describe('testing function isFolderExists()', () => {
   test('test isFolderExists() returns true', async () => {
-    const result = isFolderExists(testFolder);
+    const result = await isFolderExists(testFolder);
     expect(result).toBe(true);
   });
 
@@ -73,7 +73,7 @@ describe('testing function isFolderExists()', () => {
     // @TODO lets make a const variable for path to folder and use
     // some important folders(few), like `src` or
     // `dist`(sometimes dist are actually removed, cleaned up)
-    const result = isFolderExists('./nofolderxxx');
+    const result = await isFolderExists('../src/fileSystem.js');
     expect(result).toBe(false);
   });
 });

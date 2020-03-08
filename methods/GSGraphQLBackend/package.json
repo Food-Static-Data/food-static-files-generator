@@ -49,7 +49,7 @@
     "pretty-quick": "2.0.1",
     "regenerator-runtime": "0.13.3",
     "rollup": "2.0.2",
-    "rollup-plugin-babel": "4.3.3",
+    "rollup-plugin-babel": "4.4.0",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-eslint": "7.0.0",
     "rollup-plugin-node-builtins": "2.1.2",

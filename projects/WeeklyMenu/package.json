@@ -20,6 +20,6 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "jest": "25.1.0"
+    "jest": "25.5.4"
   }
 }

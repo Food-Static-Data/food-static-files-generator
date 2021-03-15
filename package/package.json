@@ -76,7 +76,7 @@
     "path": "^0.12.7",
     "path-exists": "^4.0.0",
     "randombytes": "^2.1.0",
-    "uuid": "^7.0.0"
+    "uuid": "^8.0.0"
   },
   "files": [
     "dist"

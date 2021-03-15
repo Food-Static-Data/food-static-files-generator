@@ -64,7 +64,7 @@
     "@groceristar/sd-wrapper": "^4.11.3",
     "lodash": "^4.17.11",
     "path": "^0.12.7",
-    "uuid": "^7.0.0"
+    "uuid": "^8.0.0"
   },
   "husky": {
     "hooks": {

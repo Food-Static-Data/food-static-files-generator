@@ -63,7 +63,7 @@
   },
   "dependencies": {
     "@groceristar/sd-wrapper": "^4.15.1",
-    "eslint": "^7.0.0",
+    "eslint": "^8.0.0",
     "lodash": "^4.17.15",
     "path": "^0.12.7",
     "uuid": "^8.0.0"

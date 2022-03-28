@@ -54,7 +54,7 @@
     "shelljs": "0.8.5",
     "shelljs.exec": "1.1.8",
     "shx": "0.3.4",
-    "standard": "16.0.3"
+    "standard": "16.0.4"
   },
   "peerDependencies": {},
   "publishConfig": {

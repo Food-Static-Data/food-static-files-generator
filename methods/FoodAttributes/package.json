@@ -42,7 +42,7 @@
     "jest-json-schema": "6.1.0",
     "jsonlint": "1.6.3",
     "lint-staged": "12.3.7",
-    "regenerator-runtime": "0.13.7",
+    "regenerator-runtime": "0.13.9",
     "rollup": "2.70.1",
     "rollup-plugin-babel": "4.4.0",
     "rollup-plugin-commonjs": "10.1.0",
